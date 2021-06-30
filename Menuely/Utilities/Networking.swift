@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Networkable {
+protocol Networking {
     var path: String { get }
     var method: String { get }
     var headers: [String: String]? { get }
@@ -18,7 +18,6 @@ enum NetworkError: Error {
     case invalidURL
     case httpCode(HTTPCode)
     case unexpectedResponse
-    case imageProcessing([URLRequest])
 }
 
 extension NetworkError: LocalizedError {
@@ -27,12 +26,11 @@ extension NetworkError: LocalizedError {
         case .invalidURL: return "Invalid URL"
         case let .httpCode(code): return "Unexpected HTTP code: \(code)"
         case .unexpectedResponse: return "Unexpected server response"
-        case .imageProcessing: return "Unable to load image"
         }
     }
 }
 
-extension Networkable {
+extension Networking {
     func urlRequest(baseURL: String) throws -> URLRequest {
         guard let url = URL(string: baseURL + path) else {
             throw NetworkError.invalidURL
