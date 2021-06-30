@@ -15,6 +15,7 @@
 		6074C0B6268CADB100DA3B21 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0B5268CADB100DA3B21 /* Store.swift */; };
 		6074C0B8268CB32500DA3B21 /* CancelBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0B7268CB32500DA3B21 /* CancelBag.swift */; };
 		6074C0BA268CC06600DA3B21 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0B9268CC06600DA3B21 /* Loadable.swift */; };
+		6074C0BC268CCB3700DA3B21 /* Networkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0BB268CCB3700DA3B21 /* Networkable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		6074C0B5268CADB100DA3B21 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		6074C0B7268CB32500DA3B21 /* CancelBag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelBag.swift; sourceTree = "<group>"; };
 		6074C0B9268CC06600DA3B21 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
+		6074C0BB268CCB3700DA3B21 /* Networkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networkable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				6074C0B5268CADB100DA3B21 /* Store.swift */,
 				6074C0B7268CB32500DA3B21 /* CancelBag.swift */,
 				6074C0B9268CC06600DA3B21 /* Loadable.swift */,
+				6074C0BB268CCB3700DA3B21 /* Networkable.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				6074C0B4268C940700DA3B21 /* AppState.swift in Sources */,
 				6074C0B8268CB32500DA3B21 /* CancelBag.swift in Sources */,
 				6063B68C26893B65001B1405 /* ContentView.swift in Sources */,
+				6074C0BC268CCB3700DA3B21 /* Networkable.swift in Sources */,
 				6063B68A26893B65001B1405 /* MenuelyApp.swift in Sources */,
 				6074C0B6268CADB100DA3B21 /* Store.swift in Sources */,
 				6074C0BA268CC06600DA3B21 /* Loadable.swift in Sources */,
