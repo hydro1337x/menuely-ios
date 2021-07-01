@@ -24,5 +24,10 @@ final class CancelBag {
             return cancellables
         }
     }
+}
 
+extension AnyCancellable {
+    func store(in cancelBag: CancelBag) {
+        cancelBag.cancellables.insert(self)
+    }
 }

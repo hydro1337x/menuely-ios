@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,11 @@
 		6074C0BE268CCF1900DA3B21 /* RemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0BD268CCF1900DA3B21 /* RemoteRepository.swift */; };
 		6074C0C0268CD41400DA3B21 /* NetworkingHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0BF268CD41400DA3B21 /* NetworkingHelpers.swift */; };
 		6074C0C2268CDC5E00DA3B21 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0C1268CDC5E00DA3B21 /* Helpers.swift */; };
+		60944F39268DC73F0063CD61 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 60944F38268DC73F0063CD61 /* Resolver */; };
+		60944F3B268DC8460063CD61 /* Application+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60944F3A268DC8460063CD61 /* Application+Injection.swift */; };
+		60944F3D268DC9F60063CD61 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60944F3C268DC9F60063CD61 /* AppConfiguration.swift */; };
+		60E4ED6A268DCC7B00EC4561 /* Services+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED69268DCC7B00EC4561 /* Services+Injection.swift */; };
+		60E4ED6C268DD45400EC4561 /* AppEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED6B268DD45400EC4561 /* AppEventsHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +41,10 @@
 		6074C0BD268CCF1900DA3B21 /* RemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteRepository.swift; sourceTree = "<group>"; };
 		6074C0BF268CD41400DA3B21 /* NetworkingHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingHelpers.swift; sourceTree = "<group>"; };
 		6074C0C1268CDC5E00DA3B21 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		60944F3A268DC8460063CD61 /* Application+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Application+Injection.swift"; sourceTree = "<group>"; };
+		60944F3C268DC9F60063CD61 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		60E4ED69268DCC7B00EC4561 /* Services+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services+Injection.swift"; sourceTree = "<group>"; };
+		60E4ED6B268DD45400EC4561 /* AppEventsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEventsHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60944F39268DC73F0063CD61 /* Resolver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,7 +78,7 @@
 		6063B68826893B65001B1405 /* Menuely */ = {
 			isa = PBXGroup;
 			children = (
-				6074C0AB268C79AF00DA3B21 /* Application */,
+				6074C0AB268C79AF00DA3B21 /* App */,
 				6074C0AD268C79F600DA3B21 /* DI */,
 				6074C0B1268C7A3F00DA3B21 /* UI */,
 				6074C0B0268C7A3700DA3B21 /* Models */,
@@ -88,12 +98,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		6074C0AB268C79AF00DA3B21 /* Application */ = {
+		6074C0AB268C79AF00DA3B21 /* App */ = {
 			isa = PBXGroup;
 			children = (
 				6063B68926893B65001B1405 /* MenuelyApp.swift */,
+				60944F3C268DC9F60063CD61 /* AppConfiguration.swift */,
+				60E4ED6B268DD45400EC4561 /* AppEventsHandler.swift */,
 			);
-			path = Application;
+			path = App;
 			sourceTree = "<group>";
 		};
 		6074C0AC268C79E800DA3B21 /* Utilities */ = {
@@ -114,6 +126,8 @@
 			isa = PBXGroup;
 			children = (
 				6074C0B3268C940700DA3B21 /* AppState.swift */,
+				60944F3A268DC8460063CD61 /* Application+Injection.swift */,
+				60E4ED69268DCC7B00EC4561 /* Services+Injection.swift */,
 			);
 			path = DI;
 			sourceTree = "<group>";
@@ -173,6 +187,9 @@
 			dependencies = (
 			);
 			name = Menuely;
+			packageProductDependencies = (
+				60944F38268DC73F0063CD61 /* Resolver */,
+			);
 			productName = Menuely;
 			productReference = 6063B68626893B65001B1405 /* Menuely.app */;
 			productType = "com.apple.product-type.application";
@@ -200,6 +217,9 @@
 				Base,
 			);
 			mainGroup = 6063B67D26893B65001B1405;
+			packageReferences = (
+				60944F37268DC73F0063CD61 /* XCRemoteSwiftPackageReference "Resolver" */,
+			);
 			productRefGroup = 6063B68726893B65001B1405 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -226,15 +246,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60E4ED6A268DCC7B00EC4561 /* Services+Injection.swift in Sources */,
 				6074C0B4268C940700DA3B21 /* AppState.swift in Sources */,
 				6074C0B8268CB32500DA3B21 /* CancelBag.swift in Sources */,
 				6063B68C26893B65001B1405 /* ContentView.swift in Sources */,
 				6074C0C2268CDC5E00DA3B21 /* Helpers.swift in Sources */,
 				6074C0BC268CCB3700DA3B21 /* Networking.swift in Sources */,
+				60944F3B268DC8460063CD61 /* Application+Injection.swift in Sources */,
+				60944F3D268DC9F60063CD61 /* AppConfiguration.swift in Sources */,
 				6063B68A26893B65001B1405 /* MenuelyApp.swift in Sources */,
 				6074C0C0268CD41400DA3B21 /* NetworkingHelpers.swift in Sources */,
 				6074C0BE268CCF1900DA3B21 /* RemoteRepository.swift in Sources */,
 				6074C0B6268CADB100DA3B21 /* Store.swift in Sources */,
+				60E4ED6C268DD45400EC4561 /* AppEventsHandler.swift in Sources */,
 				6074C0BA268CC06600DA3B21 /* Loadable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,6 +446,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		60944F37268DC73F0063CD61 /* XCRemoteSwiftPackageReference "Resolver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Resolver.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		60944F38268DC73F0063CD61 /* Resolver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 60944F37268DC73F0063CD61 /* XCRemoteSwiftPackageReference "Resolver" */;
+			productName = Resolver;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6063B67E26893B65001B1405 /* Project object */;
 }

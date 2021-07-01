@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import Resolver
 
 @main
 struct MenuelyApp: App {
+    @Injected private var appEventsHandler: AppEventsHandler
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
