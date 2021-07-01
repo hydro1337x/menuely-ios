@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import Resolver
 
-struct AppEventsHandler {
+struct ApplicationEventsHandler {
     @Injected private var appState: Store<AppState>
     private var cancelBag = CancelBag()
     

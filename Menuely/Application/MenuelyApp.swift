@@ -10,7 +10,7 @@ import Resolver
 
 @main
 struct MenuelyApp: App {
-    @Injected private var appEventsHandler: AppEventsHandler
+    @Injected private var applicationEventsHandler: ApplicationEventsHandler
     
     var body: some Scene {
         WindowGroup {

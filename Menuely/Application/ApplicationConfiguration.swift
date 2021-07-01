@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AppConfiguration {
+struct ApplicationConfiguration {
     var configuredURLSesssion: URLSession {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 60

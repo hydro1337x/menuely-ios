@@ -21,9 +21,12 @@
 		6074C0C2268CDC5E00DA3B21 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0C1268CDC5E00DA3B21 /* Helpers.swift */; };
 		60944F39268DC73F0063CD61 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 60944F38268DC73F0063CD61 /* Resolver */; };
 		60944F3B268DC8460063CD61 /* Application+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60944F3A268DC8460063CD61 /* Application+Injection.swift */; };
-		60944F3D268DC9F60063CD61 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60944F3C268DC9F60063CD61 /* AppConfiguration.swift */; };
+		60944F3D268DC9F60063CD61 /* ApplicationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60944F3C268DC9F60063CD61 /* ApplicationConfiguration.swift */; };
 		60E4ED6A268DCC7B00EC4561 /* Services+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED69268DCC7B00EC4561 /* Services+Injection.swift */; };
-		60E4ED6C268DD45400EC4561 /* AppEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED6B268DD45400EC4561 /* AppEventsHandler.swift */; };
+		60E4ED6C268DD45400EC4561 /* ApplicationEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED6B268DD45400EC4561 /* ApplicationEventsHandler.swift */; };
+		60E4ED6E268DE40B00EC4561 /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED6D268DE40B00EC4561 /* UsersService.swift */; };
+		60E4ED70268DECA600EC4561 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED6F268DECA600EC4561 /* User.swift */; };
+		60E4ED72268DEE4100EC4561 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED71268DEE4100EC4561 /* Image.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,9 +45,12 @@
 		6074C0BF268CD41400DA3B21 /* NetworkingHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingHelpers.swift; sourceTree = "<group>"; };
 		6074C0C1268CDC5E00DA3B21 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		60944F3A268DC8460063CD61 /* Application+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Application+Injection.swift"; sourceTree = "<group>"; };
-		60944F3C268DC9F60063CD61 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		60944F3C268DC9F60063CD61 /* ApplicationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConfiguration.swift; sourceTree = "<group>"; };
 		60E4ED69268DCC7B00EC4561 /* Services+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services+Injection.swift"; sourceTree = "<group>"; };
-		60E4ED6B268DD45400EC4561 /* AppEventsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEventsHandler.swift; sourceTree = "<group>"; };
+		60E4ED6B268DD45400EC4561 /* ApplicationEventsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationEventsHandler.swift; sourceTree = "<group>"; };
+		60E4ED6D268DE40B00EC4561 /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
+		60E4ED6F268DECA600EC4561 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		60E4ED71268DEE4100EC4561 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +84,7 @@
 		6063B68826893B65001B1405 /* Menuely */ = {
 			isa = PBXGroup;
 			children = (
-				6074C0AB268C79AF00DA3B21 /* App */,
+				6074C0AB268C79AF00DA3B21 /* Application */,
 				6074C0AD268C79F600DA3B21 /* DI */,
 				6074C0B1268C7A3F00DA3B21 /* UI */,
 				6074C0B0268C7A3700DA3B21 /* Models */,
@@ -98,14 +104,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		6074C0AB268C79AF00DA3B21 /* App */ = {
+		6074C0AB268C79AF00DA3B21 /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				6063B68926893B65001B1405 /* MenuelyApp.swift */,
-				60944F3C268DC9F60063CD61 /* AppConfiguration.swift */,
-				60E4ED6B268DD45400EC4561 /* AppEventsHandler.swift */,
+				60944F3C268DC9F60063CD61 /* ApplicationConfiguration.swift */,
+				60E4ED6B268DD45400EC4561 /* ApplicationEventsHandler.swift */,
 			);
-			path = App;
+			path = Application;
 			sourceTree = "<group>";
 		};
 		6074C0AC268C79E800DA3B21 /* Utilities */ = {
@@ -142,6 +148,7 @@
 		6074C0AF268C7A3100DA3B21 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				60E4ED6D268DE40B00EC4561 /* UsersService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -149,6 +156,8 @@
 		6074C0B0268C7A3700DA3B21 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				60E4ED6F268DECA600EC4561 /* User.swift */,
+				60E4ED71268DEE4100EC4561 /* Image.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -249,16 +258,19 @@
 				60E4ED6A268DCC7B00EC4561 /* Services+Injection.swift in Sources */,
 				6074C0B4268C940700DA3B21 /* AppState.swift in Sources */,
 				6074C0B8268CB32500DA3B21 /* CancelBag.swift in Sources */,
+				60E4ED6E268DE40B00EC4561 /* UsersService.swift in Sources */,
+				60E4ED70268DECA600EC4561 /* User.swift in Sources */,
 				6063B68C26893B65001B1405 /* ContentView.swift in Sources */,
 				6074C0C2268CDC5E00DA3B21 /* Helpers.swift in Sources */,
 				6074C0BC268CCB3700DA3B21 /* Networking.swift in Sources */,
 				60944F3B268DC8460063CD61 /* Application+Injection.swift in Sources */,
-				60944F3D268DC9F60063CD61 /* AppConfiguration.swift in Sources */,
+				60944F3D268DC9F60063CD61 /* ApplicationConfiguration.swift in Sources */,
 				6063B68A26893B65001B1405 /* MenuelyApp.swift in Sources */,
+				60E4ED72268DEE4100EC4561 /* Image.swift in Sources */,
 				6074C0C0268CD41400DA3B21 /* NetworkingHelpers.swift in Sources */,
 				6074C0BE268CCF1900DA3B21 /* RemoteRepository.swift in Sources */,
 				6074C0B6268CADB100DA3B21 /* Store.swift in Sources */,
-				60E4ED6C268DD45400EC4561 /* AppEventsHandler.swift in Sources */,
+				60E4ED6C268DD45400EC4561 /* ApplicationEventsHandler.swift in Sources */,
 				6074C0BA268CC06600DA3B21 /* Loadable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

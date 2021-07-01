@@ -9,8 +9,6 @@ import Resolver
 
 extension Resolver: ResolverRegistering {
     public static func registerServices() {
-        register { AppConfiguration() }.scope(.shared)
-        register { Store<AppState>(AppState()) }.scope(.shared)
-        register { AppEventsHandler() }.scope(.shared)
+        
     }
 }
