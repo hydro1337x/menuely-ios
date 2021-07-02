@@ -39,7 +39,9 @@ extension Networking {
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = headers
         request.httpBody = try body()
-        print("curl -M \(request.httpMethod as Any) \(request.url?.absoluteString as Any)\nH-\(request.allHTTPHeaderFields as Any)\n-B \(request.httpBody?.description as Any)")
+        
+        print(request.curlString)
+        
         return request
     }
 }

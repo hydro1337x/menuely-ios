@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6049C3C0268F9B9E00B891CC /* Repositories+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */; };
 		6063B68A26893B65001B1405 /* MenuelyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6063B68926893B65001B1405 /* MenuelyApp.swift */; };
 		6063B68C26893B65001B1405 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6063B68B26893B65001B1405 /* ContentView.swift */; };
 		6063B68E26893B67001B1405 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6063B68D26893B67001B1405 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repositories+Injection.swift"; sourceTree = "<group>"; };
 		6063B68626893B65001B1405 /* Menuely.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Menuely.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6063B68926893B65001B1405 /* MenuelyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuelyApp.swift; sourceTree = "<group>"; };
 		6063B68B26893B65001B1405 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -139,8 +141,9 @@
 			children = (
 				6074C0B3268C940700DA3B21 /* AppState.swift */,
 				60944F3A268DC8460063CD61 /* Application+Injection.swift */,
-				60E4ED69268DCC7B00EC4561 /* Services+Injection.swift */,
 				60E4ED79268E174A00EC4561 /* ViewModels+Injection.swift */,
+				60E4ED69268DCC7B00EC4561 /* Services+Injection.swift */,
+				6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */,
 			);
 			path = DI;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60E4ED6A268DCC7B00EC4561 /* Services+Injection.swift in Sources */,
+				6049C3C0268F9B9E00B891CC /* Repositories+Injection.swift in Sources */,
 				6074C0B4268C940700DA3B21 /* AppState.swift in Sources */,
 				60E4ED7A268E174A00EC4561 /* ViewModels+Injection.swift in Sources */,
 				6074C0B8268CB32500DA3B21 /* CancelBag.swift in Sources */,

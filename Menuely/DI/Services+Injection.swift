@@ -8,10 +8,8 @@
 import Resolver
 
 extension Resolver {
-    // TODO: - Split registerServices into registerRepositories
     public static func registerServices() {
         register(name: .baseURL) { "https://menuely.herokuapp.com" }
-        register { UsersRemoteRepository(session: resolve(ApplicationConfiguration.self).configuredURLSesssion, baseURL: resolve(name: .baseURL)) as UsersRemoteRepositing }
         register { UsersService() as UsersServicing }
     }
 }
