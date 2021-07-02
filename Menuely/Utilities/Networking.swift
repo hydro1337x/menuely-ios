@@ -9,7 +9,7 @@ import Foundation
 
 protocol Networking {
     var path: String { get }
-    var method: String { get }
+    var method: HTTPMethod { get }
     var headers: [String: String]? { get }
     func body() throws -> Data?
 }
@@ -36,9 +36,10 @@ extension Networking {
             throw NetworkError.invalidURL
         }
         var request = URLRequest(url: url)
-        request.httpMethod = method
+        request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = headers
         request.httpBody = try body()
+        print("curl -M \(request.httpMethod as Any) \(request.url?.absoluteString as Any)\nH-\(request.allHTTPHeaderFields as Any)\n-B \(request.httpBody?.description as Any)")
         return request
     }
 }
@@ -48,4 +49,11 @@ typealias HTTPCodes = Range<HTTPCode>
 
 extension HTTPCodes {
     static let success = 200 ..< 300
+}
+
+enum HTTPMethod: String {
+    case get = "GET"
+    case post = "POST"
+    case patch = "PATCH"
+    case delete = "DELETE"
 }

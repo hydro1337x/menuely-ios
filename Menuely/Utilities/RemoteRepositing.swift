@@ -8,13 +8,13 @@
 import Foundation
 import Combine
 
-protocol RemoteRepository {
+protocol RemoteRepositing {
     var session: URLSession { get }
     var baseURL: String { get }
     var backgroundQueue: DispatchQueue { get }
 }
 
-extension RemoteRepository {
+extension RemoteRepositing {
     func call<Value>(endpoint: Networking, httpCodes: HTTPCodes = .success) -> AnyPublisher<Value, Error> where Value: Decodable {
         do {
             let request = try endpoint.urlRequest(baseURL: baseURL)

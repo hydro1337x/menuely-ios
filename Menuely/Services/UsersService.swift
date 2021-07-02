@@ -7,7 +7,27 @@
 
 import Foundation
 import Combine
+import Resolver
 
 protocol UsersServicing {
-    func 
+    func get(users: LoadableSubject<Users>, search: String)
+}
+
+struct UsersService: UsersServicing {
+    @Injected var appState: Store<AppState>
+    @Injected var remoteRepository: UsersRemoteRepositing
+    
+    func get(users: LoadableSubject<Users>, search: String) {
+        let cancelBag = CancelBag()
+        
+        users.wrappedValue.setIsLoading(cancelBag: cancelBag)
+        
+        Just<Void>
+            .withErrorType(Error.self)
+            .flatMap { [remoteRepository] in
+                return remoteRepository.getUsers()
+            }
+            .sinkToLoadable { users.wrappedValue = $0 }
+            .store(in: cancelBag)
+    }
 }

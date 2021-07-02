@@ -27,7 +27,9 @@ extension Publisher {
     func sinkToResult(_ result: @escaping (Result<Output, Failure>) -> Void) -> AnyCancellable {
         return sink { completion in
             switch completion {
-            case let .failure(error): result(.failure(error))
+            case let .failure(error):
+                Swift.print(error)
+                return result(.failure(error))
             default: break
             }
         } receiveValue: { value in
@@ -39,6 +41,7 @@ extension Publisher {
     func sinkToLoadable(_ completion: @escaping (Loadable<Output>) -> Void) -> AnyCancellable {
         return sink { subscriptionCompletion in
             if let error = subscriptionCompletion.error {
+                Swift.print(error)
                 completion(.failed(error))
             }
         } receiveValue: { value in

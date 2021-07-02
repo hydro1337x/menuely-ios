@@ -9,13 +9,15 @@ import SwiftUI
 import Combine
 
 struct AppState: Equatable {
-    var userData = UserData()
+    var data = Data()
     var routing = ViewRouting()
     var application = Application()
 }
 
 extension AppState {
-    struct UserData: Equatable {
+    /* AppState.Data should contain data which is shared across the whole application, since AppState is always wrapped with the Store typealias which on its own is a CurrentValueSubject, it will emit all changes if a property is mutated and all views which use that data can stay in sync
+     */
+    struct Data: Equatable {
         
     }
 }
@@ -34,7 +36,7 @@ extension AppState {
 }
 
 func == (lhs: AppState, rhs: AppState) -> Bool {
-    return lhs.userData == rhs.userData &&
+    return lhs.data == rhs.data &&
            lhs.routing == rhs.routing &&
            lhs.application == rhs.application
 }
