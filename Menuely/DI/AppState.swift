@@ -10,7 +10,7 @@ import Combine
 
 struct AppState: Equatable {
     var data = Data()
-    var routing = ViewRouting()
+    var routing = Routing()
     var application = Application()
 }
 
@@ -23,7 +23,10 @@ extension AppState {
 }
 
 extension AppState {
-    struct ViewRouting: Equatable {
+    /*
+     AppState.Routing should contain data which is needed to transition from one screen to another
+     */
+    struct Routing: Equatable {
         
     }
 }

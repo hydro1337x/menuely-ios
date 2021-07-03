@@ -55,7 +55,7 @@ private extension ContentView {
             if showLoading {
                 ActivityIndicatorView().padding()
             }
-            List(users.data) { user in
+            List(users.users) { user in
                 Text(user.firstname)
             }
         }

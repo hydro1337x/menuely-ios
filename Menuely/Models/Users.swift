@@ -8,8 +8,14 @@
 import Foundation
 
 struct Users: Codable, Equatable {
+    
+    enum CodingKeys: String, CodingKey {
+        case users = "data"
+        case statusCode
+    }
+    
     let statusCode: Int
-    var data: [User]
+    var users: [User]
 }
 
 struct User: Codable, Identifiable, Equatable {
