@@ -17,7 +17,6 @@ class AuthRequestInterceptor: RequestInterceptor {
     @CodableSecureAppStorage<Tokens>("RefreshTokens") private var tokens: Tokens?
     
     // MARK: - Properties
-    private var methods: [HTTPMethod] = [.post, .delete, .patch]
     private let cancelBag = CancelBag()
     
     // MARK: - Methods
