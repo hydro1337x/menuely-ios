@@ -10,14 +10,13 @@ import Resolver
 import Combine
 
 protocol UsersRemoteRepositing {
-    func getUsers() -> AnyPublisher<Users, Error>
+    func getUsers() -> AnyPublisher<UserListResponseDTO, Error>
 }
 
 class UsersRemoteRepository: UsersRemoteRepositing {
-    
     @Injected private var networkClient: Networking
     
-    func getUsers() -> AnyPublisher<Users, Error> {
+    func getUsers() -> AnyPublisher<UserListResponseDTO, Error> {
         networkClient.request(endpoint: Endpoint.users)
     }
 }
@@ -33,7 +32,7 @@ extension UsersRemoteRepository {
 extension UsersRemoteRepository.Endpoint: APIConfigurable {
     var path: String {
         switch self {
-        case .users: return "/users"
+        case .users: return "/users/me/profile"
             
         }
     }
@@ -52,7 +51,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
         return nil
     }
     
-    var bodyParameters: Parameters? {
+    var body: Data? {
         return nil
     }
 }

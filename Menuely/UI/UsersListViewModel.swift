@@ -9,12 +9,12 @@ import Foundation
 import Resolver
 
 class UsersListViewModel: ObservableObject {
-    @Published var users: Loadable<Users>
+    @Published var users: Loadable<UserListResponseDTO>
     
     @Injected var usersService: UsersServicing
     private var cancelBag = CancelBag()
     
-    init(users: Loadable<Users> = .notRequested) {
+    init(users: Loadable<UserListResponseDTO> = .notRequested) {
         _users = .init(initialValue: users)
     }
     

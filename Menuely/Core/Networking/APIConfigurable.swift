@@ -10,13 +10,14 @@ import Alamofire
 import Resolver
 
 typealias Parameters = Alamofire.Parameters
+typealias HTTPMethod = Alamofire.HTTPMethod
 
 protocol APIConfigurable: URLRequestConvertible {
     var path: String { get }
     var method: HTTPMethod { get }
     var headers: [String: String]? { get }
     var queryParameters: Parameters? { get }
-    var bodyParameters: Parameters? { get }
+    var body: Data? { get }
 }
 
 extension APIConfigurable {
@@ -46,10 +47,8 @@ extension APIConfigurable {
         }
         
         
-        // Body Parameters
-        if let bodyParameters = self.bodyParameters {
-            urlRequest.httpBody = try JSONSerialization.data(withJSONObject: bodyParameters, options: [])
-        }
+        // Body
+        urlRequest.httpBody = body
         
         return urlRequest
     }
@@ -59,6 +58,7 @@ enum NetworkError: Error {
     case invalidURL
     case httpCode(HTTPCode)
     case unexpectedResponse
+    case refreshTokenMissing
 }
 
 extension NetworkError: LocalizedError {
@@ -67,6 +67,7 @@ extension NetworkError: LocalizedError {
         case .invalidURL: return "Invalid URL"
         case let .httpCode(code): return "Unexpected HTTP code: \(code)"
         case .unexpectedResponse: return "Unexpected server response"
+        case .refreshTokenMissing: return "Missing refresh token"
         }
     }
 }
@@ -76,11 +77,4 @@ typealias HTTPCodes = Range<HTTPCode>
 
 extension HTTPCodes {
     static let success = 200 ..< 300
-}
-
-enum HTTPMethod: String {
-    case get = "GET"
-    case post = "POST"
-    case patch = "PATCH"
-    case delete = "DELETE"
 }

@@ -7,9 +7,11 @@
 
 import Foundation
 import Resolver
+import Alamofire
 
 extension Resolver {
     public static func registerRepositories() {
         register { UsersRemoteRepository() as UsersRemoteRepositing }
+        register { Authenticator(session: AF) as Authenticating }
     }
 }

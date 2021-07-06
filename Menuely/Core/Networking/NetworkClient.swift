@@ -10,22 +10,22 @@ import Alamofire
 import Combine
 
 protocol Networking {
-    var session: Session { get }
-    
     func request<Value>(endpoint: URLRequestConvertible) -> AnyPublisher<Value, Error> where Value: Decodable
 }
 
 class NetworkClient: Networking {
-    internal var session: Session
+    private let session: Session
+    private let interceptor: RequestInterceptor
     
-    init(session: Session) {
+    init(session: Session, interceptor: RequestInterceptor) {
         self.session = session
+        self.interceptor = interceptor
     }
     
     func request<Value>(endpoint: URLRequestConvertible) -> AnyPublisher<Value, Error> where Value : Decodable {
-        session.request(endpoint)
+        session.request(endpoint, interceptor: interceptor)
             .cURLDescription(calling: { curl in
-                print("CURL: ", curl)
+                print(curl)
             })
             .publishDecodable(type: Value.self)
             .value()

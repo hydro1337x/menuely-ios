@@ -11,10 +11,7 @@ import Alamofire
 extension Resolver {
     public static func registerServices() {
         register { UsersService() as UsersServicing }
-        register { NetworkClient(session: AF) as Networking }
+        register { AuthRequestInterceptor() as RequestInterceptor }
+        register { NetworkClient(session: AF, interceptor: resolve()) as Networking }
     }
-}
-
-extension Resolver.Name {
-    static let baseURL = Self("baseURL")
 }

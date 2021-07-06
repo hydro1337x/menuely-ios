@@ -16,3 +16,10 @@ extension Result {
         }
     }
 }
+
+extension Encodable {
+    func asJSON() -> Data? {
+        let data = try? JSONEncoder().encode(self)
+        return data
+    }
+}

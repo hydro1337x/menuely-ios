@@ -10,14 +10,14 @@ import Combine
 import Resolver
 
 protocol UsersServicing {
-    func get(users: LoadableSubject<Users>, search: String)
+    func get(users: LoadableSubject<UserListResponseDTO>, search: String)
 }
 
 struct UsersService: UsersServicing {
     @Injected var appState: Store<AppState>
     @Injected var remoteRepository: UsersRemoteRepositing
     
-    func get(users: LoadableSubject<Users>, search: String) {
+    func get(users: LoadableSubject<UserListResponseDTO>, search: String) {
         let cancelBag = CancelBag()
         
         users.wrappedValue.setIsLoading(cancelBag: cancelBag)
