@@ -76,32 +76,3 @@ extension Subscribers.Completion {
         }
     }
 }
-
-extension URLRequest {
-    public var curlString: String {
-            guard let url = url else { return "" }
-        var base = #"curl "\#(url.absoluteString)""#
-
-            if httpMethod == "HEAD" {
-                base += " --head"
-            }
-
-            var curl = [base]
-
-            if let method = httpMethod, method != "GET" && method != "HEAD" {
-                curl.append("-X \(method)")
-            }
-
-            if let headers = allHTTPHeaderFields {
-                for (key, value) in headers where key != "Cookie" {
-                    curl.append("-H '\(key): \(value)'")
-                }
-            }
-
-            if let data = httpBody, let body = String(data: data, encoding: .utf8) {
-                curl.append("-d '\(body)'")
-            }
-
-            return curl.joined(separator: " \\\n\t")
-        }
-}

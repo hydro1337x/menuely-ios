@@ -6,26 +6,19 @@
 //
 
 import Foundation
+import Resolver
 import Combine
 
-protocol UsersRemoteRepositing: RemoteRepositing {
+protocol UsersRemoteRepositing {
     func getUsers() -> AnyPublisher<Users, Error>
 }
 
-struct UsersRemoteRepository: UsersRemoteRepositing {
+class UsersRemoteRepository: UsersRemoteRepositing {
+    
+    @Injected private var networkClient: Networking
+    
     func getUsers() -> AnyPublisher<Users, Error> {
-        call(endpoint: Endpoint.users)
-    }
-    
-    var session: URLSession
-    
-    var baseURL: String
-    
-    var backgroundQueue = DispatchQueue(label: "bg_parse_queue")
-    
-    init(session: URLSession, baseURL: String) {
-        self.session = session
-        self.baseURL = baseURL
+        networkClient.request(endpoint: Endpoint.users)
     }
 }
 
@@ -37,10 +30,11 @@ extension UsersRemoteRepository {
     }
 }
 
-extension UsersRemoteRepository.Endpoint: Networking {
+extension UsersRemoteRepository.Endpoint: APIConfigurable {
     var path: String {
         switch self {
         case .users: return "/users"
+            
         }
     }
     
@@ -54,9 +48,11 @@ extension UsersRemoteRepository.Endpoint: Networking {
         return ["Accept": "application/json"]
     }
     
-    func body() throws -> Data? {
+    var queryParameters: Parameters? {
         return nil
     }
     
-    
+    var bodyParameters: Parameters? {
+        return nil
+    }
 }

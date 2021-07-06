@@ -10,6 +10,6 @@ import Resolver
 
 extension Resolver {
     public static func registerRepositories() {
-        register { UsersRemoteRepository(session: resolve(ApplicationConfiguration.self).configuredURLSesssion, baseURL: resolve(name: .baseURL)) as UsersRemoteRepositing }
+        register { UsersRemoteRepository() as UsersRemoteRepositing }
     }
 }

@@ -6,11 +6,12 @@
 //
 
 import Resolver
+import Alamofire
 
 extension Resolver {
     public static func registerServices() {
-        register(name: .baseURL) { "https://menuely.herokuapp.com" }
         register { UsersService() as UsersServicing }
+        register { NetworkClient(session: AF) as Networking }
     }
 }
 
