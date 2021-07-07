@@ -38,7 +38,7 @@ extension UsersRemoteRepository {
 extension UsersRemoteRepository.Endpoint: APIConfigurable {
     var path: String {
         switch self {
-        case .users: return "/users"
+        case .users: return "/users/me/profile"
         case .refreshTokens: return "/auth/refresh-token"
             
         }

@@ -24,9 +24,11 @@ class NetworkClient: Networking {
     
     func request<Value>(endpoint: URLRequestConvertible) -> AnyPublisher<Value, Error> where Value : Decodable {
         session.request(endpoint, interceptor: interceptor)
-            .cURLDescription(calling: { curl in
+            .cURLDescription(calling: { [weak self] curl in
+                guard self != nil else { return }
                 print(curl)
             })
+            .validate()
             .publishDecodable(type: Value.self)
             .value()
             .mapError { $0 as Error }
