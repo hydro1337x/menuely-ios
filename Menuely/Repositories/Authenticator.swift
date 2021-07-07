@@ -49,7 +49,7 @@ extension Authenticator.Endpoint: APIConfigurable {
     }
     
     var headers: [String : String]? {
-        return nil
+        return ["Content-Type": "application/json"]
     }
     
     var queryParameters: Parameters? {

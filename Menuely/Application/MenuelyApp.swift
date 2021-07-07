@@ -18,17 +18,7 @@ struct MenuelyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView().onAppear(perform: {
-                usersRepository.refreshTokens().sink { completion in
-                    switch completion {
-                    case .finished: break
-                    case .failure(let error): print(error)
-                    }
-                } receiveValue: { response in
-                    print(response)
-                }.store(in: cancelBag)
-
-            })
+            ContentView()
         }
     }
 }

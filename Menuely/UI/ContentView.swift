@@ -32,7 +32,7 @@ private extension ContentView {
         Text("").onAppear(perform: self.viewModel.getUsers)
     }
     
-    func loadingView(_ previouslyLoaded: UserListResponseDTO?) -> some View {
+    func loadingView(_ previouslyLoaded: [User]?) -> some View {
         if let users = previouslyLoaded {
             return AnyView(loadedView(users, showLoading: true))
         } else {
@@ -50,12 +50,12 @@ private extension ContentView {
 // MARK: - Displaying Content
 
 private extension ContentView {
-    func loadedView(_ users: UserListResponseDTO, showLoading: Bool) -> some View {
+    func loadedView(_ users: [User], showLoading: Bool) -> some View {
         VStack {
             if showLoading {
                 ActivityIndicatorView().padding()
             }
-            List(users.users) { user in
+            List(users) { user in
                 Text(user.firstname)
             }
         }
