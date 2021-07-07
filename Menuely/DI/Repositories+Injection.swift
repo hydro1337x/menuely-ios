@@ -13,5 +13,6 @@ extension Resolver {
     public static func registerRepositories() {
         register { UsersRemoteRepository() as UsersRemoteRepositing }
         register { Authenticator(session: AF) as Authenticating }
+        register { AuthRemoteRepository() as AuthRemoteRepositing }
     }
 }

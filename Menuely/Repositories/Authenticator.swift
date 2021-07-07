@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Resolver
 import Combine
 import Alamofire
 
@@ -22,7 +21,7 @@ class Authenticator: Authenticating {
     }
     
     func refreshTokens(with tokensRequestDTO: TokensRequestDTO) -> AnyPublisher<Tokens, Error> {
-        session.request(Endpoint.refresh(tokensRequestDTO: tokensRequestDTO))
+        session.request(Endpoint.refresh(tokensRequestDTO))
             .cURLDescription(calling: { curl in
                 print(curl)
             })
@@ -35,7 +34,7 @@ class Authenticator: Authenticating {
 
 extension Authenticator {
     enum Endpoint {
-        case refresh(tokensRequestDTO: TokensRequestDTO)
+        case refresh(TokensRequestDTO)
     }
 }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserListResponseDTO: Codable, Equatable {
+struct UserListResponseDTO: Decodable, Equatable {
     
     enum CodingKeys: String, CodingKey {
         case users = "data"

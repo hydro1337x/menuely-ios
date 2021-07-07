@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TokensResponseDTO: Codable {
+struct TokensResponseDTO: Decodable {
     enum CodingKeys: String, CodingKey {
         case tokens = "data"
         case statusCode

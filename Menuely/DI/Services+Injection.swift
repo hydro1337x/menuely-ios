@@ -10,8 +10,9 @@ import Alamofire
 
 extension Resolver {
     public static func registerServices() {
-        register { UsersService() as UsersServicing }
         register { AuthRequestInterceptor() as RequestInterceptor }
         register { NetworkClient(session: AF, interceptor: resolve()) as Networking }
+        register { UsersService() as UsersServicing }
+        register { AuthService() as AuthServicing }
     }
 }

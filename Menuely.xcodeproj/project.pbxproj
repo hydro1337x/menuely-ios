@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6000622A269644DB0085DF41 /* AuthRemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60006229269644DB0085DF41 /* AuthRemoteRepository.swift */; };
+		6000622C2696451A0085DF41 /* UserLoginRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6000622B2696451A0085DF41 /* UserLoginRequestDTO.swift */; };
+		6000622E269645380085DF41 /* UserRegistrationRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6000622D269645380085DF41 /* UserRegistrationRequestDTO.swift */; };
+		600062302696482F0085DF41 /* Discardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6000622F2696482F0085DF41 /* Discardable.swift */; };
+		60006232269648C30085DF41 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60006231269648C30085DF41 /* AuthService.swift */; };
+		6000623826965F280085DF41 /* UserLoginResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6000623726965F280085DF41 /* UserLoginResponseDTO.swift */; };
+		6000623A269663750085DF41 /* UserAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60006239269663750085DF41 /* UserAuth.swift */; };
 		6049C3C0268F9B9E00B891CC /* Repositories+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */; };
 		6063B68A26893B65001B1405 /* MenuelyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6063B68926893B65001B1405 /* MenuelyApp.swift */; };
 		6063B68C26893B65001B1405 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6063B68B26893B65001B1405 /* ContentView.swift */; };
@@ -40,10 +47,16 @@
 		60F3BAD32694C863005798C1 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F3BAD22694C863005798C1 /* KeychainItem.swift */; };
 		60F3BAD52694C920005798C1 /* SecureAppStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F3BAD42694C920005798C1 /* SecureAppStorage.swift */; };
 		60F3BAD72694CAE0005798C1 /* CodableSecureAppStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F3BAD62694CAE0005798C1 /* CodableSecureAppStorage.swift */; };
-		60F3BAD926950948005798C1 /* CreateBaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F3BAD826950948005798C1 /* CreateBaseResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		60006229269644DB0085DF41 /* AuthRemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRemoteRepository.swift; sourceTree = "<group>"; };
+		6000622B2696451A0085DF41 /* UserLoginRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginRequestDTO.swift; sourceTree = "<group>"; };
+		6000622D269645380085DF41 /* UserRegistrationRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistrationRequestDTO.swift; sourceTree = "<group>"; };
+		6000622F2696482F0085DF41 /* Discardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discardable.swift; sourceTree = "<group>"; };
+		60006231269648C30085DF41 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		6000623726965F280085DF41 /* UserLoginResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginResponseDTO.swift; sourceTree = "<group>"; };
+		60006239269663750085DF41 /* UserAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuth.swift; sourceTree = "<group>"; };
 		6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repositories+Injection.swift"; sourceTree = "<group>"; };
 		6063B68626893B65001B1405 /* Menuely.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Menuely.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6063B68926893B65001B1405 /* MenuelyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuelyApp.swift; sourceTree = "<group>"; };
@@ -77,7 +90,6 @@
 		60F3BAD22694C863005798C1 /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		60F3BAD42694C920005798C1 /* SecureAppStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureAppStorage.swift; sourceTree = "<group>"; };
 		60F3BAD62694CAE0005798C1 /* CodableSecureAppStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableSecureAppStorage.swift; sourceTree = "<group>"; };
-		60F3BAD826950948005798C1 /* CreateBaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBaseResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +191,7 @@
 			children = (
 				60E4ED73268DEFC300EC4561 /* UsersRemoteRepository.swift */,
 				60F3BACA2694B85B005798C1 /* Authenticator.swift */,
+				60006229269644DB0085DF41 /* AuthRemoteRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -187,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				60E4ED6D268DE40B00EC4561 /* UsersService.swift */,
+				60006231269648C30085DF41 /* AuthService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -237,6 +251,7 @@
 				60E4ED71268DEE4100EC4561 /* Image.swift */,
 				60E3953B26909197007E459E /* Tokens.swift */,
 				60F3BACF2694BB17005798C1 /* User.swift */,
+				60006239269663750085DF41 /* UserAuth.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -245,6 +260,8 @@
 			isa = PBXGroup;
 			children = (
 				60E395372690917C007E459E /* TokensRequestDTO.swift */,
+				6000622B2696451A0085DF41 /* UserLoginRequestDTO.swift */,
+				6000622D269645380085DF41 /* UserRegistrationRequestDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -253,8 +270,9 @@
 			isa = PBXGroup;
 			children = (
 				60E4ED6F268DECA600EC4561 /* UserListResponseDTO.swift */,
+				6000623726965F280085DF41 /* UserLoginResponseDTO.swift */,
 				60E395392690918D007E459E /* TokensResponseDTO.swift */,
-				60F3BAD826950948005798C1 /* CreateBaseResponse.swift */,
+				6000622F2696482F0085DF41 /* Discardable.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -350,6 +368,9 @@
 				60F3BAD72694CAE0005798C1 /* CodableSecureAppStorage.swift in Sources */,
 				60E4ED6A268DCC7B00EC4561 /* Services+Injection.swift in Sources */,
 				6049C3C0268F9B9E00B891CC /* Repositories+Injection.swift in Sources */,
+				6000623826965F280085DF41 /* UserLoginResponseDTO.swift in Sources */,
+				6000622E269645380085DF41 /* UserRegistrationRequestDTO.swift in Sources */,
+				6000623A269663750085DF41 /* UserAuth.swift in Sources */,
 				6074C0B4268C940700DA3B21 /* AppState.swift in Sources */,
 				60F3BACB2694B85B005798C1 /* Authenticator.swift in Sources */,
 				60E4ED7A268E174A00EC4561 /* ViewModels+Injection.swift in Sources */,
@@ -364,15 +385,18 @@
 				6074C0BC268CCB3700DA3B21 /* APIConfigurable.swift in Sources */,
 				60F3BAC92694ACA6005798C1 /* AuthRequestInterceptor.swift in Sources */,
 				60944F3B268DC8460063CD61 /* Application+Injection.swift in Sources */,
+				6000622A269644DB0085DF41 /* AuthRemoteRepository.swift in Sources */,
+				600062302696482F0085DF41 /* Discardable.swift in Sources */,
 				60E3953C26909197007E459E /* Tokens.swift in Sources */,
 				60E4ED78268E148700EC4561 /* UsersListViewModel.swift in Sources */,
-				60F3BAD926950948005798C1 /* CreateBaseResponse.swift in Sources */,
 				6063B68A26893B65001B1405 /* MenuelyApp.swift in Sources */,
 				60E4ED72268DEE4100EC4561 /* Image.swift in Sources */,
 				60E395382690917C007E459E /* TokensRequestDTO.swift in Sources */,
+				60006232269648C30085DF41 /* AuthService.swift in Sources */,
 				6074C0C0268CD41400DA3B21 /* NetworkingHelpers.swift in Sources */,
 				60E3953A2690918D007E459E /* TokensResponseDTO.swift in Sources */,
 				60E4ED74268DEFC300EC4561 /* UsersRemoteRepository.swift in Sources */,
+				6000622C2696451A0085DF41 /* UserLoginRequestDTO.swift in Sources */,
 				6074C0B6268CADB100DA3B21 /* Store.swift in Sources */,
 				60E4ED6C268DD45400EC4561 /* ApplicationEventsHandler.swift in Sources */,
 				6074C0BA268CC06600DA3B21 /* Loadable.swift in Sources */,

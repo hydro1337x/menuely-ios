@@ -13,13 +13,13 @@ protocol UsersServicing {
     func get(users: LoadableSubject<[User]>, search: String)
 }
 
-struct UsersService: UsersServicing {
+class UsersService: UsersServicing {
     @Injected var appState: Store<AppState>
     @Injected var remoteRepository: UsersRemoteRepositing
     
+    let cancelBag = CancelBag()
+    
     func get(users: LoadableSubject<[User]>, search: String) {
-        let cancelBag = CancelBag()
-        
         users.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
