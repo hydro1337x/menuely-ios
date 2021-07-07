@@ -18,8 +18,10 @@ extension Result {
 }
 
 extension Encodable {
-    func asJSON() -> Data? {
-        let data = try? JSONEncoder().encode(self)
-        return data
+    func asJSON() throws -> Data {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        encoder.dateEncodingStrategy = .iso8601
+        return try encoder.encode(self)
     }
 }

@@ -7,14 +7,28 @@
 
 import SwiftUI
 import Resolver
+import Combine
 
 @main
 struct MenuelyApp: App {
     @Injected private var applicationEventsHandler: ApplicationEventsHandler
+    @Injected private var usersRepository: UsersRemoteRepositing
+    
+    var cancelBag = CancelBag()
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().onAppear(perform: {
+                usersRepository.refreshTokens().sink { completion in
+                    switch completion {
+                    case .finished: break
+                    case .failure(let error): print(error)
+                    }
+                } receiveValue: { response in
+                    print(response)
+                }.store(in: cancelBag)
+
+            })
         }
     }
 }

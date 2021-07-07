@@ -41,7 +41,7 @@ extension Authenticator {
 
 extension Authenticator.Endpoint: APIConfigurable {
     var path: String {
-        return "/auth/refreshToken"
+        return "/auth/refresh-token"
     }
     
     var method: HTTPMethod {
@@ -56,10 +56,9 @@ extension Authenticator.Endpoint: APIConfigurable {
         return nil
     }
     
-    var body: Data? {
+    func body() throws -> Data? {
         switch self {
-        case .refresh(let tokensRequestDTO):
-            return tokensRequestDTO.asJSON()
+        case .refresh(let tokensRequestDTO): return try tokensRequestDTO.asJSON()
         }
     }
 }

@@ -8,6 +8,11 @@
 import Foundation
 
 struct TokensResponseDTO: Codable {
-    let accessToken: String
-    let refreshToken: String
+    enum CodingKeys: String, CodingKey {
+        case tokens = "data"
+        case statusCode
+    }
+    
+    let statusCode: Int
+    var tokens: Tokens
 }

@@ -17,7 +17,7 @@ protocol APIConfigurable: URLRequestConvertible {
     var method: HTTPMethod { get }
     var headers: [String: String]? { get }
     var queryParameters: Parameters? { get }
-    var body: Data? { get }
+    func body() throws -> Data?
 }
 
 extension APIConfigurable {
@@ -48,7 +48,7 @@ extension APIConfigurable {
         
         
         // Body
-        urlRequest.httpBody = body
+        urlRequest.httpBody = try body()
         
         return urlRequest
     }
