@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Image: Codable, Equatable {
+struct RemoteImage: Codable, Equatable {
     let id: Int
     let name: String
     let url: String

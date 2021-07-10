@@ -30,6 +30,13 @@
 		6074C0C2268CDC5E00DA3B21 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0C1268CDC5E00DA3B21 /* Helpers.swift */; };
 		60944F39268DC73F0063CD61 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 60944F38268DC73F0063CD61 /* Resolver */; };
 		60944F3B268DC8460063CD61 /* Application+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60944F3A268DC8460063CD61 /* Application+Injection.swift */; };
+		60BF85A82698F03B00890C0F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BF85A72698F03B00890C0F /* LoginViewModel.swift */; };
+		60BF85AA2698F06100890C0F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BF85A92698F06100890C0F /* LoginView.swift */; };
+		60BF85AC2698F0DE00890C0F /* RootViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BF85AB2698F0DE00890C0F /* RootViewModifier.swift */; };
+		60BF85AF2698F46B00890C0F /* AuthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BF85AE2698F46B00890C0F /* AuthSelectionView.swift */; };
+		60BF85B22698F87700890C0F /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BF85B12698F87700890C0F /* FloatingTextField.swift */; };
+		60BF85B72699172E00890C0F /* SelectionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BF85B62699172E00890C0F /* SelectionCardView.swift */; };
+		60BF85B926991AC000890C0F /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BF85B826991AC000890C0F /* Image+Extension.swift */; };
 		60E395382690917C007E459E /* TokensRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E395372690917C007E459E /* TokensRequestDTO.swift */; };
 		60E3953A2690918D007E459E /* TokensResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E395392690918D007E459E /* TokensResponseDTO.swift */; };
 		60E3953C26909197007E459E /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E3953B26909197007E459E /* Tokens.swift */; };
@@ -37,7 +44,7 @@
 		60E4ED6C268DD45400EC4561 /* ApplicationEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED6B268DD45400EC4561 /* ApplicationEventsHandler.swift */; };
 		60E4ED6E268DE40B00EC4561 /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED6D268DE40B00EC4561 /* UsersService.swift */; };
 		60E4ED70268DECA600EC4561 /* UserListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED6F268DECA600EC4561 /* UserListResponseDTO.swift */; };
-		60E4ED72268DEE4100EC4561 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED71268DEE4100EC4561 /* Image.swift */; };
+		60E4ED72268DEE4100EC4561 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED71268DEE4100EC4561 /* RemoteImage.swift */; };
 		60E4ED74268DEFC300EC4561 /* UsersRemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED73268DEFC300EC4561 /* UsersRemoteRepository.swift */; };
 		60E4ED78268E148700EC4561 /* UsersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED77268E148700EC4561 /* UsersListViewModel.swift */; };
 		60E4ED7A268E174A00EC4561 /* ViewModels+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED79268E174A00EC4561 /* ViewModels+Injection.swift */; };
@@ -73,6 +80,13 @@
 		6074C0BF268CD41400DA3B21 /* NetworkingHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingHelpers.swift; sourceTree = "<group>"; };
 		6074C0C1268CDC5E00DA3B21 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		60944F3A268DC8460063CD61 /* Application+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Application+Injection.swift"; sourceTree = "<group>"; };
+		60BF85A72698F03B00890C0F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		60BF85A92698F06100890C0F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		60BF85AB2698F0DE00890C0F /* RootViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModifier.swift; sourceTree = "<group>"; };
+		60BF85AE2698F46B00890C0F /* AuthSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSelectionView.swift; sourceTree = "<group>"; };
+		60BF85B12698F87700890C0F /* FloatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
+		60BF85B62699172E00890C0F /* SelectionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionCardView.swift; sourceTree = "<group>"; };
+		60BF85B826991AC000890C0F /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		60E395372690917C007E459E /* TokensRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensRequestDTO.swift; sourceTree = "<group>"; };
 		60E395392690918D007E459E /* TokensResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensResponseDTO.swift; sourceTree = "<group>"; };
 		60E3953B26909197007E459E /* Tokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
@@ -80,7 +94,7 @@
 		60E4ED6B268DD45400EC4561 /* ApplicationEventsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationEventsHandler.swift; sourceTree = "<group>"; };
 		60E4ED6D268DE40B00EC4561 /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
 		60E4ED6F268DECA600EC4561 /* UserListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListResponseDTO.swift; sourceTree = "<group>"; };
-		60E4ED71268DEE4100EC4561 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		60E4ED71268DEE4100EC4561 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		60E4ED73268DEFC300EC4561 /* UsersRemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersRemoteRepository.swift; sourceTree = "<group>"; };
 		60E4ED77268E148700EC4561 /* UsersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewModel.swift; sourceTree = "<group>"; };
 		60E4ED79268E174A00EC4561 /* ViewModels+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels+Injection.swift"; sourceTree = "<group>"; };
@@ -166,6 +180,7 @@
 		6074C0AC268C79E800DA3B21 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				60BF85B326990C4A00890C0F /* Extensions */,
 				6074C0B5268CADB100DA3B21 /* Store.swift */,
 				6074C0B7268CB32500DA3B21 /* CancelBag.swift */,
 				6074C0B9268CC06600DA3B21 /* Loadable.swift */,
@@ -218,8 +233,11 @@
 		6074C0B1268C7A3F00DA3B21 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				60BF85A42698EFCD00890C0F /* Auth */,
+				60BF85B02698F6A600890C0F /* Components */,
 				6063B68B26893B65001B1405 /* ContentView.swift */,
 				60E4ED77268E148700EC4561 /* UsersListViewModel.swift */,
+				60BF85AB2698F0DE00890C0F /* RootViewModifier.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -232,6 +250,33 @@
 				6063B68F26893B67001B1405 /* Preview Content */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		60BF85A42698EFCD00890C0F /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				60BF85AE2698F46B00890C0F /* AuthSelectionView.swift */,
+				60BF85A92698F06100890C0F /* LoginView.swift */,
+				60BF85A72698F03B00890C0F /* LoginViewModel.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		60BF85B02698F6A600890C0F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				60BF85B12698F87700890C0F /* FloatingTextField.swift */,
+				60BF85B62699172E00890C0F /* SelectionCardView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		60BF85B326990C4A00890C0F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				60BF85B826991AC000890C0F /* Image+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		60F3BAC62694A709005798C1 /* Networking */ = {
@@ -248,7 +293,7 @@
 		60F3BACC2694BADA005798C1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				60E4ED71268DEE4100EC4561 /* Image.swift */,
+				60E4ED71268DEE4100EC4561 /* RemoteImage.swift */,
 				60E3953B26909197007E459E /* Tokens.swift */,
 				60F3BACF2694BB17005798C1 /* User.swift */,
 				60006239269663750085DF41 /* UserAuth.swift */,
@@ -371,12 +416,16 @@
 				6000623826965F280085DF41 /* UserLoginResponseDTO.swift in Sources */,
 				6000622E269645380085DF41 /* UserRegistrationRequestDTO.swift in Sources */,
 				6000623A269663750085DF41 /* UserAuth.swift in Sources */,
+				60BF85A82698F03B00890C0F /* LoginViewModel.swift in Sources */,
 				6074C0B4268C940700DA3B21 /* AppState.swift in Sources */,
 				60F3BACB2694B85B005798C1 /* Authenticator.swift in Sources */,
 				60E4ED7A268E174A00EC4561 /* ViewModels+Injection.swift in Sources */,
 				60F3BAD02694BB17005798C1 /* User.swift in Sources */,
+				60BF85B926991AC000890C0F /* Image+Extension.swift in Sources */,
 				6074C0B8268CB32500DA3B21 /* CancelBag.swift in Sources */,
+				60BF85AF2698F46B00890C0F /* AuthSelectionView.swift in Sources */,
 				60E4ED6E268DE40B00EC4561 /* UsersService.swift in Sources */,
+				60BF85AC2698F0DE00890C0F /* RootViewModifier.swift in Sources */,
 				60660C6D2693861D00A6159E /* NetworkClient.swift in Sources */,
 				60E4ED70268DECA600EC4561 /* UserListResponseDTO.swift in Sources */,
 				6063B68C26893B65001B1405 /* ContentView.swift in Sources */,
@@ -385,19 +434,22 @@
 				6074C0BC268CCB3700DA3B21 /* APIConfigurable.swift in Sources */,
 				60F3BAC92694ACA6005798C1 /* AuthRequestInterceptor.swift in Sources */,
 				60944F3B268DC8460063CD61 /* Application+Injection.swift in Sources */,
+				60BF85B72699172E00890C0F /* SelectionCardView.swift in Sources */,
 				6000622A269644DB0085DF41 /* AuthRemoteRepository.swift in Sources */,
 				600062302696482F0085DF41 /* Discardable.swift in Sources */,
 				60E3953C26909197007E459E /* Tokens.swift in Sources */,
 				60E4ED78268E148700EC4561 /* UsersListViewModel.swift in Sources */,
 				6063B68A26893B65001B1405 /* MenuelyApp.swift in Sources */,
-				60E4ED72268DEE4100EC4561 /* Image.swift in Sources */,
+				60E4ED72268DEE4100EC4561 /* RemoteImage.swift in Sources */,
 				60E395382690917C007E459E /* TokensRequestDTO.swift in Sources */,
 				60006232269648C30085DF41 /* AuthService.swift in Sources */,
 				6074C0C0268CD41400DA3B21 /* NetworkingHelpers.swift in Sources */,
 				60E3953A2690918D007E459E /* TokensResponseDTO.swift in Sources */,
+				60BF85B22698F87700890C0F /* FloatingTextField.swift in Sources */,
 				60E4ED74268DEFC300EC4561 /* UsersRemoteRepository.swift in Sources */,
 				6000622C2696451A0085DF41 /* UserLoginRequestDTO.swift in Sources */,
 				6074C0B6268CADB100DA3B21 /* Store.swift in Sources */,
+				60BF85AA2698F06100890C0F /* LoginView.swift in Sources */,
 				60E4ED6C268DD45400EC4561 /* ApplicationEventsHandler.swift in Sources */,
 				6074C0BA268CC06600DA3B21 /* Loadable.swift in Sources */,
 			);
@@ -529,6 +581,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Menuely/Resources/Preview Content\"";
+				DEVELOPMENT_TEAM = K8WZF48FXW;
 				ENABLE_BITCODE = YES;
 				ENABLE_PREVIEWS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -541,7 +594,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hydro1337x.Menuely;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -552,6 +605,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Menuely/Resources/Preview Content\"";
+				DEVELOPMENT_TEAM = K8WZF48FXW;
 				ENABLE_BITCODE = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Menuely/Resources/Info.plist;
@@ -563,7 +617,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hydro1337x.Menuely;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

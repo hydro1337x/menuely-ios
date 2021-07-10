@@ -12,8 +12,8 @@ typealias InjectedEnvironmentObject = InjectedObject
 
 extension Resolver: ResolverRegistering {
     public static func registerAllServices() {
-        register { Store<AppState>(AppState()) }.scope(.shared)
-        register { ApplicationEventsHandler() }.scope(.shared)
+        register { Store<AppState>(AppState()) }.scope(.application)
+        register { ApplicationEventsHandler() }.scope(.application)
         registerViewModels()
         registerServices()
         registerRepositories()

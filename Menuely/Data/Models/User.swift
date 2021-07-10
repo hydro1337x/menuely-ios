@@ -14,6 +14,6 @@ struct User: Codable, Identifiable, Equatable {
     let lastname: String
     let createdAt: TimeInterval
     let updatedAt: TimeInterval
-    let profileImage: Image?
-    let coverImage: Image?
+    let profileImage: RemoteImage?
+    let coverImage: RemoteImage?
 }
