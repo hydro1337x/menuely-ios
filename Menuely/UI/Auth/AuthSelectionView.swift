@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct AuthSelectionView: View {
-    @State private var emailText: String = ""
-    @State private var passwordText: String = ""
     
     var body: some View {
         VStack {

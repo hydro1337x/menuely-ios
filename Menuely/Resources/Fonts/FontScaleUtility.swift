@@ -15,12 +15,12 @@ public struct FontScaleUtility {
         case footnote, caption, caption2
     }
 
-    struct FontDescription: Decodable {
-        let fontSize: CGFloat
-        let fontName: String
+    struct FontSpecification: Decodable {
+        let size: CGFloat
+        let name: String
     }
 
-    typealias StyleDictionary = [StyleKey.RawValue: FontDescription]
+    typealias StyleDictionary = [StyleKey.RawValue: FontSpecification]
     
     // MARK: - Properties
     var styleDictionary: StyleDictionary?
@@ -43,7 +43,7 @@ public struct FontScaleUtility {
             return Font.system(textStyle)
         }
         
-        let font = Font.custom(fontDescription.fontName, size: fontDescription.fontSize, relativeTo: textStyle)
+        let font = Font.custom(fontDescription.name, size: fontDescription.size, relativeTo: textStyle)
         
         return font
     }

@@ -11,79 +11,79 @@
     <dict>
         <key>largeTitle</key>
         <dict>
-            <key>fontName</key>
+            <key>name</key>
             <string>Montserrat-Regular</string>
-            <key>fontSize</key>
+            <key>size</key>
             <integer>34</integer>
         </dict>
         <key>title</key>
         <dict>
-            <key>fontName</key>
+            <key>name</key>
             <string>Montserrat-Regular</string>
-            <key>fontSize</key>
+            <key>size</key>
             <integer>28</integer>
         </dict>
         <key>title2</key>
         <dict>
-            <key>fontName</key>
+            <key>name</key>
             <string>Montserrat-Regular</string>
-            <key>fontSize</key>
+            <key>size</key>
             <integer>22</integer>
         </dict>
         <key>title3</key>
         <dict>
-            <key>fontName</key>
+            <key>name</key>
             <string>Montserrat-Regular</string>
-            <key>fontSize</key>
+            <key>size</key>
             <integer>20</integer>
         </dict>
         <key>headline</key>
         <dict>
-            <key>fontName</key>
+            <key>name</key>
             <string>Montserrat-Bold</string>
-            <key>fontSize</key>
+            <key>size</key>
             <integer>17</integer>
         </dict>
         <key>subheadline</key>
         <dict>
-            <key>fontName</key>
+            <key>name</key>
             <string>Montserrat-SemiBold</string>
-            <key>fontSize</key>
+            <key>size</key>
             <integer>15</integer>
         </dict>
         <key>body</key>
         <dict>
-            <key>fontName</key>
+            <key>name</key>
             <string>Montserrat-Medium</string>
-            <key>fontSize</key>
+            <key>size</key>
             <integer>17</integer>
         </dict>
         <key>callout</key>
         <dict>
-            <key>fontName</key>
+            <key>name</key>
             <string>Montserrat-Regular</string>
-            <key>fontSize</key>
+            <key>size</key>
             <integer>16</integer>
         </dict>
         <key>footnote</key>
         <dict>
-            <key>fontName</key>
+            <key>name</key>
             <string>Montserrat-Light</string>
-            <key>fontSize</key>
+            <key>size</key>
             <integer>13</integer>
         </dict>
         <key>caption</key>
         <dict>
-            <key>fontName</key>
+            <key>name</key>
             <string>Montserrat-Light</string>
-            <key>fontSize</key>
+            <key>size</key>
             <integer>12</integer>
         </dict>
         <key>caption2</key>
         <dict>
-            <key>fontName</key>
+            <key>name</key>
             <string>Montserrat-Light</string>
-            <key>fontSize</key>
+            <key>size</key>
             <integer>11</integer>
         </dict>
     </dict>
