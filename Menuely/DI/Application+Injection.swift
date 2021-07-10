@@ -17,5 +17,7 @@ extension Resolver: ResolverRegistering {
         registerViewModels()
         registerServices()
         registerRepositories()
+        registerUtilities()
+        registerConstants()
     }
 }

@@ -18,7 +18,9 @@ struct AuthSelectionView: View {
                 .padding(.top, 10)
             Spacer()
             VStack {
-                Text("Continue as:")
+                Text("Continue as")
+                    .scaledFont(.title3)
+                    .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
                 SelectionCardView(imageName: .person, text: "Private person")
                     .padding(.top, 10)
                 SelectionCardView(imageName: .restaurant, text: "Restaurant")

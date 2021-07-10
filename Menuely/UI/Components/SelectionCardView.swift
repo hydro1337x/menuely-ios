@@ -25,9 +25,11 @@ struct SelectionCardView: View {
                 Image(imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 32, height: 32, alignment: .leading)
+                    .frame(width: 40, height: 40, alignment: .leading)
                 Spacer()
                 Text(text)
+                    .scaledFont(.title2)
+                    .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
                     .offset(x: -16, y: 0)
                 Spacer()
             }
