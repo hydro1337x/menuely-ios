@@ -11,5 +11,6 @@ extension Resolver {
     public static func registerViewModels() {
         register { UsersListViewModel(users: .notRequested) }.scope(.shared)
         register { RootViewAppearance.ViewModel() }.scope(.shared)
+        register { UserRegistrationViewModel() }.scope(.shared)
     }
 }

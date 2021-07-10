@@ -9,8 +9,13 @@ import SwiftUI
 
 struct FloatingTextField: View {
     @Binding private var text: String
-    @State private var isActive: Bool = false
     
+    @State private var separatorColor: Color = Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1))
+    @State private var placeholderColor: Color = Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1))
+    @State private var placeholderOffset: CGFloat = 0
+    @State private var placeholderScale: CGFloat = 1
+    
+     
     private let title: String
     
     init(text: Binding<String>, title: String) {
@@ -22,22 +27,33 @@ struct FloatingTextField: View {
            ZStack(alignment: .leading) {
             GeometryReader { geometry in
                 Text(title)
-                    .foregroundColor($text.wrappedValue.isEmpty ? Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)) : Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1)))
-                    .offset(y: $text.wrappedValue.isEmpty ? 0 : -25)
-                    .scaleEffect($text.wrappedValue.isEmpty ? 1 : 0.75, anchor: .leading)
-                TextField("", text: $text) {
-                    isActive = $0
+                    .scaledFont(.body)
+                    .foregroundColor(placeholderColor)
+                    .offset(y: placeholderOffset)
+                    .scaleEffect(placeholderScale, anchor: .leading)
+                
+                TextField("", text: $text) { isActive in
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
+                        separatorColor = isActive ? Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1)) : Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1))
+                    }
                 }
+                .scaledFont(.body)
                 .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
+                .onChange(of: text, perform: { value in
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
+                        placeholderColor = value.isEmpty ? Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)) : Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1))
+                        placeholderOffset = value.isEmpty ? 0 : -25
+                        placeholderScale = value.isEmpty ? 1 : 0.75
+                    }
+                })
 
                 RoundedRectangle(cornerRadius: 2, style: .continuous)
-                    .foregroundColor($isActive.wrappedValue ? Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1)) : Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)))
+                    .foregroundColor(separatorColor )
                     .frame(width: geometry.size.width, height: 2, alignment: .center)
-                    .offset(x: 0, y: 25)
+                    .offset(x: 0, y: 25)        
             }
            }
            .padding(.top, 15)
-           .animation(.spring(response: 0.3, dampingFraction: 0.5))
        }
 }
 
