@@ -16,15 +16,18 @@ struct AuthSelectionView: View {
             Image(.logo)
                 .frame(width: 100, height: 100, alignment: .center)
                 .padding(.top, 10)
-            FloatingTextField(text: $emailText, title: "Email")
-                .padding(.horizontal, 30)
-                .frame(height: 48)
-            FloatingTextField(text: $passwordText, title: "Password")
-                .padding(.horizontal, 30)
-                .frame(height: 48)
-            SelectionCardView(imageName: .person, text: "Private person")
+            Spacer()
+            VStack {
+                Text("Continue as:")
+                SelectionCardView(imageName: .person, text: "Private person")
+                    .padding(.top, 10)
+                SelectionCardView(imageName: .restaurant, text: "Restaurant")
+                    .padding(.top, 10)
+            }
+            .offset(y: -100)
             Spacer()
         }
+        .padding(.horizontal, 30)
     }
 }
 
