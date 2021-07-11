@@ -14,6 +14,16 @@
 		60006232269648C30085DF41 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60006231269648C30085DF41 /* AuthService.swift */; };
 		6000623826965F280085DF41 /* UserLoginResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6000623726965F280085DF41 /* UserLoginResponseDTO.swift */; };
 		6000623A269663750085DF41 /* UserAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60006239269663750085DF41 /* UserAuth.swift */; };
+		601C0C0B269AE3EE009181D2 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C0A269AE3EE009181D2 /* View+Extension.swift */; };
+		601C0C0D269AE3F9009181D2 /* Navigation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C0C269AE3F9009181D2 /* Navigation+Extension.swift */; };
+		601C0C10269AE45F009181D2 /* SheetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C0F269AE45F009181D2 /* SheetModifier.swift */; };
+		601C0C16269AE606009181D2 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C15269AE606009181D2 /* RootCoordinator.swift */; };
+		601C0C18269AE610009181D2 /* RootCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C17269AE610009181D2 /* RootCoordinatorView.swift */; };
+		601C0C1A269AEE59009181D2 /* AuthCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C19269AEE59009181D2 /* AuthCoordinatorView.swift */; };
+		601C0C1C269AEE64009181D2 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C1B269AEE64009181D2 /* AuthCoordinator.swift */; };
+		601C0C1E269AF0D0009181D2 /* Coordinators+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C1D269AF0D0009181D2 /* Coordinators+Injection.swift */; };
+		601C0C20269B00FE009181D2 /* RestaurantRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C1F269B00FE009181D2 /* RestaurantRegistrationView.swift */; };
+		601C0C22269B0110009181D2 /* RestaurantRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C21269B0110009181D2 /* RestaurantRegistrationViewModel.swift */; };
 		6049C3C0268F9B9E00B891CC /* Repositories+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */; };
 		6063B68A26893B65001B1405 /* MenuelyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6063B68926893B65001B1405 /* MenuelyApp.swift */; };
 		6063B68C26893B65001B1405 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6063B68B26893B65001B1405 /* ContentView.swift */; };
@@ -76,6 +86,16 @@
 		60006231269648C30085DF41 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		6000623726965F280085DF41 /* UserLoginResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginResponseDTO.swift; sourceTree = "<group>"; };
 		60006239269663750085DF41 /* UserAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuth.swift; sourceTree = "<group>"; };
+		601C0C0A269AE3EE009181D2 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		601C0C0C269AE3F9009181D2 /* Navigation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation+Extension.swift"; sourceTree = "<group>"; };
+		601C0C0F269AE45F009181D2 /* SheetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetModifier.swift; sourceTree = "<group>"; };
+		601C0C15269AE606009181D2 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		601C0C17269AE610009181D2 /* RootCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorView.swift; sourceTree = "<group>"; };
+		601C0C19269AEE59009181D2 /* AuthCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinatorView.swift; sourceTree = "<group>"; };
+		601C0C1B269AEE64009181D2 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		601C0C1D269AF0D0009181D2 /* Coordinators+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinators+Injection.swift"; sourceTree = "<group>"; };
+		601C0C1F269B00FE009181D2 /* RestaurantRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistrationView.swift; sourceTree = "<group>"; };
+		601C0C21269B0110009181D2 /* RestaurantRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistrationViewModel.swift; sourceTree = "<group>"; };
 		6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repositories+Injection.swift"; sourceTree = "<group>"; };
 		6063B68626893B65001B1405 /* Menuely.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Menuely.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6063B68926893B65001B1405 /* MenuelyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuelyApp.swift; sourceTree = "<group>"; };
@@ -143,6 +163,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		601C0C0E269AE43B009181D2 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				60BF85AB2698F0DE00890C0F /* RootViewModifier.swift */,
+				601C0C0F269AE45F009181D2 /* SheetModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		601C0C14269AE59C009181D2 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				601C0C17269AE610009181D2 /* RootCoordinatorView.swift */,
+				601C0C15269AE606009181D2 /* RootCoordinator.swift */,
+				601C0C19269AEE59009181D2 /* AuthCoordinatorView.swift */,
+				601C0C1B269AEE64009181D2 /* AuthCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		6063B67D26893B65001B1405 = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +208,7 @@
 				6074C0B0268C7A3700DA3B21 /* Data */,
 				6074C0AE268C7A2200DA3B21 /* Repositories */,
 				6074C0AF268C7A3100DA3B21 /* Services */,
+				601C0C14269AE59C009181D2 /* Coordinators */,
 				6074C0B1268C7A3F00DA3B21 /* UI */,
 				6074C0AC268C79E800DA3B21 /* Utilities */,
 				6074C0B2268C7A4D00DA3B21 /* Resources */,
@@ -219,6 +260,7 @@
 				6074C0B3268C940700DA3B21 /* AppState.swift */,
 				60944F3A268DC8460063CD61 /* Application+Injection.swift */,
 				60E4ED79268E174A00EC4561 /* ViewModels+Injection.swift */,
+				601C0C1D269AF0D0009181D2 /* Coordinators+Injection.swift */,
 				60E4ED69268DCC7B00EC4561 /* Services+Injection.swift */,
 				6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */,
 				60D32CCF2699EC0900F6FDC9 /* Utilities+Injection.swift */,
@@ -262,9 +304,9 @@
 				60BF85A42698EFCD00890C0F /* Auth */,
 				60BF85B02698F6A600890C0F /* Components */,
 				60D32CBD2699A81B00F6FDC9 /* Styles */,
+				601C0C0E269AE43B009181D2 /* Modifiers */,
 				6063B68B26893B65001B1405 /* ContentView.swift */,
 				60E4ED77268E148700EC4561 /* UsersListViewModel.swift */,
-				60BF85AB2698F0DE00890C0F /* RootViewModifier.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -286,6 +328,8 @@
 				60BF85AE2698F46B00890C0F /* AuthSelectionView.swift */,
 				60D32CE12699FA3B00F6FDC9 /* UserRegistrationView.swift */,
 				60D32CDF2699FA3100F6FDC9 /* UserRegistrationViewModel.swift */,
+				601C0C1F269B00FE009181D2 /* RestaurantRegistrationView.swift */,
+				601C0C21269B0110009181D2 /* RestaurantRegistrationViewModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -303,6 +347,8 @@
 			isa = PBXGroup;
 			children = (
 				60BF85B826991AC000890C0F /* Image+Extension.swift */,
+				601C0C0A269AE3EE009181D2 /* View+Extension.swift */,
+				601C0C0C269AE3F9009181D2 /* Navigation+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -477,10 +523,13 @@
 			files = (
 				60F3BAD32694C863005798C1 /* KeychainItem.swift in Sources */,
 				60F3BAD72694CAE0005798C1 /* CodableSecureAppStorage.swift in Sources */,
+				601C0C20269B00FE009181D2 /* RestaurantRegistrationView.swift in Sources */,
+				601C0C10269AE45F009181D2 /* SheetModifier.swift in Sources */,
 				60D32CD02699EC0900F6FDC9 /* Utilities+Injection.swift in Sources */,
 				60E4ED6A268DCC7B00EC4561 /* Services+Injection.swift in Sources */,
 				6049C3C0268F9B9E00B891CC /* Repositories+Injection.swift in Sources */,
 				6000623826965F280085DF41 /* UserLoginResponseDTO.swift in Sources */,
+				601C0C22269B0110009181D2 /* RestaurantRegistrationViewModel.swift in Sources */,
 				6000622E269645380085DF41 /* UserRegistrationRequestDTO.swift in Sources */,
 				6000623A269663750085DF41 /* UserAuth.swift in Sources */,
 				6074C0B4268C940700DA3B21 /* AppState.swift in Sources */,
@@ -495,6 +544,7 @@
 				60E4ED6E268DE40B00EC4561 /* UsersService.swift in Sources */,
 				60BF85AC2698F0DE00890C0F /* RootViewModifier.swift in Sources */,
 				60D32CCE2699EBB000F6FDC9 /* ScaledFontModifier.swift in Sources */,
+				601C0C16269AE606009181D2 /* RootCoordinator.swift in Sources */,
 				60660C6D2693861D00A6159E /* NetworkClient.swift in Sources */,
 				60E4ED70268DECA600EC4561 /* UserListResponseDTO.swift in Sources */,
 				6063B68C26893B65001B1405 /* ContentView.swift in Sources */,
@@ -507,19 +557,25 @@
 				6000622A269644DB0085DF41 /* AuthRemoteRepository.swift in Sources */,
 				600062302696482F0085DF41 /* Discardable.swift in Sources */,
 				60E3953C26909197007E459E /* Tokens.swift in Sources */,
+				601C0C0B269AE3EE009181D2 /* View+Extension.swift in Sources */,
 				60E4ED78268E148700EC4561 /* UsersListViewModel.swift in Sources */,
 				6063B68A26893B65001B1405 /* MenuelyApp.swift in Sources */,
+				601C0C1E269AF0D0009181D2 /* Coordinators+Injection.swift in Sources */,
 				60D32CE22699FA3B00F6FDC9 /* UserRegistrationView.swift in Sources */,
 				60E4ED72268DEE4100EC4561 /* RemoteImage.swift in Sources */,
 				60D32CCC2699E6FD00F6FDC9 /* FontScaleUtility.swift in Sources */,
 				60E395382690917C007E459E /* TokensRequestDTO.swift in Sources */,
 				60006232269648C30085DF41 /* AuthService.swift in Sources */,
+				601C0C1A269AEE59009181D2 /* AuthCoordinatorView.swift in Sources */,
 				6074C0C0268CD41400DA3B21 /* NetworkingHelpers.swift in Sources */,
 				60E3953A2690918D007E459E /* TokensResponseDTO.swift in Sources */,
 				60BF85B22698F87700890C0F /* FloatingTextField.swift in Sources */,
+				601C0C1C269AEE64009181D2 /* AuthCoordinator.swift in Sources */,
+				601C0C18269AE610009181D2 /* RootCoordinatorView.swift in Sources */,
 				60D32CC02699A83C00F6FDC9 /* RoundedGradientButtonStyle.swift in Sources */,
 				60D32CE02699FA3100F6FDC9 /* UserRegistrationViewModel.swift in Sources */,
 				60E4ED74268DEFC300EC4561 /* UsersRemoteRepository.swift in Sources */,
+				601C0C0D269AE3F9009181D2 /* Navigation+Extension.swift in Sources */,
 				6000622C2696451A0085DF41 /* UserLoginRequestDTO.swift in Sources */,
 				6074C0B6268CADB100DA3B21 /* Store.swift in Sources */,
 				60E4ED6C268DD45400EC4561 /* ApplicationEventsHandler.swift in Sources */,

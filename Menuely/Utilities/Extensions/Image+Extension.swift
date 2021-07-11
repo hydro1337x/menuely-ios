@@ -12,6 +12,9 @@ extension Image {
         case logo
         case person
         case restaurant
+        case scanTab = "scan.tab"
+        case searchTab = "search.tab"
+        case profileTab = "profile.tab"
     }
     
     public init(_ imageName: ImageName) {

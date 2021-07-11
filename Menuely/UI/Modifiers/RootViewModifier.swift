@@ -15,6 +15,7 @@ struct RootViewAppearance: ViewModifier {
     func body(content: Content) -> some View {
         content
             .blur(radius: viewModel.isActive ? 0 : 10)
+            .animation(.easeInOut(duration: 0.2))
     }
 }
 

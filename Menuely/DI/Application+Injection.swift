@@ -15,6 +15,7 @@ extension Resolver: ResolverRegistering {
         register { Store<AppState>(AppState()) }.scope(.application)
         register { ApplicationEventsHandler() }.scope(.application)
         registerViewModels()
+        registerCoordinators()
         registerServices()
         registerRepositories()
         registerUtilities()

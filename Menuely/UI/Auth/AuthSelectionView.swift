@@ -16,6 +16,7 @@ struct AuthSelectionView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100, height: 100, alignment: .center)
+                    .foregroundColor(Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1)))
                 
                 Spacer()
                 
