@@ -15,16 +15,7 @@ struct UserRegistrationView: View {
     var body: some View {
         ZStack {
             base
-            content
-        }
-    }
-    
-    private var content: AnyView {
-        switch viewModel.registration {
-        case .notRequested: return AnyView(notRequestedView)
-        case .isLoading(_, _): return AnyView(loadingView())
-        case .loaded(_): return AnyView(loadedView(showLoading: false))
-        case let .failed(error): return AnyView(failedView(error))
+            dynamicContent
         }
     }
     
@@ -62,26 +53,32 @@ struct UserRegistrationView: View {
         .padding(.horizontal, 30)
     }
     
+    @ViewBuilder
+    private var dynamicContent: some View {
+        switch viewModel.registration {
+        case .isLoading(_, _):  loadingView()
+        case .loaded(_):  loadedView(showLoading: false)
+        case let .failed(error): failedView(error)
+        default: EmptyView()
+        }
+    }
 }
 
 // MARK: - Loading content
+
 private extension UserRegistrationView {
-    var notRequestedView: some View {
-        AnyView(EmptyView()
-                    .foregroundColor(.clear))
-    }
     
     func loadingView() -> some View {
-        return AnyView(ActivityIndicatorView().padding())
+        return ActivityIndicatorView().padding()
     }
     
     func failedView(_ error: Error) -> some View {
-        AnyView(ErrorView(animate: $animateErrorView, message: error.localizedDescription) {
+        ErrorView(animate: $animateErrorView, message: error.localizedDescription) {
             viewModel.animateErrorView = false
         }
         .onReceive(viewModel.$animateErrorView, perform: { value in
             animateErrorView = value
-        }))
+        })
     }
 }
 

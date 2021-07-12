@@ -10,7 +10,7 @@ import Resolver
 
 class RestaurantRegistrationViewModel: ObservableObject {
     // MARK: - Properties
-    @Injected var appState: Store<AppState>
+    @Injected var authService: AuthServicing
     
     @Published var email: String = ""
     @Published var password: String = ""
@@ -20,13 +20,34 @@ class RestaurantRegistrationViewModel: ObservableObject {
     @Published var city: String = ""
     @Published var address: String = ""
     @Published var postalCode: String = ""
+    @Published var registration: Loadable<Discardable>
+    
+    @Published var animateErrorView: Bool = false
     
     var cancelBag = CancelBag()
     
     // MARK: - Initialization
-    init() {
-        
+    init(registration: Loadable<Discardable> = .notRequested) {
+        _registration = .init(initialValue: registration)
+        $registration.sink { loadable in
+            switch loadable {
+            case .failed(_): self.animateErrorView = true
+            default: self.animateErrorView = false
+            }
+        }
+        .store(in: cancelBag)
     }
     
     // MARK: - Methods
+    func register() {
+        let restaurantRegistrationRequestDTO = RestaurantRegistrationRequestDTO(email: email,
+                                                                                password: password,
+                                                                                description: description,
+                                                                                name: name,
+                                                                                country: country,
+                                                                                city: city,
+                                                                                address: address,
+                                                                                postalCode: postalCode)
+        authService.registerRestaurant(with: restaurantRegistrationRequestDTO, registration: loadableSubject(\.registration))
+    }
 }

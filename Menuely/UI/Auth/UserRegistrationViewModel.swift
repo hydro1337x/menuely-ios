@@ -27,8 +27,8 @@ class UserRegistrationViewModel: ObservableObject {
     // MARK: - Initialization
     init(registration: Loadable<Discardable> = .notRequested) {
         _registration = .init(initialValue: registration)
-        $registration.sink { completion in
-            switch completion {
+        $registration.sink { loadable in
+            switch loadable {
             case .failed(_): self.animateErrorView = true
             default: self.animateErrorView = false
             }
