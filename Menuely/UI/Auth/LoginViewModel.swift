@@ -18,7 +18,6 @@ class LoginViewModel: ObservableObject {
     
     // MARK: - Initialization
     
-    
     // MARK: - Methods
     
 }

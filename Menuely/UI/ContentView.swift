@@ -36,12 +36,12 @@ private extension ContentView {
         if let users = previouslyLoaded {
             return AnyView(loadedView(users, showLoading: true))
         } else {
-            return AnyView(ActivityIndicatorView().padding())
+            return AnyView(ActivityIndicatorView())
         }
     }
     
     func failedView(_ error: Error) -> some View {
-        ErrorView(animate: .constant(false), message: error.localizedDescription, action: {})
+        ErrorView(isAnimating: .constant(false), message: error.localizedDescription, action: {})
     }
 }
 
@@ -63,16 +63,5 @@ private extension ContentView {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-    }
-}
-
-struct ActivityIndicatorView: UIViewRepresentable {
-
-    func makeUIView(context: UIViewRepresentableContext<ActivityIndicatorView>) -> UIActivityIndicatorView {
-        return UIActivityIndicatorView(style: .large)
-    }
-
-    func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicatorView>) {
-        uiView.startAnimating()
     }
 }

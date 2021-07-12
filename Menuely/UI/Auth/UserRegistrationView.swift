@@ -73,7 +73,7 @@ private extension UserRegistrationView {
     }
     
     func failedView(_ error: Error) -> some View {
-        ErrorView(animate: $animateErrorView, message: error.localizedDescription) {
+        ErrorView(isAnimating: $animateErrorView, message: error.localizedDescription) {
             viewModel.animateErrorView = false
         }
         .onReceive(viewModel.$animateErrorView, perform: { value in

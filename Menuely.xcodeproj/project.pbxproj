@@ -21,6 +21,7 @@
 		60173F37269CE0CC003C4E40 /* RestaurantAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60173F36269CE0CC003C4E40 /* RestaurantAuth.swift */; };
 		60173F39269CE10D003C4E40 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60173F38269CE10D003C4E40 /* Restaurant.swift */; };
 		60173F3B269CE55A003C4E40 /* RestaurantLoginResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60173F3A269CE55A003C4E40 /* RestaurantLoginResponseDTO.swift */; };
+		60173F3D269CF53D003C4E40 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60173F3C269CF53D003C4E40 /* ActivityIndicatorView.swift */; };
 		601C0C0B269AE3EE009181D2 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C0A269AE3EE009181D2 /* View+Extension.swift */; };
 		601C0C0D269AE3F9009181D2 /* Navigation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C0C269AE3F9009181D2 /* Navigation+Extension.swift */; };
 		601C0C10269AE45F009181D2 /* SheetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C0F269AE45F009181D2 /* SheetModifier.swift */; };
@@ -103,6 +104,7 @@
 		60173F36269CE0CC003C4E40 /* RestaurantAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAuth.swift; sourceTree = "<group>"; };
 		60173F38269CE10D003C4E40 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		60173F3A269CE55A003C4E40 /* RestaurantLoginResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantLoginResponseDTO.swift; sourceTree = "<group>"; };
+		60173F3C269CF53D003C4E40 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		601C0C0A269AE3EE009181D2 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		601C0C0C269AE3F9009181D2 /* Navigation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation+Extension.swift"; sourceTree = "<group>"; };
 		601C0C0F269AE45F009181D2 /* SheetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetModifier.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				60BF85B62699172E00890C0F /* SelectionCardView.swift */,
 				60173F2E269C8F03003C4E40 /* AlertView.swift */,
 				60173F30269CA3B2003C4E40 /* ErrorView.swift */,
+				60173F3C269CF53D003C4E40 /* ActivityIndicatorView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				60BF85B72699172E00890C0F /* SelectionCardView.swift in Sources */,
 				6000622A269644DB0085DF41 /* AuthRemoteRepository.swift in Sources */,
 				600062302696482F0085DF41 /* Discardable.swift in Sources */,
+				60173F3D269CF53D003C4E40 /* ActivityIndicatorView.swift in Sources */,
 				60E3953C26909197007E459E /* Tokens.swift in Sources */,
 				601C0C0B269AE3EE009181D2 /* View+Extension.swift in Sources */,
 				60E4ED78268E148700EC4561 /* UsersListViewModel.swift in Sources */,
