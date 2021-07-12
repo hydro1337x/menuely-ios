@@ -52,6 +52,10 @@ extension Loadable {
         }
     }
     
+    mutating func reset() {
+        self = .notRequested
+    }
+    
     func map<V>(_ transform: (T) throws -> V) -> Loadable<V> {
         do {
             switch self {

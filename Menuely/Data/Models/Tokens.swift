@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Tokens: Codable {
+struct Tokens: Codable, Equatable {
     let accessToken: String
     let refreshToken: String
 }

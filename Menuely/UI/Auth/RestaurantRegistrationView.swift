@@ -11,7 +11,53 @@ struct RestaurantRegistrationView: View {
     @InjectedObservedObject private var viewModel: RestaurantRegistrationViewModel
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack {
+                
+                Image(.restaurant)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100, alignment: .center)
+                    .padding(.bottom, 10)
+                
+                Group {
+                    FloatingTextField(text: $viewModel.email, title: "Email")
+                        .frame(height: 48)
+                    
+                    FloatingTextField(text: $viewModel.password, title: "Password")
+                        .frame(height: 48)
+                    
+                    FloatingTextField(text: $viewModel.name, title: "Name")
+                        .frame(height: 48)
+                    
+                    FloatingTextField(text: $viewModel.description, title: "Description")
+                        .frame(height: 48)
+                    
+                    FloatingTextField(text: $viewModel.country, title: "Country")
+                        .frame(height: 48)
+                    
+                    FloatingTextField(text: $viewModel.city, title: "City")
+                        .frame(height: 48)
+                    
+                    FloatingTextField(text: $viewModel.address, title: "Address")
+                        .frame(height: 48)
+                    
+                    FloatingTextField(text: $viewModel.postalCode, title: "Postal code")
+                        .frame(height: 48)
+                }
+                
+                Button("Register") {
+                    print("Registered")
+                }
+                .scaledFont(.body)
+                .frame(height: 48)
+                .padding(.top, 20)
+                .buttonStyle(RoundedGradientButtonStyle())
+                
+                Spacer()
+            }
+            .padding(.horizontal, 30)
+        }
     }
 }
 

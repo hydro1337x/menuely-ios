@@ -15,18 +15,14 @@ struct RootViewAppearance: ViewModifier {
     func body(content: Content) -> some View {
         content
             .blur(radius: viewModel.isActive ? 0 : 10)
-            .animation(.easeInOut(duration: 0.2))
+            .animation(.easeInOut(duration: 0.2), value: viewModel.isActive)
     }
 }
 
 extension RootViewAppearance {
     class ViewModel: ObservableObject {
         @Injected private(set) var appState: Store<AppState>
-        @Published var isActive: Bool = false {
-            didSet {
-                print(isActive)
-            }
-        }
+        @Published var isActive: Bool = false
         private let cancelBag = CancelBag()
         
         init() {

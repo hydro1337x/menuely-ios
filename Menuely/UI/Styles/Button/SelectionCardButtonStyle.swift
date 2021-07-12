@@ -15,6 +15,6 @@ struct SelectionCardButtonStyle: ButtonStyle {
             .cornerRadius(10)
             .scaleEffect(configuration.isPressed ? 0.99 : 1)
             .shadow(radius: configuration.isPressed ? 1 : 2)
-            .animation(.easeInOut(duration: 0.2))
+            .animation(.easeInOut(duration: 0.2), value: configuration.isPressed)
     }
 }

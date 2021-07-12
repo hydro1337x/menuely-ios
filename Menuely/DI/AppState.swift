@@ -18,7 +18,8 @@ extension AppState {
     /* AppState.Data should contain data which is shared across the whole application, since AppState is always wrapped with the Store typealias which on its own is a CurrentValueSubject, it will emit all changes if a property is mutated and all views which use that data can stay in sync
      */
     struct Data: Equatable {
-        
+        var tokens: Tokens?
+        var selectedEntity: EntityType = .none
     }
 }
 

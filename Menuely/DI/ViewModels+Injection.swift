@@ -12,5 +12,6 @@ extension Resolver {
         register { UsersListViewModel(users: .notRequested) }.scope(.shared)
         register { RootViewAppearance.ViewModel() }.scope(.shared)
         register { UserRegistrationViewModel() }.scope(.shared)
+        register { RestaurantRegistrationViewModel() }.scope(.shared)
     }
 }

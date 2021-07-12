@@ -41,9 +41,7 @@ private extension ContentView {
     }
     
     func failedView(_ error: Error) -> some View {
-        ErrorView(error: error, retryAction: {
-            self.viewModel.getUsers()
-        })
+        ErrorView(animate: .constant(false), message: error.localizedDescription, action: {})
     }
 }
 
@@ -76,22 +74,5 @@ struct ActivityIndicatorView: UIViewRepresentable {
 
     func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicatorView>) {
         uiView.startAnimating()
-    }
-}
-
-struct ErrorView: View {
-    let error: Error
-    let retryAction: () -> Void
-    
-    var body: some View {
-        VStack {
-            Text("An Error Occured")
-                .font(.title)
-            Text(error.localizedDescription)
-                .font(.callout)
-                .multilineTextAlignment(.center)
-                .padding(.bottom, 40).padding()
-            Button(action: retryAction, label: { Text("Retry").bold() })
-        }
     }
 }

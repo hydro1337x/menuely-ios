@@ -20,8 +20,8 @@ struct RoundedGradientButtonStyle: ButtonStyle {
             .background(configuration.isPressed ? endGradient : startGradient)
             .foregroundColor(.white)
             .clipShape(RoundedRectangle(cornerRadius: 10))
-            .shadow(radius: configuration.isPressed ? 4 : 2)
-            .scaleEffect(configuration.isPressed ? 1 : 1.01)
+            .shadow(radius: configuration.isPressed ? 1 : 3)
+            .scaleEffect(configuration.isPressed ? 0.99 : 1)
             .animation(.easeInOut(duration: 0.2), value: configuration.isPressed)
     }
 }
