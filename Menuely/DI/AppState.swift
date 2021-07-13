@@ -19,7 +19,7 @@ extension AppState {
      */
     struct Data: Equatable {
         var tokens: Tokens?
-        var selectedEntity: EntityType = .none
+        var selectedEntity: EntityType = .user
     }
 }
 

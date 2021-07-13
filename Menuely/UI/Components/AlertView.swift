@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+struct AlertViewConfiguration {
+    var titleTextStyle: Font.TextStyle = .title3
+    var messageTextStyle: Font.TextStyle = .callout
+    var blurredBackground: Color = Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+    var alertBackground: Color = Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1))
+    var backgroundCornerRadius: CGFloat = 10
+}
+
 struct AlertView: View {
     
     let title: String
@@ -14,15 +22,17 @@ struct AlertView: View {
     let primaryButton: Button<Text>?
     let secondaryButton: Button<Text>?
     
+    var configuration: AlertViewConfiguration = AlertViewConfiguration()
+    
     var body: some View {
         VStack {
             VStack {
                 Text(title)
-                    .scaledFont(.title3)
+                    .scaledFont(configuration.titleTextStyle)
                 
                 if let message = message {
                     Text(message)
-                        .scaledFont(.callout)
+                        .scaledFont(configuration.messageTextStyle)
                 }
                 
                 HStack {

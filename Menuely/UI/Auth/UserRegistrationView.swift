@@ -22,12 +22,6 @@ struct UserRegistrationView: View {
     private var base: some View {
         VStack {
             
-            Image(.person)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100, height: 100, alignment: .center)
-                .padding(.bottom, 10)
-            
             FloatingTextField(text: $viewModel.email, title: "Email")
                 .frame(height: 48)
             

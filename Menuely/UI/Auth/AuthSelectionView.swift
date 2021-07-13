@@ -6,39 +6,44 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct AuthSelectionView: View {
+    
+    enum AuthState {
+        case registration
+        case login
+    }
+    
+    @Injected private var appState: Store<AppState>
+    
+    @State private var authState: AuthState = .login
+    @State private var entityType: EntityType = .user
     
     var body: some View {
         NavigationView {
             VStack {
-                Image(.logo)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100, alignment: .center)
-                
-                Spacer()
-                
-                VStack {
-                    Text("Continue as")
-                        .scaledFont(.title3)
-                        .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
-                    
-                    NavigationLink(
-                        destination: UserRegistrationView(),
-                        label: {
-                            SelectionCardView(imageName: .person, text: "Private person")
-                        })
-                        .buttonStyle(SelectionCardButtonStyle())
-                    
-                    NavigationLink(
-                        destination: RestaurantRegistrationView(),
-                        label: {
-                            SelectionCardView(imageName: .restaurant, text: "Restaurant")
-                        })
-                        .buttonStyle(SelectionCardButtonStyle())
+                Picker("Entity", selection: $authState) {
+                    Text("Login").tag(AuthState.login)
+                    Text("Registration").tag(AuthState.registration)
                 }
-                .offset(y: -100)
+                .pickerStyle(SegmentedPickerStyle())
+                
+                Picker("Auth", selection: $entityType) {
+                    Text("Restaurant").tag(EntityType.restaurant)
+                    Text("User").tag(EntityType.user)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .onChange(of: entityType, perform: { value in
+                    appState[\.data.selectedEntity] = value
+                })
+                
+                switch (authState, entityType) {
+                case (.login, .user): LoginView()
+                case (.login, .restaurant): LoginView()
+                case (.registration, .user): UserRegistrationView()
+                case (.registration, .restaurant): RestaurantRegistrationView()
+                }
                 
                 Spacer()
             }

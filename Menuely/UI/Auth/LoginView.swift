@@ -10,28 +10,69 @@ import SwiftUI
 struct LoginView: View {
     @InjectedObservedObject private var viewModel: LoginViewModel
     
+    @State private var animateErrorView: Bool = false
+    
     var body: some View {
-        Image(.restaurant)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 100, height: 100, alignment: .center)
-            .padding(.bottom, 10)
-        
-        FloatingTextField(text: $viewModel.email, title: "Email")
-            .frame(height: 48)
-        
-        FloatingTextField(text: $viewModel.password, title: "Password")
-            .frame(height: 48)
-        
-        Button("Login") {
-            print("Logged in")
+        ZStack {
+            base
+            dynamicContent
         }
-        .scaledFont(.body)
-        .frame(height: 48)
-        .padding(.top, 20)
-        .buttonStyle(RoundedGradientButtonStyle())
-        
-        Spacer()
+    }
+    
+    private var base: some View {
+        VStack {
+            FloatingTextField(text: $viewModel.email, title: "Email")
+                .frame(height: 48)
+            
+            FloatingTextField(text: $viewModel.password, title: "Password")
+                .frame(height: 48)
+            
+            Button("Login") {
+                viewModel.login()
+            }
+            .scaledFont(.body)
+            .frame(height: 48)
+            .padding(.top, 20)
+            .buttonStyle(RoundedGradientButtonStyle())
+            
+            Spacer()
+        }
+    }
+    
+    @ViewBuilder
+    private var dynamicContent: some View {
+        switch viewModel.loginResult {
+        case .isLoading(_, _):  loadingView()
+        case .loaded(_):  loadedView(showLoading: false)
+        case let .failed(error): failedView(error)
+        default: EmptyView()
+        }
+    }
+}
+
+// MARK: - Loading Content
+
+private extension LoginView {
+    
+    func loadingView() -> some View {
+        return ActivityIndicatorView().padding()
+    }
+    
+    func failedView(_ error: Error) -> some View {
+        ErrorView(isAnimating: $animateErrorView, message: error.localizedDescription) {
+            viewModel.animateErrorView = false
+        }
+        .onReceive(viewModel.$animateErrorView, perform: { value in
+            animateErrorView = value
+        })
+    }
+}
+
+// MARK: - Displaying Content
+
+private extension LoginView {
+    func loadedView(showLoading: Bool) -> some View {
+        RootCoordinatorView()
     }
 }
 

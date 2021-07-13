@@ -11,10 +11,10 @@ import Resolver
 
 protocol AuthRemoteRepositing {
     func registerUser(userRegistrationRequestDTO: UserRegistrationRequestDTO) -> AnyPublisher<Discardable, Error>
-    func loginUser(userLoginRequestDTO: UserLoginRequestDTO) -> AnyPublisher<UserLoginResponseDTO, Error>
+    func loginUser(userLoginRequestDTO: LoginRequestDTO) -> AnyPublisher<UserLoginResponseDTO, Error>
     
     func registerRestaurant(restaurantRegistrationRequestDTO: RestaurantRegistrationRequestDTO) -> AnyPublisher<Discardable, Error>
-    func loginRestaurant(restaurantLoginRequestDTO: RestaurantLoginRequestDTO) -> AnyPublisher<RestaurantLoginResponseDTO, Error>
+    func loginRestaurant(restaurantLoginRequestDTO: LoginRequestDTO) -> AnyPublisher<RestaurantLoginResponseDTO, Error>
 }
 
 class AuthRemoteRepository: AuthRemoteRepositing {
@@ -24,7 +24,7 @@ class AuthRemoteRepository: AuthRemoteRepositing {
         networkClient.request(endpoint: Endpoint.registerUser(userRegistrationRequestDTO))
     }
 
-    func loginUser(userLoginRequestDTO: UserLoginRequestDTO) -> AnyPublisher<UserLoginResponseDTO, Error> {
+    func loginUser(userLoginRequestDTO: LoginRequestDTO) -> AnyPublisher<UserLoginResponseDTO, Error> {
         networkClient.request(endpoint: Endpoint.loginUser(userLoginRequestDTO))
     }
     
@@ -32,7 +32,7 @@ class AuthRemoteRepository: AuthRemoteRepositing {
         networkClient.request(endpoint: Endpoint.registerRestaurant(restaurantRegistrationRequestDTO))
     }
     
-    func loginRestaurant(restaurantLoginRequestDTO: RestaurantLoginRequestDTO) -> AnyPublisher<RestaurantLoginResponseDTO, Error> {
+    func loginRestaurant(restaurantLoginRequestDTO: LoginRequestDTO) -> AnyPublisher<RestaurantLoginResponseDTO, Error> {
         networkClient.request(endpoint: Endpoint.loginRestaurant(restaurantLoginRequestDTO))
     }
 }
@@ -40,9 +40,9 @@ class AuthRemoteRepository: AuthRemoteRepositing {
 extension AuthRemoteRepository {
     enum Endpoint {
         case registerUser(_: UserRegistrationRequestDTO)
-        case loginUser(_: UserLoginRequestDTO)
+        case loginUser(_: LoginRequestDTO)
         case registerRestaurant(_: RestaurantRegistrationRequestDTO)
-        case loginRestaurant(_: RestaurantLoginRequestDTO)
+        case loginRestaurant(_: LoginRequestDTO)
     }
 }
 

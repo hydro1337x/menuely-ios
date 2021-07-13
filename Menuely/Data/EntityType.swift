@@ -10,5 +10,4 @@ import Foundation
 enum EntityType: Equatable {
     case user
     case restaurant
-    case none
 }
