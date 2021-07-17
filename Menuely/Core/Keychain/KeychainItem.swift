@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct KeychainItem {
+struct KeychainItem: Equatable {
 
     // MARK: Types
     enum KeychainError: Error {

@@ -22,7 +22,7 @@ class AuthService: AuthServicing {
     
     @Injected private var remoteRepository: AuthRemoteRepositing
     @Injected private var appState: Store<AppState>
-    @CodableSecureAppStorage<Tokens>("RefreshTokens") private var tokens: Tokens?
+    @Injected private var keychainRepository: KeychainRepositing
     
     var cancelBag = CancelBag()
     
@@ -92,7 +92,7 @@ class AuthService: AuthServicing {
     // MARK: - General
     private func saveTokens(_ tokens: Tokens?) {
         guard let tokens = tokens else { return }
-        self.tokens = tokens
+        keychainRepository.saveData(tokens, to: .tokens)
         appState[\.data.tokens] = tokens
     }
 }

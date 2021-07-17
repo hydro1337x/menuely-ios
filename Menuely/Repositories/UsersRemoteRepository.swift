@@ -17,7 +17,6 @@ protocol UsersRemoteRepositing {
 
 class UsersRemoteRepository: UsersRemoteRepositing {
     @Injected private var networkClient: Networking
-    @CodableSecureAppStorage<Tokens>("RefreshTokens") private var tokens: Tokens?
     
     func getUsers() -> AnyPublisher<UserListResponseDTO, Error> {
         networkClient.request(endpoint: Endpoint.users)

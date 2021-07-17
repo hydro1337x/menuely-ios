@@ -7,11 +7,18 @@
 
 import SwiftUI
 import Combine
+import Resolver
 
 struct AppState: Equatable {
-    var data = Data()
-    var coordinating = Coordinating()
-    var application = Application()
+    var data: Data
+    var coordinating: Coordinating
+    var application: Application
+    
+    init(data: Data = Data(), coordinating: Coordinating, application: Application = Application()) {
+        self.data = data
+        self.coordinating = coordinating
+        self.application = application
+    }
 }
 
 extension AppState {
@@ -28,7 +35,19 @@ extension AppState {
      AppState.Coordinating should contain data which is needed to transition from one screen to another
      */
     struct Coordinating: Equatable {
+        
         var auth = AuthCoordinator.Coordinating.login
+        var root: RootCoordinator.Coordinating
+        
+        init(keychainRepository: KeychainRepositing) {
+            let tokens: Tokens? = keychainRepository.loadData(for: .tokens)
+            root = tokens == nil ? .auth : .tabs
+        }
+        
+        static func == (lhs: AppState.Coordinating, rhs: AppState.Coordinating) -> Bool {
+            return lhs.auth == rhs.auth &&
+                   lhs.root == rhs.root
+        }
     }
 }
 
@@ -39,8 +58,8 @@ extension AppState {
     }
 }
 
-func == (lhs: AppState, rhs: AppState) -> Bool {
-    return lhs.data == rhs.data &&
-           lhs.coordinating == rhs.coordinating &&
-           lhs.application == rhs.application
-}
+//func == (lhs: AppState, rhs: AppState) -> Bool {
+//    return lhs.data == rhs.data &&
+//           lhs.coordinating == rhs.coordinating &&
+//           lhs.application == rhs.application
+//}

@@ -16,7 +16,7 @@ struct MenuelyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            AuthCoordinatorView()
+            RootCoordinatorView()
                 .modifier(RootViewAppearance())
         }
     }

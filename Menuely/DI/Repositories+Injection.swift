@@ -14,5 +14,6 @@ extension Resolver {
         register { UsersRemoteRepository() as UsersRemoteRepositing }
         register { Authenticator(session: AF) as Authenticating }
         register { AuthRemoteRepository() as AuthRemoteRepositing }
+        register { KeychainRepository() as KeychainRepositing }
     }
 }

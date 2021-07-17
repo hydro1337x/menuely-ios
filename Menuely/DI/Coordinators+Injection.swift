@@ -9,7 +9,8 @@ import Resolver
 
 extension Resolver {
     public static func registerCoordinators() {
-        register { RootCoordinator() }.scope(.shared)
+        register { RootCoordinator(appState: resolve()) }.scope(.shared)
+        register { TabCoordinator() }.scope(.shared)
         register { AuthCoordinator(appState: resolve()) }.scope(.shared)
         register { RegistrationCoordinator(appState: resolve()) }.scope(.shared)
         register { LoginCoordinator(appState: resolve()) }.scope(.shared)

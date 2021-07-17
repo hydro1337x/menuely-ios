@@ -14,7 +14,7 @@ class AuthRequestInterceptor: RequestInterceptor {
     
     // MARK: - Property Wrappers
     @Injected private var authenticator: Authenticating
-    @CodableSecureAppStorage<Tokens>("RefreshTokens") private var tokens: Tokens?
+    @Injected private var keychainRepository: KeychainRepositing
     
     // MARK: - Properties
     private let cancelBag = CancelBag()
@@ -24,6 +24,7 @@ class AuthRequestInterceptor: RequestInterceptor {
         var urlRequest = urlRequest
         
         /// Sets the Authorization header value using the access token.
+        let tokens: Tokens? = keychainRepository.loadData(for: .tokens)
         if let accessToken = tokens?.accessToken {
             urlRequest.headers.add(.authorization(bearerToken: accessToken))
         }
@@ -38,6 +39,7 @@ class AuthRequestInterceptor: RequestInterceptor {
             return completion(.doNotRetryWithError(error))
         }
         
+        let tokens: Tokens? = keychainRepository.loadData(for: .tokens)
         guard let refreshToken = tokens?.refreshToken else {
             return completion(.doNotRetryWithError(NetworkError.refreshTokenMissing))
         }
@@ -46,7 +48,7 @@ class AuthRequestInterceptor: RequestInterceptor {
             switch result {
             case .success(let tokensResponseDTO):
                 
-                self.tokens = tokensResponseDTO.tokens
+                self.keychainRepository.saveData(tokensResponseDTO.tokens, to: .tokens)
                 
                 // Print CURL for retried request
                 print(request.cURLDescription())
