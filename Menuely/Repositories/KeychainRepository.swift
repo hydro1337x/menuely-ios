@@ -14,6 +14,7 @@ enum KeychainAccount: String {
 protocol KeychainRepositing {
     func loadData<T: Codable>(for account: KeychainAccount) -> T?
     func saveData<T: Codable>(_ data: T?, to account: KeychainAccount)
+    func removeData(for account: KeychainAccount)
 }
 
 class KeychainRepository: KeychainRepositing {
@@ -36,5 +37,10 @@ class KeychainRepository: KeychainRepositing {
             .flatMap { try? encoder.encode($0) }
             .flatMap { $0.base64EncodedString() }
         item.set(encoded)
+    }
+    
+    func removeData(for account: KeychainAccount) {
+        let item = KeychainItem(service: Bundle.main.bundleIdentifier!, account: account.rawValue)
+        item.delete()
     }
 }
