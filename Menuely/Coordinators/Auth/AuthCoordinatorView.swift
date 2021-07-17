@@ -11,7 +11,12 @@ struct AuthCoordinatorView: View {
     @InjectedObservedObject private var coordinator: AuthCoordinator
     
     var body: some View {
-        AuthSelectionView()
+        VStack {
+            switch coordinator.coordinating {
+            case .login: LoginCoordinatorView()
+            case .registration: RegistrationCoordinatorView()
+            }
+        }
     }
 }
 

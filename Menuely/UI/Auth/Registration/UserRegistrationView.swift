@@ -1,17 +1,17 @@
 //
-//  LoginView.swift
+//  UserRegistrationView.swift
 //  Menuely
 //
-//  Created by Benjamin Mecanović on 11.07.2021..
+//  Created by Benjamin Mecanović on 10.07.2021..
 //
 
 import SwiftUI
 
-struct LoginView: View {
-    @InjectedObservedObject private var viewModel: LoginViewModel
+struct UserRegistrationView: View {
+    @InjectedObservedObject private var viewModel: UserRegistrationViewModel
     
     @State private var animateErrorView: Bool = false
-    
+
     var body: some View {
         ZStack {
             base
@@ -21,27 +21,41 @@ struct LoginView: View {
     
     private var base: some View {
         VStack {
+            
             FloatingTextField(text: $viewModel.email, title: "Email")
                 .frame(height: 48)
             
             FloatingTextField(text: $viewModel.password, title: "Password")
                 .frame(height: 48)
             
-            Button("Login") {
-                viewModel.login()
+            FloatingTextField(text: $viewModel.firstname, title: "Firstname")
+                .frame(height: 48)
+            
+            FloatingTextField(text: $viewModel.lastname, title: "Lastname")
+                .frame(height: 48)
+            
+            Button("Register") {
+                viewModel.register()
             }
             .scaledFont(.body)
             .frame(height: 48)
             .padding(.top, 20)
             .buttonStyle(RoundedGradientButtonStyle())
             
-            Spacer()
+            Button(action: {
+                viewModel.appState[\.coordinating.auth] = .login
+            }, label: {
+                Text("Already registered?")
+                    .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
+            })
+            .padding(.top, 10)
         }
+        .padding(.horizontal, 30)
     }
     
     @ViewBuilder
     private var dynamicContent: some View {
-        switch viewModel.loginResult {
+        switch viewModel.registration {
         case .isLoading(_, _):  loadingView()
         case .loaded(_):  loadedView(showLoading: false)
         case let .failed(error): failedView(error)
@@ -50,9 +64,9 @@ struct LoginView: View {
     }
 }
 
-// MARK: - Loading Content
+// MARK: - Loading content
 
-private extension LoginView {
+private extension UserRegistrationView {
     
     func loadingView() -> some View {
         return ActivityIndicatorView().padding()
@@ -70,14 +84,14 @@ private extension LoginView {
 
 // MARK: - Displaying Content
 
-private extension LoginView {
+private extension UserRegistrationView {
     func loadedView(showLoading: Bool) -> some View {
-        EmptyView()
+        ActivityIndicatorView().padding()
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
+struct UserLoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        UserRegistrationView()
     }
 }

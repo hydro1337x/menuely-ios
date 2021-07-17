@@ -13,6 +13,7 @@ import SwiftUI
 class UserRegistrationViewModel: ObservableObject {
     // MARK: - Properties
     @Injected private var authService: AuthServicing
+    @Injected var appState: Store<AppState>
     
     @Published var email: String = ""
     @Published var password: String = ""

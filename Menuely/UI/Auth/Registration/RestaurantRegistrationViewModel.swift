@@ -11,6 +11,7 @@ import Resolver
 class RestaurantRegistrationViewModel: ObservableObject {
     // MARK: - Properties
     @Injected var authService: AuthServicing
+    @Injected var appState: Store<AppState>
     
     @Published var email: String = ""
     @Published var password: String = ""

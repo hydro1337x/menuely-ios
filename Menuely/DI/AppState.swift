@@ -10,7 +10,7 @@ import Combine
 
 struct AppState: Equatable {
     var data = Data()
-    var routing = Routing()
+    var coordinating = Coordinating()
     var application = Application()
 }
 
@@ -25,10 +25,10 @@ extension AppState {
 
 extension AppState {
     /*
-     AppState.Routing should contain data which is needed to transition from one screen to another
+     AppState.Coordinating should contain data which is needed to transition from one screen to another
      */
-    struct Routing: Equatable {
-        
+    struct Coordinating: Equatable {
+        var auth = AuthCoordinator.Coordinating.login
     }
 }
 
@@ -41,6 +41,6 @@ extension AppState {
 
 func == (lhs: AppState, rhs: AppState) -> Bool {
     return lhs.data == rhs.data &&
-           lhs.routing == rhs.routing &&
+           lhs.coordinating == rhs.coordinating &&
            lhs.application == rhs.application
 }
