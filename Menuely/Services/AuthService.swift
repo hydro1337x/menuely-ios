@@ -40,6 +40,7 @@ class AuthService: AuthServicing {
             .store(in: cancelBag)
     }
     
+    // TODO: - Move mapping logic from VM-s to there
     func loginUser(with userLoginRequestDTO: LoginRequestDTO, userAuth: LoadableSubject<UserAuth>) {
         userAuth.wrappedValue.setIsLoading(cancelBag: cancelBag)
         

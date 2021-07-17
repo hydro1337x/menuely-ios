@@ -7,6 +7,15 @@
 
 import Foundation
 
+enum ImageKind: String {
+    case profile
+    case cover
+    
+    var asParameter: [String: String] {
+        return ["kind": self.rawValue]
+    }
+}
+
 struct RemoteImage: Codable, Equatable {
     let id: Int
     let name: String

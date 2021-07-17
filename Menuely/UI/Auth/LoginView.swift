@@ -72,7 +72,7 @@ private extension LoginView {
 
 private extension LoginView {
     func loadedView(showLoading: Bool) -> some View {
-        RootCoordinatorView()
+        EmptyView()
     }
 }
 

@@ -9,6 +9,7 @@ import Foundation
 import Resolver
 import Combine
 
+import UIKit
 class LoginViewModel: ObservableObject {
     // MARK: - Properties
     @Injected private var authService: AuthServicing
@@ -24,6 +25,7 @@ class LoginViewModel: ObservableObject {
     @Published var animateErrorView: Bool = false
     
     let cancelBag = CancelBag()
+    @Injected private var usersService: UsersServicing
     
     // MARK: - Initialization
     init(loginResult: Loadable<Discardable> = .notRequested, userAuth: Loadable<UserAuth> = .notRequested, restaurantAuth: Loadable<RestaurantAuth> = .notRequested) {
@@ -74,6 +76,9 @@ class LoginViewModel: ObservableObject {
         }
         .assign(to: \.loginResult, on: self)
         .store(in: cancelBag)
+        
+        let data = DataInfo(mimeType: MimeType.jpeg, file: (UIImage(named: "person")?.jpegData(compressionQuality: 1))!)
+        self.usersService.uploadImage(with: ["image": data], ofKind: .profile)
     }
     
     // MARK: - Methods

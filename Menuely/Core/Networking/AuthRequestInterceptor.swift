@@ -25,7 +25,7 @@ class AuthRequestInterceptor: RequestInterceptor {
         
         /// Sets the Authorization header value using the access token.
         if let accessToken = tokens?.accessToken {
-            urlRequest.setValue("Bearer " + accessToken, forHTTPHeaderField: "Authorization")
+            urlRequest.headers.add(.authorization(bearerToken: accessToken))
         }
         
         completion(.success(urlRequest))
@@ -37,15 +37,20 @@ class AuthRequestInterceptor: RequestInterceptor {
             /// Return the original error and don't retry the request.
             return completion(.doNotRetryWithError(error))
         }
-
+        
         guard let refreshToken = tokens?.refreshToken else {
             return completion(.doNotRetryWithError(NetworkError.refreshTokenMissing))
         }
         
         authenticator.refreshTokens(with: TokensRequestDTO(refreshToken: refreshToken)).sinkToResult { result in
             switch result {
-            case .success(let tokens):
-                print(tokens)
+            case .success(let tokensResponseDTO):
+                
+                self.tokens = tokensResponseDTO.tokens
+                
+                // Print CURL for retried request
+                print(request.cURLDescription())
+                
                 completion(.retry)
             case .failure(let error):
                 completion(.doNotRetryWithError(error))

@@ -11,6 +11,7 @@ import Resolver
 
 protocol UsersServicing {
     func get(users: LoadableSubject<[User]>, search: String)
+    func uploadImage(with dataParameters: DataParameters, ofKind kind: ImageKind)
 }
 
 class UsersService: UsersServicing {
@@ -30,5 +31,16 @@ class UsersService: UsersServicing {
             .map { return $0.users }
             .sinkToLoadable { users.wrappedValue = $0 }
             .store(in: cancelBag)
+    }
+    
+    func uploadImage(with dataParameters: DataParameters, ofKind kind: ImageKind) {
+        remoteRepository.uploadImage(with: kind.asParameter, and: dataParameters)
+            .sink { completion in
+                print("Upload complete: ", completion)
+            } receiveValue: { discardable in
+//                print(discardable)
+            }
+            .store(in: cancelBag)
+
     }
 }

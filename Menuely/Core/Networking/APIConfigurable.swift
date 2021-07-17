@@ -11,6 +11,7 @@ import Resolver
 
 typealias Parameters = Alamofire.Parameters
 typealias HTTPMethod = Alamofire.HTTPMethod
+typealias DataParameters = [String: DataInfo]
 
 protocol APIConfigurable: URLRequestConvertible {
     var path: String { get }
@@ -22,7 +23,7 @@ protocol APIConfigurable: URLRequestConvertible {
 
 extension APIConfigurable {
     var baseURL: String {
-        return "https://menuely.herokuapp.com"
+        return "https://menuely-eyj6bxkacq-ey.a.run.app"
     }
     
     func asURLRequest() throws -> URLRequest {
@@ -68,6 +69,20 @@ extension NetworkError: LocalizedError {
         case let .httpCode(code): return "Unexpected HTTP code: \(code)"
         case .unexpectedResponse: return "Unexpected server response"
         case .refreshTokenMissing: return "Missing refresh token"
+        }
+    }
+}
+
+enum DataError: Error {
+    case missing
+    case decoder
+}
+
+extension DataError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .missing: return "Missing data"
+        case .decoder: return "Decoder error"
         }
     }
 }

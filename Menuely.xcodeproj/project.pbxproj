@@ -31,6 +31,7 @@
 		601C0C1E269AF0D0009181D2 /* Coordinators+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C1D269AF0D0009181D2 /* Coordinators+Injection.swift */; };
 		601C0C20269B00FE009181D2 /* RestaurantRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C1F269B00FE009181D2 /* RestaurantRegistrationView.swift */; };
 		601C0C22269B0110009181D2 /* RestaurantRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C21269B0110009181D2 /* RestaurantRegistrationViewModel.swift */; };
+		602375D1269F5B550086B3B6 /* DataInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602375D0269F5B550086B3B6 /* DataInfo.swift */; };
 		6049C3C0268F9B9E00B891CC /* Repositories+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */; };
 		6063B68A26893B65001B1405 /* MenuelyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6063B68926893B65001B1405 /* MenuelyApp.swift */; };
 		6063B68E26893B67001B1405 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6063B68D26893B67001B1405 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		6074C0C2268CDC5E00DA3B21 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0C1268CDC5E00DA3B21 /* Helpers.swift */; };
 		60944F39268DC73F0063CD61 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 60944F38268DC73F0063CD61 /* Resolver */; };
 		60944F3B268DC8460063CD61 /* Application+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60944F3A268DC8460063CD61 /* Application+Injection.swift */; };
+		6097A7D126A0DD4200BC3534 /* AuthCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6097A7D026A0DD4100BC3534 /* AuthCredentials.swift */; };
 		60A67194269B35400083C0E9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A67193269B35400083C0E9 /* LoginView.swift */; };
 		60A67196269B354A0083C0E9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A67195269B354A0083C0E9 /* LoginViewModel.swift */; };
 		60A67198269B363E0083C0E9 /* EntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A67197269B363E0083C0E9 /* EntityType.swift */; };
@@ -111,6 +113,7 @@
 		601C0C1D269AF0D0009181D2 /* Coordinators+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinators+Injection.swift"; sourceTree = "<group>"; };
 		601C0C1F269B00FE009181D2 /* RestaurantRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistrationView.swift; sourceTree = "<group>"; };
 		601C0C21269B0110009181D2 /* RestaurantRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistrationViewModel.swift; sourceTree = "<group>"; };
+		602375D0269F5B550086B3B6 /* DataInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataInfo.swift; sourceTree = "<group>"; };
 		6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repositories+Injection.swift"; sourceTree = "<group>"; };
 		6063B68626893B65001B1405 /* Menuely.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Menuely.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6063B68926893B65001B1405 /* MenuelyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuelyApp.swift; sourceTree = "<group>"; };
@@ -126,6 +129,7 @@
 		6074C0BF268CD41400DA3B21 /* NetworkingHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingHelpers.swift; sourceTree = "<group>"; };
 		6074C0C1268CDC5E00DA3B21 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		60944F3A268DC8460063CD61 /* Application+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Application+Injection.swift"; sourceTree = "<group>"; };
+		6097A7D026A0DD4100BC3534 /* AuthCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCredentials.swift; sourceTree = "<group>"; };
 		60A67193269B35400083C0E9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		60A67195269B354A0083C0E9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		60A67197269B363E0083C0E9 /* EntityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityType.swift; sourceTree = "<group>"; };
@@ -425,6 +429,8 @@
 				60F3BACF2694BB17005798C1 /* User.swift */,
 				60173F36269CE0CC003C4E40 /* RestaurantAuth.swift */,
 				60173F38269CE10D003C4E40 /* Restaurant.swift */,
+				602375D0269F5B550086B3B6 /* DataInfo.swift */,
+				6097A7D026A0DD4100BC3534 /* AuthCredentials.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -597,6 +603,7 @@
 				60A67196269B354A0083C0E9 /* LoginViewModel.swift in Sources */,
 				60006232269648C30085DF41 /* AuthService.swift in Sources */,
 				601C0C1A269AEE59009181D2 /* AuthCoordinatorView.swift in Sources */,
+				6097A7D126A0DD4200BC3534 /* AuthCredentials.swift in Sources */,
 				6074C0C0268CD41400DA3B21 /* NetworkingHelpers.swift in Sources */,
 				60E3953A2690918D007E459E /* TokensResponseDTO.swift in Sources */,
 				60BF85B22698F87700890C0F /* FloatingTextField.swift in Sources */,
@@ -612,6 +619,7 @@
 				6074C0B6268CADB100DA3B21 /* Store.swift in Sources */,
 				60E4ED6C268DD45400EC4561 /* ApplicationEventsHandler.swift in Sources */,
 				6074C0BA268CC06600DA3B21 /* Loadable.swift in Sources */,
+				602375D1269F5B550086B3B6 /* DataInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
