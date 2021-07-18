@@ -13,11 +13,11 @@
 		600062302696482F0085DF41 /* Discardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6000622F2696482F0085DF41 /* Discardable.swift */; };
 		60006232269648C30085DF41 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60006231269648C30085DF41 /* AuthService.swift */; };
 		6000623826965F280085DF41 /* UserLoginResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6000623726965F280085DF41 /* UserLoginResponseDTO.swift */; };
-		6000623A269663750085DF41 /* UserAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60006239269663750085DF41 /* UserAuth.swift */; };
+		6000623A269663750085DF41 /* AuthenticatedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60006239269663750085DF41 /* AuthenticatedUser.swift */; };
 		60173F2F269C8F03003C4E40 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60173F2E269C8F03003C4E40 /* AlertView.swift */; };
 		60173F31269CA3B2003C4E40 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60173F30269CA3B2003C4E40 /* ErrorView.swift */; };
 		60173F33269CDF0B003C4E40 /* RestaurantRegistrationRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60173F32269CDF0B003C4E40 /* RestaurantRegistrationRequestDTO.swift */; };
-		60173F37269CE0CC003C4E40 /* RestaurantAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60173F36269CE0CC003C4E40 /* RestaurantAuth.swift */; };
+		60173F37269CE0CC003C4E40 /* AuthenticatedRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60173F36269CE0CC003C4E40 /* AuthenticatedRestaurant.swift */; };
 		60173F39269CE10D003C4E40 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60173F38269CE10D003C4E40 /* Restaurant.swift */; };
 		60173F3B269CE55A003C4E40 /* RestaurantLoginResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60173F3A269CE55A003C4E40 /* RestaurantLoginResponseDTO.swift */; };
 		60173F3D269CF53D003C4E40 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60173F3C269CF53D003C4E40 /* ActivityIndicatorView.swift */; };
@@ -89,7 +89,8 @@
 		60FF8C2826A352CC0050DA8A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF8C2726A352CC0050DA8A /* LoginCoordinator.swift */; };
 		60FF8C2A26A36C200050DA8A /* RootCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF8C2926A36C200050DA8A /* RootCoordinatorView.swift */; };
 		60FF8C2C26A36C2B0050DA8A /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF8C2B26A36C2B0050DA8A /* RootCoordinator.swift */; };
-		60FF8C2E26A374A30050DA8A /* KeychainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF8C2D26A374A30050DA8A /* KeychainRepository.swift */; };
+		60FF8C2E26A374A30050DA8A /* SecureLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF8C2D26A374A30050DA8A /* SecureLocalRepository.swift */; };
+		60FF8C3026A388350050DA8A /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF8C2F26A388350050DA8A /* LocalRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,11 +100,11 @@
 		6000622F2696482F0085DF41 /* Discardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discardable.swift; sourceTree = "<group>"; };
 		60006231269648C30085DF41 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		6000623726965F280085DF41 /* UserLoginResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginResponseDTO.swift; sourceTree = "<group>"; };
-		60006239269663750085DF41 /* UserAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuth.swift; sourceTree = "<group>"; };
+		60006239269663750085DF41 /* AuthenticatedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedUser.swift; sourceTree = "<group>"; };
 		60173F2E269C8F03003C4E40 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		60173F30269CA3B2003C4E40 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		60173F32269CDF0B003C4E40 /* RestaurantRegistrationRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistrationRequestDTO.swift; sourceTree = "<group>"; };
-		60173F36269CE0CC003C4E40 /* RestaurantAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAuth.swift; sourceTree = "<group>"; };
+		60173F36269CE0CC003C4E40 /* AuthenticatedRestaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedRestaurant.swift; sourceTree = "<group>"; };
 		60173F38269CE10D003C4E40 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		60173F3A269CE55A003C4E40 /* RestaurantLoginResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantLoginResponseDTO.swift; sourceTree = "<group>"; };
 		60173F3C269CF53D003C4E40 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -175,7 +176,8 @@
 		60FF8C2726A352CC0050DA8A /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		60FF8C2926A36C200050DA8A /* RootCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorView.swift; sourceTree = "<group>"; };
 		60FF8C2B26A36C2B0050DA8A /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
-		60FF8C2D26A374A30050DA8A /* KeychainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainRepository.swift; sourceTree = "<group>"; };
+		60FF8C2D26A374A30050DA8A /* SecureLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureLocalRepository.swift; sourceTree = "<group>"; };
+		60FF8C2F26A388350050DA8A /* LocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,7 +306,8 @@
 				60E4ED73268DEFC300EC4561 /* UsersRemoteRepository.swift */,
 				60F3BACA2694B85B005798C1 /* Authenticator.swift */,
 				60006229269644DB0085DF41 /* AuthRemoteRepository.swift */,
-				60FF8C2D26A374A30050DA8A /* KeychainRepository.swift */,
+				60FF8C2D26A374A30050DA8A /* SecureLocalRepository.swift */,
+				60FF8C2F26A388350050DA8A /* LocalRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -430,9 +433,9 @@
 			children = (
 				60E4ED71268DEE4100EC4561 /* RemoteImage.swift */,
 				60E3953B26909197007E459E /* Tokens.swift */,
-				60006239269663750085DF41 /* UserAuth.swift */,
+				60006239269663750085DF41 /* AuthenticatedUser.swift */,
 				60F3BACF2694BB17005798C1 /* User.swift */,
-				60173F36269CE0CC003C4E40 /* RestaurantAuth.swift */,
+				60173F36269CE0CC003C4E40 /* AuthenticatedRestaurant.swift */,
 				60173F38269CE10D003C4E40 /* Restaurant.swift */,
 				602375D0269F5B550086B3B6 /* DataInfo.swift */,
 				6097A7D026A0DD4100BC3534 /* AuthCredentials.swift */,
@@ -592,7 +595,7 @@
 				60173F2F269C8F03003C4E40 /* AlertView.swift in Sources */,
 				601C0C20269B00FE009181D2 /* RestaurantRegistrationView.swift in Sources */,
 				601C0C10269AE45F009181D2 /* SheetModifier.swift in Sources */,
-				60173F37269CE0CC003C4E40 /* RestaurantAuth.swift in Sources */,
+				60173F37269CE0CC003C4E40 /* AuthenticatedRestaurant.swift in Sources */,
 				60FF8C2226A342A70050DA8A /* RegistrationCoordinatorView.swift in Sources */,
 				60D32CD02699EC0900F6FDC9 /* Utilities+Injection.swift in Sources */,
 				60E4ED6A268DCC7B00EC4561 /* Services+Injection.swift in Sources */,
@@ -601,7 +604,7 @@
 				601C0C22269B0110009181D2 /* RestaurantRegistrationViewModel.swift in Sources */,
 				6000622E269645380085DF41 /* UserRegistrationRequestDTO.swift in Sources */,
 				60FF8C2A26A36C200050DA8A /* RootCoordinatorView.swift in Sources */,
-				6000623A269663750085DF41 /* UserAuth.swift in Sources */,
+				6000623A269663750085DF41 /* AuthenticatedUser.swift in Sources */,
 				6074C0B4268C940700DA3B21 /* AppState.swift in Sources */,
 				60F3BACB2694B85B005798C1 /* Authenticator.swift in Sources */,
 				60D32CE4269A082600F6FDC9 /* SelectionCardButtonStyle.swift in Sources */,
@@ -635,6 +638,7 @@
 				60E4ED72268DEE4100EC4561 /* RemoteImage.swift in Sources */,
 				60FF8C2426A342B00050DA8A /* RegistrationCoordinator.swift in Sources */,
 				60173F39269CE10D003C4E40 /* Restaurant.swift in Sources */,
+				60FF8C3026A388350050DA8A /* LocalRepository.swift in Sources */,
 				60D32CCC2699E6FD00F6FDC9 /* FontScaleUtility.swift in Sources */,
 				60E395382690917C007E459E /* TokensRequestDTO.swift in Sources */,
 				60A67196269B354A0083C0E9 /* LoginViewModel.swift in Sources */,
@@ -655,7 +659,7 @@
 				60E4ED74268DEFC300EC4561 /* UsersRemoteRepository.swift in Sources */,
 				601C0C0D269AE3F9009181D2 /* Navigation+Extension.swift in Sources */,
 				6000622C2696451A0085DF41 /* LoginRequestDTO.swift in Sources */,
-				60FF8C2E26A374A30050DA8A /* KeychainRepository.swift in Sources */,
+				60FF8C2E26A374A30050DA8A /* SecureLocalRepository.swift in Sources */,
 				6074C0B6268CADB100DA3B21 /* Store.swift in Sources */,
 				60E4ED6C268DD45400EC4561 /* ApplicationEventsHandler.swift in Sources */,
 				6074C0BA268CC06600DA3B21 /* Loadable.swift in Sources */,

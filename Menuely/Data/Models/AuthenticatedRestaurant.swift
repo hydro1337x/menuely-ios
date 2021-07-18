@@ -1,5 +1,5 @@
 //
-//  RestaurantAuth.swift
+//  AuthenticatedRestaurant.swift
 //  Menuely
 //
 //  Created by Benjamin Mecanović on 12.07.2021..
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RestaurantAuth: Decodable {
+struct AuthenticatedRestaurant: Codable, Equatable {
     let restaurant: Restaurant
-    let auth: Tokens
+    var auth: Tokens
 }

@@ -20,7 +20,7 @@ struct TabCoordinatorView: View {
                         Image(.scanTab)
                     }
                 )}
-                .tag(TabCoordinator.Coordinating.home)
+                .tag(TabCoordinator.Coordinating.scan)
             
             Text("Search view")
                 .tabItem { Label(
@@ -29,7 +29,7 @@ struct TabCoordinatorView: View {
                         Image(.searchTab)
                     }
                 )}
-                .tag(TabCoordinator.Coordinating.person)
+                .tag(TabCoordinator.Coordinating.search)
             
             Text("Profile view")
                 .tabItem { Label(
@@ -38,7 +38,7 @@ struct TabCoordinatorView: View {
                         Image(.profileTab)
                     }
                 )}
-                .tag(TabCoordinator.Coordinating.restaurant)
+                .tag(TabCoordinator.Coordinating.profile)
         }
         .accentColor(Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1)))
     }

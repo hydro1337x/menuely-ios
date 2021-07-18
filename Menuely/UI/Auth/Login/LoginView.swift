@@ -79,7 +79,8 @@ private extension LoginView {
 
 private extension LoginView {
     func loadedView(showLoading: Bool) -> some View {
-        EmptyView()
+        viewModel.appState[\.coordinating.root] = .tabs
+        return EmptyView()
     }
 }
 

@@ -40,7 +40,7 @@
 
 import Foundation
 
-struct UserLoginResponseDTO: Decodable {
+struct UserLoginResponseDTO: Codable {
     let statusCode: Int
-    let data: UserAuth
+    let data: AuthenticatedUser
 }

@@ -9,5 +9,5 @@ import Foundation
 
 struct RestaurantLoginResponseDTO: Decodable {
     let statusCode: Int
-    let data: RestaurantAuth
+    let data: AuthenticatedRestaurant
 }

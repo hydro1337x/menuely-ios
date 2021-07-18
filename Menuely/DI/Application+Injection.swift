@@ -12,7 +12,7 @@ typealias InjectedEnvironmentObject = InjectedObject
 
 extension Resolver: ResolverRegistering {
     public static func registerAllServices() {
-        register { Store<AppState>(AppState(coordinating: AppState.Coordinating(keychainRepository: resolve()))) }.scope(.application)
+        register { Store<AppState>(AppState(coordinating: AppState.Coordinating(secureLocalRepository: resolve()))) }.scope(.application)
         register { ApplicationEventsHandler() }.scope(.application)
         registerViewModels()
         registerCoordinators()

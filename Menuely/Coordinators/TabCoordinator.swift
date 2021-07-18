@@ -10,7 +10,7 @@ import Combine
 
 class TabCoordinator: ObservableObject {
     // MARK: - Properties
-    @Published var coordinating: Coordinating = .home
+    @Published var coordinating: Coordinating = .scan
     
     // MARK: - Initialization
     
@@ -19,8 +19,8 @@ class TabCoordinator: ObservableObject {
 
 extension TabCoordinator {
     enum Coordinating {
-        case home
-        case person
-        case restaurant
+        case scan
+        case search
+        case profile
     }
 }

@@ -12,17 +12,17 @@ import Resolver
 
 protocol AuthServicing {
     func registerUser(with userRegistrationRequestDTO: UserRegistrationRequestDTO, registration: LoadableSubject<Discardable>)
-    func loginUser(with userLoginRequestDTO: LoginRequestDTO, userAuth: LoadableSubject<UserAuth>)
+    func loginUser(with userLoginRequestDTO: LoginRequestDTO, authenticatedUser: LoadableSubject<AuthenticatedUser>)
     
     func registerRestaurant(with restaurantRegistrationRequestDTO: RestaurantRegistrationRequestDTO, registration: LoadableSubject<Discardable>)
-    func loginRestaurant(with restaurantLoginRequestDTO: LoginRequestDTO, restaurantAuth: LoadableSubject<RestaurantAuth>)
+    func loginRestaurant(with restaurantLoginRequestDTO: LoginRequestDTO, authenticatedRestaurant: LoadableSubject<AuthenticatedRestaurant>)
 }
 
 class AuthService: AuthServicing {
     
     @Injected private var remoteRepository: AuthRemoteRepositing
     @Injected private var appState: Store<AppState>
-    @Injected private var keychainRepository: KeychainRepositing
+    @Injected private var secureLocalRepository: SecureLocalRepositing
     
     var cancelBag = CancelBag()
     
@@ -41,8 +41,8 @@ class AuthService: AuthServicing {
     }
     
     // TODO: - Move mapping logic from VM-s to there
-    func loginUser(with userLoginRequestDTO: LoginRequestDTO, userAuth: LoadableSubject<UserAuth>) {
-        userAuth.wrappedValue.setIsLoading(cancelBag: cancelBag)
+    func loginUser(with userLoginRequestDTO: LoginRequestDTO, authenticatedUser: LoadableSubject<AuthenticatedUser>) {
+        authenticatedUser.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
@@ -51,9 +51,9 @@ class AuthService: AuthServicing {
             }
             .map { $0.data }
             .sinkToLoadable {
-                userAuth.wrappedValue = $0
+                authenticatedUser.wrappedValue = $0
                 
-                self.saveTokens($0.value?.auth)
+                self.saveAuthenticatedUser($0.value)
             }
             .store(in: cancelBag)
     }
@@ -72,8 +72,8 @@ class AuthService: AuthServicing {
             .store(in: cancelBag)
     }
     
-    func loginRestaurant(with restaurantLoginRequestDTO: LoginRequestDTO, restaurantAuth: LoadableSubject<RestaurantAuth>) {
-        restaurantAuth.wrappedValue.setIsLoading(cancelBag: cancelBag)
+    func loginRestaurant(with restaurantLoginRequestDTO: LoginRequestDTO, authenticatedRestaurant: LoadableSubject<AuthenticatedRestaurant>) {
+        authenticatedRestaurant.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
@@ -82,17 +82,22 @@ class AuthService: AuthServicing {
             }
             .map { $0.data }
             .sinkToLoadable {
-                restaurantAuth.wrappedValue = $0
+                authenticatedRestaurant.wrappedValue = $0
                 
-                self.saveTokens($0.value?.auth)
+                self.saveAuthenticatedRestaurant($0.value)
             }
             .store(in: cancelBag)
     }
     
-    // MARK: - General
-    private func saveTokens(_ tokens: Tokens?) {
-        guard let tokens = tokens else { return }
-        keychainRepository.saveData(tokens, to: .tokens)
-        appState[\.data.tokens] = tokens
+    // MARK: - GeneralauthenticatedRestaurant
+    
+    private func saveAuthenticatedUser(_ authenticatedUser: AuthenticatedUser?) {
+        secureLocalRepository.save(authenticatedUser, for: .authenticatedUser)
+        appState[\.data.authenticatedUser] = authenticatedUser
+    }
+    
+    private func saveAuthenticatedRestaurant(_ authenticatedRestaurant: AuthenticatedRestaurant?) {
+        secureLocalRepository.save(authenticatedRestaurant, for: .authenticatedRestaurant)
+        appState[\.data.authenticatedRestaurant] = authenticatedRestaurant
     }
 }

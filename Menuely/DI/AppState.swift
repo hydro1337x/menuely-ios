@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 import Resolver
 
 struct AppState: Equatable {
@@ -27,6 +26,8 @@ extension AppState {
     struct Data: Equatable {
         var tokens: Tokens?
         var selectedEntity: EntityType = .user
+        var authenticatedUser: AuthenticatedUser?
+        var authenticatedRestaurant: AuthenticatedRestaurant?
     }
 }
 
@@ -39,9 +40,10 @@ extension AppState {
         var auth = AuthCoordinator.Coordinating.login
         var root: RootCoordinator.Coordinating
         
-        init(keychainRepository: KeychainRepositing) {
-            let tokens: Tokens? = keychainRepository.loadData(for: .tokens)
-            root = tokens == nil ? .auth : .tabs
+        init(secureLocalRepository: SecureLocalRepositing) {
+            let authenticatedUser = secureLocalRepository.load(AuthenticatedUser.self, for: .authenticatedUser)
+            let authenticatedRestaurant = secureLocalRepository.load(AuthenticatedRestaurant.self, for: .authenticatedRestaurant)
+            root = authenticatedUser?.auth ?? authenticatedRestaurant?.auth == nil ? .auth : .tabs
         }
         
         static func == (lhs: AppState.Coordinating, rhs: AppState.Coordinating) -> Bool {

@@ -19,8 +19,8 @@ class LoginViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var loginResult: Loadable<Discardable>
     
-    @Published private var userAuth: Loadable<UserAuth>
-    @Published private var restaurantAuth: Loadable<RestaurantAuth>
+    @Published private var authenticatedUser: Loadable<AuthenticatedUser>
+    @Published private var authenticatedRestaurant: Loadable<AuthenticatedRestaurant>
     
     @Published var animateErrorView: Bool = false
     
@@ -28,12 +28,12 @@ class LoginViewModel: ObservableObject {
     @Injected private var usersService: UsersServicing
     
     // MARK: - Initialization
-    init(loginResult: Loadable<Discardable> = .notRequested, userAuth: Loadable<UserAuth> = .notRequested, restaurantAuth: Loadable<RestaurantAuth> = .notRequested) {
+    init(loginResult: Loadable<Discardable> = .notRequested, authenticatedUser: Loadable<AuthenticatedUser> = .notRequested, authenticatedRestaurant: Loadable<AuthenticatedRestaurant> = .notRequested) {
         _loginResult = .init(initialValue: loginResult)
-        _userAuth = .init(initialValue: userAuth)
-        _restaurantAuth = .init(initialValue: restaurantAuth)
+        _authenticatedUser = .init(initialValue: authenticatedUser)
+        _authenticatedRestaurant = .init(initialValue: authenticatedRestaurant)
         
-        $userAuth.map { loadable -> Loadable<Discardable> in
+        $authenticatedUser.map { loadable -> Loadable<Discardable> in
             switch loadable {
             case .notRequested:
                 self.animateErrorView = false
@@ -55,7 +55,7 @@ class LoginViewModel: ObservableObject {
         .assign(to: \.loginResult, on: self)
         .store(in: cancelBag)
         
-        $restaurantAuth.map { loadable -> Loadable<Discardable> in
+        $authenticatedRestaurant.map { loadable -> Loadable<Discardable> in
             switch loadable {
             case .notRequested:
                 self.animateErrorView = false
@@ -91,10 +91,10 @@ class LoginViewModel: ObservableObject {
     }
     
     private func loginUser(with loginRequestDTO: LoginRequestDTO) {
-        authService.loginUser(with: loginRequestDTO, userAuth: loadableSubject(\.userAuth))
+        authService.loginUser(with: loginRequestDTO, authenticatedUser: loadableSubject(\.authenticatedUser))
     }
     
     private func loginRestaurant(with loginRequestDTO: LoginRequestDTO) {
-        authService.loginRestaurant(with: loginRequestDTO, restaurantAuth: loadableSubject(\.restaurantAuth))
+        authService.loginRestaurant(with: loginRequestDTO, authenticatedRestaurant: loadableSubject(\.authenticatedRestaurant))
     }
 }

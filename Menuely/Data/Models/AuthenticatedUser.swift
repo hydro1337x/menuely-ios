@@ -1,5 +1,5 @@
 //
-//  UserAuth.swift
+//  AuthenticatedUser.swift
 //  Menuely
 //
 //  Created by Benjamin Mecanović on 08.07.2021..
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserAuth: Decodable {
+struct AuthenticatedUser: Codable, Equatable {
     let user: User
-    let auth: Tokens
+    var auth: Tokens
 }

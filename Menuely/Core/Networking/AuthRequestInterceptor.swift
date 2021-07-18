@@ -13,8 +13,9 @@ import Combine
 class AuthRequestInterceptor: RequestInterceptor {
     
     // MARK: - Property Wrappers
+    @Injected private var appState: Store<AppState>
     @Injected private var authenticator: Authenticating
-    @Injected private var keychainRepository: KeychainRepositing
+    @Injected private var secureLocalRepository: SecureLocalRepositing
     
     // MARK: - Properties
     private let cancelBag = CancelBag()
@@ -24,7 +25,10 @@ class AuthRequestInterceptor: RequestInterceptor {
         var urlRequest = urlRequest
         
         /// Sets the Authorization header value using the access token.
-        let tokens: Tokens? = keychainRepository.loadData(for: .tokens)
+        let authenticatedUser = secureLocalRepository.load(AuthenticatedUser.self, for: .authenticatedUser)
+        let authenticatedRestaurant = secureLocalRepository.load(AuthenticatedRestaurant.self, for: .authenticatedRestaurant)
+        let tokens = authenticatedUser?.auth ?? authenticatedRestaurant?.auth
+        
         if let accessToken = tokens?.accessToken {
             urlRequest.headers.add(.authorization(bearerToken: accessToken))
         }
@@ -39,7 +43,10 @@ class AuthRequestInterceptor: RequestInterceptor {
             return completion(.doNotRetryWithError(error))
         }
         
-        let tokens: Tokens? = keychainRepository.loadData(for: .tokens)
+        let authenticatedUser = secureLocalRepository.load(AuthenticatedUser.self, for: .authenticatedUser)
+        let authenticatedRestaurant = secureLocalRepository.load(AuthenticatedRestaurant.self, for: .authenticatedRestaurant)
+        let tokens = authenticatedUser?.auth ?? authenticatedRestaurant?.auth
+        
         guard let refreshToken = tokens?.refreshToken else {
             return completion(.doNotRetryWithError(NetworkError.refreshTokenMissing))
         }
@@ -48,8 +55,20 @@ class AuthRequestInterceptor: RequestInterceptor {
             switch result {
             case .success(let tokensResponseDTO):
                 
-                self.keychainRepository.saveData(tokensResponseDTO.tokens, to: .tokens)
-                
+                if var authenticatedUser = self.secureLocalRepository.load(AuthenticatedUser.self, for: .authenticatedUser) {
+                    
+                    authenticatedUser.auth = tokensResponseDTO.tokens
+                    self.secureLocalRepository.save(authenticatedUser, for: .authenticatedUser)
+                    self.appState[\.data.authenticatedUser] = authenticatedUser
+                    
+                } else if var authenticatedRestaurant = self.secureLocalRepository.load(AuthenticatedRestaurant.self, for: .authenticatedRestaurant) {
+                    
+                    authenticatedRestaurant.auth = tokensResponseDTO.tokens
+                    self.secureLocalRepository.save(authenticatedRestaurant, for: .authenticatedRestaurant)
+                    self.appState[\.data.authenticatedRestaurant] = authenticatedRestaurant
+                    
+                }
+
                 // Print CURL for retried request
                 print(request.cURLDescription())
                 

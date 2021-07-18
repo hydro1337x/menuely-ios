@@ -11,9 +11,22 @@ class RootCoordinator: ObservableObject {
     // MARK: - Properties
     @Published var coordinating: Coordinating
     
+    var cancelBag = CancelBag()
+    
     // MARK: - Initialization
     init(appState: Store<AppState>) {
         _coordinating = .init(initialValue: appState[\.coordinating.root])
+        
+        cancelBag.collect {
+            $coordinating
+                .removeDuplicates()
+                .sink { appState[\.coordinating.root] = $0 }
+            
+            appState
+                .map(\.coordinating.root)
+                .removeDuplicates()
+                .assign(to: \.coordinating, on: self)
+        }
     }
     
     // MARK: - Methods
