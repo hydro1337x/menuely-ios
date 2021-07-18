@@ -15,6 +15,8 @@ extension Image {
         case scanTab = "scan.tab"
         case searchTab = "search.tab"
         case profileTab = "profile.tab"
+        case menu = "menu"
+        case forwardArrow = "forward.arrow"
     }
     
     public init(_ imageName: ImageName) {

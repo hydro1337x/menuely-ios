@@ -13,5 +13,7 @@ extension Resolver {
         register { UserRegistrationViewModel() }.scope(.shared)
         register { RestaurantRegistrationViewModel() }.scope(.shared)
         register { LoginViewModel() }.scope(.shared)
+        register { ProfileViewModel() }.scope(.shared)
+        register { OptionsViewModel() }.scope(.shared)
     }
 }

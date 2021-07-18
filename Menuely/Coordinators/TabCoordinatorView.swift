@@ -14,31 +14,33 @@ struct TabCoordinatorView: View {
         TabView(selection: $coordinator.coordinating) {
             
             Text("Scan view")
-                .tabItem { Label(
-                    title: { Text("Scan") },
-                    icon: {
-                        Image(.scanTab)
-                    }
-                )}
-                .tag(TabCoordinator.Coordinating.scan)
+            .tabItem { Label(
+                title: { Text("Scan") },
+                icon: {
+                    Image(.scanTab)
+                }
+            )}
+            .tag(TabCoordinator.Coordinating.scan)
             
             Text("Search view")
-                .tabItem { Label(
-                    title: { Text("Search") },
-                    icon: {
-                        Image(.searchTab)
-                    }
-                )}
-                .tag(TabCoordinator.Coordinating.search)
+            .tabItem { Label(
+                title: { Text("Search") },
+                icon: {
+                    Image(.searchTab)
+                }
+            )}
+            .tag(TabCoordinator.Coordinating.search)
             
-            Text("Profile view")
-                .tabItem { Label(
-                    title: { Text("Profile") },
-                    icon: {
-                        Image(.profileTab)
-                    }
-                )}
-                .tag(TabCoordinator.Coordinating.profile)
+            NavigationView {
+                ProfileCoordinatorView()
+            }
+            .tabItem { Label(
+                title: { Text("Profile") },
+                icon: {
+                    Image(.profileTab)
+                }
+            )}
+            .tag(TabCoordinator.Coordinating.profile)
         }
         .accentColor(Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1)))
     }

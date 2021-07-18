@@ -39,6 +39,8 @@ extension AppState {
         
         var auth = AuthCoordinator.Coordinating.login
         var root: RootCoordinator.Coordinating
+        var profile: ProfileCoordinator.Coordinating = .initial
+        var options: OptionsCoordinator.Coordinating = .initial
         
         init(secureLocalRepository: SecureLocalRepositing) {
             let authenticatedUser = secureLocalRepository.load(AuthenticatedUser.self, for: .authenticatedUser)

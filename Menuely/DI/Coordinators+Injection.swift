@@ -14,6 +14,7 @@ extension Resolver {
         register { AuthCoordinator(appState: resolve()) }.scope(.shared)
         register { RegistrationCoordinator(appState: resolve()) }.scope(.shared)
         register { LoginCoordinator(appState: resolve()) }.scope(.shared)
-        
+        register { ProfileCoordinator(appState: resolve()) }.scope(.shared)
+        register { OptionsCoordinator(appState: resolve()) }.scope(.shared)
     }
 }

@@ -36,6 +36,16 @@
 		6063B68A26893B65001B1405 /* MenuelyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6063B68926893B65001B1405 /* MenuelyApp.swift */; };
 		6063B68E26893B67001B1405 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6063B68D26893B67001B1405 /* Assets.xcassets */; };
 		6063B69126893B67001B1405 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6063B69026893B67001B1405 /* Preview Assets.xcassets */; };
+		606531B826A41DC600C8C500 /* ProfileCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606531B726A41DC600C8C500 /* ProfileCoordinatorView.swift */; };
+		606531BA26A41DD100C8C500 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606531B926A41DD100C8C500 /* ProfileCoordinator.swift */; };
+		606531C226A42D2D00C8C500 /* OptionsCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606531C126A42D2D00C8C500 /* OptionsCoordinatorView.swift */; };
+		606531C426A42D3800C8C500 /* OptionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606531C326A42D3800C8C500 /* OptionsCoordinator.swift */; };
+		606531C726A43A3800C8C500 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606531C626A43A3800C8C500 /* ProfileView.swift */; };
+		606531C926A43A4100C8C500 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606531C826A43A4100C8C500 /* ProfileViewModel.swift */; };
+		606531CB26A43B1900C8C500 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606531CA26A43B1900C8C500 /* OptionsView.swift */; };
+		606531CD26A43B2300C8C500 /* OptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606531CC26A43B2300C8C500 /* OptionsViewModel.swift */; };
+		606531D126A43CF700C8C500 /* OptionItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606531D026A43CF700C8C500 /* OptionItemView.swift */; };
+		606531D326A4871A00C8C500 /* OptionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606531D226A4871A00C8C500 /* OptionType.swift */; };
 		60660C692693837400A6159E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 60660C682693837400A6159E /* Alamofire */; };
 		60660C6D2693861D00A6159E /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60660C6C2693861D00A6159E /* NetworkClient.swift */; };
 		6074C0B4268C940700DA3B21 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0B3268C940700DA3B21 /* AppState.swift */; };
@@ -125,6 +135,16 @@
 		6063B68D26893B67001B1405 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6063B69026893B67001B1405 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6063B69226893B67001B1405 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		606531B726A41DC600C8C500 /* ProfileCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinatorView.swift; sourceTree = "<group>"; };
+		606531B926A41DD100C8C500 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		606531C126A42D2D00C8C500 /* OptionsCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCoordinatorView.swift; sourceTree = "<group>"; };
+		606531C326A42D3800C8C500 /* OptionsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCoordinator.swift; sourceTree = "<group>"; };
+		606531C626A43A3800C8C500 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		606531C826A43A4100C8C500 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		606531CA26A43B1900C8C500 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
+		606531CC26A43B2300C8C500 /* OptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewModel.swift; sourceTree = "<group>"; };
+		606531D026A43CF700C8C500 /* OptionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionItemView.swift; sourceTree = "<group>"; };
+		606531D226A4871A00C8C500 /* OptionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionType.swift; sourceTree = "<group>"; };
 		60660C6C2693861D00A6159E /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		6074C0B3268C940700DA3B21 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		6074C0B5268CADB100DA3B21 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -210,6 +230,7 @@
 				60FF8C2926A36C200050DA8A /* RootCoordinatorView.swift */,
 				60FF8C2B26A36C2B0050DA8A /* RootCoordinator.swift */,
 				60FF8C2026A342670050DA8A /* Auth */,
+				606531B626A41D8E00C8C500 /* Profile */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -253,6 +274,28 @@
 				6063B69026893B67001B1405 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		606531B626A41D8E00C8C500 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				606531B726A41DC600C8C500 /* ProfileCoordinatorView.swift */,
+				606531B926A41DD100C8C500 /* ProfileCoordinator.swift */,
+				606531C126A42D2D00C8C500 /* OptionsCoordinatorView.swift */,
+				606531C326A42D3800C8C500 /* OptionsCoordinator.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		606531C526A43A1A00C8C500 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				606531C626A43A3800C8C500 /* ProfileView.swift */,
+				606531C826A43A4100C8C500 /* ProfileViewModel.swift */,
+				606531CA26A43B1900C8C500 /* OptionsView.swift */,
+				606531CC26A43B2300C8C500 /* OptionsViewModel.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		60660C6B2693860800A6159E /* Core */ = {
@@ -328,6 +371,7 @@
 				60F3BACE2694BAE6005798C1 /* Response */,
 				60F3BACC2694BADA005798C1 /* Models */,
 				60A67197269B363E0083C0E9 /* EntityType.swift */,
+				606531D226A4871A00C8C500 /* OptionType.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -335,6 +379,7 @@
 		6074C0B1268C7A3F00DA3B21 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				606531C526A43A1A00C8C500 /* Profile */,
 				60BF85A42698EFCD00890C0F /* Auth */,
 				60BF85B02698F6A600890C0F /* Components */,
 				60D32CBD2699A81B00F6FDC9 /* Styles */,
@@ -371,6 +416,7 @@
 				60173F2E269C8F03003C4E40 /* AlertView.swift */,
 				60173F30269CA3B2003C4E40 /* ErrorView.swift */,
 				60173F3C269CF53D003C4E40 /* ActivityIndicatorView.swift */,
+				606531D026A43CF700C8C500 /* OptionItemView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -593,6 +639,7 @@
 				60F3BAD32694C863005798C1 /* KeychainItem.swift in Sources */,
 				60FF8C2826A352CC0050DA8A /* LoginCoordinator.swift in Sources */,
 				60173F2F269C8F03003C4E40 /* AlertView.swift in Sources */,
+				606531CB26A43B1900C8C500 /* OptionsView.swift in Sources */,
 				601C0C20269B00FE009181D2 /* RestaurantRegistrationView.swift in Sources */,
 				601C0C10269AE45F009181D2 /* SheetModifier.swift in Sources */,
 				60173F37269CE0CC003C4E40 /* AuthenticatedRestaurant.swift in Sources */,
@@ -604,6 +651,7 @@
 				601C0C22269B0110009181D2 /* RestaurantRegistrationViewModel.swift in Sources */,
 				6000622E269645380085DF41 /* UserRegistrationRequestDTO.swift in Sources */,
 				60FF8C2A26A36C200050DA8A /* RootCoordinatorView.swift in Sources */,
+				606531C926A43A4100C8C500 /* ProfileViewModel.swift in Sources */,
 				6000623A269663750085DF41 /* AuthenticatedUser.swift in Sources */,
 				6074C0B4268C940700DA3B21 /* AppState.swift in Sources */,
 				60F3BACB2694B85B005798C1 /* Authenticator.swift in Sources */,
@@ -614,13 +662,16 @@
 				60BF85B926991AC000890C0F /* Image+Extension.swift in Sources */,
 				6074C0B8268CB32500DA3B21 /* CancelBag.swift in Sources */,
 				60A67194269B35400083C0E9 /* LoginView.swift in Sources */,
+				606531D126A43CF700C8C500 /* OptionItemView.swift in Sources */,
 				60D32CD22699ED9200F6FDC9 /* Constants+Injection.swift in Sources */,
 				60E4ED6E268DE40B00EC4561 /* UsersService.swift in Sources */,
 				60173F33269CDF0B003C4E40 /* RestaurantRegistrationRequestDTO.swift in Sources */,
+				606531D326A4871A00C8C500 /* OptionType.swift in Sources */,
 				60BF85AC2698F0DE00890C0F /* RootViewModifier.swift in Sources */,
 				60D32CCE2699EBB000F6FDC9 /* ScaledFontModifier.swift in Sources */,
 				601C0C16269AE606009181D2 /* TabCoordinator.swift in Sources */,
 				60660C6D2693861D00A6159E /* NetworkClient.swift in Sources */,
+				606531CD26A43B2300C8C500 /* OptionsViewModel.swift in Sources */,
 				60E4ED70268DECA600EC4561 /* UserListResponseDTO.swift in Sources */,
 				6074C0C2268CDC5E00DA3B21 /* Helpers.swift in Sources */,
 				6074C0BC268CCB3700DA3B21 /* APIConfigurable.swift in Sources */,
@@ -638,8 +689,10 @@
 				60E4ED72268DEE4100EC4561 /* RemoteImage.swift in Sources */,
 				60FF8C2426A342B00050DA8A /* RegistrationCoordinator.swift in Sources */,
 				60173F39269CE10D003C4E40 /* Restaurant.swift in Sources */,
+				606531BA26A41DD100C8C500 /* ProfileCoordinator.swift in Sources */,
 				60FF8C3026A388350050DA8A /* LocalRepository.swift in Sources */,
 				60D32CCC2699E6FD00F6FDC9 /* FontScaleUtility.swift in Sources */,
+				606531C426A42D3800C8C500 /* OptionsCoordinator.swift in Sources */,
 				60E395382690917C007E459E /* TokensRequestDTO.swift in Sources */,
 				60A67196269B354A0083C0E9 /* LoginViewModel.swift in Sources */,
 				60006232269648C30085DF41 /* AuthService.swift in Sources */,
@@ -647,6 +700,7 @@
 				601C0C1A269AEE59009181D2 /* AuthCoordinatorView.swift in Sources */,
 				6097A7D126A0DD4200BC3534 /* AuthCredentials.swift in Sources */,
 				6074C0C0268CD41400DA3B21 /* NetworkingHelpers.swift in Sources */,
+				606531C226A42D2D00C8C500 /* OptionsCoordinatorView.swift in Sources */,
 				60E3953A2690918D007E459E /* TokensResponseDTO.swift in Sources */,
 				60BF85B22698F87700890C0F /* FloatingTextField.swift in Sources */,
 				601C0C1C269AEE64009181D2 /* AuthCoordinator.swift in Sources */,
@@ -655,6 +709,7 @@
 				60D32CC02699A83C00F6FDC9 /* RoundedGradientButtonStyle.swift in Sources */,
 				60A67198269B363E0083C0E9 /* EntityType.swift in Sources */,
 				60D32CE02699FA3100F6FDC9 /* UserRegistrationViewModel.swift in Sources */,
+				606531B826A41DC600C8C500 /* ProfileCoordinatorView.swift in Sources */,
 				60FF8C2C26A36C2B0050DA8A /* RootCoordinator.swift in Sources */,
 				60E4ED74268DEFC300EC4561 /* UsersRemoteRepository.swift in Sources */,
 				601C0C0D269AE3F9009181D2 /* Navigation+Extension.swift in Sources */,
@@ -662,6 +717,7 @@
 				60FF8C2E26A374A30050DA8A /* SecureLocalRepository.swift in Sources */,
 				6074C0B6268CADB100DA3B21 /* Store.swift in Sources */,
 				60E4ED6C268DD45400EC4561 /* ApplicationEventsHandler.swift in Sources */,
+				606531C726A43A3800C8C500 /* ProfileView.swift in Sources */,
 				6074C0BA268CC06600DA3B21 /* Loadable.swift in Sources */,
 				602375D1269F5B550086B3B6 /* DataInfo.swift in Sources */,
 			);
