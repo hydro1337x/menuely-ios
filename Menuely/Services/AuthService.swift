@@ -16,6 +16,8 @@ protocol AuthServicing {
     
     func registerRestaurant(with restaurantRegistrationRequestDTO: RestaurantRegistrationRequestDTO, registration: LoadableSubject<Discardable>)
     func loginRestaurant(with restaurantLoginRequestDTO: LoginRequestDTO, authenticatedRestaurant: LoadableSubject<AuthenticatedRestaurant>)
+    
+    func logout(logoutResult: LoadableSubject<Discardable>)
 }
 
 class AuthService: AuthServicing {
@@ -53,7 +55,9 @@ class AuthService: AuthServicing {
             .sinkToLoadable {
                 authenticatedUser.wrappedValue = $0
                 
-                self.saveAuthenticatedUser($0.value)
+                if let authenticatedUser = $0.value {
+                    self.saveAuthenticatedUser(authenticatedUser)
+                }
             }
             .store(in: cancelBag)
     }
@@ -84,12 +88,42 @@ class AuthService: AuthServicing {
             .sinkToLoadable {
                 authenticatedRestaurant.wrappedValue = $0
                 
-                self.saveAuthenticatedRestaurant($0.value)
+                if let authenticatedRestaurant = $0.value {
+                    self.saveAuthenticatedRestaurant(authenticatedRestaurant)
+                }
+                
             }
             .store(in: cancelBag)
     }
     
-    // MARK: - GeneralauthenticatedRestaurant
+    // MARK: - General
+    func logout(logoutResult: LoadableSubject<Discardable>) {
+        logoutResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
+        
+        let authenticatedUser = secureLocalRepository.load(AuthenticatedUser.self, for: .authenticatedUser)
+        let authenticatedRestaurant = secureLocalRepository.load(AuthenticatedRestaurant.self, for: .authenticatedRestaurant)
+        let tokens = authenticatedUser?.auth ?? authenticatedRestaurant?.auth
+        
+        guard let tokens = tokens else {
+            logoutResult.wrappedValue = .failed(NetworkError.refreshTokenMissing)
+            return
+        }
+        
+        let logoutRequestDTO = LogoutRequestDTO(refreshToken: tokens.refreshToken)
+        
+        Just<Void>
+            .withErrorType(Error.self)
+            .flatMap { [remoteRepository] in
+                return remoteRepository.logout(with: logoutRequestDTO)
+            }
+            .sinkToLoadable {
+                logoutResult.wrappedValue = $0
+                if $0.value != nil {
+                    self.removeAuthenticatedEntity()
+                }
+            }
+            .store(in: cancelBag)
+    }
     
     private func saveAuthenticatedUser(_ authenticatedUser: AuthenticatedUser?) {
         secureLocalRepository.save(authenticatedUser, for: .authenticatedUser)
@@ -99,5 +133,12 @@ class AuthService: AuthServicing {
     private func saveAuthenticatedRestaurant(_ authenticatedRestaurant: AuthenticatedRestaurant?) {
         secureLocalRepository.save(authenticatedRestaurant, for: .authenticatedRestaurant)
         appState[\.data.authenticatedRestaurant] = authenticatedRestaurant
+    }
+    
+    private func removeAuthenticatedEntity() {
+        secureLocalRepository.removeValue(for: .authenticatedUser)
+        secureLocalRepository.removeValue(for: .authenticatedRestaurant)
+        appState[\.data.authenticatedUser] = nil
+        appState[\.data.authenticatedRestaurant] = nil
     }
 }

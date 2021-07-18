@@ -76,9 +76,6 @@ class LoginViewModel: ObservableObject {
         }
         .assign(to: \.loginResult, on: self)
         .store(in: cancelBag)
-        
-        let data = DataInfo(mimeType: MimeType.jpeg, file: (UIImage(named: "person")?.jpegData(compressionQuality: 1))!)
-        self.usersService.uploadImage(with: ["image": data], ofKind: .profile)
     }
     
     // MARK: - Methods

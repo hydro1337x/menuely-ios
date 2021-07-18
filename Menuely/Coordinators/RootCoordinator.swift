@@ -9,7 +9,11 @@ import Foundation
 
 class RootCoordinator: ObservableObject {
     // MARK: - Properties
-    @Published var coordinating: Coordinating
+    @Published var coordinating: Coordinating {
+        didSet {
+            print("RootCoordinator: ", coordinating)
+        }
+    }
     
     var cancelBag = CancelBag()
     

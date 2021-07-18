@@ -24,6 +24,12 @@ extension Store {
             }
         }
     }
+    
+    func bulkUpdate(_ update: (inout Output) -> Void) {
+        var value = self.value
+        update(&value)
+        self.value = value
+    }
 }
 
 // MARK: - Helpers

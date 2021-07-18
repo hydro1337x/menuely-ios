@@ -15,6 +15,8 @@ protocol AuthRemoteRepositing {
     
     func registerRestaurant(restaurantRegistrationRequestDTO: RestaurantRegistrationRequestDTO) -> AnyPublisher<Discardable, Error>
     func loginRestaurant(restaurantLoginRequestDTO: LoginRequestDTO) -> AnyPublisher<RestaurantLoginResponseDTO, Error>
+    
+    func logout(with logoutRequestDTO: LogoutRequestDTO) -> AnyPublisher<Discardable, Error>
 }
 
 class AuthRemoteRepository: AuthRemoteRepositing {
@@ -35,6 +37,10 @@ class AuthRemoteRepository: AuthRemoteRepositing {
     func loginRestaurant(restaurantLoginRequestDTO: LoginRequestDTO) -> AnyPublisher<RestaurantLoginResponseDTO, Error> {
         networkClient.request(endpoint: Endpoint.loginRestaurant(restaurantLoginRequestDTO))
     }
+    
+    func logout(with logoutRequestDTO: LogoutRequestDTO) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.logout(logoutRequestDTO))
+    }
 }
 
 extension AuthRemoteRepository {
@@ -43,6 +49,7 @@ extension AuthRemoteRepository {
         case loginUser(_: LoginRequestDTO)
         case registerRestaurant(_: RestaurantRegistrationRequestDTO)
         case loginRestaurant(_: LoginRequestDTO)
+        case logout(_: LogoutRequestDTO)
     }
 }
 
@@ -53,6 +60,7 @@ extension AuthRemoteRepository.Endpoint: APIConfigurable {
         case .loginUser(_): return "/auth/login/user"
         case .registerRestaurant(_): return "/auth/register/restaurant"
         case .loginRestaurant(_): return "/auth/login/restaurant"
+        case .logout(_): return "/auth/logout"
         }
     }
     
@@ -62,12 +70,13 @@ extension AuthRemoteRepository.Endpoint: APIConfigurable {
         case .loginUser(_): return .post
         case .registerRestaurant(_): return .post
         case .loginRestaurant(_): return .post
+        case .logout(_): return .delete
         }
     }
     
     var headers: [String : String]? {
         switch self {
-        case .registerUser(_), .loginUser(_), .registerRestaurant(_), .loginRestaurant(_): return ["Content-Type": "application/json"]
+        case .registerUser(_), .loginUser(_), .registerRestaurant(_), .loginRestaurant(_), .logout(_): return ["Content-Type": "application/json"]
         }
     }
     
@@ -81,6 +90,7 @@ extension AuthRemoteRepository.Endpoint: APIConfigurable {
         case .loginUser(let userLoginRequestDTO): return try userLoginRequestDTO.asJSON()
         case .registerRestaurant(let restaurantRegistrationRequestDTO): return try restaurantRegistrationRequestDTO.asJSON()
         case .loginRestaurant(let restaurantLoginRequestDTO): return try restaurantLoginRequestDTO.asJSON()
+        case .logout(let logoutRequestDTO): return try logoutRequestDTO.asJSON()
         }
     }
 }
