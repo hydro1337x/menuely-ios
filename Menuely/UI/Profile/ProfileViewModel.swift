@@ -16,12 +16,16 @@ class ProfileViewModel: ObservableObject {
         }
     }
     
+    @Published var name: String
+    
     var appState: Store<AppState>
     private var cancelBag = CancelBag()
     
     // MARK: - Initialization
     init(appState: Store<AppState>) {
         self.appState = appState
+        
+        name = appState[\.data.authenticatedUser]?.user.firstname ?? ""
         
         _routing = .init(initialValue: appState[\.routing.profile])
         

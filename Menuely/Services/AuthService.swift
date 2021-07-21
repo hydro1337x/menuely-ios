@@ -11,7 +11,9 @@ import Resolver
 
 
 protocol AuthServicing {
-    var authenticatedEntity: EntityType? { get }
+    var currentAuthenticatedEntity: EntityType? { get }
+    var authenticatedUser: AuthenticatedUser? { get }
+    var authenticatedRestaurant: AuthenticatedRestaurant? { get }
     
     func registerUser(with userRegistrationRequestDTO: UserRegistrationRequestDTO, registration: LoadableSubject<Discardable>)
     func loginUser(with userLoginRequestDTO: LoginRequestDTO, authenticatedUser: LoadableSubject<AuthenticatedUser>)
@@ -31,12 +33,20 @@ class AuthService: AuthServicing {
     var cancelBag = CancelBag()
     
     // MARK: - Computed Properties
-    var authenticatedEntity: EntityType? {
+    var currentAuthenticatedEntity: EntityType? {
         let authenticatedUser = secureLocalRepository.load(AuthenticatedUser.self, for: .authenticatedUser)
         let authenticatedRestaurant = secureLocalRepository.load(AuthenticatedRestaurant.self, for: .authenticatedRestaurant)
         if authenticatedUser != nil { return .user }
         if authenticatedRestaurant != nil { return .restaurant }
         return nil
+    }
+    
+    var authenticatedUser: AuthenticatedUser? {
+        return secureLocalRepository.load(AuthenticatedUser.self, for: .authenticatedUser)
+    }
+    
+    var authenticatedRestaurant: AuthenticatedRestaurant? {
+        return secureLocalRepository.load(AuthenticatedRestaurant.self, for: .authenticatedRestaurant)
     }
     
     // MARK: - User

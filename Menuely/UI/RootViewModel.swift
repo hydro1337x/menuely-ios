@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Resolver
 
 class RootViewModel: ObservableObject {
     
@@ -14,7 +15,10 @@ class RootViewModel: ObservableObject {
     private var cancelBag = CancelBag()
     
     init(authService: AuthServicing, appState: Store<AppState>) {
-        _routing = .init(initialValue: authService.authenticatedEntity == nil ? .auth : .tabs)
+        _routing = .init(initialValue: authService.currentAuthenticatedEntity == nil ? .auth : .tabs)
+        appState[\.data.selectedEntity] = authService.authenticatedRestaurant == nil ? .user : .restaurant
+        appState[\.data.authenticatedUser] = authService.authenticatedUser
+        appState[\.data.authenticatedRestaurant] = authService.authenticatedRestaurant
         
         cancelBag.collect {
             $routing
