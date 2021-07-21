@@ -16,10 +16,13 @@ class ProfileViewModel: ObservableObject {
         }
     }
     
+    var appState: Store<AppState>
     private var cancelBag = CancelBag()
     
     // MARK: - Initialization
     init(appState: Store<AppState>) {
+        self.appState = appState
+        
         _routing = .init(initialValue: appState[\.routing.profile])
         
         cancelBag.collect {
@@ -35,4 +38,9 @@ class ProfileViewModel: ObservableObject {
     }
     
     // MARK: - Methods
+    
+    // MARK: - Routing
+    func resetNavigationStack() {
+        appState[\.routing.options.details] = nil
+    }
 }

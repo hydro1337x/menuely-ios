@@ -27,6 +27,9 @@ struct ProfileView: View {
             }))
             .sheet(isPresented: $viewModel.routing.isOptionsSheetPresented, content: {
                 OptionsView()
+                    .onDisappear {
+                        viewModel.resetNavigationStack()
+                    }
             })
     }
 }

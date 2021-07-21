@@ -34,6 +34,7 @@ struct OptionsView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100, height: 100)
+                    .padding(.top, 20)
                 
                 List(viewModel.options, id: \.self) { option in
                     if viewModel.navigatableOptions.contains(option) {
@@ -58,9 +59,12 @@ struct OptionsView: View {
                             }
                     }
                 }
-                .padding(.top, 30)
+                .padding(.top, 10)
             }
-        }
+            .navigationBarTitle("Options")
+            .navigationBarTitleDisplayMode(.inline)
+            
+        }.accentColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
     }
     
     @ViewBuilder
