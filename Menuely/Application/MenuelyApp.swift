@@ -12,12 +12,10 @@ import Resolver
 @main
 struct MenuelyApp: App {
     @Injected private var applicationEventsHandler: ApplicationEventsHandler
-    var cancelBag = CancelBag()
-    @Injected private var secureLocalRepository: SecureLocalRepositing
     
     var body: some Scene {
         WindowGroup {
-            RootCoordinatorView()
+            RootView()
                 .modifier(RootViewAppearance())
         }
     }

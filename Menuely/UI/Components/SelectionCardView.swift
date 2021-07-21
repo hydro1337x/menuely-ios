@@ -22,7 +22,7 @@ struct SelectionCardView: View {
                     .foregroundColor(Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1)))
                 Spacer()
                 Text(text)
-                    .scaledFont(.title2)
+                    .font(.title2)
                     .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
                     .offset(x: -16, y: 0)
                 Spacer()

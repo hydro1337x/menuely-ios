@@ -21,14 +21,6 @@
 		60173F39269CE10D003C4E40 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60173F38269CE10D003C4E40 /* Restaurant.swift */; };
 		60173F3B269CE55A003C4E40 /* RestaurantLoginResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60173F3A269CE55A003C4E40 /* RestaurantLoginResponseDTO.swift */; };
 		60173F3D269CF53D003C4E40 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60173F3C269CF53D003C4E40 /* ActivityIndicatorView.swift */; };
-		601C0C0B269AE3EE009181D2 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C0A269AE3EE009181D2 /* View+Extension.swift */; };
-		601C0C0D269AE3F9009181D2 /* Navigation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C0C269AE3F9009181D2 /* Navigation+Extension.swift */; };
-		601C0C10269AE45F009181D2 /* SheetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C0F269AE45F009181D2 /* SheetModifier.swift */; };
-		601C0C16269AE606009181D2 /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C15269AE606009181D2 /* TabCoordinator.swift */; };
-		601C0C18269AE610009181D2 /* TabCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C17269AE610009181D2 /* TabCoordinatorView.swift */; };
-		601C0C1A269AEE59009181D2 /* AuthCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C19269AEE59009181D2 /* AuthCoordinatorView.swift */; };
-		601C0C1C269AEE64009181D2 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C1B269AEE64009181D2 /* AuthCoordinator.swift */; };
-		601C0C1E269AF0D0009181D2 /* Coordinators+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C1D269AF0D0009181D2 /* Coordinators+Injection.swift */; };
 		601C0C20269B00FE009181D2 /* RestaurantRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C1F269B00FE009181D2 /* RestaurantRegistrationView.swift */; };
 		601C0C22269B0110009181D2 /* RestaurantRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C21269B0110009181D2 /* RestaurantRegistrationViewModel.swift */; };
 		602375D1269F5B550086B3B6 /* DataInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602375D0269F5B550086B3B6 /* DataInfo.swift */; };
@@ -36,10 +28,6 @@
 		6063B68A26893B65001B1405 /* MenuelyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6063B68926893B65001B1405 /* MenuelyApp.swift */; };
 		6063B68E26893B67001B1405 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6063B68D26893B67001B1405 /* Assets.xcassets */; };
 		6063B69126893B67001B1405 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6063B69026893B67001B1405 /* Preview Assets.xcassets */; };
-		606531B826A41DC600C8C500 /* ProfileCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606531B726A41DC600C8C500 /* ProfileCoordinatorView.swift */; };
-		606531BA26A41DD100C8C500 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606531B926A41DD100C8C500 /* ProfileCoordinator.swift */; };
-		606531C226A42D2D00C8C500 /* OptionsCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606531C126A42D2D00C8C500 /* OptionsCoordinatorView.swift */; };
-		606531C426A42D3800C8C500 /* OptionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606531C326A42D3800C8C500 /* OptionsCoordinator.swift */; };
 		606531C726A43A3800C8C500 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606531C626A43A3800C8C500 /* ProfileView.swift */; };
 		606531C926A43A4100C8C500 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606531C826A43A4100C8C500 /* ProfileViewModel.swift */; };
 		606531CB26A43B1900C8C500 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606531CA26A43B1900C8C500 /* OptionsView.swift */; };
@@ -49,6 +37,13 @@
 		606531D826A4B4EA00C8C500 /* LogoutRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606531D726A4B4E900C8C500 /* LogoutRequestDTO.swift */; };
 		60660C692693837400A6159E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 60660C682693837400A6159E /* Alamofire */; };
 		60660C6D2693861D00A6159E /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60660C6C2693861D00A6159E /* NetworkClient.swift */; };
+		606C9AC526A76D20005AD06E /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606C9AC426A76D20005AD06E /* TabBarView.swift */; };
+		606C9AC726A77768005AD06E /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606C9AC626A77768005AD06E /* TabBarViewModel.swift */; };
+		606C9AC926A7795E005AD06E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606C9AC826A7795E005AD06E /* RootView.swift */; };
+		606C9ACB26A77966005AD06E /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606C9ACA26A77966005AD06E /* RootViewModel.swift */; };
+		6071080926A8640D00008E44 /* AuthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6071080826A8640D00008E44 /* AuthSelectionView.swift */; };
+		6071080B26A8641700008E44 /* AuthSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6071080A26A8641700008E44 /* AuthSelectionViewModel.swift */; };
+		6071080D26A889F800008E44 /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6071080C26A889F800008E44 /* AuthType.swift */; };
 		6074C0B4268C940700DA3B21 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0B3268C940700DA3B21 /* AppState.swift */; };
 		6074C0B6268CADB100DA3B21 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0B5268CADB100DA3B21 /* Store.swift */; };
 		6074C0B8268CB32500DA3B21 /* CancelBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0B7268CB32500DA3B21 /* CancelBag.swift */; };
@@ -67,16 +62,8 @@
 		60BF85B72699172E00890C0F /* SelectionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BF85B62699172E00890C0F /* SelectionCardView.swift */; };
 		60BF85B926991AC000890C0F /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BF85B826991AC000890C0F /* Image+Extension.swift */; };
 		60D32CC02699A83C00F6FDC9 /* RoundedGradientButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D32CBF2699A83C00F6FDC9 /* RoundedGradientButtonStyle.swift */; };
-		60D32CCC2699E6FD00F6FDC9 /* FontScaleUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D32CCB2699E6FD00F6FDC9 /* FontScaleUtility.swift */; };
-		60D32CCE2699EBB000F6FDC9 /* ScaledFontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D32CCD2699EBB000F6FDC9 /* ScaledFontModifier.swift */; };
 		60D32CD02699EC0900F6FDC9 /* Utilities+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D32CCF2699EC0900F6FDC9 /* Utilities+Injection.swift */; };
 		60D32CD22699ED9200F6FDC9 /* Constants+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D32CD12699ED9200F6FDC9 /* Constants+Injection.swift */; };
-		60D32CD42699EFA900F6FDC9 /* Montserrat.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60D32CD32699EFA900F6FDC9 /* Montserrat.plist */; };
-		60D32CDA2699F11600F6FDC9 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60D32CD52699F11600F6FDC9 /* Montserrat-Light.ttf */; };
-		60D32CDB2699F11600F6FDC9 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60D32CD62699F11600F6FDC9 /* Montserrat-Regular.ttf */; };
-		60D32CDC2699F11600F6FDC9 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60D32CD72699F11600F6FDC9 /* Montserrat-SemiBold.ttf */; };
-		60D32CDD2699F11600F6FDC9 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60D32CD82699F11600F6FDC9 /* Montserrat-Bold.ttf */; };
-		60D32CDE2699F11600F6FDC9 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60D32CD92699F11600F6FDC9 /* Montserrat-Medium.ttf */; };
 		60D32CE02699FA3100F6FDC9 /* UserRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D32CDF2699FA3100F6FDC9 /* UserRegistrationViewModel.swift */; };
 		60D32CE22699FA3B00F6FDC9 /* UserRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D32CE12699FA3B00F6FDC9 /* UserRegistrationView.swift */; };
 		60D32CE4269A082600F6FDC9 /* SelectionCardButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D32CE3269A082600F6FDC9 /* SelectionCardButtonStyle.swift */; };
@@ -94,12 +81,6 @@
 		60F3BACB2694B85B005798C1 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F3BACA2694B85B005798C1 /* Authenticator.swift */; };
 		60F3BAD02694BB17005798C1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F3BACF2694BB17005798C1 /* User.swift */; };
 		60F3BAD32694C863005798C1 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F3BAD22694C863005798C1 /* KeychainItem.swift */; };
-		60FF8C2226A342A70050DA8A /* RegistrationCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF8C2126A342A70050DA8A /* RegistrationCoordinatorView.swift */; };
-		60FF8C2426A342B00050DA8A /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF8C2326A342B00050DA8A /* RegistrationCoordinator.swift */; };
-		60FF8C2626A352C40050DA8A /* LoginCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF8C2526A352C40050DA8A /* LoginCoordinatorView.swift */; };
-		60FF8C2826A352CC0050DA8A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF8C2726A352CC0050DA8A /* LoginCoordinator.swift */; };
-		60FF8C2A26A36C200050DA8A /* RootCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF8C2926A36C200050DA8A /* RootCoordinatorView.swift */; };
-		60FF8C2C26A36C2B0050DA8A /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF8C2B26A36C2B0050DA8A /* RootCoordinator.swift */; };
 		60FF8C2E26A374A30050DA8A /* SecureLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF8C2D26A374A30050DA8A /* SecureLocalRepository.swift */; };
 		60FF8C3026A388350050DA8A /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF8C2F26A388350050DA8A /* LocalRepository.swift */; };
 /* End PBXBuildFile section */
@@ -119,14 +100,6 @@
 		60173F38269CE10D003C4E40 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		60173F3A269CE55A003C4E40 /* RestaurantLoginResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantLoginResponseDTO.swift; sourceTree = "<group>"; };
 		60173F3C269CF53D003C4E40 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
-		601C0C0A269AE3EE009181D2 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
-		601C0C0C269AE3F9009181D2 /* Navigation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation+Extension.swift"; sourceTree = "<group>"; };
-		601C0C0F269AE45F009181D2 /* SheetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetModifier.swift; sourceTree = "<group>"; };
-		601C0C15269AE606009181D2 /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
-		601C0C17269AE610009181D2 /* TabCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinatorView.swift; sourceTree = "<group>"; };
-		601C0C19269AEE59009181D2 /* AuthCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinatorView.swift; sourceTree = "<group>"; };
-		601C0C1B269AEE64009181D2 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
-		601C0C1D269AF0D0009181D2 /* Coordinators+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinators+Injection.swift"; sourceTree = "<group>"; };
 		601C0C1F269B00FE009181D2 /* RestaurantRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistrationView.swift; sourceTree = "<group>"; };
 		601C0C21269B0110009181D2 /* RestaurantRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistrationViewModel.swift; sourceTree = "<group>"; };
 		602375D0269F5B550086B3B6 /* DataInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataInfo.swift; sourceTree = "<group>"; };
@@ -136,10 +109,6 @@
 		6063B68D26893B67001B1405 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6063B69026893B67001B1405 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6063B69226893B67001B1405 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		606531B726A41DC600C8C500 /* ProfileCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinatorView.swift; sourceTree = "<group>"; };
-		606531B926A41DD100C8C500 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
-		606531C126A42D2D00C8C500 /* OptionsCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCoordinatorView.swift; sourceTree = "<group>"; };
-		606531C326A42D3800C8C500 /* OptionsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCoordinator.swift; sourceTree = "<group>"; };
 		606531C626A43A3800C8C500 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		606531C826A43A4100C8C500 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		606531CA26A43B1900C8C500 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
@@ -148,6 +117,13 @@
 		606531D226A4871A00C8C500 /* OptionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionType.swift; sourceTree = "<group>"; };
 		606531D726A4B4E900C8C500 /* LogoutRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRequestDTO.swift; sourceTree = "<group>"; };
 		60660C6C2693861D00A6159E /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		606C9AC426A76D20005AD06E /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		606C9AC626A77768005AD06E /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
+		606C9AC826A7795E005AD06E /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		606C9ACA26A77966005AD06E /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		6071080826A8640D00008E44 /* AuthSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSelectionView.swift; sourceTree = "<group>"; };
+		6071080A26A8641700008E44 /* AuthSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSelectionViewModel.swift; sourceTree = "<group>"; };
+		6071080C26A889F800008E44 /* AuthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthType.swift; sourceTree = "<group>"; };
 		6074C0B3268C940700DA3B21 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		6074C0B5268CADB100DA3B21 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		6074C0B7268CB32500DA3B21 /* CancelBag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelBag.swift; sourceTree = "<group>"; };
@@ -165,16 +141,8 @@
 		60BF85B62699172E00890C0F /* SelectionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionCardView.swift; sourceTree = "<group>"; };
 		60BF85B826991AC000890C0F /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		60D32CBF2699A83C00F6FDC9 /* RoundedGradientButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedGradientButtonStyle.swift; sourceTree = "<group>"; };
-		60D32CCB2699E6FD00F6FDC9 /* FontScaleUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontScaleUtility.swift; sourceTree = "<group>"; };
-		60D32CCD2699EBB000F6FDC9 /* ScaledFontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledFontModifier.swift; sourceTree = "<group>"; };
 		60D32CCF2699EC0900F6FDC9 /* Utilities+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Utilities+Injection.swift"; sourceTree = "<group>"; };
 		60D32CD12699ED9200F6FDC9 /* Constants+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+Injection.swift"; sourceTree = "<group>"; };
-		60D32CD32699EFA900F6FDC9 /* Montserrat.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Montserrat.plist; sourceTree = "<group>"; };
-		60D32CD52699F11600F6FDC9 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
-		60D32CD62699F11600F6FDC9 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
-		60D32CD72699F11600F6FDC9 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
-		60D32CD82699F11600F6FDC9 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
-		60D32CD92699F11600F6FDC9 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		60D32CDF2699FA3100F6FDC9 /* UserRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistrationViewModel.swift; sourceTree = "<group>"; };
 		60D32CE12699FA3B00F6FDC9 /* UserRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistrationView.swift; sourceTree = "<group>"; };
 		60D32CE3269A082600F6FDC9 /* SelectionCardButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionCardButtonStyle.swift; sourceTree = "<group>"; };
@@ -192,12 +160,6 @@
 		60F3BACA2694B85B005798C1 /* Authenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
 		60F3BACF2694BB17005798C1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		60F3BAD22694C863005798C1 /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
-		60FF8C2126A342A70050DA8A /* RegistrationCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinatorView.swift; sourceTree = "<group>"; };
-		60FF8C2326A342B00050DA8A /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinator.swift; sourceTree = "<group>"; };
-		60FF8C2526A352C40050DA8A /* LoginCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinatorView.swift; sourceTree = "<group>"; };
-		60FF8C2726A352CC0050DA8A /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
-		60FF8C2926A36C200050DA8A /* RootCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorView.swift; sourceTree = "<group>"; };
-		60FF8C2B26A36C2B0050DA8A /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		60FF8C2D26A374A30050DA8A /* SecureLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureLocalRepository.swift; sourceTree = "<group>"; };
 		60FF8C2F26A388350050DA8A /* LocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,22 +181,8 @@
 			isa = PBXGroup;
 			children = (
 				60BF85AB2698F0DE00890C0F /* RootViewModifier.swift */,
-				601C0C0F269AE45F009181D2 /* SheetModifier.swift */,
 			);
 			path = Modifiers;
-			sourceTree = "<group>";
-		};
-		601C0C14269AE59C009181D2 /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-				601C0C17269AE610009181D2 /* TabCoordinatorView.swift */,
-				601C0C15269AE606009181D2 /* TabCoordinator.swift */,
-				60FF8C2926A36C200050DA8A /* RootCoordinatorView.swift */,
-				60FF8C2B26A36C2B0050DA8A /* RootCoordinator.swift */,
-				60FF8C2026A342670050DA8A /* Auth */,
-				606531B626A41D8E00C8C500 /* Profile */,
-			);
-			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		6063B67D26893B65001B1405 = {
@@ -262,7 +210,6 @@
 				6074C0B0268C7A3700DA3B21 /* Data */,
 				6074C0AE268C7A2200DA3B21 /* Repositories */,
 				6074C0AF268C7A3100DA3B21 /* Services */,
-				601C0C14269AE59C009181D2 /* Coordinators */,
 				6074C0B1268C7A3F00DA3B21 /* UI */,
 				6074C0AC268C79E800DA3B21 /* Utilities */,
 				6074C0B2268C7A4D00DA3B21 /* Resources */,
@@ -276,17 +223,6 @@
 				6063B69026893B67001B1405 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		606531B626A41D8E00C8C500 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				606531B726A41DC600C8C500 /* ProfileCoordinatorView.swift */,
-				606531B926A41DD100C8C500 /* ProfileCoordinator.swift */,
-				606531C126A42D2D00C8C500 /* OptionsCoordinatorView.swift */,
-				606531C326A42D3800C8C500 /* OptionsCoordinator.swift */,
-			);
-			path = Profile;
 			sourceTree = "<group>";
 		};
 		606531C526A43A1A00C8C500 /* Profile */ = {
@@ -336,7 +272,6 @@
 				6074C0B3268C940700DA3B21 /* AppState.swift */,
 				60944F3A268DC8460063CD61 /* Application+Injection.swift */,
 				60E4ED79268E174A00EC4561 /* ViewModels+Injection.swift */,
-				601C0C1D269AF0D0009181D2 /* Coordinators+Injection.swift */,
 				60E4ED69268DCC7B00EC4561 /* Services+Injection.swift */,
 				6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */,
 				60D32CCF2699EC0900F6FDC9 /* Utilities+Injection.swift */,
@@ -374,6 +309,7 @@
 				60F3BACC2694BADA005798C1 /* Models */,
 				60A67197269B363E0083C0E9 /* EntityType.swift */,
 				606531D226A4871A00C8C500 /* OptionType.swift */,
+				6071080C26A889F800008E44 /* AuthType.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -381,6 +317,10 @@
 		6074C0B1268C7A3F00DA3B21 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				606C9AC426A76D20005AD06E /* TabBarView.swift */,
+				606C9AC626A77768005AD06E /* TabBarViewModel.swift */,
+				606C9AC826A7795E005AD06E /* RootView.swift */,
+				606C9ACA26A77966005AD06E /* RootViewModel.swift */,
 				606531C526A43A1A00C8C500 /* Profile */,
 				60BF85A42698EFCD00890C0F /* Auth */,
 				60BF85B02698F6A600890C0F /* Components */,
@@ -393,7 +333,6 @@
 		6074C0B2268C7A4D00DA3B21 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				60D32CC82699E58200F6FDC9 /* Fonts */,
 				6063B68D26893B67001B1405 /* Assets.xcassets */,
 				6063B69226893B67001B1405 /* Info.plist */,
 				6063B68F26893B67001B1405 /* Preview Content */,
@@ -406,6 +345,8 @@
 			children = (
 				60FF8C1D26A338080050DA8A /* Login */,
 				60FF8C1C26A337FC0050DA8A /* Registration */,
+				6071080826A8640D00008E44 /* AuthSelectionView.swift */,
+				6071080A26A8641700008E44 /* AuthSelectionViewModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -427,8 +368,6 @@
 			isa = PBXGroup;
 			children = (
 				60BF85B826991AC000890C0F /* Image+Extension.swift */,
-				601C0C0A269AE3EE009181D2 /* View+Extension.swift */,
-				601C0C0C269AE3F9009181D2 /* Navigation+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -448,21 +387,6 @@
 				60D32CE3269A082600F6FDC9 /* SelectionCardButtonStyle.swift */,
 			);
 			path = Button;
-			sourceTree = "<group>";
-		};
-		60D32CC82699E58200F6FDC9 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				60D32CCB2699E6FD00F6FDC9 /* FontScaleUtility.swift */,
-				60D32CCD2699EBB000F6FDC9 /* ScaledFontModifier.swift */,
-				60D32CD82699F11600F6FDC9 /* Montserrat-Bold.ttf */,
-				60D32CD52699F11600F6FDC9 /* Montserrat-Light.ttf */,
-				60D32CD92699F11600F6FDC9 /* Montserrat-Medium.ttf */,
-				60D32CD62699F11600F6FDC9 /* Montserrat-Regular.ttf */,
-				60D32CD72699F11600F6FDC9 /* Montserrat-SemiBold.ttf */,
-				60D32CD32699EFA900F6FDC9 /* Montserrat.plist */,
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		60F3BAC62694A709005798C1 /* Networking */ = {
@@ -543,19 +467,6 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		60FF8C2026A342670050DA8A /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				601C0C19269AEE59009181D2 /* AuthCoordinatorView.swift */,
-				601C0C1B269AEE64009181D2 /* AuthCoordinator.swift */,
-				60FF8C2126A342A70050DA8A /* RegistrationCoordinatorView.swift */,
-				60FF8C2326A342B00050DA8A /* RegistrationCoordinator.swift */,
-				60FF8C2526A352C40050DA8A /* LoginCoordinatorView.swift */,
-				60FF8C2726A352CC0050DA8A /* LoginCoordinator.swift */,
-			);
-			path = Auth;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -621,14 +532,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60D32CDC2699F11600F6FDC9 /* Montserrat-SemiBold.ttf in Resources */,
-				60D32CDA2699F11600F6FDC9 /* Montserrat-Light.ttf in Resources */,
-				60D32CD42699EFA900F6FDC9 /* Montserrat.plist in Resources */,
 				6063B69126893B67001B1405 /* Preview Assets.xcassets in Resources */,
-				60D32CDB2699F11600F6FDC9 /* Montserrat-Regular.ttf in Resources */,
 				6063B68E26893B67001B1405 /* Assets.xcassets in Resources */,
-				60D32CDE2699F11600F6FDC9 /* Montserrat-Medium.ttf in Resources */,
-				60D32CDD2699F11600F6FDC9 /* Montserrat-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -640,39 +545,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				60F3BAD32694C863005798C1 /* KeychainItem.swift in Sources */,
-				60FF8C2826A352CC0050DA8A /* LoginCoordinator.swift in Sources */,
 				60173F2F269C8F03003C4E40 /* AlertView.swift in Sources */,
 				606531CB26A43B1900C8C500 /* OptionsView.swift in Sources */,
 				601C0C20269B00FE009181D2 /* RestaurantRegistrationView.swift in Sources */,
-				601C0C10269AE45F009181D2 /* SheetModifier.swift in Sources */,
 				60173F37269CE0CC003C4E40 /* AuthenticatedRestaurant.swift in Sources */,
-				60FF8C2226A342A70050DA8A /* RegistrationCoordinatorView.swift in Sources */,
 				60D32CD02699EC0900F6FDC9 /* Utilities+Injection.swift in Sources */,
 				60E4ED6A268DCC7B00EC4561 /* Services+Injection.swift in Sources */,
 				6049C3C0268F9B9E00B891CC /* Repositories+Injection.swift in Sources */,
 				6000623826965F280085DF41 /* UserLoginResponseDTO.swift in Sources */,
+				6071080D26A889F800008E44 /* AuthType.swift in Sources */,
 				601C0C22269B0110009181D2 /* RestaurantRegistrationViewModel.swift in Sources */,
 				6000622E269645380085DF41 /* UserRegistrationRequestDTO.swift in Sources */,
-				60FF8C2A26A36C200050DA8A /* RootCoordinatorView.swift in Sources */,
 				606531C926A43A4100C8C500 /* ProfileViewModel.swift in Sources */,
 				6000623A269663750085DF41 /* AuthenticatedUser.swift in Sources */,
 				6074C0B4268C940700DA3B21 /* AppState.swift in Sources */,
 				60F3BACB2694B85B005798C1 /* Authenticator.swift in Sources */,
 				60D32CE4269A082600F6FDC9 /* SelectionCardButtonStyle.swift in Sources */,
+				6071080B26A8641700008E44 /* AuthSelectionViewModel.swift in Sources */,
 				60173F31269CA3B2003C4E40 /* ErrorView.swift in Sources */,
 				60E4ED7A268E174A00EC4561 /* ViewModels+Injection.swift in Sources */,
 				60F3BAD02694BB17005798C1 /* User.swift in Sources */,
 				60BF85B926991AC000890C0F /* Image+Extension.swift in Sources */,
 				6074C0B8268CB32500DA3B21 /* CancelBag.swift in Sources */,
 				60A67194269B35400083C0E9 /* LoginView.swift in Sources */,
+				606C9ACB26A77966005AD06E /* RootViewModel.swift in Sources */,
 				606531D126A43CF700C8C500 /* OptionItemView.swift in Sources */,
 				60D32CD22699ED9200F6FDC9 /* Constants+Injection.swift in Sources */,
 				60E4ED6E268DE40B00EC4561 /* UsersService.swift in Sources */,
 				60173F33269CDF0B003C4E40 /* RestaurantRegistrationRequestDTO.swift in Sources */,
 				606531D326A4871A00C8C500 /* OptionType.swift in Sources */,
 				60BF85AC2698F0DE00890C0F /* RootViewModifier.swift in Sources */,
-				60D32CCE2699EBB000F6FDC9 /* ScaledFontModifier.swift in Sources */,
-				601C0C16269AE606009181D2 /* TabCoordinator.swift in Sources */,
 				60660C6D2693861D00A6159E /* NetworkClient.swift in Sources */,
 				606531CD26A43B2300C8C500 /* OptionsViewModel.swift in Sources */,
 				60E4ED70268DECA600EC4561 /* UserListResponseDTO.swift in Sources */,
@@ -685,38 +587,28 @@
 				600062302696482F0085DF41 /* Discardable.swift in Sources */,
 				60173F3D269CF53D003C4E40 /* ActivityIndicatorView.swift in Sources */,
 				60E3953C26909197007E459E /* Tokens.swift in Sources */,
-				601C0C0B269AE3EE009181D2 /* View+Extension.swift in Sources */,
 				6063B68A26893B65001B1405 /* MenuelyApp.swift in Sources */,
-				601C0C1E269AF0D0009181D2 /* Coordinators+Injection.swift in Sources */,
 				606531D826A4B4EA00C8C500 /* LogoutRequestDTO.swift in Sources */,
 				60D32CE22699FA3B00F6FDC9 /* UserRegistrationView.swift in Sources */,
 				60E4ED72268DEE4100EC4561 /* RemoteImage.swift in Sources */,
-				60FF8C2426A342B00050DA8A /* RegistrationCoordinator.swift in Sources */,
 				60173F39269CE10D003C4E40 /* Restaurant.swift in Sources */,
-				606531BA26A41DD100C8C500 /* ProfileCoordinator.swift in Sources */,
 				60FF8C3026A388350050DA8A /* LocalRepository.swift in Sources */,
-				60D32CCC2699E6FD00F6FDC9 /* FontScaleUtility.swift in Sources */,
-				606531C426A42D3800C8C500 /* OptionsCoordinator.swift in Sources */,
+				606C9AC926A7795E005AD06E /* RootView.swift in Sources */,
 				60E395382690917C007E459E /* TokensRequestDTO.swift in Sources */,
 				60A67196269B354A0083C0E9 /* LoginViewModel.swift in Sources */,
 				60006232269648C30085DF41 /* AuthService.swift in Sources */,
-				60FF8C2626A352C40050DA8A /* LoginCoordinatorView.swift in Sources */,
-				601C0C1A269AEE59009181D2 /* AuthCoordinatorView.swift in Sources */,
 				6097A7D126A0DD4200BC3534 /* AuthCredentials.swift in Sources */,
 				6074C0C0268CD41400DA3B21 /* NetworkingHelpers.swift in Sources */,
-				606531C226A42D2D00C8C500 /* OptionsCoordinatorView.swift in Sources */,
 				60E3953A2690918D007E459E /* TokensResponseDTO.swift in Sources */,
 				60BF85B22698F87700890C0F /* FloatingTextField.swift in Sources */,
-				601C0C1C269AEE64009181D2 /* AuthCoordinator.swift in Sources */,
-				601C0C18269AE610009181D2 /* TabCoordinatorView.swift in Sources */,
 				60173F3B269CE55A003C4E40 /* RestaurantLoginResponseDTO.swift in Sources */,
 				60D32CC02699A83C00F6FDC9 /* RoundedGradientButtonStyle.swift in Sources */,
 				60A67198269B363E0083C0E9 /* EntityType.swift in Sources */,
 				60D32CE02699FA3100F6FDC9 /* UserRegistrationViewModel.swift in Sources */,
-				606531B826A41DC600C8C500 /* ProfileCoordinatorView.swift in Sources */,
-				60FF8C2C26A36C2B0050DA8A /* RootCoordinator.swift in Sources */,
+				6071080926A8640D00008E44 /* AuthSelectionView.swift in Sources */,
+				606C9AC726A77768005AD06E /* TabBarViewModel.swift in Sources */,
 				60E4ED74268DEFC300EC4561 /* UsersRemoteRepository.swift in Sources */,
-				601C0C0D269AE3F9009181D2 /* Navigation+Extension.swift in Sources */,
+				606C9AC526A76D20005AD06E /* TabBarView.swift in Sources */,
 				6000622C2696451A0085DF41 /* LoginRequestDTO.swift in Sources */,
 				60FF8C2E26A374A30050DA8A /* SecureLocalRepository.swift in Sources */,
 				6074C0B6268CADB100DA3B21 /* Store.swift in Sources */,

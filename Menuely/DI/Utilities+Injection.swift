@@ -9,6 +9,6 @@ import Resolver
 
 extension Resolver {
     public static func registerUtilities() {
-        register { FontScaleUtility(fontName: resolve(name: .font)) }
+       
     }
 }

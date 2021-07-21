@@ -27,7 +27,7 @@ struct FloatingTextField: View {
            ZStack(alignment: .leading) {
             GeometryReader { geometry in
                 Text(title)
-                    .scaledFont(.body)
+                    .font(.body)
                     .foregroundColor(placeholderColor)
                     .offset(y: placeholderOffset)
                     .scaleEffect(placeholderScale, anchor: .leading)
@@ -37,7 +37,7 @@ struct FloatingTextField: View {
                         separatorColor = isActive ? Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1)) : Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1))
                     }
                 }
-                .scaledFont(.body)
+                .font(.body)
                 .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
                 .onChange(of: text, perform: { value in
                     withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {

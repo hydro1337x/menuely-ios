@@ -51,13 +51,13 @@ struct RestaurantRegistrationView: View {
                 Button("Register") {
                     viewModel.register()
                 }
-                .scaledFont(.body)
+                .font(.body)
                 .frame(height: 48)
                 .padding(.top, 20)
                 .buttonStyle(RoundedGradientButtonStyle())
                 
                 Button(action: {
-                    viewModel.appState[\.coordinating.auth] = .login
+                    viewModel.loginViewRoute()
                 }, label: {
                     Text("Already registered?")
                         .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
@@ -101,7 +101,8 @@ private extension RestaurantRegistrationView {
 
 private extension RestaurantRegistrationView {
     func loadedView(showLoading: Bool) -> some View {
-        ActivityIndicatorView().padding()
+        viewModel.loginViewRoute()
+        return EmptyView()
     }
 }
 

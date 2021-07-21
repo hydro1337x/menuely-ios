@@ -12,8 +12,11 @@ extension Resolver {
         register { RootViewAppearance.ViewModel() }.scope(.shared)
         register { UserRegistrationViewModel() }.scope(.shared)
         register { RestaurantRegistrationViewModel() }.scope(.shared)
-        register { LoginViewModel() }.scope(.shared)
-        register { ProfileViewModel() }.scope(.shared)
-        register { OptionsViewModel() }.scope(.shared)
+        register { LoginViewModel(appState: resolve()) }.scope(.shared)
+        register { ProfileViewModel(appState: resolve()) }.scope(.shared)
+        register { OptionsViewModel(appState: resolve()) }.scope(.shared)
+        register { TabBarViewModel(appState: resolve()) }.scope(.shared)
+        register { RootViewModel(authService: resolve(), appState: resolve()) }.scope(.shared)
+        register { AuthSelectionViewModel(appState: resolve()) }.scope(.shared)
     }
 }

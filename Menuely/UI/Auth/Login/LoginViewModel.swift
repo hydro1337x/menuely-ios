@@ -13,8 +13,8 @@ import UIKit
 class LoginViewModel: ObservableObject {
     // MARK: - Properties
     @Injected private var authService: AuthServicing
-    @Injected var appState: Store<AppState>
     
+    @Published var routing: AuthSelectionView.Routing
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var loginResult: Loadable<Discardable>
@@ -24,14 +24,28 @@ class LoginViewModel: ObservableObject {
     
     @Published var animateErrorView: Bool = false
     
+    var appState: Store<AppState>
     let cancelBag = CancelBag()
-    @Injected private var usersService: UsersServicing
     
     // MARK: - Initialization
-    init(loginResult: Loadable<Discardable> = .notRequested, authenticatedUser: Loadable<AuthenticatedUser> = .notRequested, authenticatedRestaurant: Loadable<AuthenticatedRestaurant> = .notRequested) {
+    init(appState: Store<AppState>, loginResult: Loadable<Discardable> = .notRequested, authenticatedUser: Loadable<AuthenticatedUser> = .notRequested, authenticatedRestaurant: Loadable<AuthenticatedRestaurant> = .notRequested) {
+        self.appState = appState
+        
+        _routing = .init(initialValue: appState[\.routing.authSelection])
         _loginResult = .init(initialValue: loginResult)
         _authenticatedUser = .init(initialValue: authenticatedUser)
         _authenticatedRestaurant = .init(initialValue: authenticatedRestaurant)
+        
+        cancelBag.collect {
+            $routing
+                .removeDuplicates()
+                .sink { appState[\.routing.authSelection] = $0 }
+            
+            appState
+                .map(\.routing.authSelection)
+                .removeDuplicates()
+                .assign(to: \.routing, on: self)
+        }
         
         $authenticatedUser.map { loadable -> Loadable<Discardable> in
             switch loadable {
@@ -93,5 +107,17 @@ class LoginViewModel: ObservableObject {
     
     private func loginRestaurant(with loginRequestDTO: LoginRequestDTO) {
         authService.loginRestaurant(with: loginRequestDTO, authenticatedRestaurant: loadableSubject(\.authenticatedRestaurant))
+    }
+    
+    // MARK: - Routing
+    func registrationViewRoute() {
+        routing.selectedAuth = .registration
+    }
+    
+    func tabBarViewRoute() {
+        loginResult.reset()
+        email = ""
+        password = ""
+        appState[\.routing.root] = .tabs
     }
 }

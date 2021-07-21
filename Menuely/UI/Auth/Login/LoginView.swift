@@ -30,13 +30,13 @@ struct LoginView: View {
             Button("Login") {
                 viewModel.login()
             }
-            .scaledFont(.body)
+            .font(.body)
             .frame(height: 48)
             .padding(.top, 20)
             .buttonStyle(RoundedGradientButtonStyle())
             
             Button(action: {
-                viewModel.appState[\.coordinating.auth] = .registration
+                viewModel.registrationViewRoute()
             }, label: {
                 Text("Don't have an account?")
                     .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
@@ -79,7 +79,7 @@ private extension LoginView {
 
 private extension LoginView {
     func loadedView(showLoading: Bool) -> some View {
-        viewModel.appState[\.coordinating.root] = .tabs
+        viewModel.tabBarViewRoute()
         return EmptyView()
     }
 }

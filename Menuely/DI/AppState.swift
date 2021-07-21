@@ -9,15 +9,9 @@ import SwiftUI
 import Resolver
 
 struct AppState: Equatable {
-    var data: Data
-    var coordinating: Coordinating
-    var application: Application
-    
-    init(data: Data = Data(), coordinating: Coordinating, application: Application = Application()) {
-        self.data = data
-        self.coordinating = coordinating
-        self.application = application
-    }
+    var data: Data = Data()
+    var routing: Routing = Routing()
+    var application: Application = Application()
 }
 
 extension AppState {
@@ -33,25 +27,16 @@ extension AppState {
 
 extension AppState {
     /*
-     AppState.Coordinating should contain data which is needed to transition from one screen to another
+     AppState.Routing should contain data which is needed to transition from one screen to another
+     It is used inside actions
      */
-    struct Coordinating: Equatable {
+    struct Routing: Equatable {
         
-        var auth = AuthCoordinator.Coordinating.login
-        var root: RootCoordinator.Coordinating
-        var profile: ProfileCoordinator.Coordinating = .initial
-        var options: OptionsCoordinator.Coordinating = .initial
-        
-        init(secureLocalRepository: SecureLocalRepositing) {
-            let authenticatedUser = secureLocalRepository.load(AuthenticatedUser.self, for: .authenticatedUser)
-            let authenticatedRestaurant = secureLocalRepository.load(AuthenticatedRestaurant.self, for: .authenticatedRestaurant)
-            root = authenticatedUser?.auth ?? authenticatedRestaurant?.auth == nil ? .auth : .tabs
-        }
-        
-        static func == (lhs: AppState.Coordinating, rhs: AppState.Coordinating) -> Bool {
-            return lhs.auth == rhs.auth &&
-                   lhs.root == rhs.root
-        }
+        var tab: TabBarView.Routing = .scan
+        var root: RootView.Routing = .auth
+        var authSelection: AuthSelectionView.Routing = AuthSelectionView.Routing(selectedEntity: .user, selectedAuth: .login)
+        var profile: ProfileView.Routing = ProfileView.Routing()
+        var options: OptionsView.Routing = OptionsView.Routing()
     }
 }
 
@@ -64,6 +49,6 @@ extension AppState {
 
 //func == (lhs: AppState, rhs: AppState) -> Bool {
 //    return lhs.data == rhs.data &&
-//           lhs.coordinating == rhs.coordinating &&
+//           lhs.routing == rhs.coordinating &&
 //           lhs.application == rhs.application
 //}

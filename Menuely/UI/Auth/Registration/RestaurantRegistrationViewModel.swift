@@ -10,7 +10,7 @@ import Resolver
 
 class RestaurantRegistrationViewModel: ObservableObject {
     // MARK: - Properties
-    @Injected var authService: AuthServicing
+    @Injected private var authService: AuthServicing
     @Injected var appState: Store<AppState>
     
     @Published var email: String = ""
@@ -50,5 +50,11 @@ class RestaurantRegistrationViewModel: ObservableObject {
                                                                                 address: address,
                                                                                 postalCode: postalCode)
         authService.registerRestaurant(with: restaurantRegistrationRequestDTO, registration: loadableSubject(\.registration))
+    }
+    
+    // MARK: - Routing
+    func loginViewRoute() {
+        registration.reset()
+        appState[\.routing.authSelection.selectedAuth] = .login
     }
 }

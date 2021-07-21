@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct AlertViewConfiguration {
-    var titleTextStyle: Font.TextStyle = .title3
-    var messageTextStyle: Font.TextStyle = .callout
+    var titleTextStyle: Font = .title3
+    var messageTextStyle: Font = .callout
     var blurredBackground: Color = Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
     var alertBackground: Color = Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1))
     var backgroundCornerRadius: CGFloat = 10
@@ -37,14 +37,14 @@ struct AlertView: View {
                 VStack(spacing: 0) {
                     Text(title)
                         .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
-                        .scaledFont(configuration.titleTextStyle)
+                        .font(configuration.titleTextStyle)
                         .padding(.horizontal, 15)
                         .padding(.top, 10)
                     
                     if let message = message {
                         Text(message)
                             .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
-                            .scaledFont(configuration.messageTextStyle)
+                            .font(configuration.messageTextStyle)
                             .padding(.top, 5)
                             .padding(.horizontal, 15)
                     }

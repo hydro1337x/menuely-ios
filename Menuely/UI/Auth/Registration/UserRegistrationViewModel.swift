@@ -42,4 +42,11 @@ class UserRegistrationViewModel: ObservableObject {
         let userRegistrationRequestDTO = UserRegistrationRequestDTO(firstname: firstname, lastname: lastname, email: email, password: password)
         authService.registerUser(with: userRegistrationRequestDTO, registration: loadableSubject(\.registration))
     }
+    
+    // MARK: - Routing
+    
+    func loginViewRoute() {
+        registration.reset()
+        appState[\.routing.authSelection.selectedAuth] = .login
+    }
 }

@@ -28,20 +28,38 @@ struct OptionsView: View {
     }
     
     var base: some View {
-        VStack {
-            Image(.logo)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100, height: 100)
-            
-            List(viewModel.options, id: \.self) { option in
-                OptionItemView(option: option, imageName: .forwardArrow)
-                    .frame(height: 48)
-                    .onTapGesture {
-                        handleOptionItemTap(option: option)
+        NavigationView {
+            VStack {
+                Image(.logo)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100)
+                
+                List(viewModel.options, id: \.self) { option in
+                    if viewModel.navigatableOptions.contains(option) {
+                        NavigationLink(
+                            destination: Text("Option: \(option.rawValue)"),
+                            tag: option,
+                            selection: $viewModel.routing.details,
+                            label: {
+                                OptionItemView(option: option, imageName: .forwardArrow)
+                                    .frame(height: 48)
+                            })
+                            .buttonStyle(PlainButtonStyle())
+                    } else {
+                        OptionItemView(option: option, imageName: .forwardArrow)
+                            .frame(height: 48)
+                            .onTapGesture {
+                                switch option {
+                                case .logout: isLogoutAlertShown = true
+                                case .deleteAccount: isDeleteAccountAlertShown = true
+                                default: break
+                                }
+                            }
                     }
+                }
+                .padding(.top, 30)
             }
-            .padding(.top, 30)
         }
     }
     
@@ -79,15 +97,6 @@ struct OptionsView: View {
             Text("Cancel")
         }))
     }
-    
-    func handleOptionItemTap(option: OptionType) {
-        switch option {
-        case .editProfile, .changePassword, .switchToEmployee, .swithToUser:
-            viewModel.coordinateToOptionDetailsView(with: option)
-        case .logout: isLogoutAlertShown = true
-        case .deleteAccount: isDeleteAccountAlertShown = true
-        }
-    }
 }
 
 // MARK: - Loading Content
@@ -112,8 +121,14 @@ private extension OptionsView {
 
 private extension OptionsView {
     func loadedView(showLoading: Bool) -> some View {
-        viewModel.coordinateToAuthView()
+        viewModel.authSelectionViewRoute()
         return EmptyView()
+    }
+}
+
+extension OptionsView {
+    struct Routing: Equatable {
+        var details: OptionType?
     }
 }
 

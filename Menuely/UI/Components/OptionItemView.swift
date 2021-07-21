@@ -15,13 +15,8 @@ struct OptionItemView: View {
         HStack {
             Text(option.rawValue)
                 .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
-                .scaledFont(.body)
+                .font(.body)
             Spacer()
-            Image(imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 20, height: 20)
-                .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
                 
         }
         .frame(maxWidth: .infinity, maxHeight: 100)
