@@ -15,7 +15,7 @@ class AuthRequestInterceptor: RequestInterceptor {
     // MARK: - Property Wrappers
     @Injected private var appState: Store<AppState>
     @Injected private var authenticator: Authenticating
-    @Injected private var secureLocalRepository: SecureLocalRepositing
+    @Injected private var localRepository: LocalRepositing
     
     // MARK: - Properties
     private let cancelBag = CancelBag()
@@ -25,9 +25,7 @@ class AuthRequestInterceptor: RequestInterceptor {
         var urlRequest = urlRequest
         
         /// Sets the Authorization header value using the access token.
-        let authenticatedUser = secureLocalRepository.load(AuthenticatedUser.self, for: .authenticatedUser)
-        let authenticatedRestaurant = secureLocalRepository.load(AuthenticatedRestaurant.self, for: .authenticatedRestaurant)
-        let tokens = authenticatedUser?.auth ?? authenticatedRestaurant?.auth
+        let tokens = getTokens()
         
         if let accessToken = tokens?.accessToken {
             urlRequest.headers.add(.authorization(bearerToken: accessToken))
@@ -43,9 +41,7 @@ class AuthRequestInterceptor: RequestInterceptor {
             return completion(.doNotRetryWithError(error))
         }
         
-        let authenticatedUser = secureLocalRepository.load(AuthenticatedUser.self, for: .authenticatedUser)
-        let authenticatedRestaurant = secureLocalRepository.load(AuthenticatedRestaurant.self, for: .authenticatedRestaurant)
-        let tokens = authenticatedUser?.auth ?? authenticatedRestaurant?.auth
+        let tokens = getTokens()
         
         guard let refreshToken = tokens?.refreshToken else {
             return completion(.doNotRetryWithError(NetworkError.refreshTokenMissing))
@@ -55,27 +51,39 @@ class AuthRequestInterceptor: RequestInterceptor {
             switch result {
             case .success(let tokensResponseDTO):
                 
-                if var authenticatedUser = self.secureLocalRepository.load(AuthenticatedUser.self, for: .authenticatedUser) {
-                    
-                    authenticatedUser.auth = tokensResponseDTO.tokens
-                    self.secureLocalRepository.save(authenticatedUser, for: .authenticatedUser)
+                switch self.appState[\.data.selectedEntity] {
+                case .user:
+                    var authenticatedUser = self.localRepository.load(AuthenticatedUser.self, for: .authenticatedUser)
+                    authenticatedUser?.auth = tokensResponseDTO.tokens
+                    self.localRepository.save(authenticatedUser, for: .authenticatedUser)
                     self.appState[\.data.authenticatedUser] = authenticatedUser
                     
-                } else if var authenticatedRestaurant = self.secureLocalRepository.load(AuthenticatedRestaurant.self, for: .authenticatedRestaurant) {
-                    
-                    authenticatedRestaurant.auth = tokensResponseDTO.tokens
-                    self.secureLocalRepository.save(authenticatedRestaurant, for: .authenticatedRestaurant)
+                case .restaurant:
+                    var authenticatedRestaurant = self.localRepository.load(AuthenticatedRestaurant.self, for: .authenticatedRestaurant)
+                    authenticatedRestaurant?.auth = tokensResponseDTO.tokens
+                    self.localRepository.save(authenticatedRestaurant, for: .authenticatedRestaurant)
                     self.appState[\.data.authenticatedRestaurant] = authenticatedRestaurant
-                    
                 }
 
                 // Print CURL for retried request
                 print(request.cURLDescription())
                 
                 completion(.retry)
+                
             case .failure(let error):
                 completion(.doNotRetryWithError(error))
             }
         }.store(in: cancelBag)
+    }
+    
+    private func getTokens() -> Tokens? {
+        switch appState[\.data.selectedEntity] {
+        case .user:
+            let authenticatedUser = localRepository.load(AuthenticatedUser.self, for: .authenticatedUser)
+             return authenticatedUser?.auth
+        case .restaurant:
+            let authenticatedRestaurant = localRepository.load(AuthenticatedRestaurant.self, for: .authenticatedRestaurant)
+            return authenticatedRestaurant?.auth
+        }
     }
 }

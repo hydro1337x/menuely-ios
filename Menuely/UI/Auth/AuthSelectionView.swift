@@ -14,7 +14,7 @@ struct AuthSelectionView: View {
         
         Spacer()
         
-        Picker("Auth", selection: $viewModel.routing.selectedEntity) {
+        Picker("Auth", selection: $viewModel.selectedEntity) {
             Text("Restaurant").tag(EntityType.restaurant)
             Text("User").tag(EntityType.user)
         }
@@ -24,7 +24,7 @@ struct AuthSelectionView: View {
         })
         
         VStack {
-            switch (viewModel.routing.selectedAuth, viewModel.routing.selectedEntity) {
+            switch (viewModel.routing.selectedAuth, viewModel.selectedEntity) {
             case (.login, .user): LoginView()
             case (.login, .restaurant): LoginView()
             case (.registration, .user): UserRegistrationView()
@@ -38,7 +38,6 @@ struct AuthSelectionView: View {
 
 extension AuthSelectionView {
     struct Routing: Equatable {
-        var selectedEntity: EntityType
         var selectedAuth: AuthType
     }
 }

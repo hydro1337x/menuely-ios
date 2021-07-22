@@ -13,6 +13,7 @@ struct ProfileHeaderView: View {
     let profileImageUrl: String
     let name: String
     let email: String
+    let placeholderImageName: Image.ImageName
     private let coverImageWidth = UIScreen.main.bounds.width
     
     var body: some View {
@@ -30,6 +31,9 @@ struct ProfileHeaderView: View {
             VStack {
                 WebImage(url: URL(string: profileImageUrl))
                     .resizable()
+                    .placeholder {
+                        Image(placeholderImageName).background(Color(#colorLiteral(red: 0.9646247029, green: 0.9647596478, blue: 0.9645821452, alpha: 1)))
+                    }
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 150, height: 150, alignment: .center)
                     .background(Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)))
@@ -51,6 +55,6 @@ struct ProfileHeaderView: View {
 
 struct ProfileHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileHeaderView(coverImageUrl: "", profileImageUrl: "", name: "Name", email: "example@email.com")
+        ProfileHeaderView(coverImageUrl: "", profileImageUrl: "", name: "Name", email: "example@email.com", placeholderImageName: .person)
     }
 }

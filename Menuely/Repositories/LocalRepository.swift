@@ -8,8 +8,8 @@
 import Foundation
 
 enum StorageKey: String {
-    case user
-    case restaurant
+    case authenticatedUser
+    case authenticatedRestaurant
 }
 
 protocol LocalRepositing {

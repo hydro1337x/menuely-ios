@@ -16,4 +16,9 @@ struct User: Codable, Identifiable, Equatable {
     let updatedAt: TimeInterval
     let profileImage: RemoteImage?
     let coverImage: RemoteImage?
+    
+    // MARK: - Helpers
+    var name: String {
+        return firstname + " " + lastname
+    }
 }

@@ -12,6 +12,7 @@ import UIKit
 
 protocol UsersRemoteRepositing {
     func getUsers() -> AnyPublisher<UserListResponseDTO, Error>
+    func getUserProfile() -> AnyPublisher<UserResponseDTO, Error>
     func uploadImage(with parameters: [String: String], and dataParameters: DataParameters) -> AnyPublisher<Discardable, Error>
 }
 
@@ -20,6 +21,10 @@ class UsersRemoteRepository: UsersRemoteRepositing {
     
     func getUsers() -> AnyPublisher<UserListResponseDTO, Error> {
         networkClient.request(endpoint: Endpoint.users)
+    }
+    
+    func getUserProfile() -> AnyPublisher<UserResponseDTO, Error> {
+        networkClient.request(endpoint: Endpoint.userProfile)
     }
     
     func uploadImage(with parameters: [String: String], and dataParameters: DataParameters) -> AnyPublisher<Discardable, Error> {
@@ -33,6 +38,7 @@ class UsersRemoteRepository: UsersRemoteRepositing {
 extension UsersRemoteRepository {
     enum Endpoint {
         case users
+        case userProfile
         case upload
     }
 }
@@ -41,6 +47,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
     var path: String {
         switch self {
         case .users: return "/users"
+        case .userProfile: return "/users/me"
         case .upload: return "/users/me/image"
         }
     }
@@ -48,6 +55,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
     var method: HTTPMethod {
         switch self {
         case .users: return .get
+        case .userProfile: return .get
         case .upload: return .patch
         }
     }
@@ -55,6 +63,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
     var headers: [String : String]? {
         switch self {
         case .users: return nil
+        case .userProfile: return nil
         case .upload: return nil
         }
     }
@@ -66,6 +75,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
     func body() throws -> Data? {
         switch self {
         case .users: return nil
+        case .userProfile: return nil
         case .upload: return nil
         }
     }

@@ -12,9 +12,9 @@ import Alamofire
 extension Resolver {
     public static func registerRepositories() {
         register { UsersRemoteRepository() as UsersRemoteRepositing }
+        register { RestaurantsRemoteRepository() as RestaurantsRemoteRepositing }
         register { Authenticator(session: AF) as Authenticating }
         register { AuthRemoteRepository() as AuthRemoteRepositing }
-        register { SecureLocalRepository() as SecureLocalRepositing }
         register { LocalRepository() as LocalRepositing }
     }
 }

@@ -1,49 +1,49 @@
 //
-//  UsersService.swift
+//  RestaurantsService.swift
 //  Menuely
 //
-//  Created by Benjamin Mecanović on 01.07.2021..
+//  Created by Benjamin Mecanović on 22.07.2021..
 //
 
 import Foundation
 import Combine
 import Resolver
 
-protocol UsersServicing {
-    func get(users: LoadableSubject<[User]>, search: String)
-    func getUserProfile(user: LoadableSubject<User>)
+protocol RestaurantsServicing {
+    func get(restaurants: LoadableSubject<[Restaurant]>, search: String)
+    func getRestaurantProfile(restaurant: LoadableSubject<Restaurant>)
     func uploadImage(with dataParameters: DataParameters, ofKind kind: ImageKind)
 }
 
-class UsersService: UsersServicing {
+class RestaurantsService: RestaurantsServicing {
     @Injected var appState: Store<AppState>
-    @Injected var remoteRepository: UsersRemoteRepositing
+    @Injected var remoteRepository: RestaurantsRemoteRepositing
     
     let cancelBag = CancelBag()
     
-    func get(users: LoadableSubject<[User]>, search: String) {
-        users.wrappedValue.setIsLoading(cancelBag: cancelBag)
+    func get(restaurants: LoadableSubject<[Restaurant]>, search: String) {
+        restaurants.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                return remoteRepository.getUsers()
+                return remoteRepository.getRestaurants()
             }
-            .map { return $0.users }
-            .sinkToLoadable { users.wrappedValue = $0 }
+            .map { return $0.restaurants }
+            .sinkToLoadable { restaurants.wrappedValue = $0 }
             .store(in: cancelBag)
     }
     
-    func getUserProfile(user: LoadableSubject<User>) {
-        user.wrappedValue.setIsLoading(cancelBag: cancelBag)
+    func getRestaurantProfile(restaurant: LoadableSubject<Restaurant>) {
+        restaurant.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.getUserProfile()
+                remoteRepository.getRestaurantProfile()
             }
             .map { $0.data }
-            .sinkToLoadable { user.wrappedValue = $0 }
+            .sinkToLoadable { restaurant.wrappedValue = $0 }
             .store(in: cancelBag)
     }
     

@@ -33,7 +33,7 @@ extension AppState {
         
         var tab: TabBarView.Routing = .scan
         var root: RootView.Routing = .auth
-        var authSelection: AuthSelectionView.Routing = AuthSelectionView.Routing(selectedEntity: .user, selectedAuth: .login)
+        var authSelection: AuthSelectionView.Routing = AuthSelectionView.Routing(selectedAuth: .login)
         var profile: ProfileView.Routing = ProfileView.Routing()
         var options: OptionsView.Routing = OptionsView.Routing()
     }

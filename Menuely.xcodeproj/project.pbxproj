@@ -47,6 +47,17 @@
 		6071081226A8B32500008E44 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6071081126A8B32500008E44 /* SDWebImageSwiftUI */; };
 		6071081626A8C36D00008E44 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6071081526A8C36D00008E44 /* ProfileHeaderView.swift */; };
 		6071081826A8C67800008E44 /* AccountInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6071081726A8C67800008E44 /* AccountInfoView.swift */; };
+		6074792926A9B46B00F18693 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074792826A9B46B00F18693 /* UserProfileView.swift */; };
+		6074792B26A9B47800F18693 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074792A26A9B47800F18693 /* UserProfileViewModel.swift */; };
+		6074792D26A9B48A00F18693 /* RestaurantProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074792C26A9B48A00F18693 /* RestaurantProfileView.swift */; };
+		6074792F26A9B49300F18693 /* RestaurantProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074792E26A9B49300F18693 /* RestaurantProfileViewModel.swift */; };
+		6074793126A9BB2B00F18693 /* UserResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074793026A9BB2B00F18693 /* UserResponseDTO.swift */; };
+		6074793326A9C49700F18693 /* DateUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074793226A9C49700F18693 /* DateUtility.swift */; };
+		6074793526A9D3F900F18693 /* RestaurantsRemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074793426A9D3F900F18693 /* RestaurantsRemoteRepository.swift */; };
+		6074793726A9D53F00F18693 /* RestaurantListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074793626A9D53F00F18693 /* RestaurantListResponseDTO.swift */; };
+		6074793926A9D59300F18693 /* RestaurantResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074793826A9D59300F18693 /* RestaurantResponseDTO.swift */; };
+		6074793B26A9D61F00F18693 /* RestaurantsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074793A26A9D61F00F18693 /* RestaurantsService.swift */; };
+		6074793D26A9E30100F18693 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074793C26A9E30100F18693 /* DescriptionView.swift */; };
 		6074C0B4268C940700DA3B21 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0B3268C940700DA3B21 /* AppState.swift */; };
 		6074C0B6268CADB100DA3B21 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0B5268CADB100DA3B21 /* Store.swift */; };
 		6074C0B8268CB32500DA3B21 /* CancelBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0B7268CB32500DA3B21 /* CancelBag.swift */; };
@@ -83,8 +94,6 @@
 		60F3BAC92694ACA6005798C1 /* AuthRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F3BAC82694ACA6005798C1 /* AuthRequestInterceptor.swift */; };
 		60F3BACB2694B85B005798C1 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F3BACA2694B85B005798C1 /* Authenticator.swift */; };
 		60F3BAD02694BB17005798C1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F3BACF2694BB17005798C1 /* User.swift */; };
-		60F3BAD32694C863005798C1 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F3BAD22694C863005798C1 /* KeychainItem.swift */; };
-		60FF8C2E26A374A30050DA8A /* SecureLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF8C2D26A374A30050DA8A /* SecureLocalRepository.swift */; };
 		60FF8C3026A388350050DA8A /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF8C2F26A388350050DA8A /* LocalRepository.swift */; };
 /* End PBXBuildFile section */
 
@@ -129,6 +138,17 @@
 		6071080C26A889F800008E44 /* AuthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthType.swift; sourceTree = "<group>"; };
 		6071081526A8C36D00008E44 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		6071081726A8C67800008E44 /* AccountInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoView.swift; sourceTree = "<group>"; };
+		6074792826A9B46B00F18693 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		6074792A26A9B47800F18693 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
+		6074792C26A9B48A00F18693 /* RestaurantProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantProfileView.swift; sourceTree = "<group>"; };
+		6074792E26A9B49300F18693 /* RestaurantProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantProfileViewModel.swift; sourceTree = "<group>"; };
+		6074793026A9BB2B00F18693 /* UserResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponseDTO.swift; sourceTree = "<group>"; };
+		6074793226A9C49700F18693 /* DateUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtility.swift; sourceTree = "<group>"; };
+		6074793426A9D3F900F18693 /* RestaurantsRemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsRemoteRepository.swift; sourceTree = "<group>"; };
+		6074793626A9D53F00F18693 /* RestaurantListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListResponseDTO.swift; sourceTree = "<group>"; };
+		6074793826A9D59300F18693 /* RestaurantResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantResponseDTO.swift; sourceTree = "<group>"; };
+		6074793A26A9D61F00F18693 /* RestaurantsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsService.swift; sourceTree = "<group>"; };
+		6074793C26A9E30100F18693 /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		6074C0B3268C940700DA3B21 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		6074C0B5268CADB100DA3B21 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		6074C0B7268CB32500DA3B21 /* CancelBag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelBag.swift; sourceTree = "<group>"; };
@@ -164,8 +184,6 @@
 		60F3BAC82694ACA6005798C1 /* AuthRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestInterceptor.swift; sourceTree = "<group>"; };
 		60F3BACA2694B85B005798C1 /* Authenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
 		60F3BACF2694BB17005798C1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		60F3BAD22694C863005798C1 /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
-		60FF8C2D26A374A30050DA8A /* SecureLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureLocalRepository.swift; sourceTree = "<group>"; };
 		60FF8C2F26A388350050DA8A /* LocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -236,6 +254,10 @@
 			children = (
 				606531C626A43A3800C8C500 /* ProfileView.swift */,
 				606531C826A43A4100C8C500 /* ProfileViewModel.swift */,
+				6074792826A9B46B00F18693 /* UserProfileView.swift */,
+				6074792A26A9B47800F18693 /* UserProfileViewModel.swift */,
+				6074792C26A9B48A00F18693 /* RestaurantProfileView.swift */,
+				6074792E26A9B49300F18693 /* RestaurantProfileViewModel.swift */,
 				606531CA26A43B1900C8C500 /* OptionsView.swift */,
 				606531CC26A43B2300C8C500 /* OptionsViewModel.swift */,
 			);
@@ -245,7 +267,6 @@
 		60660C6B2693860800A6159E /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				60F3BAD12694C754005798C1 /* Keychain */,
 				60F3BAC62694A709005798C1 /* Networking */,
 			);
 			path = Core;
@@ -268,6 +289,7 @@
 				6074C0B7268CB32500DA3B21 /* CancelBag.swift */,
 				6074C0B9268CC06600DA3B21 /* Loadable.swift */,
 				6074C0C1268CDC5E00DA3B21 /* Helpers.swift */,
+				6074793226A9C49700F18693 /* DateUtility.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -290,9 +312,9 @@
 			isa = PBXGroup;
 			children = (
 				60E4ED73268DEFC300EC4561 /* UsersRemoteRepository.swift */,
+				6074793426A9D3F900F18693 /* RestaurantsRemoteRepository.swift */,
 				60F3BACA2694B85B005798C1 /* Authenticator.swift */,
 				60006229269644DB0085DF41 /* AuthRemoteRepository.swift */,
-				60FF8C2D26A374A30050DA8A /* SecureLocalRepository.swift */,
 				60FF8C2F26A388350050DA8A /* LocalRepository.swift */,
 			);
 			path = Repositories;
@@ -302,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				60E4ED6D268DE40B00EC4561 /* UsersService.swift */,
+				6074793A26A9D61F00F18693 /* RestaurantsService.swift */,
 				60006231269648C30085DF41 /* AuthService.swift */,
 			);
 			path = Services;
@@ -368,6 +391,7 @@
 				606531D026A43CF700C8C500 /* OptionItemView.swift */,
 				6071081526A8C36D00008E44 /* ProfileHeaderView.swift */,
 				6071081726A8C67800008E44 /* AccountInfoView.swift */,
+				6074793C26A9E30100F18693 /* DescriptionView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -440,19 +464,14 @@
 			children = (
 				60E4ED6F268DECA600EC4561 /* UserListResponseDTO.swift */,
 				6000623726965F280085DF41 /* UserLoginResponseDTO.swift */,
+				6074793026A9BB2B00F18693 /* UserResponseDTO.swift */,
+				6074793626A9D53F00F18693 /* RestaurantListResponseDTO.swift */,
 				60173F3A269CE55A003C4E40 /* RestaurantLoginResponseDTO.swift */,
+				6074793826A9D59300F18693 /* RestaurantResponseDTO.swift */,
 				60E395392690918D007E459E /* TokensResponseDTO.swift */,
 				6000622F2696482F0085DF41 /* Discardable.swift */,
 			);
 			path = Response;
-			sourceTree = "<group>";
-		};
-		60F3BAD12694C754005798C1 /* Keychain */ = {
-			isa = PBXGroup;
-			children = (
-				60F3BAD22694C863005798C1 /* KeychainItem.swift */,
-			);
-			path = Keychain;
 			sourceTree = "<group>";
 		};
 		60FF8C1C26A337FC0050DA8A /* Registration */ = {
@@ -554,7 +573,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60F3BAD32694C863005798C1 /* KeychainItem.swift in Sources */,
 				60173F2F269C8F03003C4E40 /* AlertView.swift in Sources */,
 				6071081826A8C67800008E44 /* AccountInfoView.swift in Sources */,
 				606531CB26A43B1900C8C500 /* OptionsView.swift in Sources */,
@@ -567,8 +585,11 @@
 				6071080D26A889F800008E44 /* AuthType.swift in Sources */,
 				601C0C22269B0110009181D2 /* RestaurantRegistrationViewModel.swift in Sources */,
 				6000622E269645380085DF41 /* UserRegistrationRequestDTO.swift in Sources */,
+				6074792B26A9B47800F18693 /* UserProfileViewModel.swift in Sources */,
+				6074793D26A9E30100F18693 /* DescriptionView.swift in Sources */,
 				606531C926A43A4100C8C500 /* ProfileViewModel.swift in Sources */,
 				6000623A269663750085DF41 /* AuthenticatedUser.swift in Sources */,
+				6074793926A9D59300F18693 /* RestaurantResponseDTO.swift in Sources */,
 				6074C0B4268C940700DA3B21 /* AppState.swift in Sources */,
 				60F3BACB2694B85B005798C1 /* Authenticator.swift in Sources */,
 				60D32CE4269A082600F6FDC9 /* SelectionCardButtonStyle.swift in Sources */,
@@ -577,12 +598,14 @@
 				60E4ED7A268E174A00EC4561 /* ViewModels+Injection.swift in Sources */,
 				60F3BAD02694BB17005798C1 /* User.swift in Sources */,
 				6071081626A8C36D00008E44 /* ProfileHeaderView.swift in Sources */,
+				6074793526A9D3F900F18693 /* RestaurantsRemoteRepository.swift in Sources */,
 				60BF85B926991AC000890C0F /* Image+Extension.swift in Sources */,
 				6074C0B8268CB32500DA3B21 /* CancelBag.swift in Sources */,
 				60A67194269B35400083C0E9 /* LoginView.swift in Sources */,
 				606C9ACB26A77966005AD06E /* RootViewModel.swift in Sources */,
 				606531D126A43CF700C8C500 /* OptionItemView.swift in Sources */,
 				60D32CD22699ED9200F6FDC9 /* Constants+Injection.swift in Sources */,
+				6074793326A9C49700F18693 /* DateUtility.swift in Sources */,
 				60E4ED6E268DE40B00EC4561 /* UsersService.swift in Sources */,
 				60173F33269CDF0B003C4E40 /* RestaurantRegistrationRequestDTO.swift in Sources */,
 				606531D326A4871A00C8C500 /* OptionType.swift in Sources */,
@@ -590,11 +613,15 @@
 				60660C6D2693861D00A6159E /* NetworkClient.swift in Sources */,
 				606531CD26A43B2300C8C500 /* OptionsViewModel.swift in Sources */,
 				60E4ED70268DECA600EC4561 /* UserListResponseDTO.swift in Sources */,
+				6074793126A9BB2B00F18693 /* UserResponseDTO.swift in Sources */,
 				6074C0C2268CDC5E00DA3B21 /* Helpers.swift in Sources */,
+				6074793726A9D53F00F18693 /* RestaurantListResponseDTO.swift in Sources */,
 				6074C0BC268CCB3700DA3B21 /* APIConfigurable.swift in Sources */,
 				60F3BAC92694ACA6005798C1 /* AuthRequestInterceptor.swift in Sources */,
 				60944F3B268DC8460063CD61 /* Application+Injection.swift in Sources */,
+				6074792926A9B46B00F18693 /* UserProfileView.swift in Sources */,
 				60BF85B72699172E00890C0F /* SelectionCardView.swift in Sources */,
+				6074793B26A9D61F00F18693 /* RestaurantsService.swift in Sources */,
 				6000622A269644DB0085DF41 /* AuthRemoteRepository.swift in Sources */,
 				600062302696482F0085DF41 /* Discardable.swift in Sources */,
 				60173F3D269CF53D003C4E40 /* ActivityIndicatorView.swift in Sources */,
@@ -609,12 +636,14 @@
 				60E395382690917C007E459E /* TokensRequestDTO.swift in Sources */,
 				60A67196269B354A0083C0E9 /* LoginViewModel.swift in Sources */,
 				60006232269648C30085DF41 /* AuthService.swift in Sources */,
+				6074792D26A9B48A00F18693 /* RestaurantProfileView.swift in Sources */,
 				6097A7D126A0DD4200BC3534 /* AuthCredentials.swift in Sources */,
 				6074C0C0268CD41400DA3B21 /* NetworkingHelpers.swift in Sources */,
 				60E3953A2690918D007E459E /* TokensResponseDTO.swift in Sources */,
 				60BF85B22698F87700890C0F /* FloatingTextField.swift in Sources */,
 				60173F3B269CE55A003C4E40 /* RestaurantLoginResponseDTO.swift in Sources */,
 				60D32CC02699A83C00F6FDC9 /* RoundedGradientButtonStyle.swift in Sources */,
+				6074792F26A9B49300F18693 /* RestaurantProfileViewModel.swift in Sources */,
 				60A67198269B363E0083C0E9 /* EntityType.swift in Sources */,
 				60D32CE02699FA3100F6FDC9 /* UserRegistrationViewModel.swift in Sources */,
 				6071080926A8640D00008E44 /* AuthSelectionView.swift in Sources */,
@@ -622,7 +651,6 @@
 				60E4ED74268DEFC300EC4561 /* UsersRemoteRepository.swift in Sources */,
 				606C9AC526A76D20005AD06E /* TabBarView.swift in Sources */,
 				6000622C2696451A0085DF41 /* LoginRequestDTO.swift in Sources */,
-				60FF8C2E26A374A30050DA8A /* SecureLocalRepository.swift in Sources */,
 				6074C0B6268CADB100DA3B21 /* Store.swift in Sources */,
 				60E4ED6C268DD45400EC4561 /* ApplicationEventsHandler.swift in Sources */,
 				606531C726A43A3800C8C500 /* ProfileView.swift in Sources */,

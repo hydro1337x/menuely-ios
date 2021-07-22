@@ -69,7 +69,7 @@ struct UserRegistrationView: View {
 private extension UserRegistrationView {
     
     func loadingView() -> some View {
-        return ActivityIndicatorView().padding()
+        return ActivityIndicatorView()
     }
     
     func failedView(_ error: Error) -> some View {

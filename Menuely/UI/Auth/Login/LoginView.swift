@@ -62,7 +62,7 @@ struct LoginView: View {
 private extension LoginView {
     
     func loadingView() -> some View {
-        return ActivityIndicatorView().padding()
+        return ActivityIndicatorView()
     }
     
     func failedView(_ error: Error) -> some View {

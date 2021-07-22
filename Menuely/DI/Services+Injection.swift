@@ -13,6 +13,7 @@ extension Resolver {
         register { AuthRequestInterceptor() as RequestInterceptor }
         register { NetworkClient(session: AF, interceptor: resolve()) as Networking }
         register { UsersService() as UsersServicing }
+        register { RestaurantsService() as RestaurantsServicing }
         register { AuthService() as AuthServicing }
     }
 }

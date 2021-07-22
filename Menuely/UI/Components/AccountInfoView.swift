@@ -15,11 +15,6 @@ struct AccountInfoView: View {
     
     var body: some View {
         HStack {
-            Image(imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, 15)
-            
             VStack {
                 HStack {
                     Text(title)
@@ -50,6 +45,7 @@ struct AccountInfoView: View {
         }
         .frame(height: 60)
         .frame(maxWidth: .infinity)
+        .padding(.horizontal, 5)
     }
 }
 

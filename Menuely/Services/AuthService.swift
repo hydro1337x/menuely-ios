@@ -28,25 +28,23 @@ class AuthService: AuthServicing {
     
     @Injected private var remoteRepository: AuthRemoteRepositing
     @Injected private var appState: Store<AppState>
-    @Injected private var secureLocalRepository: SecureLocalRepositing
+    @Injected private var localRepository: LocalRepositing
     
     var cancelBag = CancelBag()
     
     // MARK: - Computed Properties
     var currentAuthenticatedEntity: EntityType? {
-        let authenticatedUser = secureLocalRepository.load(AuthenticatedUser.self, for: .authenticatedUser)
-        let authenticatedRestaurant = secureLocalRepository.load(AuthenticatedRestaurant.self, for: .authenticatedRestaurant)
         if authenticatedUser != nil { return .user }
         if authenticatedRestaurant != nil { return .restaurant }
         return nil
     }
     
     var authenticatedUser: AuthenticatedUser? {
-        return secureLocalRepository.load(AuthenticatedUser.self, for: .authenticatedUser)
+        return localRepository.load(AuthenticatedUser.self, for: .authenticatedUser)
     }
     
     var authenticatedRestaurant: AuthenticatedRestaurant? {
-        return secureLocalRepository.load(AuthenticatedRestaurant.self, for: .authenticatedRestaurant)
+        return localRepository.load(AuthenticatedRestaurant.self, for: .authenticatedRestaurant)
     }
     
     // MARK: - User
@@ -121,9 +119,7 @@ class AuthService: AuthServicing {
     func logout(logoutResult: LoadableSubject<Discardable>) {
         logoutResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
-        let authenticatedUser = secureLocalRepository.load(AuthenticatedUser.self, for: .authenticatedUser)
-        let authenticatedRestaurant = secureLocalRepository.load(AuthenticatedRestaurant.self, for: .authenticatedRestaurant)
-        let tokens = authenticatedUser?.auth ?? authenticatedRestaurant?.auth
+        let tokens = getTokens()
         
         guard let tokens = tokens else {
             logoutResult.wrappedValue = .failed(NetworkError.refreshTokenMissing)
@@ -147,19 +143,28 @@ class AuthService: AuthServicing {
     }
     
     private func saveAuthenticatedUser(_ authenticatedUser: AuthenticatedUser?) {
-        secureLocalRepository.save(authenticatedUser, for: .authenticatedUser)
+        localRepository.save(authenticatedUser, for: .authenticatedUser)
         appState[\.data.authenticatedUser] = authenticatedUser
     }
     
     private func saveAuthenticatedRestaurant(_ authenticatedRestaurant: AuthenticatedRestaurant?) {
-        secureLocalRepository.save(authenticatedRestaurant, for: .authenticatedRestaurant)
+        localRepository.save(authenticatedRestaurant, for: .authenticatedRestaurant)
         appState[\.data.authenticatedRestaurant] = authenticatedRestaurant
     }
     
     private func removeAuthenticatedEntity() {
-        secureLocalRepository.removeValue(for: .authenticatedUser)
-        secureLocalRepository.removeValue(for: .authenticatedRestaurant)
+        localRepository.removeValue(for: .authenticatedUser)
+        localRepository.removeValue(for: .authenticatedRestaurant)
         appState[\.data.authenticatedUser] = nil
         appState[\.data.authenticatedRestaurant] = nil
+    }
+    
+    private func getTokens() -> Tokens? {
+        switch appState[\.data.selectedEntity] {
+        case .user:
+             return authenticatedUser?.auth
+        case .restaurant:
+            return authenticatedRestaurant?.auth
+        }
     }
 }

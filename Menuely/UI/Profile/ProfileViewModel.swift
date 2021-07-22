@@ -10,13 +10,7 @@ import Resolver
 
 class ProfileViewModel: ObservableObject {
     // MARK: - Properties
-    @Published var routing: ProfileView.Routing {
-        didSet {
-            print("Set: ", routing)
-        }
-    }
-    
-    @Published var name: String
+    @Published var routing: ProfileView.Routing
     
     var appState: Store<AppState>
     private var cancelBag = CancelBag()
@@ -24,8 +18,6 @@ class ProfileViewModel: ObservableObject {
     // MARK: - Initialization
     init(appState: Store<AppState>) {
         self.appState = appState
-        
-        name = appState[\.data.authenticatedUser]?.user.firstname ?? ""
         
         _routing = .init(initialValue: appState[\.routing.profile])
         
