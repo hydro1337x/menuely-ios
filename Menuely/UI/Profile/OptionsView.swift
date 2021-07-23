@@ -39,7 +39,7 @@ struct OptionsView: View {
                 List(viewModel.options, id: \.self) { option in
                     if viewModel.navigatableOptions.contains(option) {
                         NavigationLink(
-                            destination: Text("Option: \(option.rawValue)"),
+                            destination: destinationView(for: option),
                             tag: option,
                             selection: $viewModel.routing.details,
                             label: {
@@ -100,6 +100,18 @@ struct OptionsView: View {
         }, label: {
             Text("Cancel")
         }))
+    }
+    
+    @ViewBuilder
+    func destinationView(for option: OptionType) -> some View {
+        switch option {
+        case .editProfile:
+            switch viewModel.appState[\.data.selectedEntity] {
+            case .user: EditUserProfileView()
+            case .restaurant: EditRestaurantProfileView()
+            }
+        default: EmptyView()
+        }
     }
 }
 

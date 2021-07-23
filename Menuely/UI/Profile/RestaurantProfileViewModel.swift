@@ -49,6 +49,16 @@ class RestaurantProfileViewModel: ObservableObject {
                 .map(\.routing.profile)
                 .removeDuplicates()
                 .assign(to: \.routing, on: self)
+            
+            appState
+                .map(\.data.shouldUpdateRestaurantProfileView)
+                .removeDuplicates()
+                .sink { shouldUpdateRestaurantProfileView in
+                    if shouldUpdateRestaurantProfileView {
+                        appState[\.data.shouldUpdateRestaurantProfileView] = false
+                        self.getRestaurantProfile()
+                    }
+                }
         }
     }
     
@@ -73,9 +83,5 @@ class RestaurantProfileViewModel: ObservableObject {
     
     func timeIntervalToString(_ timeInterval: TimeInterval) -> String {
         return dateUtility.formatToString(from: timeInterval, with: .full)
-    }
-    
-    func resetStates() {
-        restaurantProfile.reset()
     }
 }

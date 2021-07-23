@@ -21,6 +21,9 @@ extension AppState {
         var selectedEntity: EntityType = .user
         var authenticatedUser: AuthenticatedUser?
         var authenticatedRestaurant: AuthenticatedRestaurant?
+        
+        var shouldUpdateUserProfileView: Bool = false
+        var shouldUpdateRestaurantProfileView: Bool = false
     }
 }
 

@@ -48,6 +48,16 @@ class UserProfileViewModel: ObservableObject {
                 .map(\.routing.profile)
                 .removeDuplicates()
                 .assign(to: \.routing, on: self)
+            
+            appState
+                .map(\.data.shouldUpdateUserProfileView)
+                .removeDuplicates()
+                .sink { shouldUpdateUserProfileView in
+                    if shouldUpdateUserProfileView {
+                        appState[\.data.shouldUpdateUserProfileView] = false
+                        self.getUserProfile()
+                    }
+                }
         }
     }
     
@@ -72,9 +82,5 @@ class UserProfileViewModel: ObservableObject {
     
     func timeIntervalToString(_ timeInterval: TimeInterval) -> String {
         return dateUtility.formatToString(from: timeInterval, with: .full)
-    }
-    
-    func resetStates() {
-        userProfile.reset()
     }
 }

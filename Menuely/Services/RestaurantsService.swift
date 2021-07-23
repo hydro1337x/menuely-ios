@@ -14,6 +14,7 @@ protocol RestaurantsServicing {
     func getRestaurantProfile(restaurant: LoadableSubject<Restaurant>)
     func uploadImageAndGetRestaurantProfile(with dataParameters: DataParameters, ofKind kind: ImageKind, restaurant: LoadableSubject<Restaurant>)
     func uploadImage(with dataParameters: DataParameters, ofKind kind: ImageKind)
+    func updateRestaurantProfile(with restaurantUpdateProfileRequestDTO: RestaurantUpdateProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>)
 }
 
 class RestaurantsService: RestaurantsServicing {
@@ -44,7 +45,11 @@ class RestaurantsService: RestaurantsServicing {
                 remoteRepository.getRestaurantProfile()
             }
             .map { $0.data }
-            .sinkToLoadable { restaurant.wrappedValue = $0 }
+            .sinkToLoadable {
+                restaurant.wrappedValue = $0
+                
+                self.updateRestaurant($0.value)
+            }
             .store(in: cancelBag)
     }
     
@@ -60,7 +65,11 @@ class RestaurantsService: RestaurantsServicing {
                 remoteRepository.getRestaurantProfile()
             }
             .map { $0.data }
-            .sinkToLoadable { restaurant.wrappedValue = $0 }
+            .sinkToLoadable {
+                restaurant.wrappedValue = $0
+                
+                self.updateRestaurant($0.value)
+            }
             .store(in: cancelBag)
     }
     
@@ -73,5 +82,23 @@ class RestaurantsService: RestaurantsServicing {
             }
             .store(in: cancelBag)
 
+    }
+    
+    func updateRestaurantProfile(with restaurantUpdateProfileRequestDTO: RestaurantUpdateProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>) {
+        updateProfileResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
+        
+        Just<Void>
+            .withErrorType(Error.self)
+            .flatMap { [remoteRepository] in
+                remoteRepository.updateRestaurantProfile(with: restaurantUpdateProfileRequestDTO)
+            }
+            .sinkToLoadable { updateProfileResult.wrappedValue = $0 }
+            .store(in: cancelBag)
+    }
+    
+    func updateRestaurant(_ restaurant: Restaurant?) {
+        guard let tokens = appState[\.data.authenticatedRestaurant]?.auth, let restaurant = restaurant else { return }
+        let updatedAuthenticatedRestaurant = AuthenticatedRestaurant(restaurant: restaurant, auth: tokens)
+        appState[\.data.authenticatedRestaurant] = updatedAuthenticatedRestaurant
     }
 }

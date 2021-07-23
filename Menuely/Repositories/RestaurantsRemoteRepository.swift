@@ -14,6 +14,7 @@ protocol RestaurantsRemoteRepositing {
     func getRestaurants() -> AnyPublisher<RestaurantListResponseDTO, Error>
     func getRestaurantProfile() -> AnyPublisher<RestaurantResponseDTO, Error>
     func uploadImage(with parameters: [String: String], and dataParameters: DataParameters) -> AnyPublisher<Discardable, Error>
+    func updateRestaurantProfile(with restaurantUpdateProfileRequestDTO: RestaurantUpdateProfileRequestDTO) -> AnyPublisher<Discardable, Error>
 }
 
 class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
@@ -28,8 +29,11 @@ class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
     }
     
     func uploadImage(with parameters: [String: String], and dataParameters: DataParameters) -> AnyPublisher<Discardable, Error> {
-
-        return networkClient.upload(to: Endpoint.upload, with: parameters, and: dataParameters)
+        networkClient.upload(to: Endpoint.upload, with: parameters, and: dataParameters)
+    }
+    
+    func updateRestaurantProfile(with restaurantUpdateProfileRequestDTO: RestaurantUpdateProfileRequestDTO) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.updateRestaurantProfile(restaurantUpdateProfileRequestDTO))
     }
 }
 
@@ -40,6 +44,7 @@ extension RestaurantsRemoteRepository {
         case restaurants
         case restaurantProfile
         case upload
+        case updateRestaurantProfile(_: RestaurantUpdateProfileRequestDTO)
     }
 }
 
@@ -49,6 +54,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         case .restaurants: return "/restaurants"
         case .restaurantProfile: return "/restaurants/me"
         case .upload: return "/restaurants/me/image"
+        case .updateRestaurantProfile(_): return "/restaurants/me/profile"
         }
     }
     
@@ -57,6 +63,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         case .restaurants: return .get
         case .restaurantProfile: return .get
         case .upload: return .patch
+        case .updateRestaurantProfile(_): return .patch
         }
     }
     
@@ -65,6 +72,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         case .restaurants: return nil
         case .restaurantProfile: return nil
         case .upload: return nil
+        case .updateRestaurantProfile(_:): return ["Content-Type": "application/json"]
         }
     }
     
@@ -77,6 +85,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         case .restaurants: return nil
         case .restaurantProfile: return nil
         case .upload: return nil
+        case .updateRestaurantProfile(let restaurantUpdateProfileRequestDTO): return try restaurantUpdateProfileRequestDTO.asJSON()
         }
     }
 }

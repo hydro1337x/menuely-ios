@@ -20,5 +20,7 @@ extension Resolver {
         register { TabBarViewModel(appState: resolve()) }.scope(.shared)
         register { RootViewModel(authService: resolve(), appState: resolve()) }.scope(.shared)
         register { AuthSelectionViewModel(appState: resolve()) }.scope(.shared)
+        register { EditUserProfileViewModel(appState: resolve()) }.scope(.shared)
+        register { EditRestaurantProfileViewModel(appState: resolve()) }.scope(.shared)
     }
 }

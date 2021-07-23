@@ -16,9 +16,6 @@ struct UserProfileView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             content
-                .onAppear {
-                    viewModel.resetStates()
-                }
         }
         .sheet(isPresented: $viewModel.routing.isProfileImagePickerSheetPresented, content: {
             ImagePicker(image: $viewModel.selectedProfileImage)

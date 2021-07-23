@@ -14,6 +14,7 @@ protocol UsersServicing {
     func getUserProfile(user: LoadableSubject<User>)
     func uploadImageAndGetUserProfile(with dataParameters: DataParameters, ofKind kind: ImageKind, user: LoadableSubject<User>)
     func uploadImage(with dataParameters: DataParameters, ofKind kind: ImageKind, imageResult: LoadableSubject<Discardable>)
+    func updateUserProfile(with userUpdateProfileRequestDTO: UserUpdateProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>)
 }
 
 class UsersService: UsersServicing {
@@ -44,7 +45,11 @@ class UsersService: UsersServicing {
                 remoteRepository.getUserProfile()
             }
             .map { $0.data }
-            .sinkToLoadable { user.wrappedValue = $0 }
+            .sinkToLoadable {
+                user.wrappedValue = $0
+                
+                self.updateUser($0.value)
+            }
             .store(in: cancelBag)
     }
     
@@ -60,7 +65,11 @@ class UsersService: UsersServicing {
                 remoteRepository.getUserProfile()
             }
             .map { $0.data }
-            .sinkToLoadable { user.wrappedValue = $0 }
+            .sinkToLoadable {
+                user.wrappedValue = $0
+                
+                self.updateUser($0.value)
+            }
             .store(in: cancelBag)
     }
     
@@ -74,5 +83,23 @@ class UsersService: UsersServicing {
             }
             .sinkToLoadable { imageResult.wrappedValue = $0 }
             .store(in: cancelBag)
+    }
+    
+    func updateUserProfile(with userUpdateProfileRequestDTO: UserUpdateProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>) {
+        updateProfileResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
+        
+        Just<Void>
+            .withErrorType(Error.self)
+            .flatMap { [remoteRepository] in
+                remoteRepository.updateUserProfile(with: userUpdateProfileRequestDTO)
+            }
+            .sinkToLoadable { updateProfileResult.wrappedValue = $0 }
+            .store(in: cancelBag)
+    }
+    
+    func updateUser(_ user: User?) {
+        guard let tokens = appState[\.data.authenticatedUser]?.auth, let user = user else { return }
+        let updatedAuthenticatedUser = AuthenticatedUser(user: user, auth: tokens)
+        appState[\.data.authenticatedUser] = updatedAuthenticatedUser
     }
 }
