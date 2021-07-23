@@ -45,6 +45,8 @@ struct ProfileView: View {
 extension ProfileView {
     struct Routing: Equatable {
         var isOptionsSheetPresented: Bool = false
+        var isProfileImagePickerSheetPresented: Bool = false
+        var isCoverImagePickerSheetPresented: Bool = false
     }
 }
 

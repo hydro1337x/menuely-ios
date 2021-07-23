@@ -7,6 +7,7 @@
 
 import Foundation
 import Resolver
+import UIKit
 
 class UserProfileViewModel: ObservableObject {
     // MARK: - Properties
@@ -17,6 +18,16 @@ class UserProfileViewModel: ObservableObject {
     @Published var userProfile: Loadable<User>
     @Published var animateErrorView: Bool = false
     
+    var selectedProfileImage: UIImage? {
+        didSet {
+            uploadImageAndGetUserProfil(imagaKind: .profile)
+        }
+    }
+    var selectedCoverImage: UIImage? {
+        didSet {
+            uploadImageAndGetUserProfil(imagaKind: .cover)
+        }
+    }
     var appState: Store<AppState>
     private var cancelBag = CancelBag()
     
@@ -43,6 +54,20 @@ class UserProfileViewModel: ObservableObject {
     // MARK: - Methods
     func getUserProfile() {
         usersService.getUserProfile(user: loadableSubject(\.userProfile))
+    }
+    
+    func uploadImageAndGetUserProfil(imagaKind: ImageKind) {
+        var imageData: Data?
+        switch imagaKind {
+        case .profile:
+            imageData = selectedProfileImage?.jpegData(compressionQuality: 0.5)
+        default:
+            imageData = selectedCoverImage?.jpegData(compressionQuality: 0.5)
+        }
+        guard let imageData = imageData else { return }
+        let dataParameters = ["image": DataInfo(mimeType: .jpeg, file: imageData)]
+        userProfile.reset()
+        usersService.uploadImageAndGetUserProfile(with: dataParameters, ofKind: imagaKind, user: loadableSubject(\.userProfile))
     }
     
     func timeIntervalToString(_ timeInterval: TimeInterval) -> String {

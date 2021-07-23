@@ -67,10 +67,10 @@ private extension RestaurantProfileView {
 private extension RestaurantProfileView {
     func loadedView(_ restaurant: Restaurant, showLoading: Bool) -> some View {
         VStack {
-            ProfileHeaderView(coverImageUrl: restaurant.coverImage?.url ?? "",
-                              profileImageUrl: restaurant.profileImage?.url ?? "",
-                              name: restaurant.name,
-                              email: restaurant.email,
+            ProfileHeaderView(coverImageURL: restaurant.coverImage?.url ?? "",
+                              profileImageURL: restaurant.profileImage?.url ?? "",
+                              title: restaurant.name,
+                              subtitle: restaurant.email,
                               placeholderImageName: .restaurant)
                 .offset(y: -225)
             

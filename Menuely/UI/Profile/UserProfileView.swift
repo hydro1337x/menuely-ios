@@ -20,6 +20,12 @@ struct UserProfileView: View {
                     viewModel.resetStates()
                 }
         }
+        .sheet(isPresented: $viewModel.routing.isProfileImagePickerSheetPresented, content: {
+            ImagePicker(image: $viewModel.selectedProfileImage)
+        })
+        .sheet(isPresented: $viewModel.routing.isCoverImagePickerSheetPresented, content: {
+            ImagePicker(image: $viewModel.selectedCoverImage)
+        })
     }
 }
 
@@ -66,11 +72,17 @@ private extension UserProfileView {
 private extension UserProfileView {
     func loadedView(_ user: User, showLoading: Bool) -> some View {
         VStack {
-            ProfileHeaderView(coverImageUrl: user.coverImage?.url ?? "",
-                              profileImageUrl: user.profileImage?.url ?? "",
-                              name: user.name,
-                              email: user.email,
-                              placeholderImageName: .person)
+            ProfileHeaderView(coverImageURL: user.coverImage?.url ?? "",
+                              profileImageURL: user.profileImage?.url ?? "",
+                              title: user.name,
+                              subtitle: user.email,
+                              placeholderImageName: .person,
+                              onProfileImageTap: {
+                                viewModel.routing.isProfileImagePickerSheetPresented = true
+                              },
+                              onCoverImageTap: {
+                                viewModel.routing.isCoverImagePickerSheetPresented = true
+                              })
                 .offset(y: -225)
             
             AccountInfoView(title: "Account info:", body1: "Created at: \(viewModel.timeIntervalToString(user.createdAt))", body2: "Updated at: \(viewModel.timeIntervalToString(user.updatedAt))", imageName: .person)
