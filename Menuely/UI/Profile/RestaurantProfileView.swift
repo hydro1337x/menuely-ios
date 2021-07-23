@@ -20,6 +20,12 @@ struct RestaurantProfileView: View {
                     viewModel.resetStates()
                 }
         }
+        .sheet(isPresented: $viewModel.routing.isProfileImagePickerSheetPresented, content: {
+            ImagePicker(image: $viewModel.selectedProfileImage)
+        })
+        .sheet(isPresented: $viewModel.routing.isCoverImagePickerSheetPresented, content: {
+            ImagePicker(image: $viewModel.selectedCoverImage)
+        })
     }
 }
 
@@ -71,7 +77,13 @@ private extension RestaurantProfileView {
                               profileImageURL: restaurant.profileImage?.url ?? "",
                               title: restaurant.name,
                               subtitle: restaurant.email,
-                              placeholderImageName: .restaurant)
+                              placeholderImageName: .restaurant,
+                              onProfileImageTap: {
+                                viewModel.routing.isProfileImagePickerSheetPresented = true
+                              },
+                              onCoverImageTap: {
+                                viewModel.routing.isCoverImagePickerSheetPresented = true
+                              })
                 .offset(y: -225)
             
             DescriptionView(title: "Description:", text: restaurant.description)

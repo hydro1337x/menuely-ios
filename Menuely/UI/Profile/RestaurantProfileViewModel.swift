@@ -7,6 +7,7 @@
 
 import Foundation
 import Resolver
+import UIKit
 
 class RestaurantProfileViewModel: ObservableObject {
     // MARK: - Properties
@@ -16,6 +17,17 @@ class RestaurantProfileViewModel: ObservableObject {
     @Published var routing: ProfileView.Routing
     @Published var restaurantProfile: Loadable<Restaurant>
     @Published var animateErrorView: Bool = false
+    
+    var selectedProfileImage: UIImage? {
+        didSet {
+            uploadImageAndGetRestaurantProfil(imagaKind: .profile)
+        }
+    }
+    var selectedCoverImage: UIImage? {
+        didSet {
+            uploadImageAndGetRestaurantProfil(imagaKind: .cover)
+        }
+    }
     
     var appState: Store<AppState>
     private var cancelBag = CancelBag()
@@ -43,6 +55,20 @@ class RestaurantProfileViewModel: ObservableObject {
     // MARK: - Methods
     func getRestaurantProfile() {
         restaurantsService.getRestaurantProfile(restaurant: loadableSubject(\.restaurantProfile))
+    }
+    
+    func uploadImageAndGetRestaurantProfil(imagaKind: ImageKind) {
+        var imageData: Data?
+        switch imagaKind {
+        case .profile:
+            imageData = selectedProfileImage?.jpegData(compressionQuality: 0.5)
+        case .cover:
+            imageData = selectedCoverImage?.jpegData(compressionQuality: 0.5)
+        }
+        guard let imageData = imageData else { return }
+        let dataParameters = ["image": DataInfo(mimeType: .jpeg, file: imageData)]
+        restaurantProfile.reset()
+        restaurantsService.uploadImageAndGetRestaurantProfile(with: dataParameters, ofKind: imagaKind, restaurant: loadableSubject(\.restaurantProfile))
     }
     
     func timeIntervalToString(_ timeInterval: TimeInterval) -> String {

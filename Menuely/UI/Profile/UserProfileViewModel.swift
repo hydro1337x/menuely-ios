@@ -61,7 +61,7 @@ class UserProfileViewModel: ObservableObject {
         switch imagaKind {
         case .profile:
             imageData = selectedProfileImage?.jpegData(compressionQuality: 0.5)
-        default:
+        case .cover:
             imageData = selectedCoverImage?.jpegData(compressionQuality: 0.5)
         }
         guard let imageData = imageData else { return }
