@@ -15,6 +15,8 @@ struct UpdatePasswordView: View {
             staticContent
             dynamicContent
         }
+        .navigationBarTitle("Change password")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     var staticContent: some View {

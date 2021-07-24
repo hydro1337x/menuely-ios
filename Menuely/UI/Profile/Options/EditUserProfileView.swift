@@ -15,6 +15,8 @@ struct EditUserProfileView: View {
             staticContent
             dynamicContent
         }
+        .navigationBarTitle("Edit profile")
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             viewModel.loadFields()
         }

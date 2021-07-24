@@ -15,6 +15,8 @@ struct OptionsView: View {
             base
             dynamicContent
         }
+        .navigationBarTitle("Options")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     var base: some View {
@@ -51,8 +53,6 @@ struct OptionsView: View {
                 }
                 .padding(.top, 10)
             }
-            .navigationBarTitle("Options")
-            .navigationBarTitleDisplayMode(.inline)
             
         }.accentColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
     }
