@@ -44,16 +44,17 @@ private extension RestaurantProfileView {
             .onAppear(perform: viewModel.getRestaurantProfile)
     }
     
-    @ViewBuilder
     func loadingView(_ previouslyLoaded: Restaurant?) -> some View {
         if let restaurant = previouslyLoaded {
-            loadedView(restaurant, showLoading: true)
+            return AnyView(loadedView(restaurant, showLoading: true))
         } else {
-            ActivityIndicatorView()
+            viewModel.appState[\.routing.activityIndicator.isActive] = true
+            return AnyView(EmptyView())
         }
     }
     
     func failedView(_ error: Error) -> some View {
+        viewModel.appState[\.routing.activityIndicator.isActive] = false
         viewModel.appState[\.routing.error.message] = error.localizedDescription
         return EmptyView()
     }
@@ -63,7 +64,8 @@ private extension RestaurantProfileView {
 
 private extension RestaurantProfileView {
     func loadedView(_ restaurant: Restaurant, showLoading: Bool) -> some View {
-        VStack {
+        viewModel.appState[\.routing.activityIndicator.isActive] = false
+        return VStack {
             ProfileHeaderView(coverImageURL: restaurant.coverImage?.url ?? "",
                               profileImageURL: restaurant.profileImage?.url ?? "",
                               title: restaurant.name,

@@ -59,10 +59,12 @@ struct EditUserProfileView: View {
 private extension EditUserProfileView {
     
     func loadingView() -> some View {
-        return ActivityIndicatorView()
+        viewModel.appState[\.routing.activityIndicator.isActive] = true
+        return EmptyView()
     }
     
     func failedView(_ error: Error) -> some View {
+        viewModel.appState[\.routing.activityIndicator.isActive] = false
         viewModel.appState[\.routing.error.message] = error.localizedDescription
         return EmptyView()
     }
@@ -73,6 +75,7 @@ private extension EditUserProfileView {
 private extension EditUserProfileView {
     func loadedView(showLoading: Bool) -> some View {
         viewModel.resetStates()
+        viewModel.appState[\.routing.activityIndicator.isActive] = false
         viewModel.appState[\.data.shouldUpdateUserProfileView] = true
         viewModel.appState[\.routing.options.details] = nil
         return EmptyView()

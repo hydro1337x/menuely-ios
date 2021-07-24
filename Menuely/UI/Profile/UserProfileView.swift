@@ -43,16 +43,17 @@ private extension UserProfileView {
         Text("").onAppear(perform: viewModel.getUserProfile)
     }
     
-    @ViewBuilder
     func loadingView(_ previouslyLoaded: User?) -> some View {
         if let user = previouslyLoaded {
-            loadedView(user, showLoading: true)
+            return AnyView(loadedView(user, showLoading: true))
         } else {
-            ActivityIndicatorView()
+            viewModel.appState[\.routing.activityIndicator.isActive] = true
+            return AnyView(EmptyView())
         }
     }
     
     func failedView(_ error: Error) -> some View {
+        viewModel.appState[\.routing.activityIndicator.isActive] = false
         viewModel.appState[\.routing.error.message] = error.localizedDescription
         return EmptyView()
     }
@@ -62,7 +63,8 @@ private extension UserProfileView {
 
 private extension UserProfileView {
     func loadedView(_ user: User, showLoading: Bool) -> some View {
-        VStack {
+        viewModel.appState[\.routing.activityIndicator.isActive] = false
+        return VStack {
             ProfileHeaderView(coverImageURL: user.coverImage?.url ?? "",
                               profileImageURL: user.profileImage?.url ?? "",
                               title: user.name,

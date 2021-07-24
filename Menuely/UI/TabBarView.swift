@@ -14,7 +14,7 @@ struct TabBarView: View {
     @Injected var appState: Store<AppState>
     
     var body: some View {
-        TabView(selection: $viewModel.tab.animation()) {
+        TabView(selection: $viewModel.tab) {
             
             Text("Scan view")
             .tabItem { Label(
@@ -51,7 +51,7 @@ struct TabBarView: View {
         }
         .accentColor(Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1)))
         .animation(.easeInOut)
-        .transition(.slide)
+        .transition(.fade)
     }
 }
 

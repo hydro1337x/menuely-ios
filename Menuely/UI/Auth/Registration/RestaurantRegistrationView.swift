@@ -84,11 +84,13 @@ struct RestaurantRegistrationView: View {
 private extension RestaurantRegistrationView {
     
     func loadingView() -> some View {
-        return ActivityIndicatorView()
+        viewModel.appState[\.routing.activityIndicator.isActive] = true
+        return EmptyView()
     }
     
     func failedView(_ error: Error) -> some View {
         viewModel.resetStates()
+        viewModel.appState[\.routing.activityIndicator.isActive] = false
         viewModel.appState[\.routing.error.message] = error.localizedDescription
         return EmptyView()
     }
@@ -99,6 +101,7 @@ private extension RestaurantRegistrationView {
 private extension RestaurantRegistrationView {
     func loadedView(showLoading: Bool) -> some View {
         viewModel.loginViewRoute()
+        viewModel.appState[\.routing.activityIndicator.isActive] = false
         return EmptyView()
     }
 }

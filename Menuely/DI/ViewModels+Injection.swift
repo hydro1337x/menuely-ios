@@ -22,5 +22,8 @@ extension Resolver {
         register { AuthSelectionViewModel(appState: resolve()) }.scope(.shared)
         register { EditUserProfileViewModel(appState: resolve()) }.scope(.shared)
         register { EditRestaurantProfileViewModel(appState: resolve()) }.scope(.shared)
+        register { ErrorView.ViewModel(appState: resolve()) }.scope(.shared)
+        register { ActivityIndicatorView.ViewModel(appState: resolve()) }.scope(.shared)
+        register { AlertView.ViewModel(appState: resolve()) }.scope(.shared)
     }
 }

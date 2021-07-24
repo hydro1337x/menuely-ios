@@ -62,11 +62,13 @@ struct LoginView: View {
 private extension LoginView {
     
     func loadingView() -> some View {
-        return ActivityIndicatorView()
+        viewModel.appState[\.routing.activityIndicator.isActive] = true
+        return EmptyView()
     }
     
     func failedView(_ error: Error) -> some View {
         viewModel.resetStates()
+        viewModel.appState[\.routing.activityIndicator.isActive] = false
         viewModel.appState[\.routing.error.message] = error.localizedDescription
         return EmptyView()
     }
@@ -76,6 +78,7 @@ private extension LoginView {
 
 private extension LoginView {
     func loadedView(showLoading: Bool) -> some View {
+        viewModel.appState[\.routing.activityIndicator.isActive] = false
         viewModel.tabBarViewRoute()
         return EmptyView()
     }

@@ -40,6 +40,8 @@ extension AppState {
         var profile: ProfileView.Routing = ProfileView.Routing()
         var options: OptionsView.Routing = OptionsView.Routing()
         var error: ErrorView.Routing = ErrorView.Routing()
+        var activityIndicator: ActivityIndicatorView.Routing = ActivityIndicatorView.Routing()
+        var alert: AlertView.Routing = AlertView.Routing()
     }
 }
 

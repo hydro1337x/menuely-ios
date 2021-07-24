@@ -41,6 +41,7 @@ class OptionsViewModel: ObservableObject {
     
     // MARK: - Methods
     func logout() {
+        appState[\.routing.alert.configuration] = nil
         authService.logout(logoutResult: loadableSubject(\.logoutResult))
     }
     
@@ -51,5 +52,29 @@ class OptionsViewModel: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.appState[\.routing.root] = .auth
         }
+    }
+    
+    func dismissAlertView() {
+        self.appState[\.routing.alert.configuration] = nil
+    }
+    
+    func logoutAlertView() {
+        let configuration = AlertViewConfiguration(title: "Logout?",
+                                                   message: "Are you sure you want to logout?",
+                                                   primaryButtonTitle: "Logout",
+                                                   secondaryButtonTitle: "Cancel",
+                                                   primaryAction: logout,
+                                                   secondaryAction: dismissAlertView)
+        appState[\.routing.alert.configuration] = configuration
+    }
+    
+    func deleteAccountAlertView() {
+        let configuration = AlertViewConfiguration(title: "Delete account?",
+                                                   message: "Are you sure you want to delete your account?",
+                                                   primaryButtonTitle: "Delete",
+                                                   secondaryButtonTitle: "Cancel",
+                                                   primaryAction: nil,
+                                                   secondaryAction: dismissAlertView)
+        appState[\.routing.alert.configuration] = configuration
     }
 }

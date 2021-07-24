@@ -10,19 +10,10 @@ import SwiftUI
 struct OptionsView: View {
     @InjectedObservedObject private var viewModel: OptionsViewModel
     
-    @State private var isLogoutAlertShown: Bool = false
-    @State private var isDeleteAccountAlertShown: Bool = false
-    
     var body: some View {
         ZStack {
             base
             dynamicContent
-            if isLogoutAlertShown {
-                logoutAlertView
-            }
-            if isDeleteAccountAlertShown {
-                deleteAccountAlertView
-            }
         }
     }
     
@@ -51,8 +42,8 @@ struct OptionsView: View {
                             .frame(height: 48)
                             .onTapGesture {
                                 switch option {
-                                case .logout: isLogoutAlertShown = true
-                                case .deleteAccount: isDeleteAccountAlertShown = true
+                                case .logout: viewModel.logoutAlertView()
+                                case .deleteAccount: viewModel.deleteAccountAlertView()
                                 default: break
                                 }
                             }
@@ -76,31 +67,6 @@ struct OptionsView: View {
         }
     }
     
-    var logoutAlertView: some View {
-        AlertView(title: "Logout?", message: "Are you sure you want to logout?", primaryButton: Button(action: {
-            viewModel.logout()
-            isLogoutAlertShown = false
-        }, label: {
-            Text("Logout")
-        }), secondaryButton: Button(action: {
-            isLogoutAlertShown = false
-        }, label: {
-            Text("Cancel")
-        }))
-    }
-    
-    var deleteAccountAlertView: some View {
-        AlertView(title: "Delete account?", message: "Are you sure you want to delete your account?", primaryButton: Button(action: {
-            // Delete account
-        }, label: {
-            Text("Delete")
-        }), secondaryButton: Button(action: {
-            isDeleteAccountAlertShown = false
-        }, label: {
-            Text("Cancel")
-        }))
-    }
-    
     @ViewBuilder
     func destinationView(for option: OptionType) -> some View {
         switch option {
@@ -119,10 +85,12 @@ struct OptionsView: View {
 private extension OptionsView {
     
     func loadingView() -> some View {
-        return ActivityIndicatorView().padding()
+        viewModel.appState[\.routing.activityIndicator.isActive] = true
+        return EmptyView()
     }
     
     func failedView(_ error: Error) -> some View {
+        viewModel.appState[\.routing.activityIndicator.isActive] = false
         viewModel.appState[\.routing.error.message] = error.localizedDescription
         return EmptyView()
     }
@@ -132,6 +100,7 @@ private extension OptionsView {
 
 private extension OptionsView {
     func loadedView(showLoading: Bool) -> some View {
+        viewModel.appState[\.routing.activityIndicator.isActive] = false
         viewModel.authSelectionViewRoute()
         return EmptyView()
     }
