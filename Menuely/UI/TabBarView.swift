@@ -45,6 +45,8 @@ struct TabBarView: View {
             .tag(TabBarView.Routing.profile)
         }
         .accentColor(Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1)))
+        .animation(.easeInOut)
+        .transition(.slide)
     }
 }
 

@@ -17,6 +17,9 @@ struct EditUserProfileView: View {
             staticContent
             dynamicContent
         }
+        .onAppear {
+            viewModel.loadFields()
+        }
     }
     
     var staticContent: some View {

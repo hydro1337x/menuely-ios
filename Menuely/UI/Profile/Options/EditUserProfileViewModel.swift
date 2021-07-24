@@ -27,11 +27,6 @@ class EditUserProfileViewModel: ObservableObject {
         
         _updateProfileResult = .init(initialValue: updateProfileResult)
         
-        if let user = appState[\.data.authenticatedUser]?.user {
-            firstname = user.firstname
-            lastname = user.lastname
-        }
-        
         $updateProfileResult.sink { loadable in
             switch loadable {
             case .failed(_): self.animateErrorView = true
@@ -49,5 +44,12 @@ class EditUserProfileViewModel: ObservableObject {
     
     func resetStates() {
         updateProfileResult.reset()
+    }
+    
+    func loadFields() {
+        if let user = appState[\.data.authenticatedUser]?.user {
+            firstname = user.firstname
+            lastname = user.lastname
+        }
     }
 }
