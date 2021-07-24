@@ -25,6 +25,6 @@ struct OptionItemView: View {
 
 struct OptionItemView_Previews: PreviewProvider {
     static var previews: some View {
-        OptionItemView(option: OptionType.editProfile, imageName: .forwardArrow)
+        OptionItemView(option: OptionType.updateProfile, imageName: .forwardArrow)
     }
 }

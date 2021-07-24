@@ -16,6 +16,7 @@ protocol UsersRemoteRepositing {
     func uploadImage(with parameters: [String: String], and dataParameters: DataParameters) -> AnyPublisher<Discardable, Error>
     func updateUserProfile(with userUpdateProfileRequestDTO: UserUpdateProfileRequestDTO) -> AnyPublisher<Discardable, Error>
     func updateUserPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO) -> AnyPublisher<Discardable, Error>
+    func updateUserEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO) -> AnyPublisher<Discardable, Error>
 }
 
 class UsersRemoteRepository: UsersRemoteRepositing {
@@ -40,6 +41,10 @@ class UsersRemoteRepository: UsersRemoteRepositing {
     func updateUserPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO) -> AnyPublisher<Discardable, Error> {
         networkClient.request(endpoint: Endpoint.updateUserPassword(updatePasswordRequestDTO))
     }
+    
+    func updateUserEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.updateUserEmail(updateEmailRequestDTO))
+    }
 }
 
 // MARK: - Endpoints
@@ -51,6 +56,7 @@ extension UsersRemoteRepository {
         case upload
         case updateUserProfile(_: UserUpdateProfileRequestDTO)
         case updateUserPassword(_: UpdatePasswordRequestDTO)
+        case updateUserEmail(_: UpdateEmailRequestDTO)
     }
 }
 
@@ -62,6 +68,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
         case .upload: return "/users/me/image"
         case .updateUserProfile: return "/users/me/profile"
         case .updateUserPassword: return "/users/me/password"
+        case .updateUserEmail: return "/users/me/email"
         }
     }
     
@@ -72,6 +79,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
         case .upload: return .patch
         case .updateUserProfile: return .patch
         case .updateUserPassword: return .patch
+        case .updateUserEmail: return .patch
         }
     }
     
@@ -82,6 +90,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
         case .upload: return nil
         case .updateUserProfile: return ["Content-Type": "application/json"]
         case .updateUserPassword: return ["Content-Type": "application/json"]
+        case .updateUserEmail: return ["Content-Type": "application/json"]
         }
     }
     
@@ -96,6 +105,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
         case .upload: return nil
         case .updateUserProfile(let userUpdateProfileRequestDTO): return try userUpdateProfileRequestDTO.asJSON()
         case .updateUserPassword(let updatePasswordRequestDTO): return try updatePasswordRequestDTO.asJSON()
+        case .updateUserEmail(let updateEmailRequestDTO): return try updateEmailRequestDTO.asJSON()
         }
     }
 }

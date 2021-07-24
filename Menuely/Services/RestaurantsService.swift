@@ -16,6 +16,7 @@ protocol RestaurantsServicing {
     func uploadImage(with dataParameters: DataParameters, ofKind kind: ImageKind, imageResult: LoadableSubject<Discardable>)
     func updateRestaurantProfile(with restaurantUpdateProfileRequestDTO: RestaurantUpdateProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>)
     func updateRestaurantPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO, updatePasswordResult: LoadableSubject<Discardable>)
+    func updateRestaurantEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO, updateEmailResult: LoadableSubject<Discardable>)
 }
 
 class RestaurantsService: RestaurantsServicing {
@@ -107,6 +108,18 @@ class RestaurantsService: RestaurantsServicing {
                 remoteRepository.updateRestaurantPassword(with: updatePasswordRequestDTO)
             }
             .sinkToLoadable { updatePasswordResult.wrappedValue = $0 }
+            .store(in: cancelBag)
+    }
+    
+    func updateRestaurantEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO, updateEmailResult: LoadableSubject<Discardable>) {
+        updateEmailResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
+        
+        Just<Void>
+            .withErrorType(Error.self)
+            .flatMap { [remoteRepository] in
+                remoteRepository.updateRestaurantEmail(with: updateEmailRequestDTO)
+            }
+            .sinkToLoadable { updateEmailResult.wrappedValue = $0 }
             .store(in: cancelBag)
     }
     

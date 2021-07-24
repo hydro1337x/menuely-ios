@@ -70,12 +70,13 @@ struct OptionsView: View {
     @ViewBuilder
     func destinationView(for option: OptionType) -> some View {
         switch option {
-        case .editProfile:
+        case .updateProfile:
             switch viewModel.appState[\.data.selectedEntity] {
             case .user: EditUserProfileView()
             case .restaurant: EditRestaurantProfileView()
             }
         case .updatePassword: UpdatePasswordView()
+        case .updateEmail: UpdateEmailView()
         default: EmptyView()
         }
     }

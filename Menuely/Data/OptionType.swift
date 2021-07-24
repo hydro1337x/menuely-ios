@@ -8,8 +8,9 @@
 import Foundation
 
 enum OptionType: String, Equatable {
-    case editProfile = "Edit profile"
+    case updateProfile = "Edit profile"
     case updatePassword = "Change password"
+    case updateEmail = "Change email"
     case switchToEmployee = "Switch to employee"
     case swithToUser = "Switch to user"
     case logout = "Logout"
