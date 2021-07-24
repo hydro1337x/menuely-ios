@@ -57,7 +57,9 @@ struct RestaurantRegistrationView: View {
                 .buttonStyle(RoundedGradientButtonStyle())
                 
                 Button(action: {
-                    viewModel.loginViewRoute()
+                    withAnimation {
+                        viewModel.loginViewRoute()
+                    }
                 }, label: {
                     Text("Already registered?")
                         .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))

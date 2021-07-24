@@ -14,15 +14,12 @@ struct AuthSelectionView: View {
         
         Spacer()
         
-        Picker("Auth", selection: $viewModel.selectedEntity) {
+        Picker("Auth", selection: $viewModel.selectedEntity.animation()) {
             Text("Restaurant").tag(EntityType.restaurant)
             Text("User").tag(EntityType.user)
         }
         .pickerStyle(SegmentedPickerStyle())
         .padding(.horizontal, 30)
-        .onChange(of: viewModel.routing, perform: { value in
-            viewModel.routing = value
-        })
         
         VStack {
             switch (viewModel.routing.selectedAuth, viewModel.selectedEntity) {
@@ -32,6 +29,7 @@ struct AuthSelectionView: View {
             case (.registration, .restaurant): RestaurantRegistrationView()
             }
         }
+        .transition(.opacity)
         
         Spacer()
     }

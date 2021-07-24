@@ -36,7 +36,9 @@ struct LoginView: View {
             .buttonStyle(RoundedGradientButtonStyle())
             
             Button(action: {
-                viewModel.registrationViewRoute()
+                withAnimation {
+                    viewModel.registrationViewRoute()
+                }
             }, label: {
                 Text("Don't have an account?")
                     .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
