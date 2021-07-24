@@ -47,9 +47,9 @@ class EditUserProfileViewModel: ObservableObject {
     }
     
     func loadFields() {
-        if let user = appState[\.data.authenticatedUser]?.user {
-            firstname = user.firstname
-            lastname = user.lastname
-        }
+        guard let user = appState[\.data.authenticatedUser]?.user else { return }
+        
+        firstname = user.firstname
+        lastname = user.lastname
     }
 }

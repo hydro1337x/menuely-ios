@@ -31,15 +31,6 @@ class EditRestaurantProfileViewModel: ObservableObject {
         
         _updateProfileResult = .init(initialValue: updateProfileResult)
         
-        if let restaurant = appState[\.data.authenticatedRestaurant]?.restaurant {
-            name = restaurant.name
-            description = restaurant.description
-            country = restaurant.country
-            city = restaurant.city
-            address = restaurant.address
-            postalCode = restaurant.postalCode
-        }
-        
         $updateProfileResult.sink { loadable in
             switch loadable {
             case .failed(_): self.animateErrorView = true
@@ -62,5 +53,16 @@ class EditRestaurantProfileViewModel: ObservableObject {
     
     func resetStates() {
         updateProfileResult.reset()
+    }
+    
+    func loadFields() {
+        guard let restaurant = appState[\.data.authenticatedRestaurant]?.restaurant else { return }
+        
+        name = restaurant.name
+        description = restaurant.description
+        country = restaurant.country
+        city = restaurant.city
+        address = restaurant.address
+        postalCode = restaurant.postalCode
     }
 }
