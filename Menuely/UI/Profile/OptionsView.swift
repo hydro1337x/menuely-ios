@@ -75,6 +75,7 @@ struct OptionsView: View {
             case .user: EditUserProfileView()
             case .restaurant: EditRestaurantProfileView()
             }
+        case .updatePassword: UpdatePasswordView()
         default: EmptyView()
         }
     }

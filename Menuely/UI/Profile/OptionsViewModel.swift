@@ -17,8 +17,8 @@ class OptionsViewModel: ObservableObject {
     
     var appState: Store<AppState>
     var cancelBag = CancelBag()
-    var options: [OptionType] = [.editProfile, .changePassword, .deleteAccount, .logout]
-    var navigatableOptions: [OptionType] = [.editProfile, .changePassword]
+    var options: [OptionType] = [.editProfile, .updatePassword, .deleteAccount, .logout]
+    var navigatableOptions: [OptionType] = [.editProfile, .updatePassword]
     
     // MARK: - Initialization
     init(appState: Store<AppState>, logoutResult: Loadable<Discardable> = .notRequested) {

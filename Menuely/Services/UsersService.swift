@@ -15,6 +15,7 @@ protocol UsersServicing {
     func uploadImageAndGetUserProfile(with dataParameters: DataParameters, ofKind kind: ImageKind, user: LoadableSubject<User>)
     func uploadImage(with dataParameters: DataParameters, ofKind kind: ImageKind, imageResult: LoadableSubject<Discardable>)
     func updateUserProfile(with userUpdateProfileRequestDTO: UserUpdateProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>)
+    func updateUserPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO, updatePasswordResult: LoadableSubject<Discardable>)
 }
 
 class UsersService: UsersServicing {
@@ -94,6 +95,18 @@ class UsersService: UsersServicing {
                 remoteRepository.updateUserProfile(with: userUpdateProfileRequestDTO)
             }
             .sinkToLoadable { updateProfileResult.wrappedValue = $0 }
+            .store(in: cancelBag)
+    }
+    
+    func updateUserPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO, updatePasswordResult: LoadableSubject<Discardable>) {
+        updatePasswordResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
+        
+        Just<Void>
+            .withErrorType(Error.self)
+            .flatMap { [remoteRepository] in
+                remoteRepository.updateUserPassword(with: updatePasswordRequestDTO)
+            }
+            .sinkToLoadable { updatePasswordResult.wrappedValue = $0 }
             .store(in: cancelBag)
     }
     

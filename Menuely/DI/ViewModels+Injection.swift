@@ -25,5 +25,6 @@ extension Resolver {
         register { ErrorView.ViewModel(appState: resolve()) }.scope(.shared)
         register { ActivityIndicatorView.ViewModel(appState: resolve()) }.scope(.shared)
         register { AlertView.ViewModel(appState: resolve()) }.scope(.shared)
+        register { UpdatePasswordViewModel(appState: resolve()) }.scope(.shared)
     }
 }
