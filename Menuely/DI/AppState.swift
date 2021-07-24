@@ -22,8 +22,8 @@ extension AppState {
         var authenticatedUser: AuthenticatedUser?
         var authenticatedRestaurant: AuthenticatedRestaurant?
         
-        var shouldUpdateUserProfileView: Bool = false
-        var shouldUpdateRestaurantProfileView: Bool = false
+        var updateUserProfileView: Bool = false
+        var updateRestaurantProfileView: Bool = false
     }
 }
 

@@ -13,8 +13,9 @@ protocol RestaurantsServicing {
     func get(restaurants: LoadableSubject<[Restaurant]>, search: String)
     func getRestaurantProfile(restaurant: LoadableSubject<Restaurant>)
     func uploadImageAndGetRestaurantProfile(with dataParameters: DataParameters, ofKind kind: ImageKind, restaurant: LoadableSubject<Restaurant>)
-    func uploadImage(with dataParameters: DataParameters, ofKind kind: ImageKind)
+    func uploadImage(with dataParameters: DataParameters, ofKind kind: ImageKind, imageResult: LoadableSubject<Discardable>)
     func updateRestaurantProfile(with restaurantUpdateProfileRequestDTO: RestaurantUpdateProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>)
+    func updateRestaurantPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO, updatePasswordResult: LoadableSubject<Discardable>)
 }
 
 class RestaurantsService: RestaurantsServicing {
@@ -73,15 +74,16 @@ class RestaurantsService: RestaurantsServicing {
             .store(in: cancelBag)
     }
     
-    func uploadImage(with dataParameters: DataParameters, ofKind kind: ImageKind) {
-        remoteRepository.uploadImage(with: kind.asParameter, and: dataParameters)
-            .sink { completion in
-                print("Upload complete: ", completion)
-            } receiveValue: { discardable in
-//                print(discardable)
+    func uploadImage(with dataParameters: DataParameters, ofKind kind: ImageKind, imageResult: LoadableSubject<Discardable>) {
+        imageResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
+        
+        Just<Void>
+            .withErrorType(Error.self)
+            .flatMap { [remoteRepository] in
+                remoteRepository.uploadImage(with: kind.asParameter, and: dataParameters)
             }
+            .sinkToLoadable { imageResult.wrappedValue = $0 }
             .store(in: cancelBag)
-
     }
     
     func updateRestaurantProfile(with restaurantUpdateProfileRequestDTO: RestaurantUpdateProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>) {
@@ -93,6 +95,18 @@ class RestaurantsService: RestaurantsServicing {
                 remoteRepository.updateRestaurantProfile(with: restaurantUpdateProfileRequestDTO)
             }
             .sinkToLoadable { updateProfileResult.wrappedValue = $0 }
+            .store(in: cancelBag)
+    }
+    
+    func updateRestaurantPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO, updatePasswordResult: LoadableSubject<Discardable>) {
+        updatePasswordResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
+        
+        Just<Void>
+            .withErrorType(Error.self)
+            .flatMap { [remoteRepository] in
+                remoteRepository.updateRestaurantPassword(with: updatePasswordRequestDTO)
+            }
+            .sinkToLoadable { updatePasswordResult.wrappedValue = $0 }
             .store(in: cancelBag)
     }
     

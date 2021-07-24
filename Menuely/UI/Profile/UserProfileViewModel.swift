@@ -49,11 +49,11 @@ class UserProfileViewModel: ObservableObject {
                 .assign(to: \.routing, on: self)
             
             appState
-                .map(\.data.shouldUpdateUserProfileView)
+                .map(\.data.updateUserProfileView)
                 .removeDuplicates()
                 .sink { shouldUpdateUserProfileView in
                     if shouldUpdateUserProfileView {
-                        appState[\.data.shouldUpdateUserProfileView] = false
+                        appState[\.data.updateUserProfileView] = false
                         self.getUserProfile()
                     }
                 }

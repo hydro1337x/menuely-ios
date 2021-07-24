@@ -50,11 +50,11 @@ class RestaurantProfileViewModel: ObservableObject {
                 .assign(to: \.routing, on: self)
             
             appState
-                .map(\.data.shouldUpdateRestaurantProfileView)
+                .map(\.data.updateRestaurantProfileView)
                 .removeDuplicates()
                 .sink { shouldUpdateRestaurantProfileView in
                     if shouldUpdateRestaurantProfileView {
-                        appState[\.data.shouldUpdateRestaurantProfileView] = false
+                        appState[\.data.updateRestaurantProfileView] = false
                         self.getRestaurantProfile()
                     }
                 }

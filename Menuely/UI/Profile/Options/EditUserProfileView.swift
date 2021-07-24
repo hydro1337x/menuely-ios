@@ -76,7 +76,7 @@ private extension EditUserProfileView {
     func loadedView(showLoading: Bool) -> some View {
         viewModel.resetStates()
         viewModel.appState[\.routing.activityIndicator.isActive] = false
-        viewModel.appState[\.data.shouldUpdateUserProfileView] = true
+        viewModel.appState[\.data.updateUserProfileView] = true
         viewModel.appState[\.routing.options.details] = nil
         return EmptyView()
     }

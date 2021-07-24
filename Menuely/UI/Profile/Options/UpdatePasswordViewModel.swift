@@ -33,8 +33,7 @@ class UpdatePasswordViewModel: ObservableObject {
         let updatePasswordRequestDTO = UpdatePasswordRequestDTO(oldPassword: oldPassword, newPassword: newPassword, repeatedNewPassword: repeatedNewPassword)
         switch appState[\.data.selectedEntity] {
         case .user: updateUserPassword(with: updatePasswordRequestDTO)
-            
-        case .restaurant: break
+        case .restaurant: updateRestaurantPassword(with: updatePasswordRequestDTO)
         }
     }
     
@@ -43,11 +42,15 @@ class UpdatePasswordViewModel: ObservableObject {
     }
     
     func updateRestaurantPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO) {
-        
+        restaurantsService.updateRestaurantPassword(with: updatePasswordRequestDTO, updatePasswordResult: loadableSubject(\.updatePasswordResult))
     }
     
     func updateProfile() {
-        appState[\.data.shouldUpdateUserProfileView] = true
+        switch appState[\.data.selectedEntity] {
+        case .user: appState[\.data.updateUserProfileView] = true
+        case .restaurant: appState[\.data.updateRestaurantProfileView] = true
+        }
+        
     }
     
     func resetStates() {

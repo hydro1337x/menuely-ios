@@ -17,6 +17,9 @@ struct EditRestaurantProfileView: View {
             staticContent
             dynamicContent
         }
+        .onAppear {
+            viewModel.loadFields()
+        }
     }
     
     var staticContent: some View {
@@ -87,7 +90,7 @@ private extension EditRestaurantProfileView {
     func loadedView(showLoading: Bool) -> some View {
         viewModel.resetStates()
         viewModel.appState[\.routing.activityIndicator.isActive] = false
-        viewModel.appState[\.data.shouldUpdateRestaurantProfileView] = true
+        viewModel.appState[\.data.updateRestaurantProfileView] = true
         viewModel.appState[\.routing.options.details] = nil
         return EmptyView()
     }
