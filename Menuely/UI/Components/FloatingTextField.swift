@@ -11,9 +11,9 @@ struct FloatingTextField: View {
     @Binding private var text: String
     
     @State private var separatorColor: Color = Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1))
-    @State private var placeholderColor: Color = Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1))
-    @State private var placeholderOffset: CGFloat = 0
-    @State private var placeholderScale: CGFloat = 1
+    @State private var placeholderColor: Color
+    @State private var placeholderOffset: CGFloat
+    @State private var placeholderScale: CGFloat
     
      
     private let title: String
@@ -21,6 +21,15 @@ struct FloatingTextField: View {
     init(text: Binding<String>, title: String) {
         self._text = text
         self.title = title
+        if !text.wrappedValue.isEmpty {
+            placeholderColor = Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1))
+            placeholderOffset = -25
+            placeholderScale = 0.75
+        } else {
+            placeholderColor = Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1))
+            placeholderOffset = 0
+            placeholderScale = 1
+        }
     }
     
     var body: some View {
