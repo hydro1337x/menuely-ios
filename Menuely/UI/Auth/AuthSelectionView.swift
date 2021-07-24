@@ -19,6 +19,7 @@ struct AuthSelectionView: View {
             Text("User").tag(EntityType.user)
         }
         .pickerStyle(SegmentedPickerStyle())
+        .padding(.horizontal, 30)
         .onChange(of: viewModel.routing, perform: { value in
             viewModel.routing = value
         })
