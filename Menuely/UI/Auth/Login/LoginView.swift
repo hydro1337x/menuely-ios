@@ -10,8 +10,6 @@ import SwiftUI
 struct LoginView: View {
     @InjectedObservedObject private var viewModel: LoginViewModel
     
-    @State private var animateErrorView: Bool = false
-    
     var body: some View {
         ZStack {
             base
@@ -68,12 +66,9 @@ private extension LoginView {
     }
     
     func failedView(_ error: Error) -> some View {
-        ErrorView(isAnimating: $animateErrorView, message: error.localizedDescription) {
-            viewModel.animateErrorView = false
-        }
-        .onReceive(viewModel.$animateErrorView, perform: { value in
-            animateErrorView = value
-        })
+        viewModel.resetStates()
+        viewModel.appState[\.routing.error.message] = error.localizedDescription
+        return EmptyView()
     }
 }
 

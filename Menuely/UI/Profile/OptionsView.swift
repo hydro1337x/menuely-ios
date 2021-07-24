@@ -12,7 +12,6 @@ struct OptionsView: View {
     
     @State private var isLogoutAlertShown: Bool = false
     @State private var isDeleteAccountAlertShown: Bool = false
-    @State private var animateErrorView: Bool = false
     
     var body: some View {
         ZStack {
@@ -124,12 +123,8 @@ private extension OptionsView {
     }
     
     func failedView(_ error: Error) -> some View {
-        ErrorView(isAnimating: $animateErrorView, message: error.localizedDescription) {
-            viewModel.animateErrorView = false
-        }
-        .onReceive(viewModel.$animateErrorView, perform: { value in
-            animateErrorView = value
-        })
+        viewModel.appState[\.routing.error.message] = error.localizedDescription
+        return EmptyView()
     }
 }
 

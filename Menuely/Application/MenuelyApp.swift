@@ -15,8 +15,10 @@ struct MenuelyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RootView()
+            RootView()                
+                .modifier(PopoversViewModifier())
                 .modifier(RootViewAppearance())
+                
         }
     }
 }

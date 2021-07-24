@@ -16,7 +16,6 @@ class RestaurantProfileViewModel: ObservableObject {
     
     @Published var routing: ProfileView.Routing
     @Published var restaurantProfile: Loadable<Restaurant>
-    @Published var animateErrorView: Bool = false
     
     var selectedProfileImage: UIImage? {
         didSet {

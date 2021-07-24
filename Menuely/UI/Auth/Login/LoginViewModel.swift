@@ -22,8 +22,6 @@ class LoginViewModel: ObservableObject {
     @Published private var authenticatedUser: Loadable<AuthenticatedUser>
     @Published private var authenticatedRestaurant: Loadable<AuthenticatedRestaurant>
     
-    @Published var animateErrorView: Bool = false
-    
     var appState: Store<AppState>
     let cancelBag = CancelBag()
     
@@ -50,19 +48,15 @@ class LoginViewModel: ObservableObject {
         $authenticatedUser.map { loadable -> Loadable<Discardable> in
             switch loadable {
             case .notRequested:
-                self.animateErrorView = false
                 return Loadable<Discardable>.notRequested
                 
             case .isLoading(_, let cancelBag):
-                self.animateErrorView = false
                 return Loadable<Discardable>.isLoading(last: Discardable(), cancelBag: cancelBag)
                 
             case .loaded(_):
-                self.animateErrorView = false
                 return Loadable<Discardable>.loaded(Discardable())
                 
             case .failed(let error):
-                self.animateErrorView = true
                 return Loadable<Discardable>.failed(error)
             }
         }
@@ -72,19 +66,15 @@ class LoginViewModel: ObservableObject {
         $authenticatedRestaurant.map { loadable -> Loadable<Discardable> in
             switch loadable {
             case .notRequested:
-                self.animateErrorView = false
                 return Loadable<Discardable>.notRequested
                 
             case .isLoading(_, let cancelBag):
-                self.animateErrorView = false
                 return Loadable<Discardable>.isLoading(last: Discardable(), cancelBag: cancelBag)
                 
             case .loaded(_):
-                self.animateErrorView = false
                 return Loadable<Discardable>.loaded(Discardable())
                 
             case .failed(let error):
-                self.animateErrorView = true
                 return Loadable<Discardable>.failed(error)
             }
         }
@@ -115,9 +105,13 @@ class LoginViewModel: ObservableObject {
     }
     
     func tabBarViewRoute() {
-        loginResult.reset()
+        resetStates()
         email = ""
         password = ""
         appState[\.routing.root] = .tabs
+    }
+    
+    func resetStates() {
+        loginResult.reset()
     }
 }

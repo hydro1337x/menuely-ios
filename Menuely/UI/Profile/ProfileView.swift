@@ -34,6 +34,8 @@ struct ProfileView: View {
             }))
             .sheet(isPresented: $viewModel.routing.isOptionsSheetPresented, content: {
                 OptionsView()
+                    .modifier(PopoversViewModifier())
+                    .modifier(RootViewAppearance())
                     .onDisappear {
                         viewModel.resetNavigationStack()
                     }

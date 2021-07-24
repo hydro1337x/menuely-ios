@@ -11,8 +11,6 @@ import SDWebImageSwiftUI
 struct UserProfileView: View {
     @InjectedObservedObject private var viewModel: UserProfileViewModel
     
-    @State private var animateErrorView: Bool = false
-    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             content
@@ -55,12 +53,8 @@ private extension UserProfileView {
     }
     
     func failedView(_ error: Error) -> some View {
-        ErrorView(isAnimating: $animateErrorView, message: error.localizedDescription) {
-            viewModel.animateErrorView = false
-        }
-        .onReceive(viewModel.$animateErrorView, perform: { value in
-            animateErrorView = value
-        })
+        viewModel.appState[\.routing.error.message] = error.localizedDescription
+        return EmptyView()
     }
 }
 

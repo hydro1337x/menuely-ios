@@ -39,6 +39,7 @@ extension AppState {
         var authSelection: AuthSelectionView.Routing = AuthSelectionView.Routing(selectedAuth: .login)
         var profile: ProfileView.Routing = ProfileView.Routing()
         var options: OptionsView.Routing = OptionsView.Routing()
+        var error: ErrorView.Routing = ErrorView.Routing()
     }
 }
 

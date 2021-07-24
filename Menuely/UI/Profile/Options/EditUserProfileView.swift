@@ -10,8 +10,6 @@ import SwiftUI
 struct EditUserProfileView: View {
     @InjectedObservedObject private var viewModel: EditUserProfileViewModel
     
-    @State private var animateErrorView: Bool = false
-    
     var body: some View {
         ZStack {
             staticContent
@@ -65,12 +63,8 @@ private extension EditUserProfileView {
     }
     
     func failedView(_ error: Error) -> some View {
-        ErrorView(isAnimating: $animateErrorView, message: error.localizedDescription) {
-            viewModel.animateErrorView = false
-        }
-        .onReceive(viewModel.$animateErrorView, perform: { value in
-            animateErrorView = value
-        })
+        viewModel.appState[\.routing.error.message] = error.localizedDescription
+        return EmptyView()
     }
 }
 

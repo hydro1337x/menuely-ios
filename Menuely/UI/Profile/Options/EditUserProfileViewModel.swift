@@ -16,8 +16,6 @@ class EditUserProfileViewModel: ObservableObject {
     @Published var lastname: String = ""
     @Published var updateProfileResult: Loadable<Discardable>
     
-    @Published var animateErrorView: Bool = false
-    
     var appState: Store<AppState>
     private var cancelBag = CancelBag()
     
@@ -26,14 +24,6 @@ class EditUserProfileViewModel: ObservableObject {
         self.appState = appState
         
         _updateProfileResult = .init(initialValue: updateProfileResult)
-        
-        $updateProfileResult.sink { loadable in
-            switch loadable {
-            case .failed(_): self.animateErrorView = true
-            default: self.animateErrorView = false
-            }
-        }
-        .store(in: cancelBag)
     }
     
     // MARK: - Methods

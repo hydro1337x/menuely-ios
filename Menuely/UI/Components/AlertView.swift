@@ -30,8 +30,7 @@ struct AlertView: View {
             configuration.blurredBackground
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .edgesIgnoringSafeArea(.all)
-                .opacity(0.8)
-                .blur(radius: 200)
+                .opacity(0.3)
             
             VStack {
                 VStack(spacing: 0) {
@@ -89,5 +88,11 @@ struct AlertView_Previews: PreviewProvider {
         }), secondaryButton: Button(action: {}, label: {
             Text("Button")
         }))
+    }
+}
+
+extension AlertView {
+    class ViewModel: ObservableObject {
+        
     }
 }

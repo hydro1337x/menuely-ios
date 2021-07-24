@@ -14,7 +14,6 @@ class OptionsViewModel: ObservableObject {
     
     @Published var routing: OptionsView.Routing
     @Published var logoutResult: Loadable<Discardable>
-    @Published var animateErrorView: Bool = false
     
     var appState: Store<AppState>
     var cancelBag = CancelBag()
@@ -38,15 +37,6 @@ class OptionsViewModel: ObservableObject {
                 .removeDuplicates()
                 .assign(to: \.routing, on: self)
         }
-        
-        $logoutResult.sink { loadable in
-            print(loadable)
-            switch loadable {
-            case .failed(_): self.animateErrorView = true
-            default: self.animateErrorView = false
-            }
-        }
-        .store(in: cancelBag)
     }
     
     // MARK: - Methods

@@ -16,7 +16,6 @@ class UserProfileViewModel: ObservableObject {
     
     @Published var routing: ProfileView.Routing
     @Published var userProfile: Loadable<User>
-    @Published var animateErrorView: Bool = false
     
     var selectedProfileImage: UIImage? {
         didSet {

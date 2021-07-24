@@ -11,9 +11,10 @@ import Resolver
 struct TabBarView: View {
     
     @InjectedObservedObject private var viewModel: TabBarViewModel
+    @Injected var appState: Store<AppState>
     
     var body: some View {
-        TabView(selection: $viewModel.tab) {
+        TabView(selection: $viewModel.tab.animation()) {
             
             Text("Scan view")
             .tabItem { Label(
@@ -24,7 +25,11 @@ struct TabBarView: View {
             )}
             .tag(TabBarView.Routing.scan)
             
-            Text("Search view")
+            Button(action: {
+                appState[\.routing.error.message] = "error.localizedDescription"
+            }, label: {
+                Text("Button")
+            })
             .tabItem { Label(
                 title: { Text("Search") },
                 icon: {

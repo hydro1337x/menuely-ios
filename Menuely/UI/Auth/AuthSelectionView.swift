@@ -12,8 +12,6 @@ struct AuthSelectionView: View {
     
     var body: some View {
         
-        Spacer()
-        
         Picker("Auth", selection: $viewModel.selectedEntity.animation()) {
             Text("Restaurant").tag(EntityType.restaurant)
             Text("User").tag(EntityType.user)
@@ -30,8 +28,6 @@ struct AuthSelectionView: View {
             }
         }
         .transition(.opacity)
-        
-        Spacer()
     }
 }
 

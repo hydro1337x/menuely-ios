@@ -23,20 +23,11 @@ class RestaurantRegistrationViewModel: ObservableObject {
     @Published var postalCode: String = ""
     @Published var registration: Loadable<Discardable>
     
-    @Published var animateErrorView: Bool = false
-    
     var cancelBag = CancelBag()
     
     // MARK: - Initialization
     init(registration: Loadable<Discardable> = .notRequested) {
         _registration = .init(initialValue: registration)
-        $registration.sink { loadable in
-            switch loadable {
-            case .failed(_): self.animateErrorView = true
-            default: self.animateErrorView = false
-            }
-        }
-        .store(in: cancelBag)
     }
     
     // MARK: - Methods
@@ -54,7 +45,11 @@ class RestaurantRegistrationViewModel: ObservableObject {
     
     // MARK: - Routing
     func loginViewRoute() {
-        registration.reset()
+        resetStates()
         appState[\.routing.authSelection.selectedAuth] = .login
+    }
+    
+    func resetStates() {
+        registration.reset()
     }
 }
