@@ -26,7 +26,7 @@ struct TabBarView: View {
             .tag(TabBarView.Routing.scan)
             
             Button(action: {
-                appState[\.routing.error.message] = "error.localizedDescription"
+                appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: "message")
             }, label: {
                 Text("Button")
             })

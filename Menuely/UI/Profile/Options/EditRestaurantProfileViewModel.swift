@@ -55,4 +55,10 @@ class EditRestaurantProfileViewModel: ObservableObject {
         address = restaurant.address
         postalCode = restaurant.postalCode
     }
+    
+    // MARK: - Routing
+    
+    func errorView(with message: String?) {
+        appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: message)
+    }
 }

@@ -12,7 +12,7 @@ struct PopoversViewModifier: ViewModifier {
             ZStack {
                 content
                 ActivityIndicatorView()
-                ErrorView()
+                InfoView()
                 AlertView()
             }
         }

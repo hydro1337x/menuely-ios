@@ -43,13 +43,17 @@ class RestaurantRegistrationViewModel: ObservableObject {
         authService.registerRestaurant(with: restaurantRegistrationRequestDTO, registration: loadableSubject(\.registration))
     }
     
+    func resetStates() {
+        registration.reset()
+    }
+    
     // MARK: - Routing
     func loginViewRoute() {
         resetStates()
         appState[\.routing.authSelection.selectedAuth] = .login
     }
     
-    func resetStates() {
-        registration.reset()
+    func errorView(with message: String?) {
+        appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: message)
     }
 }

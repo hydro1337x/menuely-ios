@@ -77,4 +77,8 @@ class OptionsViewModel: ObservableObject {
                                                    secondaryAction: dismissAlertView)
         appState[\.routing.alert.configuration] = configuration
     }
+    
+    func errorView(with message: String?) {
+        appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: message)
+    }
 }

@@ -42,4 +42,10 @@ class EditUserProfileViewModel: ObservableObject {
         firstname = user.firstname
         lastname = user.lastname
     }
+    
+    // MARK: - Routing
+    
+    func errorView(with message: String?) {
+        appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: message)
+    }
 }

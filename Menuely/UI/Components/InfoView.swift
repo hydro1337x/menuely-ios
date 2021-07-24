@@ -1,5 +1,5 @@
 //
-//  ErrorView.swift
+//  InfoView.swift
 //  Menuely
 //
 //  Created by Benjamin Mecanović on 12.07.2021..
@@ -8,7 +8,7 @@
 import SwiftUI
 import Resolver
 
-struct ErrorViewStyle {
+struct InfoViewStyle {
     var titleTextStyle: Font = .body
     var messageTextStyle: Font = .callout
     var blurredBackground: Color = Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
@@ -16,11 +16,16 @@ struct ErrorViewStyle {
     var backgroundCornerRadius: CGFloat = 10
 }
 
-struct ErrorView: View {
+struct InfoViewConfiguration: Equatable {
+    let title: String
+    let message: String?
+}
+
+struct InfoView: View {
     
     @InjectedObservedObject private var viewModel: ViewModel
     
-    var style: ErrorViewStyle = ErrorViewStyle()
+    var style: InfoViewStyle = InfoViewStyle()
     
     var body: some View {
         ZStack {
@@ -30,13 +35,13 @@ struct ErrorView: View {
                 .edgesIgnoringSafeArea(.all)
                 .opacity(0.3)
                 .onTapGesture {
-                    viewModel.appState[\.routing.error.message] = nil
+                    viewModel.appState[\.routing.info.configuration] = nil
                 }
                 
             
             VStack {
                 VStack {
-                    Text("Something went wrong")
+                    Text(viewModel.routing.configuration?.title ?? "")
                         .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
                         .padding(.top, 5)
                         .font(style.titleTextStyle)
@@ -44,7 +49,7 @@ struct ErrorView: View {
                     Divider()
                         .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
                     
-                    Text(viewModel.routing.message ?? "")
+                    Text(viewModel.routing.configuration?.message ?? "")
                         .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
                         .font(style.messageTextStyle)
                         .padding(.vertical, 5)
@@ -56,21 +61,21 @@ struct ErrorView: View {
             .shadow(color: Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)).opacity(0.3), radius: 5, x: 0, y: 5)
             .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.1), radius: 2, x: 0, y: 2)
             .padding(.horizontal, 30)
-            .scaleEffect(viewModel.routing.message != nil ? 1 : 0.5)
+            .scaleEffect(viewModel.routing.configuration != nil ? 1 : 0.5)
         }
-        .opacity(viewModel.routing.message != nil ? 1 : 0)
+        .opacity(viewModel.routing.configuration != nil ? 1 : 0)
         .animation(.easeInOut(duration: 0.2))
         
     }
 }
 
-struct ErrorView_Previews: PreviewProvider {
+struct InfoView_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorView()
+        InfoView()
     }
 }
 
-extension ErrorView {
+extension InfoView {
     class ViewModel: ObservableObject {
         @Published var routing: Routing
         
@@ -80,16 +85,16 @@ extension ErrorView {
         init(appState: Store<AppState>) {
             self.appState = appState
             
-            _routing = .init(initialValue: appState[\.routing.error])
+            _routing = .init(initialValue: appState[\.routing.info])
             
             cancelBag.collect {
                 
                 $routing
                     .removeDuplicates()
-                    .sink { appState[\.routing.error] = $0 }
+                    .sink { appState[\.routing.info] = $0 }
                 
                 appState
-                    .map(\.routing.error)
+                    .map(\.routing.info)
                     .removeDuplicates()
                     .assign(to: \.routing, on: self)
             }
@@ -97,6 +102,6 @@ extension ErrorView {
     }
     
     struct Routing: Equatable {
-        var message: String?
+        var configuration: InfoViewConfiguration?
     }
 }

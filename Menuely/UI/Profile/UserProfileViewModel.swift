@@ -82,4 +82,10 @@ class UserProfileViewModel: ObservableObject {
     func timeIntervalToString(_ timeInterval: TimeInterval) -> String {
         return dateUtility.formatToString(from: timeInterval, with: .full)
     }
+    
+    // MARK: - Routing
+    
+    func errorView(with message: String?) {
+        appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: message)
+    }
 }

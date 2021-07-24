@@ -53,8 +53,7 @@ struct OptionsView: View {
                 }
                 .padding(.top, 10)
             }
-            
-        }.accentColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+        }
     }
     
     @ViewBuilder
@@ -93,7 +92,7 @@ private extension OptionsView {
     
     func failedView(_ error: Error) -> some View {
         viewModel.appState[\.routing.activityIndicator.isActive] = false
-        viewModel.appState[\.routing.error.message] = error.localizedDescription
+        viewModel.errorView(with: error.localizedDescription)
         return EmptyView()
     }
 }

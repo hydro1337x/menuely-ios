@@ -69,7 +69,7 @@ private extension LoginView {
     func failedView(_ error: Error) -> some View {
         viewModel.resetStates()
         viewModel.appState[\.routing.activityIndicator.isActive] = false
-        viewModel.appState[\.routing.error.message] = error.localizedDescription
+        viewModel.errorView(with: error.localizedDescription)
         return EmptyView()
     }
 }

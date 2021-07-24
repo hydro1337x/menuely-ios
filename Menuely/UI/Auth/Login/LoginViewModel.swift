@@ -114,4 +114,8 @@ class LoginViewModel: ObservableObject {
     func resetStates() {
         loginResult.reset()
     }
+    
+    func errorView(with message: String?) {
+        appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: message)
+    }
 }

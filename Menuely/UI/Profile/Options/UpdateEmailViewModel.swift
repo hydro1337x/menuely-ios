@@ -55,4 +55,10 @@ class UpdateEmailViewModel: ObservableObject {
         email = ""
         updateEmailResult.reset()
     }
+    
+    // MARK: - Routing
+    
+    func errorView(with message: String?) {
+        appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: message)
+    }
 }

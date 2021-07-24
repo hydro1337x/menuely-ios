@@ -34,6 +34,10 @@ class UserRegistrationViewModel: ObservableObject {
         authService.registerUser(with: userRegistrationRequestDTO, registration: loadableSubject(\.registration))
     }
     
+    func resetStates() {
+        registration.reset()
+    }
+    
     // MARK: - Routing
     
     func loginViewRoute() {
@@ -41,7 +45,7 @@ class UserRegistrationViewModel: ObservableObject {
         appState[\.routing.authSelection.selectedAuth] = .login
     }
     
-    func resetStates() {
-        registration.reset()
+    func errorView(with message: String?) {
+        appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: message)
     }
 }

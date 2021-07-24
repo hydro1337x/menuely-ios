@@ -55,7 +55,7 @@ private extension RestaurantProfileView {
     
     func failedView(_ error: Error) -> some View {
         viewModel.appState[\.routing.activityIndicator.isActive] = false
-        viewModel.appState[\.routing.error.message] = error.localizedDescription
+        viewModel.errorView(with: error.localizedDescription)
         return EmptyView()
     }
 }
