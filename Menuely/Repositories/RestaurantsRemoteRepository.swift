@@ -11,7 +11,7 @@ import Combine
 import UIKit
 
 protocol RestaurantsRemoteRepositing {
-    func getRestaurants() -> AnyPublisher<RestaurantListResponseDTO, Error>
+    func getRestaurants(with searchRequestDTO: SearchRequestDTO?) -> AnyPublisher<RestaurantListResponseDTO, Error>
     func getRestaurantProfile() -> AnyPublisher<RestaurantResponseDTO, Error>
     func uploadImage(with parameters: [String: String], and dataParameters: DataParameters) -> AnyPublisher<Discardable, Error>
     func updateRestaurantProfile(with restaurantUpdateProfileRequestDTO: RestaurantUpdateProfileRequestDTO) -> AnyPublisher<Discardable, Error>
@@ -23,8 +23,8 @@ protocol RestaurantsRemoteRepositing {
 class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
     @Injected private var networkClient: Networking
     
-    func getRestaurants() -> AnyPublisher<RestaurantListResponseDTO, Error> {
-        networkClient.request(endpoint: Endpoint.restaurants)
+    func getRestaurants(with searchRequestDTO: SearchRequestDTO?) -> AnyPublisher<RestaurantListResponseDTO, Error> {
+        networkClient.request(endpoint: Endpoint.restaurants(searchRequestDTO))
     }
     
     func getRestaurantProfile() -> AnyPublisher<RestaurantResponseDTO, Error> {
@@ -56,7 +56,7 @@ class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
 
 extension RestaurantsRemoteRepository {
     enum Endpoint {
-        case restaurants
+        case restaurants(SearchRequestDTO?)
         case restaurantProfile
         case upload
         case updateRestaurantProfile(_: RestaurantUpdateProfileRequestDTO)
@@ -104,7 +104,10 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
     }
     
     var queryParameters: Parameters? {
-        return nil
+        switch self {
+        case .restaurants(let searchRequestDTO): return searchRequestDTO.asDictionary
+        default: return nil
+        }
     }
     
     func body() throws -> Data? {

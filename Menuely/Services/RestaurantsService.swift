@@ -10,7 +10,7 @@ import Combine
 import Resolver
 
 protocol RestaurantsServicing {
-    func get(restaurants: LoadableSubject<[Restaurant]>, search: String)
+    func getRestaurants(with searchRequestDTO: SearchRequestDTO?, restaurants: LoadableSubject<[Restaurant]>)
     func getRestaurantProfile(restaurant: LoadableSubject<Restaurant>)
     func uploadImageAndGetRestaurantProfile(with dataParameters: DataParameters, ofKind kind: ImageKind, restaurant: LoadableSubject<Restaurant>)
     func uploadImage(with dataParameters: DataParameters, ofKind kind: ImageKind, imageResult: LoadableSubject<Discardable>)
@@ -27,13 +27,13 @@ class RestaurantsService: RestaurantsServicing {
     
     let cancelBag = CancelBag()
     
-    func get(restaurants: LoadableSubject<[Restaurant]>, search: String) {
+    func getRestaurants(with searchRequestDTO: SearchRequestDTO?, restaurants: LoadableSubject<[Restaurant]>) {
         restaurants.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                return remoteRepository.getRestaurants()
+                return remoteRepository.getRestaurants(with: searchRequestDTO)
             }
             .map { return $0.restaurants }
             .sinkToLoadable { restaurants.wrappedValue = $0 }
