@@ -74,7 +74,7 @@ private extension UpdateEmailView {
         viewModel.resetStates()
         viewModel.appState[\.routing.activityIndicator.isActive] = false
         viewModel.updateProfile()
-        viewModel.appState[\.routing.options.details] = nil
+        viewModel.alertView()
         return EmptyView()
     }
 }

@@ -11,7 +11,7 @@ import Resolver
 struct InfoViewStyle {
     var titleTextStyle: Font = .body
     var messageTextStyle: Font = .callout
-    var blurredBackground: Color = Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+    var dimmedBackground: Color = Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
     var background: Color = Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1))
     var backgroundCornerRadius: CGFloat = 10
 }
@@ -30,7 +30,7 @@ struct InfoView: View {
     var body: some View {
         ZStack {
             
-            style.blurredBackground
+            style.dimmedBackground
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .edgesIgnoringSafeArea(.all)
                 .opacity(0.3)
@@ -51,6 +51,7 @@ struct InfoView: View {
                     
                     Text(viewModel.routing.configuration?.message ?? "")
                         .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
+                        .multilineTextAlignment(.center)
                         .font(style.messageTextStyle)
                         .padding(.vertical, 5)
                 }

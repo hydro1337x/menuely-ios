@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ActivityIndicatorStyle {
   var spinnerColor: Color = Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1))
-  var blurredBackground: Color = Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+  var dimmedBackground: Color = Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
   var spinnerBackgroundColor: Color = Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1))
   var backgroundCornerRadius: CGFloat = 30
   var width: CGFloat = 50
@@ -30,7 +30,7 @@ struct ActivityIndicatorView: View {
         
         return
             ZStack {
-                style.blurredBackground.opacity(0.3)
+                style.dimmedBackground.opacity(0.3)
                     .edgesIgnoringSafeArea(.all)
                 
                 ZStack {

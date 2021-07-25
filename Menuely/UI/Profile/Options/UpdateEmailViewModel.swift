@@ -61,4 +61,12 @@ class UpdateEmailViewModel: ObservableObject {
     func errorView(with message: String?) {
         appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: message)
     }
+    
+    // FIXME: - Change alert view to dynamically change layout based on passed parameters
+    func alertView() {
+        appState[\.routing.alert.configuration] = AlertViewConfiguration(title: "Email successfully changed", message: "A new verification has been send to your newly changed email", primaryAction: {
+            self.appState[\.routing.alert.configuration] = nil
+            self.appState[\.routing.options.details] = nil
+        }, primaryButtonTitle: "OK", secondaryAction: nil, secondaryButtonTitle: nil)
+    }
 }

@@ -61,20 +61,16 @@ class OptionsViewModel: ObservableObject {
     func logoutAlertView() {
         let configuration = AlertViewConfiguration(title: "Logout?",
                                                    message: "Are you sure you want to logout?",
-                                                   primaryButtonTitle: "Logout",
-                                                   secondaryButtonTitle: "Cancel",
-                                                   primaryAction: logout,
-                                                   secondaryAction: dismissAlertView)
+                                                   primaryAction: logout, primaryButtonTitle: "Logout",
+                                                   secondaryAction: dismissAlertView, secondaryButtonTitle: "Cancel")
         appState[\.routing.alert.configuration] = configuration
     }
     
     func deleteAccountAlertView() {
         let configuration = AlertViewConfiguration(title: "Delete account?",
                                                    message: "Are you sure you want to delete your account?",
-                                                   primaryButtonTitle: "Delete",
-                                                   secondaryButtonTitle: "Cancel",
-                                                   primaryAction: nil,
-                                                   secondaryAction: dismissAlertView)
+                                                   primaryAction: {}, primaryButtonTitle: "Delete",
+                                                   secondaryAction: dismissAlertView, secondaryButtonTitle: "Cancel")
         appState[\.routing.alert.configuration] = configuration
     }
     

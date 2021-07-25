@@ -10,7 +10,7 @@ import SwiftUI
 struct AlertViewStyle {
     var titleTextStyle: Font = .title3
     var messageTextStyle: Font = .callout
-    var blurredBackground: Color = Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+    var dimmedBackground: Color = Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
     var alertBackground: Color = Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1))
     var backgroundCornerRadius: CGFloat = 10
 }
@@ -18,10 +18,10 @@ struct AlertViewStyle {
 struct AlertViewConfiguration: Equatable {
     let title: String
     let message: String?
+    let primaryAction: (() -> Void)
     let primaryButtonTitle: String
-    let secondaryButtonTitle: String?
-    let primaryAction: (() -> Void)?
     let secondaryAction: (() -> Void)?
+    let secondaryButtonTitle: String?
     
     static func == (lhs: AlertViewConfiguration, rhs: AlertViewConfiguration) -> Bool {
         return lhs.title == rhs.title && lhs.message == rhs.message
@@ -34,10 +34,15 @@ struct AlertView: View {
     
     var style: AlertViewStyle = AlertViewStyle()
     
+    var showSecondaryContent: Bool {
+        guard viewModel.routing.configuration?.secondaryAction != nil, viewModel.routing.configuration?.secondaryButtonTitle != nil else { return false }
+        return true
+    }
+    
     var body: some View {
         ZStack {
             
-            style.blurredBackground
+            style.dimmedBackground
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .edgesIgnoringSafeArea(.all)
                 .opacity(0.3)
@@ -53,6 +58,7 @@ struct AlertView: View {
                     if let message = viewModel.routing.configuration?.message {
                         Text(message)
                             .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
+                            .multilineTextAlignment(.center)
                             .font(style.messageTextStyle)
                             .padding(.top, 5)
                             .padding(.horizontal, 15)
@@ -67,16 +73,20 @@ struct AlertView: View {
                                 Text(viewModel.routing.configuration?.primaryButtonTitle ?? "")
                             })
                             .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
-                            .frame(width: geometry.size.width / 2, height: 48)
+                            .frame(width: showSecondaryContent ? geometry.size.width / 2 : geometry.size.width, height: 48)
                             
-                            Divider()
-                                .frame(height: 30)
-                            
-                            Button(action: viewModel.routing.configuration?.secondaryAction ?? {}, label: {
-                                Text(viewModel.routing.configuration?.secondaryButtonTitle ?? "")
-                            })
-                            .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
-                            .frame(width: geometry.size.width / 2, height: 48)
+                            if showSecondaryContent {
+                                
+                                Divider()
+                                    .frame(height: 30)
+                                
+                                Button(action: viewModel.routing.configuration?.secondaryAction ?? {}, label: {
+                                    Text(viewModel.routing.configuration?.secondaryButtonTitle ?? "")
+                                })
+                                .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
+                                .frame(width: geometry.size.width / 2, height: 48)
+                                
+                            }
                         }
                     })
                     .frame(height: 48)
