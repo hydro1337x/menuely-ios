@@ -16,7 +16,7 @@ struct TabBarView: View {
     var body: some View {
         TabView(selection: $viewModel.tab) {
             
-            Text("Scan view")
+            ScanView()
             .tabItem { Label(
                 title: { Text("Scan") },
                 icon: {
