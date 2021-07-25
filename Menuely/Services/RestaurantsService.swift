@@ -17,11 +17,13 @@ protocol RestaurantsServicing {
     func updateRestaurantProfile(with restaurantUpdateProfileRequestDTO: RestaurantUpdateProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>)
     func updateRestaurantPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO, updatePasswordResult: LoadableSubject<Discardable>)
     func updateRestaurantEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO, updateEmailResult: LoadableSubject<Discardable>)
+    func delete(deletionResult: LoadableSubject<Discardable>)
 }
 
 class RestaurantsService: RestaurantsServicing {
-    @Injected var appState: Store<AppState>
-    @Injected var remoteRepository: RestaurantsRemoteRepositing
+    @Injected private var appState: Store<AppState>
+    @Injected private var remoteRepository: RestaurantsRemoteRepositing
+    @Injected private var localRepository: LocalRepositing
     
     let cancelBag = CancelBag()
     
@@ -123,9 +125,31 @@ class RestaurantsService: RestaurantsServicing {
             .store(in: cancelBag)
     }
     
+    func delete(deletionResult: LoadableSubject<Discardable>) {
+        deletionResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
+        
+        Just<Void>
+            .withErrorType(Error.self)
+            .flatMap { [remoteRepository] in
+                remoteRepository.delete()
+            }
+            .sinkToLoadable {
+                deletionResult.wrappedValue = $0
+                
+                if $0.value != nil {
+                    self.removeAuthenticatedRestaurant()
+                }
+            }
+            .store(in: cancelBag)
+    }
+    
     func updateRestaurant(_ restaurant: Restaurant?) {
         guard let tokens = appState[\.data.authenticatedRestaurant]?.auth, let restaurant = restaurant else { return }
         let updatedAuthenticatedRestaurant = AuthenticatedRestaurant(restaurant: restaurant, auth: tokens)
         appState[\.data.authenticatedRestaurant] = updatedAuthenticatedRestaurant
+    }
+    
+    private func removeAuthenticatedRestaurant() {
+        localRepository.removeValue(for: .authenticatedRestaurant)
     }
 }

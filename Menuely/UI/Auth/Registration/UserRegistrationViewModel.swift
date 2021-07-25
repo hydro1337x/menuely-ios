@@ -40,7 +40,7 @@ class UserRegistrationViewModel: ObservableObject {
     
     // MARK: - Routing
     
-    func loginViewRoute() {
+    func loginView() {
         resetStates()
         appState[\.routing.authSelection.selectedAuth] = .login
     }

@@ -56,7 +56,7 @@ struct RestaurantRegistrationView: View {
                 
                 Button(action: {
                     withAnimation {
-                        viewModel.loginViewRoute()
+                        viewModel.loginView()
                     }
                 }, label: {
                     Text("Already registered?")
@@ -100,7 +100,7 @@ private extension RestaurantRegistrationView {
 
 private extension RestaurantRegistrationView {
     func loadedView(showLoading: Bool) -> some View {
-        viewModel.loginViewRoute()
+        viewModel.loginView()
         viewModel.appState[\.routing.activityIndicator.isActive] = false
         return EmptyView()
     }

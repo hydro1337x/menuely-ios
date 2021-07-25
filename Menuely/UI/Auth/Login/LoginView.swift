@@ -35,7 +35,7 @@ struct LoginView: View {
             
             Button(action: {
                 withAnimation {
-                    viewModel.registrationViewRoute()
+                    viewModel.registrationView()
                 }
             }, label: {
                 Text("Don't have an account?")
@@ -79,7 +79,7 @@ private extension LoginView {
 private extension LoginView {
     func loadedView(showLoading: Bool) -> some View {
         viewModel.appState[\.routing.activityIndicator.isActive] = false
-        viewModel.tabBarViewRoute()
+        viewModel.tabBarView()
         return EmptyView()
     }
 }

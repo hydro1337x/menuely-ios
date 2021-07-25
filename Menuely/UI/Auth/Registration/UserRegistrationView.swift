@@ -42,7 +42,7 @@ struct UserRegistrationView: View {
             
             Button(action: {
                 withAnimation {
-                    viewModel.loginViewRoute()
+                    viewModel.loginView()
                 }
             }, label: {
                 Text("Already registered?")
@@ -85,7 +85,7 @@ private extension UserRegistrationView {
 
 private extension UserRegistrationView {
     func loadedView(showLoading: Bool) -> some View {
-        viewModel.loginViewRoute()
+        viewModel.loginView()
         viewModel.appState[\.routing.activityIndicator.isActive] = false
         return EmptyView()
     }

@@ -17,11 +17,13 @@ protocol UsersServicing {
     func updateUserProfile(with userUpdateProfileRequestDTO: UserUpdateProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>)
     func updateUserPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO, updatePasswordResult: LoadableSubject<Discardable>)
     func updateUserEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO, updateEmailResult: LoadableSubject<Discardable>)
+    func delete(deletionResult: LoadableSubject<Discardable>)
 }
 
 class UsersService: UsersServicing {
-    @Injected var appState: Store<AppState>
-    @Injected var remoteRepository: UsersRemoteRepositing
+    @Injected private var appState: Store<AppState>
+    @Injected private var remoteRepository: UsersRemoteRepositing
+    @Injected private var localRepository: LocalRepositing
     
     let cancelBag = CancelBag()
     
@@ -123,9 +125,31 @@ class UsersService: UsersServicing {
             .store(in: cancelBag)
     }
     
+    func delete(deletionResult: LoadableSubject<Discardable>) {
+        deletionResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
+        
+        Just<Void>
+            .withErrorType(Error.self)
+            .flatMap { [remoteRepository] in
+                remoteRepository.delete()
+            }
+            .sinkToLoadable {
+                deletionResult.wrappedValue = $0
+                
+                if $0.value != nil {
+                    self.removeAuthenticatedUser()
+                }
+            }
+            .store(in: cancelBag)
+    }
+    
     func updateUser(_ user: User?) {
         guard let tokens = appState[\.data.authenticatedUser]?.auth, let user = user else { return }
         let updatedAuthenticatedUser = AuthenticatedUser(user: user, auth: tokens)
         appState[\.data.authenticatedUser] = updatedAuthenticatedUser
+    }
+    
+    private func removeAuthenticatedUser() {
+        localRepository.removeValue(for: .authenticatedUser)
     }
 }

@@ -64,6 +64,13 @@ struct OptionsView: View {
         case let .failed(error): failedView(error)
         default: EmptyView()
         }
+        
+        switch viewModel.deleteAccountResult {
+        case .isLoading(_, _):  loadingView()
+        case .loaded(_):  loadedView(showLoading: false)
+        case let .failed(error): failedView(error)
+        default: EmptyView()
+        }
     }
     
     @ViewBuilder
@@ -101,8 +108,8 @@ private extension OptionsView {
 
 private extension OptionsView {
     func loadedView(showLoading: Bool) -> some View {
-        viewModel.appState[\.routing.activityIndicator.isActive] = false
-        viewModel.authSelectionViewRoute()
+//        viewModel.appState[\.routing.activityIndicator.isActive] = false
+        viewModel.authSelectionView()
         return EmptyView()
     }
 }

@@ -24,7 +24,7 @@ struct EditUserProfileView: View {
     
     var staticContent: some View {
         ScrollView {
-            Group {
+            VStack {
                 FloatingTextField(text: $viewModel.firstname, title: "Firstname")
                     .frame(height: 48)
                     .padding(.top, 15)
@@ -33,6 +33,7 @@ struct EditUserProfileView: View {
                     .frame(height: 48)
             }
             .padding(.horizontal, 30)
+            .padding(.top, 25)
             
             Button("Save") {
                 viewModel.updateUserProfile()

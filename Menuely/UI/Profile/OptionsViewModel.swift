@@ -11,9 +11,12 @@ import Resolver
 class OptionsViewModel: ObservableObject {
     // MARK: - Properties
     @Injected private var authService: AuthServicing
+    @Injected private var usersService: UsersServicing
+    @Injected private var restaurantsService: RestaurantsServicing
     
     @Published var routing: OptionsView.Routing
     @Published var logoutResult: Loadable<Discardable>
+    @Published var deleteAccountResult: Loadable<Discardable>
     
     var appState: Store<AppState>
     var cancelBag = CancelBag()
@@ -21,11 +24,12 @@ class OptionsViewModel: ObservableObject {
     var navigatableOptions: [OptionType] = [.updateProfile, .updatePassword, .updateEmail]
     
     // MARK: - Initialization
-    init(appState: Store<AppState>, logoutResult: Loadable<Discardable> = .notRequested) {
+    init(appState: Store<AppState>, logoutResult: Loadable<Discardable> = .notRequested, deleteAccountResult: Loadable<Discardable> = .notRequested) {
         self.appState = appState
         
-        _logoutResult = .init(initialValue: logoutResult)
         _routing = .init(initialValue: appState[\.routing.options])
+        _logoutResult = .init(initialValue: logoutResult)
+        _deleteAccountResult = .init(initialValue: deleteAccountResult)
         
         cancelBag.collect {
             $routing
@@ -45,13 +49,30 @@ class OptionsViewModel: ObservableObject {
         authService.logout(logoutResult: loadableSubject(\.logoutResult))
     }
     
-    // MARK: - Routing
-    func authSelectionViewRoute() {
-        logoutResult.reset()
-        appState[\.routing.profile.isOptionsSheetPresented] = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.appState[\.routing.root] = .auth
+    func deleteAccount() {
+        appState[\.routing.alert.configuration] = nil
+        
+        switch appState[\.data.selectedEntity] {
+        case .user: deleteUserAccount()
+        case .restaurant: deleteRestaurantAccount()
         }
+    }
+    
+    private func deleteUserAccount() {
+        usersService.delete(deletionResult: loadableSubject(\.deleteAccountResult))
+    }
+    
+    private func deleteRestaurantAccount() {
+        restaurantsService.delete(deletionResult: loadableSubject(\.deleteAccountResult))
+    }
+    
+    // MARK: - Routing
+    
+    /// Resets the whole AppState and return to the AuthSelectionView since it is the initial state
+    func authSelectionView() {
+        logoutResult.reset()
+        deleteAccountResult.reset()
+        appState.value.reset()
     }
     
     func dismissAlertView() {
@@ -69,7 +90,7 @@ class OptionsViewModel: ObservableObject {
     func deleteAccountAlertView() {
         let configuration = AlertViewConfiguration(title: "Delete account?",
                                                    message: "Are you sure you want to delete your account?",
-                                                   primaryAction: {}, primaryButtonTitle: "Delete",
+                                                   primaryAction: deleteAccount, primaryButtonTitle: "Delete",
                                                    secondaryAction: dismissAlertView, secondaryButtonTitle: "Cancel")
         appState[\.routing.alert.configuration] = configuration
     }

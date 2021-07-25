@@ -17,6 +17,7 @@ protocol RestaurantsRemoteRepositing {
     func updateRestaurantProfile(with restaurantUpdateProfileRequestDTO: RestaurantUpdateProfileRequestDTO) -> AnyPublisher<Discardable, Error>
     func updateRestaurantPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO) -> AnyPublisher<Discardable, Error>
     func updateRestaurantEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO) -> AnyPublisher<Discardable, Error>
+    func delete() -> AnyPublisher<Discardable, Error>
 }
 
 class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
@@ -45,6 +46,10 @@ class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
     func updateRestaurantEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO) -> AnyPublisher<Discardable, Error> {
         networkClient.request(endpoint: Endpoint.updateRestaurantEmail(updateEmailRequestDTO))
     }
+    
+    func delete() -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.delete)
+    }
 }
 
 // MARK: - Endpoints
@@ -57,6 +62,7 @@ extension RestaurantsRemoteRepository {
         case updateRestaurantProfile(_: RestaurantUpdateProfileRequestDTO)
         case updateRestaurantPassword(_: UpdatePasswordRequestDTO)
         case updateRestaurantEmail(_: UpdateEmailRequestDTO)
+        case delete
     }
 }
 
@@ -69,6 +75,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         case .updateRestaurantProfile: return "/restaurants/me/profile"
         case .updateRestaurantPassword: return "/restaurants/me/password"
         case .updateRestaurantEmail: return "/restaurants/me/email"
+        case .delete: return "/restaurants/me"
         }
     }
     
@@ -80,6 +87,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         case .updateRestaurantProfile: return .patch
         case .updateRestaurantPassword: return .patch
         case .updateRestaurantEmail: return .patch
+        case .delete: return .delete
         }
     }
     
@@ -91,6 +99,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         case .updateRestaurantProfile: return ["Content-Type": "application/json"]
         case .updateRestaurantPassword: return ["Content-Type": "application/json"]
         case .updateRestaurantEmail: return ["Content-Type": "application/json"]
+        case .delete: return nil
         }
     }
     
@@ -106,6 +115,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         case .updateRestaurantProfile(let restaurantUpdateProfileRequestDTO): return try restaurantUpdateProfileRequestDTO.asJSON()
         case .updateRestaurantPassword(let updatePasswordRequestDTO): return try updatePasswordRequestDTO.asJSON()
         case .updateRestaurantEmail(let updateEmailRequestDTO): return try updateEmailRequestDTO.asJSON()
+        case .delete: return nil
         }
     }
 }

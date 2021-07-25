@@ -12,6 +12,12 @@ struct AppState: Equatable {
     var data: Data = Data()
     var routing: Routing = Routing()
     var application: Application = Application()
+    
+    mutating func reset() {
+        self.data = Data()
+        self.routing = Routing()
+        self.application = Application()
+    }
 }
 
 extension AppState {
@@ -47,7 +53,7 @@ extension AppState {
 
 extension AppState {
     struct Application: Equatable {
-        var isActive: Bool = false
+        var isActive: Bool = true
         var keyboardHeight: CGFloat = 0
     }
 }

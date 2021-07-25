@@ -100,11 +100,11 @@ class LoginViewModel: ObservableObject {
     }
     
     // MARK: - Routing
-    func registrationViewRoute() {
+    func registrationView() {
         routing.selectedAuth = .registration
     }
     
-    func tabBarViewRoute() {
+    func tabBarView() {
         resetStates()
         email = ""
         password = ""

@@ -135,6 +135,7 @@ class AuthService: AuthServicing {
             }
             .sinkToLoadable {
                 logoutResult.wrappedValue = $0
+                
                 if $0.value != nil {
                     self.removeAuthenticatedEntity()
                 }
@@ -155,8 +156,6 @@ class AuthService: AuthServicing {
     private func removeAuthenticatedEntity() {
         localRepository.removeValue(for: .authenticatedUser)
         localRepository.removeValue(for: .authenticatedRestaurant)
-        appState[\.data.authenticatedUser] = nil
-        appState[\.data.authenticatedRestaurant] = nil
     }
     
     private func getTokens() -> Tokens? {
