@@ -12,6 +12,7 @@ struct TabBarView: View {
     
     @InjectedObservedObject private var viewModel: TabBarViewModel
     @Injected var appState: Store<AppState>
+    @State var text = ""
     
     var body: some View {
         TabView(selection: $viewModel.tab) {
@@ -25,11 +26,7 @@ struct TabBarView: View {
             )}
             .tag(TabBarView.Routing.scan)
             
-            Button(action: {
-                appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: "message")
-            }, label: {
-                Text("Button")
-            })
+            FloatingTextEditor(text: $text, title: "Title")
             .tabItem { Label(
                 title: { Text("Search") },
                 icon: {
