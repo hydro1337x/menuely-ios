@@ -8,6 +8,11 @@
 import Foundation
 
 struct RestaurantResponseDTO: Codable {
+    enum CodingKeys: String, CodingKey {
+        case restaurant = "data"
+        case statusCode
+    }
+    
     let statusCode: Int
-    let data: Restaurant
+    let restaurant: Restaurant
 }

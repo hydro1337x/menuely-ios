@@ -83,7 +83,7 @@ private extension UserProfileView {
                 .cornerRadius(10)
                 .shadow(radius: 3, y: 2)
                 .offset(y: -100)
-                .padding(.horizontal, 30)
+                .padding(.horizontal, 16)
             
             Spacer()
         }

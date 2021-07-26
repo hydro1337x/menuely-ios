@@ -26,7 +26,7 @@ struct UpdateEmailView: View {
                     .frame(height: 48)
                     .padding(.top, 15)
             }
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 16)
             .padding(.top, 25)
             
             Button("Save") {
@@ -35,7 +35,7 @@ struct UpdateEmailView: View {
             .font(.body)
             .frame(height: 48)
             .padding(.top, 20)
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 16)
             .buttonStyle(RoundedGradientButtonStyle())
         }
     }

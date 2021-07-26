@@ -85,7 +85,7 @@ private extension RestaurantProfileView {
                 .cornerRadius(10)
                 .shadow(radius: 3, y: 2)
                 .offset(y: -100)
-                .padding(.horizontal, 30)
+                .padding(.horizontal, 16)
                 
             
             AccountInfoView(title: "Account info:", body1: "Created at: \(viewModel.timeIntervalToString(restaurant.createdAt))", body2: "Updated at: \(viewModel.timeIntervalToString(restaurant.updatedAt))", imageName: .restaurant)
@@ -93,7 +93,7 @@ private extension RestaurantProfileView {
                 .cornerRadius(10)
                 .shadow(radius: 3, y: 2)
                 .offset(y: -100)
-                .padding(.horizontal, 30)
+                .padding(.horizontal, 16)
                 .padding(.top, 10)
             
             Spacer()

@@ -8,6 +8,11 @@
 import Foundation
 
 struct UserResponseDTO: Codable {
+    enum CodingKeys: String, CodingKey {
+        case user = "data"
+        case statusCode
+    }
+    
     let statusCode: Int
-    let data: User
+    let user: User
 }

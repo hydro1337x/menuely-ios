@@ -26,11 +26,9 @@ struct TabBarView: View {
             )}
             .tag(TabBarView.Routing.scan)
             
-            Button(action: {}, label: {
-                Image(systemName: "plus")
-            })
-            .frame(width: 60, height: 60)
-            .buttonStyle(RoundedGradientButtonStyle(cornerRadius: 30))
+            NavigationView {
+                MenusListView()
+            }
             .tabItem { Label(
                 title: { Text("Search") },
                 icon: {

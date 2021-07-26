@@ -14,7 +14,7 @@ protocol UsersServicing {
     func getUserProfile(user: LoadableSubject<User>)
     func uploadImageAndGetUserProfile(with dataParameters: DataParameters, ofKind kind: ImageKind, user: LoadableSubject<User>)
     func uploadImage(with dataParameters: DataParameters, ofKind kind: ImageKind, imageResult: LoadableSubject<Discardable>)
-    func updateUserProfile(with userUpdateProfileRequestDTO: UserUpdateProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>)
+    func updateUserProfile(with updateUserProfileRequestDTO: UpdateUserProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>)
     func updateUserPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO, updatePasswordResult: LoadableSubject<Discardable>)
     func updateUserEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO, updateEmailResult: LoadableSubject<Discardable>)
     func delete(deletionResult: LoadableSubject<Discardable>)
@@ -48,7 +48,7 @@ class UsersService: UsersServicing {
             .flatMap { [remoteRepository] in
                 remoteRepository.getUserProfile()
             }
-            .map { $0.data }
+            .map { $0.user }
             .sinkToLoadable {
                 user.wrappedValue = $0
                 
@@ -68,7 +68,7 @@ class UsersService: UsersServicing {
             .flatMap { [remoteRepository] _ in
                 remoteRepository.getUserProfile()
             }
-            .map { $0.data }
+            .map { $0.user }
             .sinkToLoadable {
                 user.wrappedValue = $0
                 
@@ -89,13 +89,13 @@ class UsersService: UsersServicing {
             .store(in: cancelBag)
     }
     
-    func updateUserProfile(with userUpdateProfileRequestDTO: UserUpdateProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>) {
+    func updateUserProfile(with updateUserProfileRequestDTO: UpdateUserProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>) {
         updateProfileResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.updateUserProfile(with: userUpdateProfileRequestDTO)
+                remoteRepository.updateUserProfile(with: updateUserProfileRequestDTO)
             }
             .sinkToLoadable { updateProfileResult.wrappedValue = $0 }
             .store(in: cancelBag)

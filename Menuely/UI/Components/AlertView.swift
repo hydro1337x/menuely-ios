@@ -98,7 +98,7 @@ struct AlertView: View {
             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
             .shadow(color: Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)).opacity(0.3), radius: 5, x: 0, y: 5)
             .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.1), radius: 2, x: 0, y: 2)
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 16)
             .scaleEffect(viewModel.routing.configuration != nil ? 1 : 0.5)
         }
         .opacity(viewModel.routing.configuration != nil ? 1 : 0)

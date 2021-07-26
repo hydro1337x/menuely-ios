@@ -70,7 +70,7 @@ class AuthService: AuthServicing {
             .flatMap { [remoteRepository] in
                 return remoteRepository.loginUser(userLoginRequestDTO: userLoginRequestDTO)
             }
-            .map { $0.data }
+            .map { $0.authenticatedUser }
             .sinkToLoadable {
                 authenticatedUser.wrappedValue = $0
                 
@@ -103,7 +103,7 @@ class AuthService: AuthServicing {
             .flatMap { [remoteRepository] in
                 return remoteRepository.loginRestaurant(restaurantLoginRequestDTO: restaurantLoginRequestDTO)
             }
-            .map { $0.data }
+            .map { $0.authenticatedRestaurant }
             .sinkToLoadable {
                 authenticatedRestaurant.wrappedValue = $0
                 

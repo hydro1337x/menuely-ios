@@ -46,7 +46,7 @@ struct EditRestaurantProfileView: View {
                 FloatingTextField(text: $viewModel.postalCode, title: "Postal code")
                     .frame(height: 48)
             }
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 16)
             .padding(.top, 25)
             
             Button("Save") {
@@ -55,7 +55,7 @@ struct EditRestaurantProfileView: View {
             .font(.body)
             .frame(height: 48)
             .padding(.top, 20)
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 16)
             .buttonStyle(RoundedGradientButtonStyle())
         }
     }

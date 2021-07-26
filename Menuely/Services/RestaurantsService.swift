@@ -14,7 +14,7 @@ protocol RestaurantsServicing {
     func getRestaurantProfile(restaurant: LoadableSubject<Restaurant>)
     func uploadImageAndGetRestaurantProfile(with dataParameters: DataParameters, ofKind kind: ImageKind, restaurant: LoadableSubject<Restaurant>)
     func uploadImage(with dataParameters: DataParameters, ofKind kind: ImageKind, imageResult: LoadableSubject<Discardable>)
-    func updateRestaurantProfile(with restaurantUpdateProfileRequestDTO: RestaurantUpdateProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>)
+    func updateRestaurantProfile(with updateRestaurantProfileRequestDTO: UpdateRestaurantProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>)
     func updateRestaurantPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO, updatePasswordResult: LoadableSubject<Discardable>)
     func updateRestaurantEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO, updateEmailResult: LoadableSubject<Discardable>)
     func delete(deletionResult: LoadableSubject<Discardable>)
@@ -48,7 +48,7 @@ class RestaurantsService: RestaurantsServicing {
             .flatMap { [remoteRepository] in
                 remoteRepository.getRestaurantProfile()
             }
-            .map { $0.data }
+            .map { $0.restaurant }
             .sinkToLoadable {
                 restaurant.wrappedValue = $0
                 
@@ -68,7 +68,7 @@ class RestaurantsService: RestaurantsServicing {
             .flatMap { [remoteRepository] _ in
                 remoteRepository.getRestaurantProfile()
             }
-            .map { $0.data }
+            .map { $0.restaurant }
             .sinkToLoadable {
                 restaurant.wrappedValue = $0
                 
@@ -89,13 +89,13 @@ class RestaurantsService: RestaurantsServicing {
             .store(in: cancelBag)
     }
     
-    func updateRestaurantProfile(with restaurantUpdateProfileRequestDTO: RestaurantUpdateProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>) {
+    func updateRestaurantProfile(with updateRestaurantProfileRequestDTO: UpdateRestaurantProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>) {
         updateProfileResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.updateRestaurantProfile(with: restaurantUpdateProfileRequestDTO)
+                remoteRepository.updateRestaurantProfile(with: updateRestaurantProfileRequestDTO)
             }
             .sinkToLoadable { updateProfileResult.wrappedValue = $0 }
             .store(in: cancelBag)

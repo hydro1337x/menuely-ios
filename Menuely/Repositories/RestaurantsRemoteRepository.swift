@@ -11,10 +11,10 @@ import Combine
 import UIKit
 
 protocol RestaurantsRemoteRepositing {
-    func getRestaurants(with searchRequestDTO: SearchRequestDTO?) -> AnyPublisher<RestaurantListResponseDTO, Error>
+    func getRestaurants(with searchRequestDTO: SearchRequestDTO?) -> AnyPublisher<RestaurantsListResponseDTO, Error>
     func getRestaurantProfile() -> AnyPublisher<RestaurantResponseDTO, Error>
     func uploadImage(with parameters: [String: String], and dataParameters: DataParameters) -> AnyPublisher<Discardable, Error>
-    func updateRestaurantProfile(with restaurantUpdateProfileRequestDTO: RestaurantUpdateProfileRequestDTO) -> AnyPublisher<Discardable, Error>
+    func updateRestaurantProfile(with updateRestaurantProfileRequestDTO: UpdateRestaurantProfileRequestDTO) -> AnyPublisher<Discardable, Error>
     func updateRestaurantPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO) -> AnyPublisher<Discardable, Error>
     func updateRestaurantEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO) -> AnyPublisher<Discardable, Error>
     func delete() -> AnyPublisher<Discardable, Error>
@@ -23,7 +23,7 @@ protocol RestaurantsRemoteRepositing {
 class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
     @Injected private var networkClient: Networking
     
-    func getRestaurants(with searchRequestDTO: SearchRequestDTO?) -> AnyPublisher<RestaurantListResponseDTO, Error> {
+    func getRestaurants(with searchRequestDTO: SearchRequestDTO?) -> AnyPublisher<RestaurantsListResponseDTO, Error> {
         networkClient.request(endpoint: Endpoint.restaurants(searchRequestDTO))
     }
     
@@ -35,8 +35,8 @@ class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
         networkClient.upload(to: Endpoint.upload, with: parameters, and: dataParameters)
     }
     
-    func updateRestaurantProfile(with restaurantUpdateProfileRequestDTO: RestaurantUpdateProfileRequestDTO) -> AnyPublisher<Discardable, Error> {
-        networkClient.request(endpoint: Endpoint.updateRestaurantProfile(restaurantUpdateProfileRequestDTO))
+    func updateRestaurantProfile(with updateRestaurantProfileRequestDTO: UpdateRestaurantProfileRequestDTO) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.updateRestaurantProfile(updateRestaurantProfileRequestDTO))
     }
     
     func updateRestaurantPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO) -> AnyPublisher<Discardable, Error> {
@@ -59,7 +59,7 @@ extension RestaurantsRemoteRepository {
         case restaurants(SearchRequestDTO?)
         case restaurantProfile
         case upload
-        case updateRestaurantProfile(_: RestaurantUpdateProfileRequestDTO)
+        case updateRestaurantProfile(_: UpdateRestaurantProfileRequestDTO)
         case updateRestaurantPassword(_: UpdatePasswordRequestDTO)
         case updateRestaurantEmail(_: UpdateEmailRequestDTO)
         case delete
@@ -115,7 +115,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         case .restaurants: return nil
         case .restaurantProfile: return nil
         case .upload: return nil
-        case .updateRestaurantProfile(let restaurantUpdateProfileRequestDTO): return try restaurantUpdateProfileRequestDTO.asJSON()
+        case .updateRestaurantProfile(let updateRestaurantProfileRequestDTO): return try updateRestaurantProfileRequestDTO.asJSON()
         case .updateRestaurantPassword(let updatePasswordRequestDTO): return try updatePasswordRequestDTO.asJSON()
         case .updateRestaurantEmail(let updateEmailRequestDTO): return try updateEmailRequestDTO.asJSON()
         case .delete: return nil

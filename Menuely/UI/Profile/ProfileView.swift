@@ -26,7 +26,7 @@ struct ProfileView: View {
             .navigationBarItems(trailing: Button(action: {
                 viewModel.routing.isOptionsSheetPresented = true
             }, label: {
-                Image(.menu)
+                Image(.hamburger)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 25, height: 25)

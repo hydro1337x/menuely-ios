@@ -8,6 +8,11 @@
 import Foundation
 
 struct RestaurantLoginResponseDTO: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case authenticatedRestaurant = "data"
+        case statusCode
+    }
+    
     let statusCode: Int
-    let data: AuthenticatedRestaurant
+    let authenticatedRestaurant: AuthenticatedRestaurant
 }

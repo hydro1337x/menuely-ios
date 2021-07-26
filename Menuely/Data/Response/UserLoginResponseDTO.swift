@@ -41,6 +41,11 @@
 import Foundation
 
 struct UserLoginResponseDTO: Codable {
+    enum CodingKeys: String, CodingKey {
+        case authenticatedUser = "data"
+        case statusCode
+    }
+    
     let statusCode: Int
-    let data: AuthenticatedUser
+    let authenticatedUser: AuthenticatedUser
 }

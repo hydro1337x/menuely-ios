@@ -28,8 +28,8 @@ class EditUserProfileViewModel: ObservableObject {
     
     // MARK: - Methods
     func updateUserProfile() {
-        let userUpdateProfileRequestDTO = UserUpdateProfileRequestDTO(firstname: firstname, lastname: lastname)
-        usersService.updateUserProfile(with: userUpdateProfileRequestDTO, updateProfileResult: loadableSubject(\.updateProfileResult))
+        let updateUserProfileRequestDTO = UpdateUserProfileRequestDTO(firstname: firstname, lastname: lastname)
+        usersService.updateUserProfile(with: updateUserProfileRequestDTO, updateProfileResult: loadableSubject(\.updateProfileResult))
     }
     
     func resetStates() {

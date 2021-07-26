@@ -32,7 +32,7 @@ struct UpdatePasswordView: View {
                 FloatingTextField(text: $viewModel.repeatedNewPassword, title: "Repeated new password")
                     .frame(height: 48)
             }
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 16)
             .padding(.top, 25)
             
             Button("Save") {
@@ -41,7 +41,7 @@ struct UpdatePasswordView: View {
             .font(.body)
             .frame(height: 48)
             .padding(.top, 20)
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 16)
             .buttonStyle(RoundedGradientButtonStyle())
         }
     }

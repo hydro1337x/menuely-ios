@@ -11,10 +11,10 @@ import Combine
 import UIKit
 
 protocol UsersRemoteRepositing {
-    func getUsers() -> AnyPublisher<UserListResponseDTO, Error>
+    func getUsers() -> AnyPublisher<UsersListResponseDTO, Error>
     func getUserProfile() -> AnyPublisher<UserResponseDTO, Error>
     func uploadImage(with parameters: [String: String], and dataParameters: DataParameters) -> AnyPublisher<Discardable, Error>
-    func updateUserProfile(with userUpdateProfileRequestDTO: UserUpdateProfileRequestDTO) -> AnyPublisher<Discardable, Error>
+    func updateUserProfile(with updateUserProfileRequestDTO: UpdateUserProfileRequestDTO) -> AnyPublisher<Discardable, Error>
     func updateUserPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO) -> AnyPublisher<Discardable, Error>
     func updateUserEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO) -> AnyPublisher<Discardable, Error>
     func delete() -> AnyPublisher<Discardable, Error>
@@ -23,7 +23,7 @@ protocol UsersRemoteRepositing {
 class UsersRemoteRepository: UsersRemoteRepositing {
     @Injected private var networkClient: Networking
     
-    func getUsers() -> AnyPublisher<UserListResponseDTO, Error> {
+    func getUsers() -> AnyPublisher<UsersListResponseDTO, Error> {
         networkClient.request(endpoint: Endpoint.users)
     }
     
@@ -35,8 +35,8 @@ class UsersRemoteRepository: UsersRemoteRepositing {
         networkClient.upload(to: Endpoint.upload, with: parameters, and: dataParameters)
     }
     
-    func updateUserProfile(with userUpdateProfileRequestDTO: UserUpdateProfileRequestDTO) -> AnyPublisher<Discardable, Error> {
-        networkClient.request(endpoint: Endpoint.updateUserProfile(userUpdateProfileRequestDTO))
+    func updateUserProfile(with updateUserProfileRequestDTO: UpdateUserProfileRequestDTO) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.updateUserProfile(updateUserProfileRequestDTO))
     }
     
     func updateUserPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO) -> AnyPublisher<Discardable, Error> {
@@ -59,7 +59,7 @@ extension UsersRemoteRepository {
         case users
         case userProfile
         case upload
-        case updateUserProfile(_: UserUpdateProfileRequestDTO)
+        case updateUserProfile(_: UpdateUserProfileRequestDTO)
         case updateUserPassword(_: UpdatePasswordRequestDTO)
         case updateUserEmail(_: UpdateEmailRequestDTO)
         case delete
@@ -112,7 +112,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
         case .users: return nil
         case .userProfile: return nil
         case .upload: return nil
-        case .updateUserProfile(let userUpdateProfileRequestDTO): return try userUpdateProfileRequestDTO.asJSON()
+        case .updateUserProfile(let updateUserProfileRequestDTO): return try updateUserProfileRequestDTO.asJSON()
         case .updateUserPassword(let updatePasswordRequestDTO): return try updatePasswordRequestDTO.asJSON()
         case .updateUserEmail(let updateEmailRequestDTO): return try updateEmailRequestDTO.asJSON()
         case .delete: return nil

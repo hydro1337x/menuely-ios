@@ -17,7 +17,7 @@ struct AuthSelectionView: View {
             Text("User").tag(EntityType.user)
         }
         .pickerStyle(SegmentedPickerStyle())
-        .padding(.horizontal, 30)
+        .padding(.horizontal, 16)
         
         VStack {
             switch (viewModel.routing.selectedAuth, viewModel.selectedEntity) {

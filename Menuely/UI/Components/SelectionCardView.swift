@@ -27,7 +27,7 @@ struct SelectionCardView: View {
                     .offset(x: -16, y: 0)
                 Spacer()
             }
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 16)
         }
         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: 85)
     }

@@ -16,5 +16,6 @@ extension Resolver {
         register { Authenticator(session: AF) as Authenticating }
         register { AuthRemoteRepository() as AuthRemoteRepositing }
         register { LocalRepository() as LocalRepositing }
+        register { MenusRemoteRepository() as MenusRemoteRepositing }
     }
 }

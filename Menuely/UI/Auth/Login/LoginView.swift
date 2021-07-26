@@ -43,7 +43,7 @@ struct LoginView: View {
             })
             .padding(.top, 10)
         }
-        .padding(.horizontal, 30)
+        .padding(.horizontal, 16)
     }
     
     @ViewBuilder

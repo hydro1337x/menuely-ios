@@ -15,8 +15,10 @@ extension Image {
         case scanTab = "scan.tab"
         case searchTab = "search.tab"
         case profileTab = "profile.tab"
-        case menu = "menu"
+        case hamburger = "hamburger"
         case forwardArrow = "forward.arrow"
+        case menu = "menu"
+        case plus = "plus"
     }
     
     public init(_ imageName: ImageName) {

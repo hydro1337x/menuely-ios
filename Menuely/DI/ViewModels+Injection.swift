@@ -28,5 +28,6 @@ extension Resolver {
         register { UpdatePasswordViewModel(appState: resolve()) }.scope(.shared)
         register { UpdateEmailViewModel(appState: resolve()) }.scope(.shared)
         register { ScanViewModel() }.scope(.shared)
+        register { MenusListViewModel(appState: resolve()) }.scope(.shared)
     }
 }
