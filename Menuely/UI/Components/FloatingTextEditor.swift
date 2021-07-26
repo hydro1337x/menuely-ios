@@ -14,6 +14,7 @@ struct FloatingTextEditor: View {
     @State private var placeholderColor: Color
     @State private var placeholderOffset: CGFloat
     @State private var placeholderScale: CGFloat
+    @State private var topPadding: CGFloat
     
     private let title: String
     
@@ -22,12 +23,14 @@ struct FloatingTextEditor: View {
         self.title = title
         if !text.wrappedValue.isEmpty {
             placeholderColor = Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1))
-            placeholderOffset = -25
+            placeholderOffset = -20
             placeholderScale = 0.75
+            topPadding = 20
         } else {
             placeholderColor = Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1))
-            placeholderOffset = 5
+            placeholderOffset = 8
             placeholderScale = 1
+            topPadding = 0
         }
         
         UITextView.appearance().backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
@@ -48,14 +51,16 @@ struct FloatingTextEditor: View {
                 .onChange(of: text, perform: { value in
                     withAnimation() {
                         placeholderColor = value.isEmpty ? Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)) : Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1))
-                        placeholderOffset = value.isEmpty ? 5 : -25
+                        placeholderOffset = value.isEmpty ? 8 : -20
                         placeholderScale = value.isEmpty ? 1 : 0.75
+                        topPadding = value.isEmpty ? 0 : 20
                     }
                 })
          }
          .animation(.spring(response: 0.3, dampingFraction: 0.5))
         }
-        .padding(.top, 15)
+        .padding(.top, topPadding)
+        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)), lineWidth: 2))
     }
 }
 

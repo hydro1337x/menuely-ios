@@ -32,7 +32,7 @@ struct EditRestaurantProfileView: View {
                     .padding(.top, 15)
                 
                 FloatingTextEditor(text: $viewModel.description, title: "Description")
-                    .frame(height: 48)
+                    .frame(height: 200)
                 
                 FloatingTextField(text: $viewModel.country, title: "Country")
                     .frame(height: 48)

@@ -18,8 +18,8 @@ struct RestaurantRegistrationView: View {
     }
     
     private var base: some View {
+        ScrollView(.vertical, showsIndicators: false) {
             VStack {
-                
                 Group {
                     FloatingTextField(text: $viewModel.email, title: "Email")
                         .frame(height: 48)
@@ -30,8 +30,8 @@ struct RestaurantRegistrationView: View {
                     FloatingTextField(text: $viewModel.name, title: "Name")
                         .frame(height: 48)
                     
-                    FloatingTextField(text: $viewModel.description, title: "Description")
-                        .frame(height: 48)
+                    FloatingTextEditor(text: $viewModel.description, title: "Description")
+                        .frame(height: 200)
                     
                     FloatingTextField(text: $viewModel.country, title: "Country")
                         .frame(height: 48)
@@ -45,6 +45,7 @@ struct RestaurantRegistrationView: View {
                     FloatingTextField(text: $viewModel.postalCode, title: "Postal code")
                         .frame(height: 48)
                 }
+                .padding(.horizontal, 30)
                 
                 Button("Register") {
                     viewModel.register()
@@ -52,6 +53,7 @@ struct RestaurantRegistrationView: View {
                 .font(.body)
                 .frame(height: 48)
                 .padding(.top, 20)
+                .padding(.horizontal, 30)
                 .buttonStyle(RoundedGradientButtonStyle())
                 
                 Button(action: {
@@ -63,9 +65,9 @@ struct RestaurantRegistrationView: View {
                         .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
                 })
                 .padding(.top, 10)
+                .padding(.horizontal, 30)
             }
-            .padding(.horizontal, 30)
-        
+        }
     }
     
     @ViewBuilder
