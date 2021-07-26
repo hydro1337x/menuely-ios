@@ -26,7 +26,11 @@ struct TabBarView: View {
             )}
             .tag(TabBarView.Routing.scan)
             
-            FloatingTextEditor(text: $text, title: "Title")
+            Button(action: {}, label: {
+                Image(systemName: "plus")
+            })
+            .frame(width: 60, height: 60)
+            .buttonStyle(RoundedGradientButtonStyle(cornerRadius: 30))
             .tabItem { Label(
                 title: { Text("Search") },
                 icon: {
