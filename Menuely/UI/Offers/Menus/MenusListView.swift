@@ -81,6 +81,10 @@ private extension MenusListView {
                     tag: menu.id,
                     selection: .constant(17)) {
                         MenuCell(title: menu.name, description: menu.description, imageName: .menu)
+                            .onLongPressGesture {
+                                let configuration = ActionViewConfiguration(title: "Title", actions: [Action(name: "Action", handler: {})])
+                                viewModel.appState[\.routing.action.configuration] = configuration
+                            }
                     }
             }
         }

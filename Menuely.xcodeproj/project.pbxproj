@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C7BBCB526AFEEEA0084715B /* CreateMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BBCB426AFEEEA0084715B /* CreateMenuViewModel.swift */; };
+		0C7BBCB926B02DB30084715B /* ActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BBCB826B02DB30084715B /* ActionView.swift */; };
 		0CDD50AB26AE957500CF2207 /* FloatingTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDD50AA26AE957500CF2207 /* FloatingTextEditor.swift */; };
 		0CDD50AD26AEE04C00CF2207 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDD50AC26AEE04C00CF2207 /* SearchCell.swift */; };
 		0CDD50B026AEE15100CF2207 /* RoundedCornerShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDD50AF26AEE15100CF2207 /* RoundedCornerShape.swift */; };
@@ -132,6 +133,7 @@
 
 /* Begin PBXFileReference section */
 		0C7BBCB426AFEEEA0084715B /* CreateMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMenuViewModel.swift; sourceTree = "<group>"; };
+		0C7BBCB826B02DB30084715B /* ActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionView.swift; sourceTree = "<group>"; };
 		0CDD50AA26AE957500CF2207 /* FloatingTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextEditor.swift; sourceTree = "<group>"; };
 		0CDD50AC26AEE04C00CF2207 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		0CDD50AF26AEE15100CF2207 /* RoundedCornerShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerShape.swift; sourceTree = "<group>"; };
@@ -513,6 +515,7 @@
 				60BF85B62699172E00890C0F /* SelectionCardView.swift */,
 				60173F2E269C8F03003C4E40 /* AlertView.swift */,
 				60173F30269CA3B2003C4E40 /* InfoView.swift */,
+				0C7BBCB826B02DB30084715B /* ActionView.swift */,
 				60173F3C269CF53D003C4E40 /* ActivityIndicatorView.swift */,
 				606531D026A43CF700C8C500 /* OptionItemView.swift */,
 				6071081526A8C36D00008E44 /* ProfileHeaderView.swift */,
@@ -725,6 +728,7 @@
 				6071081826A8C67800008E44 /* AccountInfoView.swift in Sources */,
 				606531CB26A43B1900C8C500 /* OptionsView.swift in Sources */,
 				601C0C20269B00FE009181D2 /* RestaurantRegistrationView.swift in Sources */,
+				0C7BBCB926B02DB30084715B /* ActionView.swift in Sources */,
 				60173F37269CE0CC003C4E40 /* AuthenticatedRestaurant.swift in Sources */,
 				60C8D55E26ADC3690079EF48 /* ScanView.swift in Sources */,
 				60D32CD02699EC0900F6FDC9 /* Utilities+Injection.swift in Sources */,
