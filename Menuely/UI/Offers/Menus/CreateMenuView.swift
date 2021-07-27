@@ -17,30 +17,33 @@ struct CreateMenuView: View {
     
     private var staticContent: some View {
         NavigationView {
-            VStack {
-                FloatingTextField(text: $viewModel.name, title: "Name")
+            ScrollView {
+                VStack {
+                    FloatingTextField(text: $viewModel.name, title: "Name")
+                        .frame(height: 48)
+                    
+                    FloatingTextField(text: $viewModel.currency, title: "Currency")
+                        .frame(height: 48)
+                    
+                    FloatingTextField(text: $viewModel.numberOfTables, title: "Number of tables")
+                        .frame(height: 48)
+                    
+                    FloatingTextEditor(text: $viewModel.description, title: "Description")
+                        .frame(height: 200)
+                    
+                    Button(action: {
+                        viewModel.createMenu()
+                    }, label: {
+                        Text("Create")
+                    })
                     .frame(height: 48)
-                
-                FloatingTextField(text: $viewModel.currency, title: "Currency")
-                    .frame(height: 48)
-                
-                FloatingTextField(text: $viewModel.numberOfTables, title: "Number of tables")
-                    .frame(height: 48)
-                
-                FloatingTextEditor(text: $viewModel.description, title: "Description")
-                    .frame(height: 200)
-                
-                Button(action: {
-                    viewModel.createMenu()
-                }, label: {
-                    Text("Create")
-                })
-                .frame(height: 48)
-                .padding(.top, 20)
-                .buttonStyle(RoundedGradientButtonStyle())
+                    .padding(.top, 20)
+                    .buttonStyle(RoundedGradientButtonStyle())
+                }
+                .padding(.top, 25)
+                .padding(.horizontal, 16)
             }
             .frame(maxWidth: .infinity)
-            .padding(.horizontal, 16)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarTitle("Create menu")
         }

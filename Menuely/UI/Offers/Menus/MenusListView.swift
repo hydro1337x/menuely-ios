@@ -11,26 +11,17 @@ struct MenusListView: View {
     @InjectedObservedObject private var viewModel: MenusListViewModel
     
     var body: some View {
-        ZStack {
-            content
-            VStack {
-                Spacer()
-                
-                HStack {
-                    Spacer()
-                    
-                    Button(action: {
-                        viewModel.routing.isCreateMenuSheetPresented = true
-                    }, label: {
-                        Image(.plus)
-                    })
-                    .frame(width: 60, height: 60)
-                    .padding(.bottom, 20)
-                    .padding(.trailing, 20)
-                    .buttonStyle(RoundedGradientButtonStyle(cornerRadius: 30))
-                }
-            }
-        }
+        content
+        .navigationBarTitle("Menus")
+        .navigationBarItems(trailing: Button(action: {
+            viewModel.routing.isCreateMenuSheetPresented = true
+        }, label: {
+            Image(.plus)
+                .frame(width: 25, height: 25, alignment: .center)
+                .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
+        })
+        .frame(width: 44, height: 44)
+        )
         .sheet(isPresented: $viewModel.routing.isCreateMenuSheetPresented, content: {
             CreateMenuView()
                 .modifier(PopoversViewModifier())
