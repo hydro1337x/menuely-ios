@@ -63,6 +63,7 @@ class UserProfileViewModel: ObservableObject {
     
     // MARK: - Methods
     func getUserProfile() {
+        guard appState[\.data.authenticatedUser] != nil else { return }
         usersService.getUserProfile(user: loadableSubject(\.userProfile))
     }
     

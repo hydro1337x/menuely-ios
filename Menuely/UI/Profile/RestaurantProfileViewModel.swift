@@ -65,6 +65,7 @@ class RestaurantProfileViewModel: ObservableObject {
     
     // MARK: - Methods
     func getRestaurantProfile() {
+        guard appState[\.data.authenticatedRestaurant] != nil else { return }
         restaurantsService.getRestaurantProfile(restaurant: loadableSubject(\.restaurantProfile))
     }
     

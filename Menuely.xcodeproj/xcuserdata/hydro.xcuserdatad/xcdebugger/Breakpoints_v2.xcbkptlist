@@ -3,4 +3,54 @@
    uuid = "2556DCF0-4E7C-486D-8517-FDD1989F2E70"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F4F6EC28-94A3-4FE6-A4DF-423FE9AA50DD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Menuely/UI/Profile/UserProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "notRequestedView"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "F4F6EC28-94A3-4FE6-A4DF-423FE9AA50DD - 2b9f707399dc9d28"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Menuely.UserProfileView.notRequestedView.getter : some"
+                  moduleName = "Menuely"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hydro/Documents/AppDevelopment/iOS/Menuely/Menuely/UI/Profile/UserProfileView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "F4F6EC28-94A3-4FE6-A4DF-423FE9AA50DD - 6233739f438ac04"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #2 () -&gt; () in implicit closure #1 (Menuely.UserProfileViewModel) -&gt; () -&gt; () in Menuely.UserProfileView.notRequestedView.getter : some"
+                  moduleName = "Menuely"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hydro/Documents/AppDevelopment/iOS/Menuely/Menuely/UI/Profile/UserProfileView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
