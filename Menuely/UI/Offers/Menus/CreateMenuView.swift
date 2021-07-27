@@ -68,6 +68,7 @@ private extension CreateMenuView {
     }
     
     func failedView(_ error: Error) -> some View {
+        viewModel.resetStates()
         viewModel.appState[\.routing.activityIndicator.isActive] = false
         viewModel.errorView(with: error.localizedDescription)
         return EmptyView()

@@ -7,14 +7,10 @@
 
 import SwiftUI
 
-struct Action: Equatable, Identifiable {
+struct Action: Identifiable {
     var id = UUID()
     let name: String
     let handler: () -> Void
-    
-    static func == (lhs: Action, rhs: Action) -> Bool {
-        lhs.id == rhs.id
-    }
 }
 
 struct ActionViewStyle {
@@ -28,6 +24,7 @@ struct ActionViewStyle {
 struct ActionViewConfiguration: Equatable {
     let title: String
     let actions: [Action]
+    let onDismiss: (() -> Void)?
     
     static func == (lhs: ActionViewConfiguration, rhs: ActionViewConfiguration) -> Bool {
         return lhs.title == rhs.title
@@ -46,6 +43,10 @@ struct ActionView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .edgesIgnoringSafeArea(.all)
                 .opacity(0.3)
+                .onTapGesture {
+                    viewModel.routing.configuration?.onDismiss?()
+                    viewModel.routing.configuration = nil
+                }
             
             VStack {
                
@@ -55,17 +56,21 @@ struct ActionView: View {
                     .padding(.horizontal, 15)
                     .padding(.top, 10)
                 
+                Divider()
+                
                 if let actions = viewModel.routing.configuration?.actions {
-                    List(actions) { action in
+                    ForEach(actions) { action in
                         Button(action: {
                             action.handler()
                         }, label: {
                             Text(action.name)
                         })
-                        .frame(width: 48)
+                        .frame(height: 48)
                         .padding(.top, 10)
                         .padding(.horizontal, 16)
+                        .buttonStyle(RoundedGradientButtonStyle())
                     }
+                    .padding(.bottom, 16)
                 }
                 
             }

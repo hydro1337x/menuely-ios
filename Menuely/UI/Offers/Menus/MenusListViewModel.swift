@@ -14,18 +14,18 @@ class MenusListViewModel: ObservableObject {
     
     @Published var routing: MenusListView.Routing
     @Published var menus: Loadable<[Menu]>
-    @Published var modifyResult: Loadable<Discardable>
+    @Published var operationResult: Loadable<Discardable>
     
     var appState: Store<AppState>
     private var cancelBag = CancelBag()
     
     // MARK: - Initialization
-    init(appState: Store<AppState>, menus: Loadable<[Menu]> = .notRequested, modifyResult: Loadable<Discardable> = .notRequested) {
+    init(appState: Store<AppState>, menus: Loadable<[Menu]> = .notRequested, operationResult: Loadable<Discardable> = .notRequested) {
         self.appState = appState
         
         _routing = .init(initialValue: appState[\.routing.menusList])
         _menus = .init(initialValue: menus)
-        _modifyResult = .init(initialValue: modifyResult)
+        _operationResult = .init(initialValue: operationResult)
         
         cancelBag.collect {
             appState
@@ -57,8 +57,48 @@ class MenusListViewModel: ObservableObject {
         menusService.getMenus(with: menusRequestDTO, menus: loadableSubject(\.menus))
     }
     
+    func deleteMenu(with id: Int) {
+        menusService.deleteMenu(with: id, deleteMenuResult: loadableSubject(\.operationResult))
+    }
+    
+    func updateMenu(with id: Int) {}
+    
+    func resetOperationsState() {
+        operationResult.reset()
+    }
+    
     // MARK: - Routing
     func errorView(with message: String?) {
         appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: message)
+    }
+    
+    func deletionAlertView(for menu: Menu) {
+        let configuration = AlertViewConfiguration(title: "Delete menu", message: "Are you sure you want to delete \(menu.id)", primaryAction: {
+            self.appState[\.routing.alert.configuration] = nil
+            self.deleteMenu(with: menu.id)
+        }, primaryButtonTitle: "Delete", secondaryAction: {
+            self.appState[\.routing.alert.configuration] = nil
+        }, secondaryButtonTitle: "Cancel")
+        appState[\.routing.alert.configuration] = configuration
+    }
+    
+    func actionView(for menu: Menu, with additionalAction: @escaping () -> Void) {
+        let delete = Action(name: "Delete") {
+            self.appState[\.routing.action.configuration] = nil
+            self.deletionAlertView(for: menu)
+        }
+        
+        let update = Action(name: "Edit") {
+            // Show edit view
+            self.appState[\.routing.action.configuration] = nil
+            self.updateMenu(with: menu.id)
+        }
+        
+        let configuration = ActionViewConfiguration(title: "\(menu.name) actions", actions: [update, delete]) {
+            additionalAction()
+            self.appState[\.routing.action.configuration] = nil
+        }
+        
+        appState[\.routing.action.configuration] = configuration
     }
 }

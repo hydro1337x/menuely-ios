@@ -10,8 +10,13 @@ import SwiftUI
 struct MenusListView: View {
     @InjectedObservedObject private var viewModel: MenusListViewModel
     
+    @State private var isLongPressed: Bool = false
+    
     var body: some View {
-        content
+        ZStack {
+            listContent
+            operationContent
+        }
         .navigationBarTitle("Menus")
         .navigationBarItems(trailing: Button(action: {
             viewModel.routing.isCreateMenuSheetPresented = true
@@ -32,11 +37,21 @@ struct MenusListView: View {
 
 private extension MenusListView {
     @ViewBuilder
-    private var content: some View {
+    private var listContent: some View {
         switch viewModel.menus {
-        case .notRequested: notRequestedView
-        case .isLoading(let last, _):  loadingView(last)
-        case .loaded(let menus):  loadedView(menus, showLoading: false)
+        case .notRequested: listNotRequestedView
+        case .isLoading(let last, _):  listLoadingView(last)
+        case .loaded(let menus):  listLoadedView(menus, showLoading: false)
+        case let .failed(error): failedView(error)
+        }
+    }
+    
+    @ViewBuilder
+    private var operationContent: some View {
+        switch viewModel.operationResult {
+        case .notRequested: EmptyView()
+        case .isLoading(_, _):  operationLoadingView()
+        case .loaded(_):  operationLoadedView()
         case let .failed(error): failedView(error)
         }
     }
@@ -45,20 +60,26 @@ private extension MenusListView {
 // MARK: - Loading Content
 
 private extension MenusListView {
-    var notRequestedView: some View {
+    var listNotRequestedView: some View {
         Text("").onAppear(perform: viewModel.getMenus)
     }
     
-    func loadingView(_ previouslyLoaded: [Menu]?) -> some View {
+    func listLoadingView(_ previouslyLoaded: [Menu]?) -> some View {
         if let menus = previouslyLoaded {
-            return AnyView(loadedView(menus, showLoading: true))
+            return AnyView(listLoadedView(menus, showLoading: true))
         } else {
             viewModel.appState[\.routing.activityIndicator.isActive] = true
             return AnyView(EmptyView())
         }
     }
     
+    func operationLoadingView() -> some View {
+        viewModel.appState[\.routing.activityIndicator.isActive] = true
+        return EmptyView()
+    }
+    
     func failedView(_ error: Error) -> some View {
+        viewModel.resetOperationsState()
         viewModel.appState[\.routing.activityIndicator.isActive] = false
         viewModel.errorView(with: error.localizedDescription)
         return EmptyView()
@@ -68,7 +89,7 @@ private extension MenusListView {
 // MARK: - Displaying Content
 
 private extension MenusListView {
-    func loadedView(_ menus: [Menu], showLoading: Bool) -> some View {
+    func listLoadedView(_ menus: [Menu], showLoading: Bool) -> some View {
         if showLoading {
             viewModel.appState[\.routing.activityIndicator.isActive] = true
         } else {
@@ -81,13 +102,25 @@ private extension MenusListView {
                     tag: menu.id,
                     selection: .constant(17)) {
                         MenuCell(title: menu.name, description: menu.description, imageName: .menu)
-                            .onLongPressGesture {
-                                let configuration = ActionViewConfiguration(title: "Title", actions: [Action(name: "Action", handler: {})])
-                                viewModel.appState[\.routing.action.configuration] = configuration
-                            }
+                            .background(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)).opacity(0.01))
+                    }
+                    .scaleEffect(isLongPressed ? 1.05 : 1)
+                    .onTapGesture {}
+                    .onLongPressGesture {
+                        viewModel.actionView(for: menu) {
+                            isLongPressed = false
+                        }
+                        isLongPressed = true
                     }
             }
         }
+    }
+    
+    func operationLoadedView() -> some View {
+        viewModel.resetOperationsState()
+        viewModel.appState[\.routing.activityIndicator.isActive] = false
+        viewModel.getMenus()
+        return EmptyView()
     }
 }
 

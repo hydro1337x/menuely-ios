@@ -40,7 +40,9 @@ class CreateMenuViewModel: ObservableObject {
     }
     
     func updateMenusListView() {
-        appState[\.data.updateMenusListView] = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            self.appState[\.data.updateMenusListView] = true
+        }
     }
     
     // MARK: - Routing
