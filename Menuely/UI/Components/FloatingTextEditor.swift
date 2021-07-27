@@ -49,7 +49,7 @@ struct FloatingTextEditor: View {
                 .font(.body)
                 .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
                 .onChange(of: text, perform: { value in
-                    withAnimation() {
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
                         placeholderColor = value.isEmpty ? Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)) : Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1))
                         placeholderOffset = value.isEmpty ? 8 : -20
                         placeholderScale = value.isEmpty ? 1 : 0.75
@@ -57,7 +57,6 @@ struct FloatingTextEditor: View {
                     }
                 })
          }
-         .animation(.spring(response: 0.3, dampingFraction: 0.5))
         }
         .padding(.top, topPadding)
         .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)), lineWidth: 2))

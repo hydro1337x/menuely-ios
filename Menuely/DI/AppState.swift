@@ -30,6 +30,8 @@ extension AppState {
         
         var updateUserProfileView: Bool = false
         var updateRestaurantProfileView: Bool = false
+        
+        var updateMenusListView: Bool = false
     }
 }
 
@@ -40,7 +42,7 @@ extension AppState {
      */
     struct Routing: Equatable {
         
-        var tab: TabBarView.Routing = .scan
+        var tab: TabBarView.Routing = .search
         var root: RootView.Routing = .auth
         var authSelection: AuthSelectionView.Routing = AuthSelectionView.Routing(selectedAuth: .login)
         var profile: ProfileView.Routing = ProfileView.Routing()
@@ -48,6 +50,7 @@ extension AppState {
         var info: InfoView.Routing = InfoView.Routing()
         var activityIndicator: ActivityIndicatorView.Routing = ActivityIndicatorView.Routing()
         var alert: AlertView.Routing = AlertView.Routing()
+        var menusList: MenusListView.Routing = MenusListView.Routing()
     }
 }
 

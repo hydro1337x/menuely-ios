@@ -29,5 +29,6 @@ extension Resolver {
         register { UpdateEmailViewModel(appState: resolve()) }.scope(.shared)
         register { ScanViewModel() }.scope(.shared)
         register { MenusListViewModel(appState: resolve()) }.scope(.shared)
+        register { CreateMenuViewModel(appState: resolve()) }.scope(.shared)
     }
 }

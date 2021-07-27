@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C7BBCB526AFEEEA0084715B /* CreateMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BBCB426AFEEEA0084715B /* CreateMenuViewModel.swift */; };
 		0CDD50AB26AE957500CF2207 /* FloatingTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDD50AA26AE957500CF2207 /* FloatingTextEditor.swift */; };
 		0CDD50AD26AEE04C00CF2207 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDD50AC26AEE04C00CF2207 /* SearchCell.swift */; };
 		0CDD50B026AEE15100CF2207 /* RoundedCornerShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDD50AF26AEE15100CF2207 /* RoundedCornerShape.swift */; };
@@ -130,6 +131,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C7BBCB426AFEEEA0084715B /* CreateMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMenuViewModel.swift; sourceTree = "<group>"; };
 		0CDD50AA26AE957500CF2207 /* FloatingTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextEditor.swift; sourceTree = "<group>"; };
 		0CDD50AC26AEE04C00CF2207 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		0CDD50AF26AEE15100CF2207 /* RoundedCornerShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerShape.swift; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 				60A57CDD26AF280A00A53341 /* MenusListView.swift */,
 				60A57CDF26AF281500A53341 /* MenusListViewModel.swift */,
 				60A57CF326AF42A900A53341 /* CreateMenuView.swift */,
+				0C7BBCB426AFEEEA0084715B /* CreateMenuViewModel.swift */,
 			);
 			path = Menus;
 			sourceTree = "<group>";
@@ -777,6 +780,7 @@
 				6074C0C2268CDC5E00DA3B21 /* Miscellaneous.swift in Sources */,
 				60A57CDE26AF280A00A53341 /* MenusListView.swift in Sources */,
 				6074793726A9D53F00F18693 /* RestaurantsListResponseDTO.swift in Sources */,
+				0C7BBCB526AFEEEA0084715B /* CreateMenuViewModel.swift in Sources */,
 				6074C0BC268CCB3700DA3B21 /* APIConfigurable.swift in Sources */,
 				60A57CEB26AF34EC00A53341 /* CreateMenuRequestDTO.swift in Sources */,
 				60F3BAC92694ACA6005798C1 /* AuthRequestInterceptor.swift in Sources */,

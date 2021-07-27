@@ -20,15 +20,22 @@ struct MenusListView: View {
                     Spacer()
                     
                     Button(action: {
-                        print("Open create menu view")
+                        viewModel.routing.isCreateMenuSheetPresented = true
                     }, label: {
                         Image(.plus)
                     })
                     .frame(width: 60, height: 60)
+                    .padding(.bottom, 20)
+                    .padding(.trailing, 20)
                     .buttonStyle(RoundedGradientButtonStyle(cornerRadius: 30))
                 }
             }
         }
+        .sheet(isPresented: $viewModel.routing.isCreateMenuSheetPresented, content: {
+            CreateMenuView()
+                .modifier(PopoversViewModifier())
+                .modifier(RootViewAppearance())
+        })
     }
 }
 
@@ -86,6 +93,13 @@ private extension MenusListView {
                     }
             }
         }
+    }
+}
+
+extension MenusListView {
+    struct Routing: Equatable {
+        var isCreateMenuSheetPresented: Bool = false
+        var isEditMenuSheetPresented: Bool = false
     }
 }
 

@@ -12,6 +12,7 @@ class MenusListViewModel: ObservableObject {
     // MARK: - Properties
     @Injected private var menusService: MenusServicing
     
+    @Published var routing: MenusListView.Routing
     @Published var menus: Loadable<[Menu]>
     @Published var modifyResult: Loadable<Discardable>
     
@@ -22,8 +23,31 @@ class MenusListViewModel: ObservableObject {
     init(appState: Store<AppState>, menus: Loadable<[Menu]> = .notRequested, modifyResult: Loadable<Discardable> = .notRequested) {
         self.appState = appState
         
+        _routing = .init(initialValue: appState[\.routing.menusList])
         _menus = .init(initialValue: menus)
         _modifyResult = .init(initialValue: modifyResult)
+        
+        cancelBag.collect {
+            appState
+                .map(\.data.updateMenusListView)
+                .removeDuplicates()
+                .sink { shouldUpdateMenusListView in
+                    if shouldUpdateMenusListView {
+                        appState[\.data.updateMenusListView] = false
+                        self.getMenus()
+                    }
+                }
+            
+            $routing
+                .removeDuplicates()
+                .sink { appState[\.routing.menusList] = $0 }
+            
+            appState
+                .map(\.routing.menusList)
+                .removeDuplicates()
+                .assign(to: \.routing, on: self)
+                
+        }
     }
     
     // MARK: - Methods
