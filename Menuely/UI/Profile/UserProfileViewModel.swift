@@ -27,6 +27,7 @@ class UserProfileViewModel: ObservableObject {
             uploadImageAndGetUserProfil(imagaKind: .cover)
         }
     }
+    
     var appState: Store<AppState>
     private var cancelBag = CancelBag()
     

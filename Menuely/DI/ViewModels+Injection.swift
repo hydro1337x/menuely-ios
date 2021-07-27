@@ -31,5 +31,6 @@ extension Resolver {
         register { ScanViewModel() }.scope(.shared)
         register { MenusListViewModel(appState: resolve()) }.scope(.shared)
         register { CreateMenuViewModel(appState: resolve()) }.scope(.shared)
+        register { UpdateMenuViewModel(appState: resolve()) }.scope(.shared)
     }
 }

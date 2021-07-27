@@ -27,8 +27,17 @@ struct MenusListView: View {
         })
         .frame(width: 44, height: 44)
         )
-        .sheet(isPresented: $viewModel.routing.isCreateMenuSheetPresented, content: {
+        .sheet(isPresented: $viewModel.routing.isCreateMenuSheetPresented, onDismiss: {
+            viewModel.routing.isCreateMenuSheetPresented = false
+        }, content: {
             CreateMenuView()
+                .modifier(PopoversViewModifier())
+                .modifier(RootViewAppearance())
+        })
+        .sheet(isPresented: viewModel.routing.menuForUpdate != nil ? .constant(true) : .constant(false), onDismiss: {
+            viewModel.routing.menuForUpdate = nil
+        }, content: {
+            UpdateMenuView()
                 .modifier(PopoversViewModifier())
                 .modifier(RootViewAppearance())
         })
@@ -127,7 +136,7 @@ private extension MenusListView {
 extension MenusListView {
     struct Routing: Equatable {
         var isCreateMenuSheetPresented: Bool = false
-        var isEditMenuSheetPresented: Bool = false
+        var menuForUpdate: Menu?
     }
 }
 

@@ -61,8 +61,6 @@ class MenusListViewModel: ObservableObject {
         menusService.deleteMenu(with: id, deleteMenuResult: loadableSubject(\.operationResult))
     }
     
-    func updateMenu(with id: Int) {}
-    
     func resetOperationsState() {
         operationResult.reset()
     }
@@ -89,9 +87,8 @@ class MenusListViewModel: ObservableObject {
         }
         
         let update = Action(name: "Edit") {
-            // Show edit view
             self.appState[\.routing.action.configuration] = nil
-            self.updateMenu(with: menu.id)
+            self.appState[\.routing.menusList.menuForUpdate] = menu
         }
         
         let configuration = ActionViewConfiguration(title: "\(menu.name) actions", actions: [update, delete]) {

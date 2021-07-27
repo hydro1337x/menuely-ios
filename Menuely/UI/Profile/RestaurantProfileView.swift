@@ -29,8 +29,8 @@ private extension RestaurantProfileView {
     private var content: some View {
         switch viewModel.restaurantProfile {
         case .notRequested: notRequestedView
-        case .isLoading(let last, _):  loadingView(last)
-        case .loaded(let restaurant):  loadedView(restaurant, showLoading: false)
+        case .isLoading(let last, _): loadingView(last)
+        case .loaded(let restaurant): loadedView(restaurant, showLoading: false)
         case let .failed(error): failedView(error)
         }
     }
@@ -40,8 +40,7 @@ private extension RestaurantProfileView {
 
 private extension RestaurantProfileView {
     var notRequestedView: some View {
-        Text("")
-            .onAppear(perform: viewModel.getRestaurantProfile)
+        Text("").onAppear(perform: viewModel.getRestaurantProfile)
     }
     
     func loadingView(_ previouslyLoaded: Restaurant?) -> some View {

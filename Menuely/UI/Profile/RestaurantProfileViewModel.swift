@@ -42,7 +42,9 @@ class RestaurantProfileViewModel: ObservableObject {
         cancelBag.collect {
             $routing
                 .removeDuplicates()
-                .sink { appState[\.routing.profile] = $0 }
+                .sink { [weak self] in
+                    guard self != nil else { return }
+                    appState[\.routing.profile] = $0 }
             
             appState
                 .map(\.routing.profile)
