@@ -7,49 +7,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F4F6EC28-94A3-4FE6-A4DF-423FE9AA50DD"
+            uuid = "47777951-E55F-4ABE-9AEC-49B5A2F59210"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Menuely/UI/Profile/UserProfileView.swift"
+            filePath = "Menuely/Services/AuthService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "notRequestedView"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "logout(logoutResult:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F10A4E9C-B731-4CC6-A3B2-8BD6308F951F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Menuely/UI/Profile/OptionsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "authSelectionView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1CCB1D16-DD34-4522-943D-2228282FB9FA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Menuely/Services/AuthService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "currentAuthenticatedEntity"
             landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "F4F6EC28-94A3-4FE6-A4DF-423FE9AA50DD - 2b9f707399dc9d28"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Menuely.UserProfileView.notRequestedView.getter : some"
-                  moduleName = "Menuely"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hydro/Documents/AppDevelopment/iOS/Menuely/Menuely/UI/Profile/UserProfileView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "43"
-                  endingLineNumber = "43"
-                  offsetFromSymbolStart = "48">
-               </Location>
-               <Location
-                  uuid = "F4F6EC28-94A3-4FE6-A4DF-423FE9AA50DD - 6233739f438ac04"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "implicit closure #2 () -&gt; () in implicit closure #1 (Menuely.UserProfileViewModel) -&gt; () -&gt; () in Menuely.UserProfileView.notRequestedView.getter : some"
-                  moduleName = "Menuely"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hydro/Documents/AppDevelopment/iOS/Menuely/Menuely/UI/Profile/UserProfileView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "43"
-                  endingLineNumber = "43"
-                  offsetFromSymbolStart = "24">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "77C0FE14-E5C5-4548-8CBF-C9F899CBDB98"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Menuely/Services/AuthService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "currentAuthenticatedEntity"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

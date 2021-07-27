@@ -20,6 +20,10 @@ class RootViewModel: ObservableObject {
         appState[\.data.authenticatedUser] = authService.authenticatedUser
         appState[\.data.authenticatedRestaurant] = authService.authenticatedRestaurant
         
+        print("AUTH ENTITY: ", authService.currentAuthenticatedEntity)
+        print("authenticatedUSER: ", authService.authenticatedUser)
+        print("authenticatedRestaurant: ", authService.authenticatedRestaurant)
+        
         cancelBag.collect {
             $routing
                 .removeDuplicates()
