@@ -78,7 +78,7 @@ class RestaurantProfileViewModel: ObservableObject {
             imageData = selectedCoverImage?.jpegData(compressionQuality: 0.5)
         }
         guard let imageData = imageData else { return }
-        let dataParameters = ["image": DataInfo(mimeType: .jpeg, file: imageData)]
+        let dataParameters = ["image": DataInfo(mimeType: .jpeg, file: imageData, fieldName: "")]
         restaurantProfile.reset()
         restaurantsService.uploadImageAndGetRestaurantProfile(with: dataParameters, ofKind: imagaKind, restaurant: loadableSubject(\.restaurantProfile))
     }

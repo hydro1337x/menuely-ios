@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ImageKind: String {
+enum ImageKind: String, Codable {
     case profile
     case cover
     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MimeType: String {
+enum MimeType: String, Codable {
     case jpeg = "image/jpeg"
     
     var associatedExtension: String {
@@ -17,14 +17,18 @@ enum MimeType: String {
     }
 }
 
-struct DataInfo {
+struct DataInfo: Codable {
     let fileName: String
     let mimeType: MimeType
     let file: Data
+    let fieldName: String
     
-    init(mimeType: MimeType, file: Data) {
+    init(mimeType: MimeType, file: Data, fieldName: String) {
         self.fileName = UUID().uuidString + mimeType.associatedExtension
         self.mimeType = mimeType
         self.file = file
+        self.fieldName = fieldName
     }
+    
+    
 }

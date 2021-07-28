@@ -8,12 +8,13 @@
 import Foundation
 import Combine
 import Resolver
+import Alamofire
 
 protocol UsersServicing {
     func get(users: LoadableSubject<[User]>, search: String)
     func getUserProfile(user: LoadableSubject<User>)
-    func uploadImageAndGetUserProfile(with dataParameters: DataParameters, ofKind kind: ImageKind, user: LoadableSubject<User>)
-    func uploadImage(with dataParameters: DataParameters, ofKind kind: ImageKind, imageResult: LoadableSubject<Discardable>)
+    func uploadImageAndGetUserProfile(with multipartFormDataRequestable: MultipartFormDataRequestable, user: LoadableSubject<User>)
+    func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable, imageResult: LoadableSubject<Discardable>)
     func updateUserProfile(with updateUserProfileRequestDTO: UpdateUserProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>)
     func updateUserPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO, updatePasswordResult: LoadableSubject<Discardable>)
     func updateUserEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO, updateEmailResult: LoadableSubject<Discardable>)
@@ -57,13 +58,13 @@ class UsersService: UsersServicing {
             .store(in: cancelBag)
     }
     
-    func uploadImageAndGetUserProfile(with dataParameters: DataParameters, ofKind kind: ImageKind, user: LoadableSubject<User>) {
+    func uploadImageAndGetUserProfile(with multipartFormDataRequestable: MultipartFormDataRequestable, user: LoadableSubject<User>) {
         user.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.uploadImage(with: kind.asParameter, and: dataParameters)
+                remoteRepository.uploadImage(with: multipartFormDataRequestable)
             }
             .flatMap { [remoteRepository] _ in
                 remoteRepository.getUserProfile()
@@ -77,13 +78,13 @@ class UsersService: UsersServicing {
             .store(in: cancelBag)
     }
     
-    func uploadImage(with dataParameters: DataParameters, ofKind kind: ImageKind, imageResult: LoadableSubject<Discardable>) {
+    func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable, imageResult: LoadableSubject<Discardable>) {
         imageResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.uploadImage(with: kind.asParameter, and: dataParameters)
+                remoteRepository.uploadImage(with: multipartFormDataRequestable)
             }
             .sinkToLoadable { imageResult.wrappedValue = $0 }
             .store(in: cancelBag)

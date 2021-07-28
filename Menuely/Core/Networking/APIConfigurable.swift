@@ -13,6 +13,14 @@ typealias Parameters = Alamofire.Parameters
 typealias HTTPMethod = Alamofire.HTTPMethod
 typealias DataParameters = [String: DataInfo]
 
+protocol PathRequestable: Encodable {}
+protocol QueryRequestable: Encodable {}
+protocol BodyRequestable: Encodable {}
+protocol MultipartFormDataRequestable {
+    var data: DataInfo { get set }
+    var parameters: Encodable { get set }
+}
+
 protocol APIConfigurable: URLRequestConvertible {
     var path: String { get }
     var method: HTTPMethod { get }
@@ -76,6 +84,7 @@ extension NetworkError: LocalizedError {
 enum DataError: Error {
     case missing
     case decoder
+    case malformed
 }
 
 extension DataError: LocalizedError {
@@ -83,6 +92,7 @@ extension DataError: LocalizedError {
         switch self {
         case .missing: return "Missing data"
         case .decoder: return "Decoder error"
+        case .malformed: return "Malformed data"
         }
     }
 }
@@ -92,4 +102,10 @@ typealias HTTPCodes = Range<HTTPCode>
 
 extension HTTPCodes {
     static let success = 200 ..< 300
+}
+
+extension MultipartFormData {
+    convenience init() {
+        self.init(fileManager: FileManager(), boundary: String(format: "%08X%08X", arc4random(), arc4random()))
+    }
 }
