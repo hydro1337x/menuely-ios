@@ -77,11 +77,11 @@ class UserProfileViewModel: ObservableObject {
             imageData = selectedCoverImage?.jpegData(compressionQuality: 0.5)
         }
         guard let imageData = imageData else { return }
-        let parameters = UpdateUserImageMultipartFormDataRequest.Parameters(kind: imagaKind)
+        let parameters = UpdateImageMultipartFormDataRequest.Parameters(kind: imagaKind)
         let data = DataInfo(mimeType: .jpeg, file: imageData, fieldName: "image")
-        let updateUserProfileMultipartFormDataRequest = UpdateUserImageMultipartFormDataRequest(data: data, parameters: parameters)
+        let updateImageMultipartFormDataRequest = UpdateImageMultipartFormDataRequest(data: data, parameters: parameters)
         userProfile.reset()
-        usersService.uploadImageAndGetUserProfile(with: updateUserProfileMultipartFormDataRequest, user: loadableSubject(\.userProfile))
+        usersService.uploadImageAndGetUserProfile(with: updateImageMultipartFormDataRequest, user: loadableSubject(\.userProfile))
     }
     
     func timeIntervalToString(_ timeInterval: TimeInterval) -> String {

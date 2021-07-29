@@ -8,12 +8,12 @@
 import Foundation
 import Resolver
 import Combine
-import UIKit
+import Alamofire
 
 protocol RestaurantsRemoteRepositing {
     func getRestaurants(with searchRequestDTO: SearchRequestDTO?) -> AnyPublisher<RestaurantsListResponseDTO, Error>
     func getRestaurantProfile() -> AnyPublisher<RestaurantResponseDTO, Error>
-    func uploadImage(with parameters: [String: String], and dataParameters: DataParameters) -> AnyPublisher<Discardable, Error>
+    func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable) -> AnyPublisher<Discardable, Error>
     func updateRestaurantProfile(with updateRestaurantProfileRequestDTO: UpdateRestaurantProfileRequestDTO) -> AnyPublisher<Discardable, Error>
     func updateRestaurantPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO) -> AnyPublisher<Discardable, Error>
     func updateRestaurantEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO) -> AnyPublisher<Discardable, Error>
@@ -22,6 +22,7 @@ protocol RestaurantsRemoteRepositing {
 
 class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
     @Injected private var networkClient: Networking
+    @Injected private var multipartFormatter: MultipartFormatter
     
     func getRestaurants(with searchRequestDTO: SearchRequestDTO?) -> AnyPublisher<RestaurantsListResponseDTO, Error> {
         networkClient.request(endpoint: Endpoint.restaurants(searchRequestDTO))
@@ -31,8 +32,12 @@ class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
         networkClient.request(endpoint: Endpoint.restaurantProfile)
     }
     
-    func uploadImage(with parameters: [String: String], and dataParameters: DataParameters) -> AnyPublisher<Discardable, Error> {
-        networkClient.upload(to: Endpoint.upload, with: parameters, and: dataParameters)
+    func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable) -> AnyPublisher<Discardable, Error> {
+        guard let multipartFormData = multipartFormatter.format(multipartFormDataRequestable) else {
+            return Fail(error: DataError.malformed as Error).eraseToAnyPublisher()
+        }
+        
+        return networkClient.request(endpoint: Endpoint.upload(multipartFormData))
     }
     
     func updateRestaurantProfile(with updateRestaurantProfileRequestDTO: UpdateRestaurantProfileRequestDTO) -> AnyPublisher<Discardable, Error> {
@@ -58,7 +63,7 @@ extension RestaurantsRemoteRepository {
     enum Endpoint {
         case restaurants(SearchRequestDTO?)
         case restaurantProfile
-        case upload
+        case upload(_: MultipartFormData)
         case updateRestaurantProfile(_: UpdateRestaurantProfileRequestDTO)
         case updateRestaurantPassword(_: UpdatePasswordRequestDTO)
         case updateRestaurantEmail(_: UpdateEmailRequestDTO)
@@ -95,7 +100,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         switch self {
         case .restaurants: return nil
         case .restaurantProfile: return nil
-        case .upload: return nil
+        case .upload(let multipartFormData): return ["Content-Type": "multipart/form-data; boundary=\(multipartFormData.boundary)"]
         case .updateRestaurantProfile: return ["Content-Type": "application/json"]
         case .updateRestaurantPassword: return ["Content-Type": "application/json"]
         case .updateRestaurantEmail: return ["Content-Type": "application/json"]
@@ -114,7 +119,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         switch self {
         case .restaurants: return nil
         case .restaurantProfile: return nil
-        case .upload: return nil
+        case .upload(let multipartFormData): return try multipartFormData.encode()
         case .updateRestaurantProfile(let updateRestaurantProfileRequestDTO): return try updateRestaurantProfileRequestDTO.asJSON()
         case .updateRestaurantPassword(let updatePasswordRequestDTO): return try updatePasswordRequestDTO.asJSON()
         case .updateRestaurantEmail(let updateEmailRequestDTO): return try updateEmailRequestDTO.asJSON()

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UpdateUserImageMultipartFormDataRequest: MultipartFormDataRequestable {
+struct UpdateImageMultipartFormDataRequest: MultipartFormDataRequestable {
     struct Parameters: Codable {
         var kind: ImageKind
     }

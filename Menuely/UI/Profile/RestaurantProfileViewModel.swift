@@ -78,9 +78,11 @@ class RestaurantProfileViewModel: ObservableObject {
             imageData = selectedCoverImage?.jpegData(compressionQuality: 0.5)
         }
         guard let imageData = imageData else { return }
-        let dataParameters = ["image": DataInfo(mimeType: .jpeg, file: imageData, fieldName: "")]
+        let parameters = UpdateImageMultipartFormDataRequest.Parameters(kind: imagaKind)
+        let data = DataInfo(mimeType: .jpeg, file: imageData, fieldName: "image")
+        let updateImageMultipartFormDataRequest = UpdateImageMultipartFormDataRequest(data: data, parameters: parameters)
         restaurantProfile.reset()
-        restaurantsService.uploadImageAndGetRestaurantProfile(with: dataParameters, ofKind: imagaKind, restaurant: loadableSubject(\.restaurantProfile))
+        restaurantsService.uploadImageAndGetRestaurantProfile(with: updateImageMultipartFormDataRequest, restaurant: loadableSubject(\.restaurantProfile))
     }
     
     func timeIntervalToString(_ timeInterval: TimeInterval) -> String {

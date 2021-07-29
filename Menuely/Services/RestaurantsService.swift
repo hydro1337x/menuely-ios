@@ -12,8 +12,8 @@ import Resolver
 protocol RestaurantsServicing {
     func getRestaurants(with searchRequestDTO: SearchRequestDTO?, restaurants: LoadableSubject<[Restaurant]>)
     func getRestaurantProfile(restaurant: LoadableSubject<Restaurant>)
-    func uploadImageAndGetRestaurantProfile(with dataParameters: DataParameters, ofKind kind: ImageKind, restaurant: LoadableSubject<Restaurant>)
-    func uploadImage(with dataParameters: DataParameters, ofKind kind: ImageKind, imageResult: LoadableSubject<Discardable>)
+    func uploadImageAndGetRestaurantProfile(with multipartFormDataRequestable: MultipartFormDataRequestable, restaurant: LoadableSubject<Restaurant>)
+    func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable, imageResult: LoadableSubject<Discardable>)
     func updateRestaurantProfile(with updateRestaurantProfileRequestDTO: UpdateRestaurantProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>)
     func updateRestaurantPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO, updatePasswordResult: LoadableSubject<Discardable>)
     func updateRestaurantEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO, updateEmailResult: LoadableSubject<Discardable>)
@@ -57,13 +57,13 @@ class RestaurantsService: RestaurantsServicing {
             .store(in: cancelBag)
     }
     
-    func uploadImageAndGetRestaurantProfile(with dataParameters: DataParameters, ofKind kind: ImageKind, restaurant: LoadableSubject<Restaurant>) {
+    func uploadImageAndGetRestaurantProfile(with multipartFormDataRequestable: MultipartFormDataRequestable, restaurant: LoadableSubject<Restaurant>) {
         restaurant.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.uploadImage(with: kind.asParameter, and: dataParameters)
+                remoteRepository.uploadImage(with: multipartFormDataRequestable)
             }
             .flatMap { [remoteRepository] _ in
                 remoteRepository.getRestaurantProfile()
@@ -77,13 +77,13 @@ class RestaurantsService: RestaurantsServicing {
             .store(in: cancelBag)
     }
     
-    func uploadImage(with dataParameters: DataParameters, ofKind kind: ImageKind, imageResult: LoadableSubject<Discardable>) {
+    func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable, imageResult: LoadableSubject<Discardable>) {
         imageResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.uploadImage(with: kind.asParameter, and: dataParameters)
+                remoteRepository.uploadImage(with: multipartFormDataRequestable)
             }
             .sinkToLoadable { imageResult.wrappedValue = $0 }
             .store(in: cancelBag)
