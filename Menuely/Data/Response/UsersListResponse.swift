@@ -1,5 +1,5 @@
 //
-//  UsersListResponseDTO.swift
+//  UsersListResponse.swift
 //  Menuely
 //
 //  Created by Benjamin Mecanović on 01.07.2021..
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UsersListResponseDTO: Decodable, Equatable {
+struct UsersListResponse: Decodable, Equatable {
     
     enum CodingKeys: String, CodingKey {
         case users = "data"

@@ -1,5 +1,5 @@
 //
-//  RestaurantResponseDTO.swift
+//  RestaurantResponse.swift
 //  Menuely
 //
 //  Created by Benjamin Mecanović on 22.07.2021..
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RestaurantResponseDTO: Codable {
+struct RestaurantResponse: Codable {
     enum CodingKeys: String, CodingKey {
         case restaurant = "data"
         case statusCode

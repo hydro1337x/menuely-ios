@@ -12,8 +12,8 @@ import UIKit
 import Alamofire
 
 protocol UsersRemoteRepositing {
-    func getUsers() -> AnyPublisher<UsersListResponseDTO, Error>
-    func getUserProfile() -> AnyPublisher<UserResponseDTO, Error>
+    func getUsers() -> AnyPublisher<UsersListResponse, Error>
+    func getUserProfile() -> AnyPublisher<UserResponse, Error>
     func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable) -> AnyPublisher<Discardable, Error>
     func updateUserProfile(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
     func updateUserPassword(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
@@ -24,11 +24,11 @@ protocol UsersRemoteRepositing {
 class UsersRemoteRepository: UsersRemoteRepositing {
     @Injected private var networkClient: Networking
     
-    func getUsers() -> AnyPublisher<UsersListResponseDTO, Error> {
+    func getUsers() -> AnyPublisher<UsersListResponse, Error> {
         networkClient.request(endpoint: Endpoint.users)
     }
     
-    func getUserProfile() -> AnyPublisher<UserResponseDTO, Error> {
+    func getUserProfile() -> AnyPublisher<UserResponse, Error> {
         networkClient.request(endpoint: Endpoint.userProfile)
     }
     

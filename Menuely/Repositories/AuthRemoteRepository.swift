@@ -11,10 +11,10 @@ import Resolver
 
 protocol AuthRemoteRepositing {
     func registerUser(bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
-    func loginUser(userbodyRequest: BodyRequestable) -> AnyPublisher<UserLoginResponseDTO, Error>
+    func loginUser(userbodyRequest: BodyRequestable) -> AnyPublisher<UserLoginResponse, Error>
     
     func registerRestaurant(bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
-    func loginRestaurant(restaurantbodyRequest: BodyRequestable) -> AnyPublisher<RestaurantLoginResponseDTO, Error>
+    func loginRestaurant(restaurantbodyRequest: BodyRequestable) -> AnyPublisher<RestaurantLoginResponse, Error>
     
     func logout(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
 }
@@ -26,7 +26,7 @@ class AuthRemoteRepository: AuthRemoteRepositing {
         networkClient.request(endpoint: Endpoint.registerUser(bodyRequest))
     }
 
-    func loginUser(userbodyRequest: BodyRequestable) -> AnyPublisher<UserLoginResponseDTO, Error> {
+    func loginUser(userbodyRequest: BodyRequestable) -> AnyPublisher<UserLoginResponse, Error> {
         networkClient.request(endpoint: Endpoint.loginUser(userbodyRequest))
     }
     
@@ -34,7 +34,7 @@ class AuthRemoteRepository: AuthRemoteRepositing {
         networkClient.request(endpoint: Endpoint.registerRestaurant(bodyRequest))
     }
     
-    func loginRestaurant(restaurantbodyRequest: BodyRequestable) -> AnyPublisher<RestaurantLoginResponseDTO, Error> {
+    func loginRestaurant(restaurantbodyRequest: BodyRequestable) -> AnyPublisher<RestaurantLoginResponse, Error> {
         networkClient.request(endpoint: Endpoint.loginRestaurant(restaurantbodyRequest))
     }
     

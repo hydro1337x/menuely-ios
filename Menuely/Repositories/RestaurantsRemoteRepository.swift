@@ -11,8 +11,8 @@ import Combine
 import Alamofire
 
 protocol RestaurantsRemoteRepositing {
-    func getRestaurants(with queryRequestable: QueryRequestable?) -> AnyPublisher<RestaurantsListResponseDTO, Error>
-    func getRestaurantProfile() -> AnyPublisher<RestaurantResponseDTO, Error>
+    func getRestaurants(with queryRequestable: QueryRequestable?) -> AnyPublisher<RestaurantsListResponse, Error>
+    func getRestaurantProfile() -> AnyPublisher<RestaurantResponse, Error>
     func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable) -> AnyPublisher<Discardable, Error>
     func updateRestaurantProfile(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
     func updateRestaurantPassword(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
@@ -23,11 +23,11 @@ protocol RestaurantsRemoteRepositing {
 class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
     @Injected private var networkClient: Networking
     
-    func getRestaurants(with queryRequestable: QueryRequestable?) -> AnyPublisher<RestaurantsListResponseDTO, Error> {
+    func getRestaurants(with queryRequestable: QueryRequestable?) -> AnyPublisher<RestaurantsListResponse, Error> {
         networkClient.request(endpoint: Endpoint.restaurants(queryRequestable))
     }
     
-    func getRestaurantProfile() -> AnyPublisher<RestaurantResponseDTO, Error> {
+    func getRestaurantProfile() -> AnyPublisher<RestaurantResponse, Error> {
         networkClient.request(endpoint: Endpoint.restaurantProfile)
     }
     

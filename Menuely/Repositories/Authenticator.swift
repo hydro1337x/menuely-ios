@@ -10,7 +10,7 @@ import Combine
 import Alamofire
 
 protocol Authenticating {
-    func refreshTokens(with bodyRequest: BodyRequestable) -> AnyPublisher<TokensResponseDTO, Error>
+    func refreshTokens(with bodyRequest: BodyRequestable) -> AnyPublisher<TokensResponse, Error>
 }
 
 class Authenticator: Authenticating {
@@ -20,12 +20,12 @@ class Authenticator: Authenticating {
         self.session = session
     }
     
-    func refreshTokens(with bodyRequest: BodyRequestable) -> AnyPublisher<TokensResponseDTO, Error> {
+    func refreshTokens(with bodyRequest: BodyRequestable) -> AnyPublisher<TokensResponse, Error> {
         session.request(Endpoint.refresh(bodyRequest))
             .cURLDescription(calling: { curl in
                 print(curl)
             })
-            .publishDecodable(type: TokensResponseDTO.self)
+            .publishDecodable(type: TokensResponse.self)
             .tryMap {
                 guard let code = $0.response?.statusCode else {
                     throw NetworkError.unexpectedResponse
@@ -38,7 +38,7 @@ class Authenticator: Authenticating {
                 }
                 return data
             }
-            .decode(type: TokensResponseDTO.self, decoder: JSONDecoder())
+            .decode(type: TokensResponse.self, decoder: JSONDecoder())
             .handleEvents(receiveOutput: { tokens in
                 print("Response: ", tokens)
             })

@@ -49,18 +49,18 @@ class AuthRequestInterceptor: RequestInterceptor {
         
         authenticator.refreshTokens(with: TokensBodyRequest(refreshToken: refreshToken)).sinkToResult { result in
             switch result {
-            case .success(let tokensResponseDTO):
+            case .success(let tokensResponse):
                 
                 switch self.appState[\.data.selectedEntity] {
                 case .user:
                     var authenticatedUser = self.localRepository.load(AuthenticatedUser.self, for: .authenticatedUser)
-                    authenticatedUser?.auth = tokensResponseDTO.tokens
+                    authenticatedUser?.auth = tokensResponse.tokens
                     self.localRepository.save(authenticatedUser, for: .authenticatedUser)
                     self.appState[\.data.authenticatedUser] = authenticatedUser
                     
                 case .restaurant:
                     var authenticatedRestaurant = self.localRepository.load(AuthenticatedRestaurant.self, for: .authenticatedRestaurant)
-                    authenticatedRestaurant?.auth = tokensResponseDTO.tokens
+                    authenticatedRestaurant?.auth = tokensResponse.tokens
                     self.localRepository.save(authenticatedRestaurant, for: .authenticatedRestaurant)
                     self.appState[\.data.authenticatedRestaurant] = authenticatedRestaurant
                 }

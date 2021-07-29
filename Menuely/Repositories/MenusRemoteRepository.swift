@@ -11,7 +11,7 @@ import Combine
 import Alamofire
 
 protocol MenusRemoteRepositing {
-    func getMenus(with queryRequestable: QueryRequestable) -> AnyPublisher<MenusListResponseDTO, Error>
+    func getMenus(with queryRequestable: QueryRequestable) -> AnyPublisher<MenusListResponse, Error>
     func createMenu(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
     func updateMenu(with id: Int, and bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
     func deleteMenu(with id: Int) -> AnyPublisher<Discardable, Error>
@@ -20,7 +20,7 @@ protocol MenusRemoteRepositing {
 class MenusRemoteRepository: MenusRemoteRepositing {
     @Injected private var networkClient: Networking
     
-    func getMenus(with queryRequestable: QueryRequestable) -> AnyPublisher<MenusListResponseDTO, Error> {
+    func getMenus(with queryRequestable: QueryRequestable) -> AnyPublisher<MenusListResponse, Error> {
         networkClient.request(endpoint: Endpoint.getMenus(queryRequestable))
     }
     
