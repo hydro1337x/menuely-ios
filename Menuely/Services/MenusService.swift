@@ -10,10 +10,10 @@ import Combine
 import Resolver
 
 protocol MenusServicing {
-    func getMenus(with queryRequestable: QueryRequestable, menus: LoadableSubject<[Menu]>)
+    func getMenus(with queryRequest: QueryRequestable, menus: LoadableSubject<[Menu]>)
     func createMenu(with bodyRequest: BodyRequestable, createMenuResult: LoadableSubject<Discardable>)
-    func updateMenu(with id: Int, and bodyRequest: BodyRequestable, updateMenuResult: LoadableSubject<Discardable>)
-    func deleteMenu(with id: Int, deleteMenuResult: LoadableSubject<Discardable>)
+    func updateMenu(with id: PathParameter, and bodyRequest: BodyRequestable, updateMenuResult: LoadableSubject<Discardable>)
+    func deleteMenu(with id: PathParameter, deleteMenuResult: LoadableSubject<Discardable>)
 }
 
 class MenusService: MenusServicing {
@@ -22,13 +22,13 @@ class MenusService: MenusServicing {
     
     let cancelBag = CancelBag()
     
-    func getMenus(with queryRequestable: QueryRequestable, menus: LoadableSubject<[Menu]>) {
+    func getMenus(with queryRequest: QueryRequestable, menus: LoadableSubject<[Menu]>) {
         menus.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.getMenus(with: queryRequestable)
+                remoteRepository.getMenus(with: queryRequest)
             }
             .map { $0.menus }
             .sinkToLoadable { menus.wrappedValue = $0 }
@@ -49,7 +49,7 @@ class MenusService: MenusServicing {
             .store(in: cancelBag)
     }
     
-    func updateMenu(with id: Int, and bodyRequest: BodyRequestable, updateMenuResult: LoadableSubject<Discardable>) {
+    func updateMenu(with id: PathParameter, and bodyRequest: BodyRequestable, updateMenuResult: LoadableSubject<Discardable>) {
         updateMenuResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
@@ -63,7 +63,7 @@ class MenusService: MenusServicing {
             .store(in: cancelBag)
     }
     
-    func deleteMenu(with id: Int, deleteMenuResult: LoadableSubject<Discardable>) {
+    func deleteMenu(with id: PathParameter, deleteMenuResult: LoadableSubject<Discardable>) {
         deleteMenuResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>

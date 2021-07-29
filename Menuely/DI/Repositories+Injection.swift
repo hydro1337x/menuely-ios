@@ -17,5 +17,6 @@ extension Resolver {
         register { AuthRemoteRepository() as AuthRemoteRepositing }
         register { LocalRepository() as LocalRepositing }
         register { MenusRemoteRepository() as MenusRemoteRepositing }
+        register { CategoriesRemoteRepository() as CategoriesRemoteRepositing }
     }
 }

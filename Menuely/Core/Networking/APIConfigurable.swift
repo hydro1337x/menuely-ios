@@ -11,7 +11,7 @@ import Resolver
 
 typealias HTTPMethod = Alamofire.HTTPMethod
 
-protocol PathRequestable: Encodable {}
+typealias PathParameter = Int
 protocol QueryRequestable: Encodable {}
 protocol BodyRequestable: Encodable {}
 protocol MultipartFormDataRequestable {

@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		0C7BBCB526AFEEEA0084715B /* CreateMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BBCB426AFEEEA0084715B /* CreateMenuViewModel.swift */; };
 		0C7BBCB926B02DB30084715B /* ActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BBCB826B02DB30084715B /* ActionView.swift */; };
+		0C8B25E926B2C51A007809CD /* CreateCategoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8B25E826B2C51A007809CD /* CreateCategoryRequest.swift */; };
+		0C8B25EB26B2C573007809CD /* CategoriesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8B25EA26B2C573007809CD /* CategoriesRequest.swift */; };
+		0C8B25ED26B2C5F7007809CD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8B25EC26B2C5F7007809CD /* Category.swift */; };
+		0C8B25EF26B2C6AF007809CD /* CategoriesListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8B25EE26B2C6AF007809CD /* CategoriesListResponse.swift */; };
+		0C8B25F126B2C73A007809CD /* CategoriesRemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8B25F026B2C73A007809CD /* CategoriesRemoteRepository.swift */; };
+		0C8B25F326B2C804007809CD /* UpdateCategoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8B25F226B2C804007809CD /* UpdateCategoryRequest.swift */; };
+		0C8B25F726B2CDFE007809CD /* CategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8B25F626B2CDFE007809CD /* CategoriesService.swift */; };
 		0CDD50AB26AE957500CF2207 /* FloatingTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDD50AA26AE957500CF2207 /* FloatingTextEditor.swift */; };
 		0CDD50AD26AEE04C00CF2207 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDD50AC26AEE04C00CF2207 /* SearchCell.swift */; };
 		0CDD50B026AEE15100CF2207 /* RoundedCornerShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDD50AF26AEE15100CF2207 /* RoundedCornerShape.swift */; };
@@ -137,6 +144,13 @@
 /* Begin PBXFileReference section */
 		0C7BBCB426AFEEEA0084715B /* CreateMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMenuViewModel.swift; sourceTree = "<group>"; };
 		0C7BBCB826B02DB30084715B /* ActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionView.swift; sourceTree = "<group>"; };
+		0C8B25E826B2C51A007809CD /* CreateCategoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryRequest.swift; sourceTree = "<group>"; };
+		0C8B25EA26B2C573007809CD /* CategoriesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRequest.swift; sourceTree = "<group>"; };
+		0C8B25EC26B2C5F7007809CD /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		0C8B25EE26B2C6AF007809CD /* CategoriesListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListResponse.swift; sourceTree = "<group>"; };
+		0C8B25F026B2C73A007809CD /* CategoriesRemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRemoteRepository.swift; sourceTree = "<group>"; };
+		0C8B25F226B2C804007809CD /* UpdateCategoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCategoryRequest.swift; sourceTree = "<group>"; };
+		0C8B25F626B2CDFE007809CD /* CategoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesService.swift; sourceTree = "<group>"; };
 		0CDD50AA26AE957500CF2207 /* FloatingTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextEditor.swift; sourceTree = "<group>"; };
 		0CDD50AC26AEE04C00CF2207 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		0CDD50AF26AEE15100CF2207 /* RoundedCornerShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerShape.swift; sourceTree = "<group>"; };
@@ -275,6 +289,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C8B25E726B2C501007809CD /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				0C8B25EA26B2C573007809CD /* CategoriesRequest.swift */,
+				0C8B25E826B2C51A007809CD /* CreateCategoryRequest.swift */,
+				0C8B25F226B2C804007809CD /* UpdateCategoryRequest.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		0CDD50AE26AEE13A00CF2207 /* Shapes */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,6 +437,7 @@
 				60E4ED73268DEFC300EC4561 /* UsersRemoteRepository.swift */,
 				6074793426A9D3F900F18693 /* RestaurantsRemoteRepository.swift */,
 				60A57CE526AF31F800A53341 /* MenusRemoteRepository.swift */,
+				0C8B25F026B2C73A007809CD /* CategoriesRemoteRepository.swift */,
 				60F3BACA2694B85B005798C1 /* Authenticator.swift */,
 				60006229269644DB0085DF41 /* AuthRemoteRepository.swift */,
 				60FF8C2F26A388350050DA8A /* LocalRepository.swift */,
@@ -426,6 +451,7 @@
 				60E4ED6D268DE40B00EC4561 /* UsersService.swift */,
 				6074793A26A9D61F00F18693 /* RestaurantsService.swift */,
 				60A57CF026AF3B2600A53341 /* MenusService.swift */,
+				0C8B25F626B2CDFE007809CD /* CategoriesService.swift */,
 				60006231269648C30085DF41 /* AuthService.swift */,
 			);
 			path = Services;
@@ -593,6 +619,7 @@
 				602375D0269F5B550086B3B6 /* DataInfo.swift */,
 				6097A7D026A0DD4100BC3534 /* AuthCredentials.swift */,
 				60A57CE126AF2F6700A53341 /* Menu.swift */,
+				0C8B25EC26B2C5F7007809CD /* Category.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -612,6 +639,7 @@
 				6077EBCA26ACC8FF00D6D4F4 /* UpdateEmailRequest.swift */,
 				60C8D56526AE05590079EF48 /* SearchRequest.swift */,
 				60A57CE926AF349200A53341 /* Menus */,
+				0C8B25E726B2C501007809CD /* Categories */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -626,6 +654,7 @@
 				60173F3A269CE55A003C4E40 /* RestaurantLoginResponse.swift */,
 				6074793826A9D59300F18693 /* RestaurantResponse.swift */,
 				60A57CE326AF317200A53341 /* MenusListResponse.swift */,
+				0C8B25EE26B2C6AF007809CD /* CategoriesListResponse.swift */,
 				60E395392690918D007E459E /* TokensResponse.swift */,
 				6000622F2696482F0085DF41 /* Discardable.swift */,
 			);
@@ -758,6 +787,7 @@
 				6074793D26A9E30100F18693 /* DescriptionView.swift in Sources */,
 				606531C926A43A4100C8C500 /* ProfileViewModel.swift in Sources */,
 				6000623A269663750085DF41 /* AuthenticatedUser.swift in Sources */,
+				0C8B25F326B2C804007809CD /* UpdateCategoryRequest.swift in Sources */,
 				6074793926A9D59300F18693 /* RestaurantResponse.swift in Sources */,
 				6074C0B4268C940700DA3B21 /* AppState.swift in Sources */,
 				6077EBC326AC6FC500D6D4F4 /* PopoversViewModifier.swift in Sources */,
@@ -780,15 +810,18 @@
 				60E4ED6E268DE40B00EC4561 /* UsersService.swift in Sources */,
 				6016C1C826AB256B00375929 /* EditRestaurantProfileViewModel.swift in Sources */,
 				60173F33269CDF0B003C4E40 /* RestaurantRegistrationRequest.swift in Sources */,
+				0C8B25ED26B2C5F7007809CD /* Category.swift in Sources */,
 				60C8D56026ADC3710079EF48 /* ScanViewModel.swift in Sources */,
 				606531D326A4871A00C8C500 /* OptionType.swift in Sources */,
 				6077EBC726AC9B3500D6D4F4 /* UpdatePasswordView.swift in Sources */,
 				60BF85AC2698F0DE00890C0F /* RootViewModifier.swift in Sources */,
 				0CDD50AD26AEE04C00CF2207 /* SearchCell.swift in Sources */,
 				60660C6D2693861D00A6159E /* NetworkClient.swift in Sources */,
+				0C8B25F126B2C73A007809CD /* CategoriesRemoteRepository.swift in Sources */,
 				6016C1C426AB0A6400375929 /* UpdateUserProfileRequest.swift in Sources */,
 				606531CD26A43B2300C8C500 /* OptionsViewModel.swift in Sources */,
 				60E4ED70268DECA600EC4561 /* UsersListResponse.swift in Sources */,
+				0C8B25EB26B2C573007809CD /* CategoriesRequest.swift in Sources */,
 				6074793126A9BB2B00F18693 /* UserResponse.swift in Sources */,
 				6074C0C2268CDC5E00DA3B21 /* Miscellaneous.swift in Sources */,
 				60A57CDE26AF280A00A53341 /* MenusListView.swift in Sources */,
@@ -816,12 +849,14 @@
 				60173F39269CE10D003C4E40 /* Restaurant.swift in Sources */,
 				60A57CF426AF42A900A53341 /* CreateMenuView.swift in Sources */,
 				60FF8C3026A388350050DA8A /* LocalRepository.swift in Sources */,
+				0C8B25EF26B2C6AF007809CD /* CategoriesListResponse.swift in Sources */,
 				606C9AC926A7795E005AD06E /* RootView.swift in Sources */,
 				60A57CF126AF3B2600A53341 /* MenusService.swift in Sources */,
 				60E395382690917C007E459E /* TokensRequest.swift in Sources */,
 				60A67196269B354A0083C0E9 /* LoginViewModel.swift in Sources */,
 				60006232269648C30085DF41 /* AuthService.swift in Sources */,
 				60A57CE226AF2F6700A53341 /* Menu.swift in Sources */,
+				0C8B25E926B2C51A007809CD /* CreateCategoryRequest.swift in Sources */,
 				6074792D26A9B48A00F18693 /* RestaurantProfileView.swift in Sources */,
 				6097A7D126A0DD4200BC3534 /* AuthCredentials.swift in Sources */,
 				6074C0C0268CD41400DA3B21 /* NetworkingHelpers.swift in Sources */,
@@ -834,6 +869,7 @@
 				6074792F26A9B49300F18693 /* RestaurantProfileViewModel.swift in Sources */,
 				60A57CED26AF34F800A53341 /* UpdateMenuRequest.swift in Sources */,
 				60A67198269B363E0083C0E9 /* EntityType.swift in Sources */,
+				0C8B25F726B2CDFE007809CD /* CategoriesService.swift in Sources */,
 				60D32CE02699FA3100F6FDC9 /* UserRegistrationViewModel.swift in Sources */,
 				6016C1CA26AB262800375929 /* UpdateRestaurantProfileRequest.swift in Sources */,
 				60A57CE626AF31F800A53341 /* MenusRemoteRepository.swift in Sources */,
