@@ -26,14 +26,14 @@ class UpdateMenuViewModel: ObservableObject {
         
         _updateMenuResult = .init(initialValue: updateMenuResult)
         
-        name =  appState[\.routing.menusList.menuForUpdate]?.name ?? ""
-        description =  appState[\.routing.menusList.menuForUpdate]?.description ?? ""
-        currency =  appState[\.routing.menusList.menuForUpdate]?.currency ?? ""
+        name =  appState[\.routing.menusList.updateMenu]?.name ?? ""
+        description =  appState[\.routing.menusList.updateMenu]?.description ?? ""
+        currency =  appState[\.routing.menusList.updateMenu]?.currency ?? ""
     }
     
     // MARK: - Methods
     func updateMenu() {
-        guard let menu = appState[\.routing.menusList.menuForUpdate] else { return }
+        guard let menu = appState[\.routing.menusList.updateMenu] else { return }
         let bodyRequest = UpdateMenuBodyRequest(name: name.isEmpty ? nil : name, description: description.isEmpty ? nil : description, currency: currency.isEmpty ? nil : currency)
         menusService.updateMenu(with: menu.id, and: bodyRequest, updateMenuResult: loadableSubject(\.updateMenuResult))
     }
@@ -54,6 +54,6 @@ class UpdateMenuViewModel: ObservableObject {
     }
     
     func dismiss() {
-        appState[\.routing.menusList.menuForUpdate] = nil
+        appState[\.routing.menusList.updateMenu] = nil
     }
 }

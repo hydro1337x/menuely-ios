@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct CategoriesQueryRequest: BodyRequestable {
+struct CategoriesQueryRequest: QueryRequestable {
     let menuId: Int
 }

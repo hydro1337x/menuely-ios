@@ -32,6 +32,8 @@ extension AppState {
         var updateRestaurantProfileView: Bool = false
         
         var updateMenusListView: Bool = false
+        
+        var updateCategoriesListView: Bool = false
     }
 }
 
@@ -52,6 +54,7 @@ extension AppState {
         var alert: AlertView.Routing = AlertView.Routing()
         var action: ActionView.Routing = ActionView.Routing()
         var menusList: MenusListView.Routing = MenusListView.Routing()
+        var categoriesList: CategoriesListView.Routing = CategoriesListView.Routing()
     }
 }
 

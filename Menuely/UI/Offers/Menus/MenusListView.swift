@@ -34,8 +34,8 @@ struct MenusListView: View {
                 .modifier(PopoversViewModifier())
                 .modifier(RootViewAppearance())
         })
-        .sheet(isPresented: viewModel.routing.menuForUpdate != nil ? .constant(true) : .constant(false), onDismiss: {
-            viewModel.routing.menuForUpdate = nil
+        .sheet(isPresented: viewModel.routing.updateMenu != nil ? .constant(true) : .constant(false), onDismiss: {
+            viewModel.routing.updateMenu = nil
         }, content: {
             UpdateMenuView()
                 .modifier(PopoversViewModifier())
@@ -104,25 +104,26 @@ private extension MenusListView {
         } else {
             viewModel.appState[\.routing.activityIndicator.isActive] = false
         }
-        return VStack {
-            List(menus) { menu in
-                NavigationLink(
-                    destination: Text("New menu"),
-                    tag: menu.id,
-                    selection: .constant(17)) {
-                        MenuCell(title: menu.name, description: menu.description, imageName: .menu)
-                            .background(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)).opacity(0.01))
+        
+        return List(menus) { menu in
+            NavigationLink(
+                destination: CategoriesListView(),
+                tag: menu.id,
+                selection: $viewModel.routing.categories) {
+                    MenuCell(title: menu.name, description: menu.description, imageName: .menu)
+                }
+                .scaleEffect(isLongPressed ? 1.05 : 1)
+                .onTapGesture {
+                    viewModel.routing.categories = menu.id
+                }
+                .onLongPressGesture {
+                    viewModel.actionView(for: menu) {
+                        isLongPressed = false
                     }
-                    .scaleEffect(isLongPressed ? 1.05 : 1)
-                    .onTapGesture {}
-                    .onLongPressGesture {
-                        viewModel.actionView(for: menu) {
-                            isLongPressed = false
-                        }
-                        isLongPressed = true
-                    }
-            }
+                    isLongPressed = true
+                }
         }
+        .listStyle(InsetGroupedListStyle())
     }
     
     func operationLoadedView() -> some View {
@@ -136,7 +137,9 @@ private extension MenusListView {
 extension MenusListView {
     struct Routing: Equatable {
         var isCreateMenuSheetPresented: Bool = false
-        var menuForUpdate: Menu?
+        var updateMenu: Menu?
+        /// menuId for the categories list
+        var categories: Int?
     }
 }
 

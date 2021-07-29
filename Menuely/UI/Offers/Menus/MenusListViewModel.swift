@@ -88,7 +88,7 @@ class MenusListViewModel: ObservableObject {
         
         let update = Action(name: "Edit") {
             self.appState[\.routing.action.configuration] = nil
-            self.appState[\.routing.menusList.menuForUpdate] = menu
+            self.appState[\.routing.menusList.updateMenu] = menu
         }
         
         let configuration = ActionViewConfiguration(title: "\(menu.name) actions", actions: [update, delete]) {

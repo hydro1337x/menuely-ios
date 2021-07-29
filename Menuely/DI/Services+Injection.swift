@@ -16,5 +16,6 @@ extension Resolver {
         register { RestaurantsService() as RestaurantsServicing }
         register { AuthService() as AuthServicing }
         register { MenusService() as MenusServicing }
+        register { CategoriesService() as CategoriesServicing }
     }
 }

@@ -19,6 +19,7 @@ extension Image {
         case forwardArrow = "forward.arrow"
         case menu = "menu"
         case plus = "plus"
+        case category = "category"
     }
     
     public init(_ imageName: ImageName) {
