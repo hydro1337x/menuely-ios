@@ -53,8 +53,8 @@ class MenusListViewModel: ObservableObject {
     // MARK: - Methods
     func getMenus() {
         guard let restaurantId = appState[\.data.authenticatedRestaurant]?.restaurant.id else { return }
-        let menusRequestDTO = MenusQueryRequest(restaurantId: restaurantId)
-        menusService.getMenus(with: menusRequestDTO, menus: loadableSubject(\.menus))
+        let queryRequestable = MenusQueryRequest(restaurantId: restaurantId)
+        menusService.getMenus(with: queryRequestable, menus: loadableSubject(\.menus))
     }
     
     func deleteMenu(with id: Int) {

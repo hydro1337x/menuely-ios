@@ -11,7 +11,7 @@ import Combine
 import Alamofire
 
 protocol RestaurantsRemoteRepositing {
-    func getRestaurants(with query: SearchQueryRequest?) -> AnyPublisher<RestaurantsListResponseDTO, Error>
+    func getRestaurants(with queryRequestable: SearchQueryRequest?) -> AnyPublisher<RestaurantsListResponseDTO, Error>
     func getRestaurantProfile() -> AnyPublisher<RestaurantResponseDTO, Error>
     func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable) -> AnyPublisher<Discardable, Error>
     func updateRestaurantProfile(with updateRestaurantProfileRequestDTO: UpdateRestaurantProfileRequestDTO) -> AnyPublisher<Discardable, Error>
@@ -22,10 +22,9 @@ protocol RestaurantsRemoteRepositing {
 
 class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
     @Injected private var networkClient: Networking
-    @Injected private var multipartFormatter: MultipartFormatter
     
-    func getRestaurants(with query: SearchQueryRequest?) -> AnyPublisher<RestaurantsListResponseDTO, Error> {
-        networkClient.request(endpoint: Endpoint.restaurants(query))
+    func getRestaurants(with queryRequestable: SearchQueryRequest?) -> AnyPublisher<RestaurantsListResponseDTO, Error> {
+        networkClient.request(endpoint: Endpoint.restaurants(queryRequestable))
     }
     
     func getRestaurantProfile() -> AnyPublisher<RestaurantResponseDTO, Error> {
@@ -33,11 +32,7 @@ class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
     }
     
     func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable) -> AnyPublisher<Discardable, Error> {
-        guard let multipartFormData = multipartFormatter.format(multipartFormDataRequestable) else {
-            return Fail(error: DataError.malformed as Error).eraseToAnyPublisher()
-        }
-        
-        return networkClient.request(endpoint: Endpoint.upload(multipartFormData))
+        networkClient.request(endpoint: Endpoint.upload(multipartFormDataRequestable))
     }
     
     func updateRestaurantProfile(with updateRestaurantProfileRequestDTO: UpdateRestaurantProfileRequestDTO) -> AnyPublisher<Discardable, Error> {
@@ -63,7 +58,7 @@ extension RestaurantsRemoteRepository {
     enum Endpoint {
         case restaurants(SearchQueryRequest?)
         case restaurantProfile
-        case upload(_: MultipartFormData)
+        case upload(_: MultipartFormDataRequestable)
         case updateRestaurantProfile(_: UpdateRestaurantProfileRequestDTO)
         case updateRestaurantPassword(_: UpdatePasswordRequestDTO)
         case updateRestaurantEmail(_: UpdateEmailRequestDTO)
@@ -100,7 +95,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         switch self {
         case .restaurants: return nil
         case .restaurantProfile: return nil
-        case .upload(let multipartFormData): return ["Content-Type": "multipart/form-data; boundary=\(multipartFormData.boundary)"]
+        case .upload: return nil
         case .updateRestaurantProfile: return ["Content-Type": "application/json"]
         case .updateRestaurantPassword: return ["Content-Type": "application/json"]
         case .updateRestaurantEmail: return ["Content-Type": "application/json"]
@@ -119,11 +114,18 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         switch self {
         case .restaurants: return nil
         case .restaurantProfile: return nil
-        case .upload(let multipartFormData): return try multipartFormData.encode()
+        case .upload: return nil
         case .updateRestaurantProfile(let updateRestaurantProfileRequestDTO): return try updateRestaurantProfileRequestDTO.asJSON()
         case .updateRestaurantPassword(let updatePasswordRequestDTO): return try updatePasswordRequestDTO.asJSON()
         case .updateRestaurantEmail(let updateEmailRequestDTO): return try updateEmailRequestDTO.asJSON()
         case .delete: return nil
+        }
+    }
+    
+    var multipartFormDataRequestable: MultipartFormDataRequestable? {
+        switch self {
+        case .upload(let multipartFormDataRequestable): return multipartFormDataRequestable
+        default: return nil
         }
     }
 }

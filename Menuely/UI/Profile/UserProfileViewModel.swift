@@ -13,7 +13,6 @@ class UserProfileViewModel: ObservableObject {
     // MARK: - Properties
     @Injected private var usersService: UsersServicing
     @Injected private var dateUtility: DateUtility
-    @Injected private var multipartFormatter: MultipartFormatter
     
     @Published var routing: ProfileView.Routing
     @Published var userProfile: Loadable<User>

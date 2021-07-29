@@ -10,7 +10,7 @@ import Combine
 import Resolver
 
 protocol RestaurantsServicing {
-    func getRestaurants(with query: SearchQueryRequest?, restaurants: LoadableSubject<[Restaurant]>)
+    func getRestaurants(with queryRequestable: SearchQueryRequest?, restaurants: LoadableSubject<[Restaurant]>)
     func getRestaurantProfile(restaurant: LoadableSubject<Restaurant>)
     func uploadImageAndGetRestaurantProfile(with multipartFormDataRequestable: MultipartFormDataRequestable, restaurant: LoadableSubject<Restaurant>)
     func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable, imageResult: LoadableSubject<Discardable>)
@@ -27,13 +27,13 @@ class RestaurantsService: RestaurantsServicing {
     
     let cancelBag = CancelBag()
     
-    func getRestaurants(with query: SearchQueryRequest?, restaurants: LoadableSubject<[Restaurant]>) {
+    func getRestaurants(with queryRequestable: SearchQueryRequest?, restaurants: LoadableSubject<[Restaurant]>) {
         restaurants.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                return remoteRepository.getRestaurants(with: query)
+                return remoteRepository.getRestaurants(with: queryRequestable)
             }
             .map { return $0.restaurants }
             .sinkToLoadable { restaurants.wrappedValue = $0 }

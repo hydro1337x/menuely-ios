@@ -10,6 +10,5 @@ import Resolver
 extension Resolver {
     public static func registerUtilities() {
         register { DateUtility() }.scope(.shared)
-        register { MultipartFormatter() }.scope(.shared)
     }
 }

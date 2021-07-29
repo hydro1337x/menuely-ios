@@ -23,7 +23,6 @@ protocol UsersRemoteRepositing {
 
 class UsersRemoteRepository: UsersRemoteRepositing {
     @Injected private var networkClient: Networking
-    @Injected private var multipartFormatter: MultipartFormatter
     
     func getUsers() -> AnyPublisher<UsersListResponseDTO, Error> {
         networkClient.request(endpoint: Endpoint.users)
@@ -34,12 +33,7 @@ class UsersRemoteRepository: UsersRemoteRepositing {
     }
     
     func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable) -> AnyPublisher<Discardable, Error> {
-        
-        guard let multipartFormData = multipartFormatter.format(multipartFormDataRequestable) else {
-            return Fail(error: DataError.malformed as Error).eraseToAnyPublisher()
-        }
-        
-        return networkClient.request(endpoint: Endpoint.upload(multipartFormData))
+        networkClient.request(endpoint: Endpoint.upload(multipartFormDataRequestable))
     }
     
     func updateUserProfile(with updateUserProfileRequestDTO: UpdateUserProfileRequestDTO) -> AnyPublisher<Discardable, Error> {
@@ -65,7 +59,7 @@ extension UsersRemoteRepository {
     enum Endpoint {
         case users
         case userProfile
-        case upload(_: MultipartFormData)
+        case upload(_: MultipartFormDataRequestable)
         case updateUserProfile(_: UpdateUserProfileRequestDTO)
         case updateUserPassword(_: UpdatePasswordRequestDTO)
         case updateUserEmail(_: UpdateEmailRequestDTO)
@@ -102,7 +96,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
         switch self {
         case .users: return nil
         case .userProfile: return nil
-        case .upload(let multipartFormData): return ["Content-Type": "multipart/form-data; boundary=\(multipartFormData.boundary)"]
+        case .upload: return nil
         case .updateUserProfile: return ["Content-Type": "application/json"]
         case .updateUserPassword: return ["Content-Type": "application/json"]
         case .updateUserEmail: return ["Content-Type": "application/json"]
@@ -118,11 +112,18 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
         switch self {
         case .users: return nil
         case .userProfile: return nil
-        case .upload(let multipartFormData): return try multipartFormData.encode()
+        case .upload: return nil
         case .updateUserProfile(let updateUserProfileRequestDTO): return try updateUserProfileRequestDTO.asJSON()
         case .updateUserPassword(let updatePasswordRequestDTO): return try updatePasswordRequestDTO.asJSON()
         case .updateUserEmail(let updateEmailRequestDTO): return try updateEmailRequestDTO.asJSON()
         case .delete: return nil
+        }
+    }
+    
+    var multipartFormDataRequestable: MultipartFormDataRequestable? {
+        switch self {
+        case .upload(let multipartFormDataRequestable): return multipartFormDataRequestable
+        default: return nil
         }
     }
 }

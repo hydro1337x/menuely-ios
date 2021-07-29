@@ -93,4 +93,8 @@ extension AuthRemoteRepository.Endpoint: APIConfigurable {
         case .logout(let logoutRequestDTO): return try logoutRequestDTO.asJSON()
         }
     }
+    
+    var multipartFormDataRequestable: MultipartFormDataRequestable? {
+        return nil
+    }
 }

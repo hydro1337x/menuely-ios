@@ -20,12 +20,30 @@ protocol MultipartFormDataRequestable {
     var parameters: Encodable { get set }
 }
 
+extension MultipartFormDataRequestable {
+    func asMultipartFormData() throws -> MultipartFormData {
+        let multipartFormData = MultipartFormData()
+        let dataInfo = self.data
+        guard let parameters = self.parameters.asDictionary else { throw DataError.malformed }
+        
+        for (key, value) in parameters {
+            guard value is String || value is Int else { throw DataError.malformed }
+            multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
+        }
+        
+        multipartFormData.append(dataInfo.file, withName: dataInfo.fieldName, fileName: dataInfo.fileName, mimeType: dataInfo.mimeType.rawValue)
+        
+        return multipartFormData
+    }
+}
+
 protocol APIConfigurable: URLRequestConvertible {
     var path: String { get }
     var method: HTTPMethod { get }
     var headers: [String: String]? { get }
     var query: QueryRequestable? { get }
     func body() throws -> Data?
+    var multipartFormDataRequestable: MultipartFormDataRequestable? { get }
 }
 
 extension APIConfigurable {
@@ -57,6 +75,12 @@ extension APIConfigurable {
         
         // Body
         urlRequest.httpBody = try body()
+        
+        if let multipartFormDataRequestable = self.multipartFormDataRequestable {
+            let multipartFormData = try multipartFormDataRequestable.asMultipartFormData()
+            urlRequest.setValue("multipart/form-data; boundary=\(multipartFormData.boundary)", forHTTPHeaderField: "Content-Type")
+            urlRequest.httpBody = try multipartFormData.encode()
+        }
         
         return urlRequest
     }

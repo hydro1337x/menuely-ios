@@ -74,4 +74,8 @@ extension Authenticator.Endpoint: APIConfigurable {
         case .refresh(let tokensRequestDTO): return try tokensRequestDTO.asJSON()
         }
     }
+    
+    var multipartFormDataRequestable: MultipartFormDataRequestable? {
+        return nil
+    }
 }

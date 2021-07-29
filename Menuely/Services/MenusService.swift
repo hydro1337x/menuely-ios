@@ -10,7 +10,7 @@ import Combine
 import Resolver
 
 protocol MenusServicing {
-    func getMenus(with menusRequestDTO: MenusQueryRequest, menus: LoadableSubject<[Menu]>)
+    func getMenus(with queryRequestable: MenusQueryRequest, menus: LoadableSubject<[Menu]>)
     func createMenu(with createMenuRequestDTO: CreateMenuRequestDTO, createMenuResult: LoadableSubject<Discardable>)
     func updateMenu(with id: Int, and updateMenuRequestDTO: UpdateMenuRequestDTO, updateMenuResult: LoadableSubject<Discardable>)
     func deleteMenu(with id: Int, deleteMenuResult: LoadableSubject<Discardable>)
@@ -22,13 +22,13 @@ class MenusService: MenusServicing {
     
     let cancelBag = CancelBag()
     
-    func getMenus(with menusRequestDTO: MenusQueryRequest, menus: LoadableSubject<[Menu]>) {
+    func getMenus(with queryRequestable: MenusQueryRequest, menus: LoadableSubject<[Menu]>) {
         menus.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.getMenus(with: menusRequestDTO)
+                remoteRepository.getMenus(with: queryRequestable)
             }
             .map { $0.menus }
             .sinkToLoadable { menus.wrappedValue = $0 }
