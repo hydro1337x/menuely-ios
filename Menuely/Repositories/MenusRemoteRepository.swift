@@ -11,25 +11,25 @@ import Combine
 import Alamofire
 
 protocol MenusRemoteRepositing {
-    func getMenus(with queryRequestable: MenusQueryRequest) -> AnyPublisher<MenusListResponseDTO, Error>
-    func createMenu(with createMenuRequestDTO: CreateMenuRequestDTO) -> AnyPublisher<Discardable, Error>
-    func updateMenu(with id: Int, and updateMenuRequestDTO: UpdateMenuRequestDTO) -> AnyPublisher<Discardable, Error>
+    func getMenus(with queryRequestable: QueryRequestable) -> AnyPublisher<MenusListResponseDTO, Error>
+    func createMenu(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
+    func updateMenu(with id: Int, and bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
     func deleteMenu(with id: Int) -> AnyPublisher<Discardable, Error>
 }
 
 class MenusRemoteRepository: MenusRemoteRepositing {
     @Injected private var networkClient: Networking
     
-    func getMenus(with queryRequestable: MenusQueryRequest) -> AnyPublisher<MenusListResponseDTO, Error> {
+    func getMenus(with queryRequestable: QueryRequestable) -> AnyPublisher<MenusListResponseDTO, Error> {
         networkClient.request(endpoint: Endpoint.getMenus(queryRequestable))
     }
     
-    func createMenu(with createMenuRequestDTO: CreateMenuRequestDTO) -> AnyPublisher<Discardable, Error> {
-        networkClient.request(endpoint: Endpoint.createMenu(createMenuRequestDTO))
+    func createMenu(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.createMenu(bodyRequest))
     }
     
-    func updateMenu(with id: Int, and updateMenuRequestDTO: UpdateMenuRequestDTO) -> AnyPublisher<Discardable, Error> {
-        networkClient.request(endpoint: Endpoint.updateMenu(id, updateMenuRequestDTO))
+    func updateMenu(with id: Int, and bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.updateMenu(id, bodyRequest))
     }
     
     func deleteMenu(with id: Int) -> AnyPublisher<Discardable, Error> {
@@ -41,9 +41,9 @@ class MenusRemoteRepository: MenusRemoteRepositing {
 
 extension MenusRemoteRepository {
     enum Endpoint {
-        case getMenus(MenusQueryRequest)
-        case createMenu(CreateMenuRequestDTO)
-        case updateMenu(Int, UpdateMenuRequestDTO)
+        case getMenus(QueryRequestable)
+        case createMenu(BodyRequestable)
+        case updateMenu(Int, BodyRequestable)
         case deleteMenu(Int)
     }
 }
@@ -76,20 +76,20 @@ extension MenusRemoteRepository.Endpoint: APIConfigurable {
         }
     }
     
-    var query: QueryRequestable? {
+    var queryRequestable: QueryRequestable? {
         switch self {
-        case .getMenus(let query): return query
+        case .getMenus(let queryRequestable): return queryRequestable
         case .createMenu: return nil
         case .updateMenu: return nil
         case .deleteMenu: return nil
         }
     }
     
-    func body() throws -> Data? {
+    var bodyRequestable: BodyRequestable? {
         switch self {
         case .getMenus: return nil
-        case .createMenu(let createMenuRequestDTO): return try createMenuRequestDTO.asJSON()
-        case .updateMenu(_, let updateMenuRequestDTO): return try updateMenuRequestDTO.asJSON()
+        case .createMenu(let bodyRequest): return bodyRequest
+        case .updateMenu(_, let bodyRequest): return bodyRequest
         case .deleteMenu: return nil
         }
     }

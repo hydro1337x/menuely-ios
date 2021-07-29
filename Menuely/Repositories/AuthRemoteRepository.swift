@@ -10,46 +10,46 @@ import Combine
 import Resolver
 
 protocol AuthRemoteRepositing {
-    func registerUser(userRegistrationRequestDTO: UserRegistrationRequestDTO) -> AnyPublisher<Discardable, Error>
-    func loginUser(userLoginRequestDTO: LoginRequestDTO) -> AnyPublisher<UserLoginResponseDTO, Error>
+    func registerUser(bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
+    func loginUser(userbodyRequest: BodyRequestable) -> AnyPublisher<UserLoginResponseDTO, Error>
     
-    func registerRestaurant(restaurantRegistrationRequestDTO: RestaurantRegistrationRequestDTO) -> AnyPublisher<Discardable, Error>
-    func loginRestaurant(restaurantLoginRequestDTO: LoginRequestDTO) -> AnyPublisher<RestaurantLoginResponseDTO, Error>
+    func registerRestaurant(bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
+    func loginRestaurant(restaurantbodyRequest: BodyRequestable) -> AnyPublisher<RestaurantLoginResponseDTO, Error>
     
-    func logout(with logoutRequestDTO: LogoutRequestDTO) -> AnyPublisher<Discardable, Error>
+    func logout(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
 }
 
 class AuthRemoteRepository: AuthRemoteRepositing {
     @Injected private var networkClient: Networking
     
-    func registerUser(userRegistrationRequestDTO: UserRegistrationRequestDTO) -> AnyPublisher<Discardable, Error> {
-        networkClient.request(endpoint: Endpoint.registerUser(userRegistrationRequestDTO))
+    func registerUser(bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.registerUser(bodyRequest))
     }
 
-    func loginUser(userLoginRequestDTO: LoginRequestDTO) -> AnyPublisher<UserLoginResponseDTO, Error> {
-        networkClient.request(endpoint: Endpoint.loginUser(userLoginRequestDTO))
+    func loginUser(userbodyRequest: BodyRequestable) -> AnyPublisher<UserLoginResponseDTO, Error> {
+        networkClient.request(endpoint: Endpoint.loginUser(userbodyRequest))
     }
     
-    func registerRestaurant(restaurantRegistrationRequestDTO: RestaurantRegistrationRequestDTO) -> AnyPublisher<Discardable, Error> {
-        networkClient.request(endpoint: Endpoint.registerRestaurant(restaurantRegistrationRequestDTO))
+    func registerRestaurant(bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.registerRestaurant(bodyRequest))
     }
     
-    func loginRestaurant(restaurantLoginRequestDTO: LoginRequestDTO) -> AnyPublisher<RestaurantLoginResponseDTO, Error> {
-        networkClient.request(endpoint: Endpoint.loginRestaurant(restaurantLoginRequestDTO))
+    func loginRestaurant(restaurantbodyRequest: BodyRequestable) -> AnyPublisher<RestaurantLoginResponseDTO, Error> {
+        networkClient.request(endpoint: Endpoint.loginRestaurant(restaurantbodyRequest))
     }
     
-    func logout(with logoutRequestDTO: LogoutRequestDTO) -> AnyPublisher<Discardable, Error> {
-        networkClient.request(endpoint: Endpoint.logout(logoutRequestDTO))
+    func logout(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.logout(bodyRequest))
     }
 }
 
 extension AuthRemoteRepository {
     enum Endpoint {
-        case registerUser(_: UserRegistrationRequestDTO)
-        case loginUser(_: LoginRequestDTO)
-        case registerRestaurant(_: RestaurantRegistrationRequestDTO)
-        case loginRestaurant(_: LoginRequestDTO)
-        case logout(_: LogoutRequestDTO)
+        case registerUser(_: BodyRequestable)
+        case loginUser(_: BodyRequestable)
+        case registerRestaurant(_: BodyRequestable)
+        case loginRestaurant(_: BodyRequestable)
+        case logout(_: BodyRequestable)
     }
 }
 
@@ -80,17 +80,17 @@ extension AuthRemoteRepository.Endpoint: APIConfigurable {
         }
     }
     
-    var query: QueryRequestable? {
+    var queryRequestable: QueryRequestable? {
         return nil
     }
     
-    func body() throws -> Data? {
+    var bodyRequestable: BodyRequestable? {
         switch self {
-        case .registerUser(let userRegistrationRequestDTO): return try userRegistrationRequestDTO.asJSON()
-        case .loginUser(let userLoginRequestDTO): return try userLoginRequestDTO.asJSON()
-        case .registerRestaurant(let restaurantRegistrationRequestDTO): return try restaurantRegistrationRequestDTO.asJSON()
-        case .loginRestaurant(let restaurantLoginRequestDTO): return try restaurantLoginRequestDTO.asJSON()
-        case .logout(let logoutRequestDTO): return try logoutRequestDTO.asJSON()
+        case .registerUser(let bodyRequest): return bodyRequest
+        case .loginUser(let userbodyRequest): return userbodyRequest
+        case .registerRestaurant(let bodyRequest): return bodyRequest
+        case .loginRestaurant(let bodyRequest): return bodyRequest
+        case .logout(let bodyRequest): return bodyRequest
         }
     }
     

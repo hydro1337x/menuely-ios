@@ -30,8 +30,8 @@ class UserRegistrationViewModel: ObservableObject {
     
     // MARK: - Methods
     func register() {
-        let userRegistrationRequestDTO = UserRegistrationRequestDTO(firstname: firstname, lastname: lastname, email: email, password: password)
-        authService.registerUser(with: userRegistrationRequestDTO, registration: loadableSubject(\.registration))
+        let bodyRequest = UserRegistrationBodyRequest(firstname: firstname, lastname: lastname, email: email, password: password)
+        authService.registerUser(with: bodyRequest, registration: loadableSubject(\.registration))
     }
     
     func resetStates() {

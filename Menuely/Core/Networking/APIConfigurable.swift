@@ -10,7 +10,6 @@ import Alamofire
 import Resolver
 
 typealias HTTPMethod = Alamofire.HTTPMethod
-typealias DataParameters = [String: DataInfo]
 
 protocol PathRequestable: Encodable {}
 protocol QueryRequestable: Encodable {}
@@ -41,8 +40,8 @@ protocol APIConfigurable: URLRequestConvertible {
     var path: String { get }
     var method: HTTPMethod { get }
     var headers: [String: String]? { get }
-    var query: QueryRequestable? { get }
-    func body() throws -> Data?
+    var queryRequestable: QueryRequestable? { get }
+    var bodyRequestable: BodyRequestable? { get }
     var multipartFormDataRequestable: MultipartFormDataRequestable? { get }
 }
 
@@ -63,7 +62,7 @@ extension APIConfigurable {
         urlRequest.allHTTPHeaderFields = headers
         
         // Query Parameters
-        if let queryParameters = self.query?.asDictionary {
+        if let queryParameters = self.queryRequestable?.asDictionary {
             let parameters = queryParameters.map { pair  in
                 return URLQueryItem(name: pair.key, value: "\(pair.value)")
             }
@@ -74,7 +73,10 @@ extension APIConfigurable {
         
         
         // Body
-        urlRequest.httpBody = try body()
+        // FIXME: - Add Content-Type application/json headers here and remove them from repositories
+        if let bodyRequestable = self.bodyRequestable {
+            urlRequest.httpBody = try bodyRequestable.asJSON()
+        }
         
         if let multipartFormDataRequestable = self.multipartFormDataRequestable {
             let multipartFormData = try multipartFormDataRequestable.asMultipartFormData()

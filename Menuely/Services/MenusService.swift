@@ -10,9 +10,9 @@ import Combine
 import Resolver
 
 protocol MenusServicing {
-    func getMenus(with queryRequestable: MenusQueryRequest, menus: LoadableSubject<[Menu]>)
-    func createMenu(with createMenuRequestDTO: CreateMenuRequestDTO, createMenuResult: LoadableSubject<Discardable>)
-    func updateMenu(with id: Int, and updateMenuRequestDTO: UpdateMenuRequestDTO, updateMenuResult: LoadableSubject<Discardable>)
+    func getMenus(with queryRequestable: QueryRequestable, menus: LoadableSubject<[Menu]>)
+    func createMenu(with bodyRequest: BodyRequestable, createMenuResult: LoadableSubject<Discardable>)
+    func updateMenu(with id: Int, and bodyRequest: BodyRequestable, updateMenuResult: LoadableSubject<Discardable>)
     func deleteMenu(with id: Int, deleteMenuResult: LoadableSubject<Discardable>)
 }
 
@@ -22,7 +22,7 @@ class MenusService: MenusServicing {
     
     let cancelBag = CancelBag()
     
-    func getMenus(with queryRequestable: MenusQueryRequest, menus: LoadableSubject<[Menu]>) {
+    func getMenus(with queryRequestable: QueryRequestable, menus: LoadableSubject<[Menu]>) {
         menus.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
@@ -35,13 +35,13 @@ class MenusService: MenusServicing {
             .store(in: cancelBag)
     }
     
-    func createMenu(with createMenuRequestDTO: CreateMenuRequestDTO, createMenuResult: LoadableSubject<Discardable>) {
+    func createMenu(with bodyRequest: BodyRequestable, createMenuResult: LoadableSubject<Discardable>) {
         createMenuResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.createMenu(with: createMenuRequestDTO)
+                remoteRepository.createMenu(with: bodyRequest)
             }
             .sinkToLoadable {
                 createMenuResult.wrappedValue = $0
@@ -49,13 +49,13 @@ class MenusService: MenusServicing {
             .store(in: cancelBag)
     }
     
-    func updateMenu(with id: Int, and updateMenuRequestDTO: UpdateMenuRequestDTO, updateMenuResult: LoadableSubject<Discardable>) {
+    func updateMenu(with id: Int, and bodyRequest: BodyRequestable, updateMenuResult: LoadableSubject<Discardable>) {
         updateMenuResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.updateMenu(with: id, and: updateMenuRequestDTO)
+                remoteRepository.updateMenu(with: id, and: bodyRequest)
             }
             .sinkToLoadable {
                 updateMenuResult.wrappedValue = $0

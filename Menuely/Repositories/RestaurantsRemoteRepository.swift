@@ -11,19 +11,19 @@ import Combine
 import Alamofire
 
 protocol RestaurantsRemoteRepositing {
-    func getRestaurants(with queryRequestable: SearchQueryRequest?) -> AnyPublisher<RestaurantsListResponseDTO, Error>
+    func getRestaurants(with queryRequestable: QueryRequestable?) -> AnyPublisher<RestaurantsListResponseDTO, Error>
     func getRestaurantProfile() -> AnyPublisher<RestaurantResponseDTO, Error>
     func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable) -> AnyPublisher<Discardable, Error>
-    func updateRestaurantProfile(with updateRestaurantProfileRequestDTO: UpdateRestaurantProfileRequestDTO) -> AnyPublisher<Discardable, Error>
-    func updateRestaurantPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO) -> AnyPublisher<Discardable, Error>
-    func updateRestaurantEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO) -> AnyPublisher<Discardable, Error>
+    func updateRestaurantProfile(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
+    func updateRestaurantPassword(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
+    func updateRestaurantEmail(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
     func delete() -> AnyPublisher<Discardable, Error>
 }
 
 class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
     @Injected private var networkClient: Networking
     
-    func getRestaurants(with queryRequestable: SearchQueryRequest?) -> AnyPublisher<RestaurantsListResponseDTO, Error> {
+    func getRestaurants(with queryRequestable: QueryRequestable?) -> AnyPublisher<RestaurantsListResponseDTO, Error> {
         networkClient.request(endpoint: Endpoint.restaurants(queryRequestable))
     }
     
@@ -35,16 +35,16 @@ class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
         networkClient.request(endpoint: Endpoint.upload(multipartFormDataRequestable))
     }
     
-    func updateRestaurantProfile(with updateRestaurantProfileRequestDTO: UpdateRestaurantProfileRequestDTO) -> AnyPublisher<Discardable, Error> {
-        networkClient.request(endpoint: Endpoint.updateRestaurantProfile(updateRestaurantProfileRequestDTO))
+    func updateRestaurantProfile(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.updateRestaurantProfile(bodyRequest))
     }
     
-    func updateRestaurantPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO) -> AnyPublisher<Discardable, Error> {
-        networkClient.request(endpoint: Endpoint.updateRestaurantPassword(updatePasswordRequestDTO))
+    func updateRestaurantPassword(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.updateRestaurantPassword(bodyRequest))
     }
     
-    func updateRestaurantEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO) -> AnyPublisher<Discardable, Error> {
-        networkClient.request(endpoint: Endpoint.updateRestaurantEmail(updateEmailRequestDTO))
+    func updateRestaurantEmail(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.updateRestaurantEmail(bodyRequest))
     }
     
     func delete() -> AnyPublisher<Discardable, Error> {
@@ -56,12 +56,12 @@ class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
 
 extension RestaurantsRemoteRepository {
     enum Endpoint {
-        case restaurants(SearchQueryRequest?)
+        case restaurants(QueryRequestable?)
         case restaurantProfile
         case upload(_: MultipartFormDataRequestable)
-        case updateRestaurantProfile(_: UpdateRestaurantProfileRequestDTO)
-        case updateRestaurantPassword(_: UpdatePasswordRequestDTO)
-        case updateRestaurantEmail(_: UpdateEmailRequestDTO)
+        case updateRestaurantProfile(_: BodyRequestable)
+        case updateRestaurantPassword(_: BodyRequestable)
+        case updateRestaurantEmail(_: BodyRequestable)
         case delete
     }
 }
@@ -103,21 +103,21 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         }
     }
     
-    var query: QueryRequestable? {
+    var queryRequestable: QueryRequestable? {
         switch self {
-        case .restaurants(let query): return query
+        case .restaurants(let queryRequestable): return queryRequestable
         default: return nil
         }
     }
     
-    func body() throws -> Data? {
+    var bodyRequestable: BodyRequestable? {
         switch self {
         case .restaurants: return nil
         case .restaurantProfile: return nil
         case .upload: return nil
-        case .updateRestaurantProfile(let updateRestaurantProfileRequestDTO): return try updateRestaurantProfileRequestDTO.asJSON()
-        case .updateRestaurantPassword(let updatePasswordRequestDTO): return try updatePasswordRequestDTO.asJSON()
-        case .updateRestaurantEmail(let updateEmailRequestDTO): return try updateEmailRequestDTO.asJSON()
+        case .updateRestaurantProfile(let bodyRequest): return bodyRequest
+        case .updateRestaurantPassword(let bodyRequest): return bodyRequest
+        case .updateRestaurantEmail(let bodyRequest): return bodyRequest
         case .delete: return nil
         }
     }

@@ -47,7 +47,7 @@ class AuthRequestInterceptor: RequestInterceptor {
             return completion(.doNotRetryWithError(NetworkError.refreshTokenMissing))
         }
         
-        authenticator.refreshTokens(with: TokensRequestDTO(refreshToken: refreshToken)).sinkToResult { result in
+        authenticator.refreshTokens(with: TokensBodyRequest(refreshToken: refreshToken)).sinkToResult { result in
             switch result {
             case .success(let tokensResponseDTO):
                 

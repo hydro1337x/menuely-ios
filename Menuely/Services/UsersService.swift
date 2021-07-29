@@ -15,9 +15,9 @@ protocol UsersServicing {
     func getUserProfile(user: LoadableSubject<User>)
     func uploadImageAndGetUserProfile(with multipartFormDataRequestable: MultipartFormDataRequestable, user: LoadableSubject<User>)
     func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable, imageResult: LoadableSubject<Discardable>)
-    func updateUserProfile(with updateUserProfileRequestDTO: UpdateUserProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>)
-    func updateUserPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO, updatePasswordResult: LoadableSubject<Discardable>)
-    func updateUserEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO, updateEmailResult: LoadableSubject<Discardable>)
+    func updateUserProfile(with bodyRequest: BodyRequestable, updateProfileResult: LoadableSubject<Discardable>)
+    func updateUserPassword(with bodyRequest: BodyRequestable, updatePasswordResult: LoadableSubject<Discardable>)
+    func updateUserEmail(with bodyRequest: BodyRequestable, updateEmailResult: LoadableSubject<Discardable>)
     func delete(deletionResult: LoadableSubject<Discardable>)
 }
 
@@ -90,37 +90,37 @@ class UsersService: UsersServicing {
             .store(in: cancelBag)
     }
     
-    func updateUserProfile(with updateUserProfileRequestDTO: UpdateUserProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>) {
+    func updateUserProfile(with bodyRequest: BodyRequestable, updateProfileResult: LoadableSubject<Discardable>) {
         updateProfileResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.updateUserProfile(with: updateUserProfileRequestDTO)
+                remoteRepository.updateUserProfile(with: bodyRequest)
             }
             .sinkToLoadable { updateProfileResult.wrappedValue = $0 }
             .store(in: cancelBag)
     }
     
-    func updateUserPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO, updatePasswordResult: LoadableSubject<Discardable>) {
+    func updateUserPassword(with bodyRequest: BodyRequestable, updatePasswordResult: LoadableSubject<Discardable>) {
         updatePasswordResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.updateUserPassword(with: updatePasswordRequestDTO)
+                remoteRepository.updateUserPassword(with: bodyRequest)
             }
             .sinkToLoadable { updatePasswordResult.wrappedValue = $0 }
             .store(in: cancelBag)
     }
     
-    func updateUserEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO, updateEmailResult: LoadableSubject<Discardable>) {
+    func updateUserEmail(with bodyRequest: BodyRequestable, updateEmailResult: LoadableSubject<Discardable>) {
         updateEmailResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.updateUserEmail(with: updateEmailRequestDTO)
+                remoteRepository.updateUserEmail(with: bodyRequest)
             }
             .sinkToLoadable { updateEmailResult.wrappedValue = $0 }
             .store(in: cancelBag)

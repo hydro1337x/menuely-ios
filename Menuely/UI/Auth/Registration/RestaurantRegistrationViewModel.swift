@@ -32,7 +32,7 @@ class RestaurantRegistrationViewModel: ObservableObject {
     
     // MARK: - Methods
     func register() {
-        let restaurantRegistrationRequestDTO = RestaurantRegistrationRequestDTO(email: email,
+        let bodyRequest = RestaurantRegistrationBodyRequest(email: email,
                                                                                 password: password,
                                                                                 description: description,
                                                                                 name: name,
@@ -40,7 +40,7 @@ class RestaurantRegistrationViewModel: ObservableObject {
                                                                                 city: city,
                                                                                 address: address,
                                                                                 postalCode: postalCode)
-        authService.registerRestaurant(with: restaurantRegistrationRequestDTO, registration: loadableSubject(\.registration))
+        authService.registerRestaurant(with: bodyRequest, registration: loadableSubject(\.registration))
     }
     
     func resetStates() {

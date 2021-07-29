@@ -84,19 +84,19 @@ class LoginViewModel: ObservableObject {
     
     // MARK: - Methods
     func login() {
-        let loginRequestDTO = LoginRequestDTO(email: email, password: password)
+        let bodyRequest = LoginBodyRequest(email: email, password: password)
         switch appState[\.data.selectedEntity] {
-        case .user: loginUser(with: loginRequestDTO)
-        case .restaurant: loginRestaurant(with: loginRequestDTO)
+        case .user: loginUser(with: bodyRequest)
+        case .restaurant: loginRestaurant(with: bodyRequest)
         }
     }
     
-    private func loginUser(with loginRequestDTO: LoginRequestDTO) {
-        authService.loginUser(with: loginRequestDTO, authenticatedUser: loadableSubject(\.authenticatedUser))
+    private func loginUser(with bodyRequest: LoginBodyRequest) {
+        authService.loginUser(with: bodyRequest, authenticatedUser: loadableSubject(\.authenticatedUser))
     }
     
-    private func loginRestaurant(with loginRequestDTO: LoginRequestDTO) {
-        authService.loginRestaurant(with: loginRequestDTO, authenticatedRestaurant: loadableSubject(\.authenticatedRestaurant))
+    private func loginRestaurant(with bodyRequest: LoginBodyRequest) {
+        authService.loginRestaurant(with: bodyRequest, authenticatedRestaurant: loadableSubject(\.authenticatedRestaurant))
     }
     
     // MARK: - Routing

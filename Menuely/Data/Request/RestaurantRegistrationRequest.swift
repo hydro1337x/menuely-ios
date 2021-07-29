@@ -1,5 +1,5 @@
 //
-//  RestaurantRegistrationRequestDTO.swift
+//  RestaurantRegistrationBodyRequest.swift
 //  Menuely
 //
 //  Created by Benjamin Mecanović on 12.07.2021..
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RestaurantRegistrationRequestDTO: Codable {
+struct RestaurantRegistrationBodyRequest: BodyRequestable {
     let email: String
     let password: String
     let description: String

@@ -31,8 +31,8 @@ class CreateMenuViewModel: ObservableObject {
     // MARK: - Methods
     func createMenu() {
         guard !name.isEmpty, !description.isEmpty, !currency.isEmpty, let numberOfTables = Int(numberOfTables), numberOfTables != 0 else { return }
-        let createMenuRequestDTO = CreateMenuRequestDTO(name: name, description: description, currency: currency, numberOfTables: numberOfTables)
-        menusService.createMenu(with: createMenuRequestDTO, createMenuResult: loadableSubject(\.createMenuResult))
+        let bodyRequest = CreateMenuBodyRequest(name: name, description: description, currency: currency, numberOfTables: numberOfTables)
+        menusService.createMenu(with: bodyRequest, createMenuResult: loadableSubject(\.createMenuResult))
     }
     
     func resetStates() {

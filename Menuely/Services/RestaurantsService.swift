@@ -10,13 +10,13 @@ import Combine
 import Resolver
 
 protocol RestaurantsServicing {
-    func getRestaurants(with queryRequestable: SearchQueryRequest?, restaurants: LoadableSubject<[Restaurant]>)
+    func getRestaurants(with queryRequestable: QueryRequestable?, restaurants: LoadableSubject<[Restaurant]>)
     func getRestaurantProfile(restaurant: LoadableSubject<Restaurant>)
     func uploadImageAndGetRestaurantProfile(with multipartFormDataRequestable: MultipartFormDataRequestable, restaurant: LoadableSubject<Restaurant>)
     func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable, imageResult: LoadableSubject<Discardable>)
-    func updateRestaurantProfile(with updateRestaurantProfileRequestDTO: UpdateRestaurantProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>)
-    func updateRestaurantPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO, updatePasswordResult: LoadableSubject<Discardable>)
-    func updateRestaurantEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO, updateEmailResult: LoadableSubject<Discardable>)
+    func updateRestaurantProfile(with bodyRequest: BodyRequestable, updateProfileResult: LoadableSubject<Discardable>)
+    func updateRestaurantPassword(with bodyRequest: BodyRequestable, updatePasswordResult: LoadableSubject<Discardable>)
+    func updateRestaurantEmail(with bodyRequest: BodyRequestable, updateEmailResult: LoadableSubject<Discardable>)
     func delete(deletionResult: LoadableSubject<Discardable>)
 }
 
@@ -27,7 +27,7 @@ class RestaurantsService: RestaurantsServicing {
     
     let cancelBag = CancelBag()
     
-    func getRestaurants(with queryRequestable: SearchQueryRequest?, restaurants: LoadableSubject<[Restaurant]>) {
+    func getRestaurants(with queryRequestable: QueryRequestable?, restaurants: LoadableSubject<[Restaurant]>) {
         restaurants.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
@@ -89,37 +89,37 @@ class RestaurantsService: RestaurantsServicing {
             .store(in: cancelBag)
     }
     
-    func updateRestaurantProfile(with updateRestaurantProfileRequestDTO: UpdateRestaurantProfileRequestDTO, updateProfileResult: LoadableSubject<Discardable>) {
+    func updateRestaurantProfile(with bodyRequest: BodyRequestable, updateProfileResult: LoadableSubject<Discardable>) {
         updateProfileResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.updateRestaurantProfile(with: updateRestaurantProfileRequestDTO)
+                remoteRepository.updateRestaurantProfile(with: bodyRequest)
             }
             .sinkToLoadable { updateProfileResult.wrappedValue = $0 }
             .store(in: cancelBag)
     }
     
-    func updateRestaurantPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO, updatePasswordResult: LoadableSubject<Discardable>) {
+    func updateRestaurantPassword(with bodyRequest: BodyRequestable, updatePasswordResult: LoadableSubject<Discardable>) {
         updatePasswordResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.updateRestaurantPassword(with: updatePasswordRequestDTO)
+                remoteRepository.updateRestaurantPassword(with: bodyRequest)
             }
             .sinkToLoadable { updatePasswordResult.wrappedValue = $0 }
             .store(in: cancelBag)
     }
     
-    func updateRestaurantEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO, updateEmailResult: LoadableSubject<Discardable>) {
+    func updateRestaurantEmail(with bodyRequest: BodyRequestable, updateEmailResult: LoadableSubject<Discardable>) {
         updateEmailResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.updateRestaurantEmail(with: updateEmailRequestDTO)
+                remoteRepository.updateRestaurantEmail(with: bodyRequest)
             }
             .sinkToLoadable { updateEmailResult.wrappedValue = $0 }
             .store(in: cancelBag)

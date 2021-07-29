@@ -34,8 +34,8 @@ class UpdateMenuViewModel: ObservableObject {
     // MARK: - Methods
     func updateMenu() {
         guard let menu = appState[\.routing.menusList.menuForUpdate] else { return }
-        let updateMenuRequestDTO = UpdateMenuRequestDTO(name: name.isEmpty ? nil : name, description: description.isEmpty ? nil : description, currency: currency.isEmpty ? nil : currency)
-        menusService.updateMenu(with: menu.id, and: updateMenuRequestDTO, updateMenuResult: loadableSubject(\.updateMenuResult))
+        let bodyRequest = UpdateMenuBodyRequest(name: name.isEmpty ? nil : name, description: description.isEmpty ? nil : description, currency: currency.isEmpty ? nil : currency)
+        menusService.updateMenu(with: menu.id, and: bodyRequest, updateMenuResult: loadableSubject(\.updateMenuResult))
     }
     
     func resetStates() {

@@ -32,13 +32,13 @@ class EditRestaurantProfileViewModel: ObservableObject {
     
     // MARK: - Methods
     func updateRestaurantProfile() {
-        let updateRestaurantProfileRequestDTO = UpdateRestaurantProfileRequestDTO(name: name,
+        let bodyRequest = UpdateRestaurantProfileBodyRequest(name: name,
                                                                                   description: description,
                                                                                   country: country,
                                                                                   city: city,
                                                                                   address: address,
                                                                                   postalCode: postalCode)
-        restaurantsService.updateRestaurantProfile(with: updateRestaurantProfileRequestDTO, updateProfileResult: loadableSubject(\.updateProfileResult))
+        restaurantsService.updateRestaurantProfile(with: bodyRequest, updateProfileResult: loadableSubject(\.updateProfileResult))
     }
     
     func resetStates() {

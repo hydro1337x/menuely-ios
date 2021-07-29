@@ -28,19 +28,19 @@ class UpdateEmailViewModel: ObservableObject {
     
     // MARK: - Methods
     func updateEmail() {
-        let updateEmailRequestDTO = UpdateEmailRequestDTO(email: email)
+        let bodyRequest = UpdateEmailBodyRequest(email: email)
         switch appState[\.data.selectedEntity] {
-        case .user: updateUserEmail(with: updateEmailRequestDTO)
-        case .restaurant: updateRestaurantEmail(with: updateEmailRequestDTO)
+        case .user: updateUserEmail(with: bodyRequest)
+        case .restaurant: updateRestaurantEmail(with: bodyRequest)
         }
     }
     
-    func updateUserEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO) {
-        usersService.updateUserEmail(with: updateEmailRequestDTO, updateEmailResult: loadableSubject(\.updateEmailResult))
+    func updateUserEmail(with bodyRequest: UpdateEmailBodyRequest) {
+        usersService.updateUserEmail(with: bodyRequest, updateEmailResult: loadableSubject(\.updateEmailResult))
     }
     
-    func updateRestaurantEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO) {
-        restaurantsService.updateRestaurantEmail(with: updateEmailRequestDTO, updateEmailResult: loadableSubject(\.updateEmailResult))
+    func updateRestaurantEmail(with bodyRequest: UpdateEmailBodyRequest) {
+        restaurantsService.updateRestaurantEmail(with: bodyRequest, updateEmailResult: loadableSubject(\.updateEmailResult))
     }
     
     func updateProfile() {

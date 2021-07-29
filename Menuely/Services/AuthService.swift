@@ -15,11 +15,11 @@ protocol AuthServicing {
     var authenticatedUser: AuthenticatedUser? { get }
     var authenticatedRestaurant: AuthenticatedRestaurant? { get }
     
-    func registerUser(with userRegistrationRequestDTO: UserRegistrationRequestDTO, registration: LoadableSubject<Discardable>)
-    func loginUser(with userLoginRequestDTO: LoginRequestDTO, authenticatedUser: LoadableSubject<AuthenticatedUser>)
+    func registerUser(with bodyRequest: BodyRequestable, registration: LoadableSubject<Discardable>)
+    func loginUser(with userbodyRequest: BodyRequestable, authenticatedUser: LoadableSubject<AuthenticatedUser>)
     
-    func registerRestaurant(with restaurantRegistrationRequestDTO: RestaurantRegistrationRequestDTO, registration: LoadableSubject<Discardable>)
-    func loginRestaurant(with restaurantLoginRequestDTO: LoginRequestDTO, authenticatedRestaurant: LoadableSubject<AuthenticatedRestaurant>)
+    func registerRestaurant(with bodyRequest: BodyRequestable, registration: LoadableSubject<Discardable>)
+    func loginRestaurant(with restaurantbodyRequest: BodyRequestable, authenticatedRestaurant: LoadableSubject<AuthenticatedRestaurant>)
     
     func logout(logoutResult: LoadableSubject<Discardable>)
 }
@@ -49,26 +49,25 @@ class AuthService: AuthServicing {
     
     // MARK: - User
     
-    func registerUser(with userRegistrationRequestDTO: UserRegistrationRequestDTO, registration: LoadableSubject<Discardable>) {
+    func registerUser(with bodyRequest: BodyRequestable, registration: LoadableSubject<Discardable>) {
         registration.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                return remoteRepository.registerUser(userRegistrationRequestDTO: userRegistrationRequestDTO)
+                return remoteRepository.registerUser(bodyRequest: bodyRequest)
             }
             .sinkToLoadable { registration.wrappedValue = $0 }
             .store(in: cancelBag)
     }
     
-    // TODO: - Move mapping logic from VM-s to there
-    func loginUser(with userLoginRequestDTO: LoginRequestDTO, authenticatedUser: LoadableSubject<AuthenticatedUser>) {
+    func loginUser(with userbodyRequest: BodyRequestable, authenticatedUser: LoadableSubject<AuthenticatedUser>) {
         authenticatedUser.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                return remoteRepository.loginUser(userLoginRequestDTO: userLoginRequestDTO)
+                return remoteRepository.loginUser(userbodyRequest: userbodyRequest)
             }
             .map { $0.authenticatedUser }
             .sinkToLoadable {
@@ -83,25 +82,25 @@ class AuthService: AuthServicing {
     
     // MARK: - Restaurant
     
-    func registerRestaurant(with restaurantRegistrationRequestDTO: RestaurantRegistrationRequestDTO, registration: LoadableSubject<Discardable>) {
+    func registerRestaurant(with bodyRequest: BodyRequestable, registration: LoadableSubject<Discardable>) {
         registration.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                return remoteRepository.registerRestaurant(restaurantRegistrationRequestDTO: restaurantRegistrationRequestDTO)
+                return remoteRepository.registerRestaurant(bodyRequest: bodyRequest)
             }
             .sinkToLoadable { registration.wrappedValue = $0 }
             .store(in: cancelBag)
     }
     
-    func loginRestaurant(with restaurantLoginRequestDTO: LoginRequestDTO, authenticatedRestaurant: LoadableSubject<AuthenticatedRestaurant>) {
+    func loginRestaurant(with restaurantbodyRequest: BodyRequestable, authenticatedRestaurant: LoadableSubject<AuthenticatedRestaurant>) {
         authenticatedRestaurant.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                return remoteRepository.loginRestaurant(restaurantLoginRequestDTO: restaurantLoginRequestDTO)
+                return remoteRepository.loginRestaurant(restaurantbodyRequest: restaurantbodyRequest)
             }
             .map { $0.authenticatedRestaurant }
             .sinkToLoadable {
@@ -126,12 +125,12 @@ class AuthService: AuthServicing {
             return
         }
         
-        let logoutRequestDTO = LogoutRequestDTO(refreshToken: tokens.refreshToken)
+        let bodyRequest = LogoutBodyRequest(refreshToken: tokens.refreshToken)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                return remoteRepository.logout(with: logoutRequestDTO)
+                return remoteRepository.logout(with: bodyRequest)
             }
             .sinkToLoadable {
                 logoutResult.wrappedValue = $0

@@ -10,7 +10,7 @@ import Combine
 import Alamofire
 
 protocol Authenticating {
-    func refreshTokens(with tokensRequestDTO: TokensRequestDTO) -> AnyPublisher<TokensResponseDTO, Error>
+    func refreshTokens(with bodyRequest: BodyRequestable) -> AnyPublisher<TokensResponseDTO, Error>
 }
 
 class Authenticator: Authenticating {
@@ -20,8 +20,8 @@ class Authenticator: Authenticating {
         self.session = session
     }
     
-    func refreshTokens(with tokensRequestDTO: TokensRequestDTO) -> AnyPublisher<TokensResponseDTO, Error> {
-        session.request(Endpoint.refresh(tokensRequestDTO))
+    func refreshTokens(with bodyRequest: BodyRequestable) -> AnyPublisher<TokensResponseDTO, Error> {
+        session.request(Endpoint.refresh(bodyRequest))
             .cURLDescription(calling: { curl in
                 print(curl)
             })
@@ -48,7 +48,7 @@ class Authenticator: Authenticating {
 
 extension Authenticator {
     enum Endpoint {
-        case refresh(TokensRequestDTO)
+        case refresh(BodyRequestable)
     }
 }
 
@@ -65,13 +65,13 @@ extension Authenticator.Endpoint: APIConfigurable {
         return ["Content-Type": "application/json"]
     }
     
-    var query: QueryRequestable? {
+    var queryRequestable: QueryRequestable? {
         return nil
     }
     
-    func body() throws -> Data? {
+    var bodyRequestable: BodyRequestable? {
         switch self {
-        case .refresh(let tokensRequestDTO): return try tokensRequestDTO.asJSON()
+        case .refresh(let bodyRequest): return bodyRequest
         }
     }
     

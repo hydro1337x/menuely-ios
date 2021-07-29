@@ -15,9 +15,9 @@ protocol UsersRemoteRepositing {
     func getUsers() -> AnyPublisher<UsersListResponseDTO, Error>
     func getUserProfile() -> AnyPublisher<UserResponseDTO, Error>
     func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable) -> AnyPublisher<Discardable, Error>
-    func updateUserProfile(with updateUserProfileRequestDTO: UpdateUserProfileRequestDTO) -> AnyPublisher<Discardable, Error>
-    func updateUserPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO) -> AnyPublisher<Discardable, Error>
-    func updateUserEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO) -> AnyPublisher<Discardable, Error>
+    func updateUserProfile(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
+    func updateUserPassword(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
+    func updateUserEmail(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
     func delete() -> AnyPublisher<Discardable, Error>
 }
 
@@ -36,16 +36,16 @@ class UsersRemoteRepository: UsersRemoteRepositing {
         networkClient.request(endpoint: Endpoint.upload(multipartFormDataRequestable))
     }
     
-    func updateUserProfile(with updateUserProfileRequestDTO: UpdateUserProfileRequestDTO) -> AnyPublisher<Discardable, Error> {
-        networkClient.request(endpoint: Endpoint.updateUserProfile(updateUserProfileRequestDTO))
+    func updateUserProfile(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.updateUserProfile(bodyRequest))
     }
     
-    func updateUserPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO) -> AnyPublisher<Discardable, Error> {
-        networkClient.request(endpoint: Endpoint.updateUserPassword(updatePasswordRequestDTO))
+    func updateUserPassword(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.updateUserPassword(bodyRequest))
     }
     
-    func updateUserEmail(with updateEmailRequestDTO: UpdateEmailRequestDTO) -> AnyPublisher<Discardable, Error> {
-        networkClient.request(endpoint: Endpoint.updateUserEmail(updateEmailRequestDTO))
+    func updateUserEmail(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.updateUserEmail(bodyRequest))
     }
     
     func delete() -> AnyPublisher<Discardable, Error> {
@@ -60,9 +60,9 @@ extension UsersRemoteRepository {
         case users
         case userProfile
         case upload(_: MultipartFormDataRequestable)
-        case updateUserProfile(_: UpdateUserProfileRequestDTO)
-        case updateUserPassword(_: UpdatePasswordRequestDTO)
-        case updateUserEmail(_: UpdateEmailRequestDTO)
+        case updateUserProfile(_: BodyRequestable)
+        case updateUserPassword(_: BodyRequestable)
+        case updateUserEmail(_: BodyRequestable)
         case delete
     }
 }
@@ -104,18 +104,18 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
         }
     }
     
-    var query: QueryRequestable? {
+    var queryRequestable: QueryRequestable? {
         return nil
     }
     
-    func body() throws -> Data? {
+    var bodyRequestable: BodyRequestable? {
         switch self {
         case .users: return nil
         case .userProfile: return nil
         case .upload: return nil
-        case .updateUserProfile(let updateUserProfileRequestDTO): return try updateUserProfileRequestDTO.asJSON()
-        case .updateUserPassword(let updatePasswordRequestDTO): return try updatePasswordRequestDTO.asJSON()
-        case .updateUserEmail(let updateEmailRequestDTO): return try updateEmailRequestDTO.asJSON()
+        case .updateUserProfile(let bodyRequest): return bodyRequest
+        case .updateUserPassword(let bodyRequest): return bodyRequest
+        case .updateUserEmail(let bodyRequest): return bodyRequest
         case .delete: return nil
         }
     }

@@ -30,19 +30,19 @@ class UpdatePasswordViewModel: ObservableObject {
     
     // MARK: - Methods
     func updatePassword() {
-        let updatePasswordRequestDTO = UpdatePasswordRequestDTO(oldPassword: oldPassword, newPassword: newPassword, repeatedNewPassword: repeatedNewPassword)
+        let bodyRequest = UpdatePasswordBodyRequest(oldPassword: oldPassword, newPassword: newPassword, repeatedNewPassword: repeatedNewPassword)
         switch appState[\.data.selectedEntity] {
-        case .user: updateUserPassword(with: updatePasswordRequestDTO)
-        case .restaurant: updateRestaurantPassword(with: updatePasswordRequestDTO)
+        case .user: updateUserPassword(with: bodyRequest)
+        case .restaurant: updateRestaurantPassword(with: bodyRequest)
         }
     }
     
-    func updateUserPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO) {
-        usersService.updateUserPassword(with: updatePasswordRequestDTO, updatePasswordResult: loadableSubject(\.updatePasswordResult))
+    func updateUserPassword(with bodyRequest: UpdatePasswordBodyRequest) {
+        usersService.updateUserPassword(with: bodyRequest, updatePasswordResult: loadableSubject(\.updatePasswordResult))
     }
     
-    func updateRestaurantPassword(with updatePasswordRequestDTO: UpdatePasswordRequestDTO) {
-        restaurantsService.updateRestaurantPassword(with: updatePasswordRequestDTO, updatePasswordResult: loadableSubject(\.updatePasswordResult))
+    func updateRestaurantPassword(with bodyRequest: UpdatePasswordBodyRequest) {
+        restaurantsService.updateRestaurantPassword(with: bodyRequest, updatePasswordResult: loadableSubject(\.updatePasswordResult))
     }
     
     func updateProfile() {
