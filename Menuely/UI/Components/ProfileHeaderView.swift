@@ -13,7 +13,7 @@ struct ProfileHeaderView: View {
     let profileImageURL: String
     let title: String
     let subtitle: String
-    let placeholderImageName: Image.ImageName
+    let placeholderImageName: ImageName
     var onProfileImageTap: (() -> Void)?
     var onCoverImageTap: (() -> Void)?
     

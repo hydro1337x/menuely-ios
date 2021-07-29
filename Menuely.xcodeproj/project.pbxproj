@@ -114,6 +114,9 @@
 		60B510A626B2F6B800218D6D /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B510A526B2F6B800218D6D /* CategoryCell.swift */; };
 		60B510A926B2FD9C00218D6D /* CategoriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B510A826B2FD9B00218D6D /* CategoriesListView.swift */; };
 		60B510AB26B2FDAB00218D6D /* CategoriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B510AA26B2FDAB00218D6D /* CategoriesListViewModel.swift */; };
+		60B510AD26B3350C00218D6D /* CreateCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B510AC26B3350C00218D6D /* CreateCategoryView.swift */; };
+		60B510AF26B3351900218D6D /* CreateCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B510AE26B3351900218D6D /* CreateCategoryViewModel.swift */; };
+		60B510B126B33B4400218D6D /* ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B510B026B33B4400218D6D /* ImageName.swift */; };
 		60BF85AC2698F0DE00890C0F /* RootViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BF85AB2698F0DE00890C0F /* RootViewModifier.swift */; };
 		60BF85B22698F87700890C0F /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BF85B12698F87700890C0F /* FloatingTextField.swift */; };
 		60BF85B72699172E00890C0F /* SelectionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BF85B62699172E00890C0F /* SelectionCardView.swift */; };
@@ -251,6 +254,9 @@
 		60B510A526B2F6B800218D6D /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		60B510A826B2FD9B00218D6D /* CategoriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListView.swift; sourceTree = "<group>"; };
 		60B510AA26B2FDAB00218D6D /* CategoriesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListViewModel.swift; sourceTree = "<group>"; };
+		60B510AC26B3350C00218D6D /* CreateCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryView.swift; sourceTree = "<group>"; };
+		60B510AE26B3351900218D6D /* CreateCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryViewModel.swift; sourceTree = "<group>"; };
+		60B510B026B33B4400218D6D /* ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageName.swift; sourceTree = "<group>"; };
 		60BF85AB2698F0DE00890C0F /* RootViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModifier.swift; sourceTree = "<group>"; };
 		60BF85B12698F87700890C0F /* FloatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
 		60BF85B62699172E00890C0F /* SelectionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionCardView.swift; sourceTree = "<group>"; };
@@ -472,6 +478,7 @@
 				60A67197269B363E0083C0E9 /* EntityType.swift */,
 				606531D226A4871A00C8C500 /* OptionType.swift */,
 				6071080C26A889F800008E44 /* AuthType.swift */,
+				60B510B026B33B4400218D6D /* ImageName.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -542,6 +549,8 @@
 			children = (
 				60B510A826B2FD9B00218D6D /* CategoriesListView.swift */,
 				60B510AA26B2FDAB00218D6D /* CategoriesListViewModel.swift */,
+				60B510AC26B3350C00218D6D /* CreateCategoryView.swift */,
+				60B510AE26B3351900218D6D /* CreateCategoryViewModel.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -814,6 +823,7 @@
 				6071080B26A8641700008E44 /* AuthSelectionViewModel.swift in Sources */,
 				60173F31269CA3B2003C4E40 /* InfoView.swift in Sources */,
 				60E4ED7A268E174A00EC4561 /* ViewModels+Injection.swift in Sources */,
+				60B510AF26B3351900218D6D /* CreateCategoryViewModel.swift in Sources */,
 				60F3BAD02694BB17005798C1 /* User.swift in Sources */,
 				6071081626A8C36D00008E44 /* ProfileHeaderView.swift in Sources */,
 				6074793526A9D3F900F18693 /* RestaurantsRemoteRepository.swift in Sources */,
@@ -868,7 +878,9 @@
 				60A57CF426AF42A900A53341 /* CreateMenuView.swift in Sources */,
 				60FF8C3026A388350050DA8A /* LocalRepository.swift in Sources */,
 				0C8B25EF26B2C6AF007809CD /* CategoriesListResponse.swift in Sources */,
+				60B510B126B33B4400218D6D /* ImageName.swift in Sources */,
 				60B510AB26B2FDAB00218D6D /* CategoriesListViewModel.swift in Sources */,
+				60B510AD26B3350C00218D6D /* CreateCategoryView.swift in Sources */,
 				606C9AC926A7795E005AD06E /* RootView.swift in Sources */,
 				60A57CF126AF3B2600A53341 /* MenusService.swift in Sources */,
 				60E395382690917C007E459E /* TokensRequest.swift in Sources */,

@@ -30,10 +30,9 @@ struct CategoriesListView: View {
         .sheet(isPresented: $viewModel.routing.isCreateCategorySheetPresented, onDismiss: {
             viewModel.routing.isCreateCategorySheetPresented = false
         }, content: {
-            EmptyView()
-//            CreateMenuView()
-//                .modifier(PopoversViewModifier())
-//                .modifier(RootViewAppearance())
+            CreateCategoryView()
+                .modifier(PopoversViewModifier())
+                .modifier(RootViewAppearance())
         })
         .sheet(isPresented: viewModel.routing.categoryForUpdate != nil ? .constant(true) : .constant(false), onDismiss: {
             viewModel.routing.categoryForUpdate = nil

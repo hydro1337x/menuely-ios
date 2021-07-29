@@ -11,7 +11,7 @@ struct AccountInfoView: View {
     let title: String
     let body1: String
     let body2: String
-    let imageName: Image.ImageName
+    let imageName: ImageName
     
     var body: some View {
         HStack {

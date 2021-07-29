@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OptionItemView: View {
     let option: OptionType
-    let imageName: Image.ImageName
+    let imageName: ImageName
     
     var body: some View {
         HStack {

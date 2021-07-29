@@ -11,7 +11,7 @@ import SDWebImageSwiftUI
 struct CategoryCell: View {
     let title: String
     let imageUrl: String
-    let placeholderImage: Image.ImageName
+    let placeholderImage: ImageName
     
     private let height: CGFloat = 125
     

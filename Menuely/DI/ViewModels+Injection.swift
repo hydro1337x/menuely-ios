@@ -33,5 +33,6 @@ extension Resolver {
         register { CreateMenuViewModel(appState: resolve()) }.scope(.shared)
         register { UpdateMenuViewModel(appState: resolve()) }.scope(.shared)
         register { CategoriesListViewModel(appState: resolve()) }.scope(.shared)
+        register { CreateCategoryViewModel(appState: resolve()) }.scope(.shared)
     }
 }

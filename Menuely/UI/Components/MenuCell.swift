@@ -10,7 +10,7 @@ import SwiftUI
 struct MenuCell: View {
     let title: String
     let description: String
-    let imageName: Image.ImageName
+    let imageName: ImageName
     
     var body: some View {
         VStack(spacing: 0) {

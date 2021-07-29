@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SelectionCardView: View {
-    let imageName: Image.ImageName
+    let imageName: ImageName
     let text: String
     
     
