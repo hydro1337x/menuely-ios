@@ -80,7 +80,7 @@ extension AuthRemoteRepository.Endpoint: APIConfigurable {
         }
     }
     
-    var queryParameters: Parameters? {
+    var query: QueryRequestable? {
         return nil
     }
     

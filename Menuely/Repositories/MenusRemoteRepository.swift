@@ -8,10 +8,10 @@
 import Foundation
 import Resolver
 import Combine
-import UIKit
+import Alamofire
 
 protocol MenusRemoteRepositing {
-    func getMenus(with menusRequestDTO: MenusRequestDTO) -> AnyPublisher<MenusListResponseDTO, Error>
+    func getMenus(with query: MenusQueryRequest) -> AnyPublisher<MenusListResponseDTO, Error>
     func createMenu(with createMenuRequestDTO: CreateMenuRequestDTO) -> AnyPublisher<Discardable, Error>
     func updateMenu(with id: Int, and updateMenuRequestDTO: UpdateMenuRequestDTO) -> AnyPublisher<Discardable, Error>
     func deleteMenu(with id: Int) -> AnyPublisher<Discardable, Error>
@@ -20,8 +20,8 @@ protocol MenusRemoteRepositing {
 class MenusRemoteRepository: MenusRemoteRepositing {
     @Injected private var networkClient: Networking
     
-    func getMenus(with menusRequestDTO: MenusRequestDTO) -> AnyPublisher<MenusListResponseDTO, Error> {
-        networkClient.request(endpoint: Endpoint.getMenus(menusRequestDTO))
+    func getMenus(with query: MenusQueryRequest) -> AnyPublisher<MenusListResponseDTO, Error> {
+        networkClient.request(endpoint: Endpoint.getMenus(query))
     }
     
     func createMenu(with createMenuRequestDTO: CreateMenuRequestDTO) -> AnyPublisher<Discardable, Error> {
@@ -41,7 +41,7 @@ class MenusRemoteRepository: MenusRemoteRepositing {
 
 extension MenusRemoteRepository {
     enum Endpoint {
-        case getMenus(MenusRequestDTO)
+        case getMenus(MenusQueryRequest)
         case createMenu(CreateMenuRequestDTO)
         case updateMenu(Int, UpdateMenuRequestDTO)
         case deleteMenu(Int)
@@ -76,9 +76,9 @@ extension MenusRemoteRepository.Endpoint: APIConfigurable {
         }
     }
     
-    var queryParameters: Parameters? {
+    var query: QueryRequestable? {
         switch self {
-        case .getMenus(let menusRequestDTO): return menusRequestDTO.asDictionary
+        case .getMenus(let query): return query
         case .createMenu: return nil
         case .updateMenu: return nil
         case .deleteMenu: return nil

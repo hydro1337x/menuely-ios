@@ -11,7 +11,7 @@ import Combine
 import Alamofire
 
 protocol RestaurantsRemoteRepositing {
-    func getRestaurants(with searchRequestDTO: SearchRequestDTO?) -> AnyPublisher<RestaurantsListResponseDTO, Error>
+    func getRestaurants(with query: SearchQueryRequest?) -> AnyPublisher<RestaurantsListResponseDTO, Error>
     func getRestaurantProfile() -> AnyPublisher<RestaurantResponseDTO, Error>
     func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable) -> AnyPublisher<Discardable, Error>
     func updateRestaurantProfile(with updateRestaurantProfileRequestDTO: UpdateRestaurantProfileRequestDTO) -> AnyPublisher<Discardable, Error>
@@ -24,8 +24,8 @@ class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
     @Injected private var networkClient: Networking
     @Injected private var multipartFormatter: MultipartFormatter
     
-    func getRestaurants(with searchRequestDTO: SearchRequestDTO?) -> AnyPublisher<RestaurantsListResponseDTO, Error> {
-        networkClient.request(endpoint: Endpoint.restaurants(searchRequestDTO))
+    func getRestaurants(with query: SearchQueryRequest?) -> AnyPublisher<RestaurantsListResponseDTO, Error> {
+        networkClient.request(endpoint: Endpoint.restaurants(query))
     }
     
     func getRestaurantProfile() -> AnyPublisher<RestaurantResponseDTO, Error> {
@@ -61,7 +61,7 @@ class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
 
 extension RestaurantsRemoteRepository {
     enum Endpoint {
-        case restaurants(SearchRequestDTO?)
+        case restaurants(SearchQueryRequest?)
         case restaurantProfile
         case upload(_: MultipartFormData)
         case updateRestaurantProfile(_: UpdateRestaurantProfileRequestDTO)
@@ -108,9 +108,9 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         }
     }
     
-    var queryParameters: Parameters? {
+    var query: QueryRequestable? {
         switch self {
-        case .restaurants(let searchRequestDTO): return searchRequestDTO.asDictionary
+        case .restaurants(let query): return query
         default: return nil
         }
     }

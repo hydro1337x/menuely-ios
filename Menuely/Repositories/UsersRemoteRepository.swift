@@ -110,7 +110,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
         }
     }
     
-    var queryParameters: Parameters? {
+    var query: QueryRequestable? {
         return nil
     }
     

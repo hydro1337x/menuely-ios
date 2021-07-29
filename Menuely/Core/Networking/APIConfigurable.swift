@@ -9,7 +9,6 @@ import Foundation
 import Alamofire
 import Resolver
 
-typealias Parameters = Alamofire.Parameters
 typealias HTTPMethod = Alamofire.HTTPMethod
 typealias DataParameters = [String: DataInfo]
 
@@ -25,7 +24,7 @@ protocol APIConfigurable: URLRequestConvertible {
     var path: String { get }
     var method: HTTPMethod { get }
     var headers: [String: String]? { get }
-    var queryParameters: Parameters? { get }
+    var query: QueryRequestable? { get }
     func body() throws -> Data?
 }
 
@@ -46,7 +45,7 @@ extension APIConfigurable {
         urlRequest.allHTTPHeaderFields = headers
         
         // Query Parameters
-        if let queryParameters = self.queryParameters {
+        if let queryParameters = self.query?.asDictionary {
             let parameters = queryParameters.map { pair  in
                 return URLQueryItem(name: pair.key, value: "\(pair.value)")
             }

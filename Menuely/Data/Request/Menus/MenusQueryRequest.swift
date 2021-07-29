@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct MenusRequestDTO: Encodable {
+struct MenusQueryRequest: QueryRequestable {
     let restaurantId: Int
 }

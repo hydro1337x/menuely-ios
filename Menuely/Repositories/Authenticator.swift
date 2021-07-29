@@ -65,7 +65,7 @@ extension Authenticator.Endpoint: APIConfigurable {
         return ["Content-Type": "application/json"]
     }
     
-    var queryParameters: Parameters? {
+    var query: QueryRequestable? {
         return nil
     }
     

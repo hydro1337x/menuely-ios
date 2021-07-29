@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct SearchRequestDTO: Encodable {
+struct SearchQueryRequest: QueryRequestable {
     var search: String?
 }
