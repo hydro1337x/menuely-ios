@@ -10,7 +10,21 @@ import SDWebImageSwiftUI
 
 let imageURL = "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjF8fHJlc3RhdXJhbnR8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80"
 
+struct MyValue: Identifiable {
+    let id = UUID()
+    let value: Int
+}
+
 struct ProductsListView: View {
+    
+    @State private var isTapped: Bool = false
+    var  identifiables: [MyValue] = {
+        var values: [MyValue] = []
+        for i in 0..<10 {
+            values.append(MyValue(value: i))
+        }
+        return values
+    }()
     
     var body: some View {
         ScrollView {
@@ -43,9 +57,8 @@ struct ProductsListView: View {
             .frame(height: 250)
             
             LazyVStack {
-                ForEach(0..<10) { item in
-                    Text("Text: \(item)")
-                        .frame(height: 100)
+                ForEach(identifiables) { item in
+                    ProductCell()
                 }
             }
         }
@@ -54,14 +67,21 @@ struct ProductsListView: View {
     }
 }
 
-let articleContent =
-
-"""
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-"""
+struct MyView: View {
+    let text: String
+    @State private var isTapped: Bool = false
+    
+    var body: some View {
+        Text(text)
+            .frame(height: isTapped ? 200 : 100)
+            .frame(maxWidth: .infinity)
+            .background(Color(#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)))
+            .padding(.all, 5)
+            .onTapGesture {
+                isTapped.toggle()
+            }
+    }
+}
 
 struct ProductsListView_Previews: PreviewProvider {
     static var previews: some View {

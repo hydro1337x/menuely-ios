@@ -16,7 +16,7 @@ struct RoundedGradientButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         
         return configuration.label
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(maxWidth: .infinity, minHeight: 30, maxHeight: .infinity)
             .padding()
             .background(configuration.isPressed ? endGradient : startGradient)
             .foregroundColor(.white)
