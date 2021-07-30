@@ -106,22 +106,28 @@ private extension CategoriesListView {
         }
         return List {
             ForEach(categories) { category in
+//                NavigationLink(
+//                    destination: ProductsListView(),
+//                    tag: category.id,
+//                    selection: .constant(166)) {
+//                    CategoryCell(title: category.name, imageUrl: category.image.url, placeholderImage: .category)
+//                    }
+//                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+//                    .onTapGesture {
+////                        viewModel.routing.products = category.id
+//                    }
+//                    .onLongPressGesture {
+//                        viewModel.actionView(for: category) {
+//                            isLongPressed = false
+//                        }
+//                        isLongPressed = true
+//                    }
                 NavigationLink(
-                    destination: Text("New Category"),
-                    tag: category.id,
-                    selection: .constant(2)) {
-                    CategoryCell(title: category.name, imageUrl: category.image.url, placeholderImage: .category)
-                    }
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
-                    .onTapGesture {
-//                        viewModel.routing.products = category.id
-                    }
-                    .onLongPressGesture {
-                        viewModel.actionView(for: category) {
-                            isLongPressed = false
-                        }
-                        isLongPressed = true
-                    }
+                    destination: ProductsListView(),
+                    label: {
+                        Text("Navigate")
+                            .frame(height: 100)
+                    })
             }
         }
         .listStyle(InsetGroupedListStyle())
