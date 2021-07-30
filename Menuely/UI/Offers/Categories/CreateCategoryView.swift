@@ -24,7 +24,8 @@ struct CreateCategoryView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 150, height: 150, alignment: .center)
-                        .background(Image(.category))
+                        .foregroundColor(Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1)))
+                        .background(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                         .cornerRadius(10)
                         .shadow(radius: 3, y: 2)
                         .onTapGesture {
@@ -33,6 +34,7 @@ struct CreateCategoryView: View {
                     
                     FloatingTextField(text: $viewModel.name, title: "Name")
                         .frame(height: 48)
+                        .padding(.top, 10)
                     
                     Button(action: {
                         viewModel.createCategory()

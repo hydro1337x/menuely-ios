@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0C7BBCB526AFEEEA0084715B /* CreateMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BBCB426AFEEEA0084715B /* CreateMenuViewModel.swift */; };
 		0C7BBCB926B02DB30084715B /* ActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BBCB826B02DB30084715B /* ActionView.swift */; };
+		0C7CD87126B3E8C00066645E /* UpdateCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7CD87026B3E8C00066645E /* UpdateCategoryView.swift */; };
+		0C7CD87326B3E8CA0066645E /* UpdateCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7CD87226B3E8CA0066645E /* UpdateCategoryViewModel.swift */; };
 		0C8B25E926B2C51A007809CD /* CreateCategoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8B25E826B2C51A007809CD /* CreateCategoryRequest.swift */; };
 		0C8B25EB26B2C573007809CD /* CategoriesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8B25EA26B2C573007809CD /* CategoriesRequest.swift */; };
 		0C8B25ED26B2C5F7007809CD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8B25EC26B2C5F7007809CD /* Category.swift */; };
@@ -150,6 +152,8 @@
 /* Begin PBXFileReference section */
 		0C7BBCB426AFEEEA0084715B /* CreateMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMenuViewModel.swift; sourceTree = "<group>"; };
 		0C7BBCB826B02DB30084715B /* ActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionView.swift; sourceTree = "<group>"; };
+		0C7CD87026B3E8C00066645E /* UpdateCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCategoryView.swift; sourceTree = "<group>"; };
+		0C7CD87226B3E8CA0066645E /* UpdateCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCategoryViewModel.swift; sourceTree = "<group>"; };
 		0C8B25E826B2C51A007809CD /* CreateCategoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryRequest.swift; sourceTree = "<group>"; };
 		0C8B25EA26B2C573007809CD /* CategoriesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRequest.swift; sourceTree = "<group>"; };
 		0C8B25EC26B2C5F7007809CD /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -551,6 +555,8 @@
 				60B510AA26B2FDAB00218D6D /* CategoriesListViewModel.swift */,
 				60B510AC26B3350C00218D6D /* CreateCategoryView.swift */,
 				60B510AE26B3351900218D6D /* CreateCategoryViewModel.swift */,
+				0C7CD87026B3E8C00066645E /* UpdateCategoryView.swift */,
+				0C7CD87226B3E8CA0066645E /* UpdateCategoryViewModel.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -799,6 +805,7 @@
 				60E4ED6A268DCC7B00EC4561 /* Services+Injection.swift in Sources */,
 				6049C3C0268F9B9E00B891CC /* Repositories+Injection.swift in Sources */,
 				6000623826965F280085DF41 /* UserLoginResponse.swift in Sources */,
+				0C7CD87326B3E8CA0066645E /* UpdateCategoryViewModel.swift in Sources */,
 				6077EBCF26ACCB5700D6D4F4 /* UpdateEmailViewModel.swift in Sources */,
 				6071080D26A889F800008E44 /* AuthType.swift in Sources */,
 				6077EBC926AC9B3E00D6D4F4 /* UpdatePasswordViewModel.swift in Sources */,
@@ -819,6 +826,7 @@
 				6077EBC326AC6FC500D6D4F4 /* PopoversViewModifier.swift in Sources */,
 				6077EBCD26ACCB4D00D6D4F4 /* UpdateEmailView.swift in Sources */,
 				60F3BACB2694B85B005798C1 /* Authenticator.swift in Sources */,
+				0C7CD87126B3E8C00066645E /* UpdateCategoryView.swift in Sources */,
 				60D32CE4269A082600F6FDC9 /* SelectionCardButtonStyle.swift in Sources */,
 				6071080B26A8641700008E44 /* AuthSelectionViewModel.swift in Sources */,
 				60173F31269CA3B2003C4E40 /* InfoView.swift in Sources */,

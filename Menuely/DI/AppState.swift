@@ -56,6 +56,7 @@ extension AppState {
         var menusList: MenusListView.Routing = MenusListView.Routing()
         var categoriesList: CategoriesListView.Routing = CategoriesListView.Routing()
         var createCategory: CreateCategoryView.Routing = CreateCategoryView.Routing()
+        var updateCategory: UpdateCategoryView.Routing = UpdateCategoryView.Routing()
     }
 }
 

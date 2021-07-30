@@ -52,14 +52,13 @@ class CategoriesListViewModel: ObservableObject {
     
     // MARK: - Methods
     func getCategories() {
-        // Get menuId here
         guard let menuId = appState[\.routing.menusList.categories] else { return }
         let queryRequestable = CategoriesQueryRequest(menuId: menuId)
         categoriesService.getCategories(with: queryRequestable, categories: loadableSubject(\.categories))
     }
     
     func deleteCategory(with id: Int) {
-//        categoriesService.deleteCategory(with: <#T##PathParameter#>, deleteCategoryResult: <#T##LoadableSubject<Discardable>#>)
+        categoriesService.deleteCategory(with: id, deleteCategoryResult: loadableSubject(\.operationResult))
     }
     
     func resetOperationsState() {
@@ -89,7 +88,7 @@ class CategoriesListViewModel: ObservableObject {
         
         let update = Action(name: "Edit") {
             self.appState[\.routing.action.configuration] = nil
-            self.appState[\.routing.categoriesList.categoryForUpdate] = category
+            self.appState[\.routing.categoriesList.updateCategory] = category
         }
         
         let configuration = ActionViewConfiguration(title: "\(category.name) actions", actions: [update, delete]) {

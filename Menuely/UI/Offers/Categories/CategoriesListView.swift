@@ -34,13 +34,12 @@ struct CategoriesListView: View {
                 .modifier(PopoversViewModifier())
                 .modifier(RootViewAppearance())
         })
-        .sheet(isPresented: viewModel.routing.categoryForUpdate != nil ? .constant(true) : .constant(false), onDismiss: {
-            viewModel.routing.categoryForUpdate = nil
+        .sheet(isPresented: viewModel.routing.updateCategory != nil ? .constant(true) : .constant(false), onDismiss: {
+            viewModel.routing.updateCategory = nil
         }, content: {
-            EmptyView()
-//            UpdateMenuView()
-//                .modifier(PopoversViewModifier())
-//                .modifier(RootViewAppearance())
+            UpdateCategoryView()
+                .modifier(PopoversViewModifier())
+                .modifier(RootViewAppearance())
         })
     }
 }
@@ -115,7 +114,7 @@ private extension CategoriesListView {
                     }
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
                     .onTapGesture {
-//                        viewModel.routing.categories = menu.id
+//                        viewModel.routing.products = category.id
                     }
                     .onLongPressGesture {
                         viewModel.actionView(for: category) {
@@ -139,7 +138,7 @@ private extension CategoriesListView {
 extension CategoriesListView {
     struct Routing: Equatable {
         var isCreateCategorySheetPresented: Bool = false
-        var categoryForUpdate: Category?
+        var updateCategory: Category?
     }
 }
 
