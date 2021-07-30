@@ -26,7 +26,7 @@ extension MultipartFormDataRequestable {
         guard let parameters = self.parameters.asDictionary else { throw DataError.malformed }
         
         for (key, value) in parameters {
-            guard value is String || value is Int else { throw DataError.malformed }
+            guard value is String || value is Int || value is Float || value is Double else { throw DataError.malformed }
             multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
         }
         
