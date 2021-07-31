@@ -34,6 +34,8 @@ extension AppState {
         var updateMenusListView: Bool = false
         
         var updateCategoriesListView: Bool = false
+        
+        var updateProductsListView: Bool = false
     }
 }
 
@@ -57,6 +59,8 @@ extension AppState {
         var categoriesList: CategoriesListView.Routing = CategoriesListView.Routing()
         var createCategory: CreateCategoryView.Routing = CreateCategoryView.Routing()
         var updateCategory: UpdateCategoryView.Routing = UpdateCategoryView.Routing()
+        var productsList: ProductsListView.Routing = ProductsListView.Routing()
+        var createProduct: CreateProductView.Routing = CreateProductView.Routing()
     }
 }
 

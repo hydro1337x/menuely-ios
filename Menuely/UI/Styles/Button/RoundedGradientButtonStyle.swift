@@ -17,7 +17,6 @@ struct RoundedGradientButtonStyle: ButtonStyle {
         
         return configuration.label
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding()
             .background(configuration.isPressed ? endGradient : startGradient)
             .foregroundColor(.white)
             .clipShape(RoundedRectangle(cornerRadius: cornerRadius))

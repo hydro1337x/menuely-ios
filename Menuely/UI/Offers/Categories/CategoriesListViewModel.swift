@@ -19,6 +19,10 @@ class CategoriesListViewModel: ObservableObject {
     var appState: Store<AppState>
     private var cancelBag = CancelBag()
     
+    var title: String {
+        return appState[\.routing.menusList.categoriesForMenu]?.name ?? "Categories"
+    }
+    
     // MARK: - Initialization
     init(appState: Store<AppState>, categories: Loadable<[Category]> = .notRequested, operationResult: Loadable<Discardable> = .notRequested) {
         self.appState = appState
@@ -52,8 +56,8 @@ class CategoriesListViewModel: ObservableObject {
     
     // MARK: - Methods
     func getCategories() {
-        guard let menuId = appState[\.routing.menusList.categories] else { return }
-        let queryRequestable = CategoriesQueryRequest(menuId: menuId)
+        guard let menu = appState[\.routing.menusList.categoriesForMenu] else { return }
+        let queryRequestable = CategoriesQueryRequest(menuId: menu.id)
         categoriesService.getCategories(with: queryRequestable, categories: loadableSubject(\.categories))
     }
     

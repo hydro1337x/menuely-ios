@@ -41,6 +41,6 @@ struct CategoryCell: View {
 
 struct CategoryCell_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryCell(title: "Title", imageUrl: "https://media-cdn.tripadvisor.com/media/photo-s/19/e1/63/dc/photo3jpg.jpg", placeholderImage: .category)
+        CategoryCell(title: "Title", imageUrl: "https://media-cdn.tripadvisor.com/media/photo-s/19/e1/63/dc/photo3jpg.jpg", placeholderImage: .logo)
     }
 }

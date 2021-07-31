@@ -45,10 +45,10 @@ class CreateCategoryViewModel: ObservableObject {
     func createCategory() {
         guard !name.isEmpty,
               let imageData = image?.jpegData(compressionQuality: 0.5),
-              let menuId = appState[\.routing.menusList.categories] else { return }
+              let menu = appState[\.routing.menusList.categoriesForMenu] else { return }
         let data = DataInfo(mimeType: .jpeg, file: imageData, fieldName: "image")
         
-        let parameters = CreateCategoryMultipartFormDataRequest.Parameters(name: name, menuId: menuId)
+        let parameters = CreateCategoryMultipartFormDataRequest.Parameters(name: name, menuId: menu.id)
         let multipartFormDataRequest = CreateCategoryMultipartFormDataRequest(data: data, parameters: parameters)
         categoriesService.createCategory(with: multipartFormDataRequest, createCategoryResult: loadableSubject(\.createCategoryResult))
     }

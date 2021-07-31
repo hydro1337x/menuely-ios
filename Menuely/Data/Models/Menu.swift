@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Menu: Codable, Equatable, Identifiable {
+struct Menu: Codable, Equatable, Identifiable, Hashable {
     let id: Int
     let name: String
     let description: String
@@ -15,4 +15,8 @@ struct Menu: Codable, Equatable, Identifiable {
     let restaurantId: Int
     let createdAt: TimeInterval
     let updatedAt: TimeInterval
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }

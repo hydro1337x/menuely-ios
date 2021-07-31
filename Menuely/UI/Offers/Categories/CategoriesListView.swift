@@ -17,7 +17,7 @@ struct CategoriesListView: View {
             listContent
             operationContent
         }
-        .navigationBarTitle("Categories")
+        .navigationBarTitle(viewModel.title)
         .navigationBarItems(trailing: Button(action: {
             viewModel.routing.isCreateCategorySheetPresented = true
         }, label: {
@@ -106,28 +106,22 @@ private extension CategoriesListView {
         }
         return List {
             ForEach(categories) { category in
-//                NavigationLink(
-//                    destination: ProductsListView(),
-//                    tag: category.id,
-//                    selection: .constant(166)) {
-//                    CategoryCell(title: category.name, imageUrl: category.image.url, placeholderImage: .category)
-//                    }
-//                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
-//                    .onTapGesture {
-////                        viewModel.routing.products = category.id
-//                    }
-//                    .onLongPressGesture {
-//                        viewModel.actionView(for: category) {
-//                            isLongPressed = false
-//                        }
-//                        isLongPressed = true
-//                    }
                 NavigationLink(
                     destination: ProductsListView(),
-                    label: {
-                        Text("Navigate")
-                            .frame(height: 100)
-                    })
+                    tag: category,
+                    selection: $viewModel.routing.productsForCategory) {
+                    CategoryCell(title: category.name, imageUrl: category.image.url, placeholderImage: .logo)
+                    }
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                    .onTapGesture {
+                        viewModel.routing.productsForCategory = category
+                    }
+                    .onLongPressGesture {
+                        viewModel.actionView(for: category) {
+                            isLongPressed = false
+                        }
+                        isLongPressed = true
+                    }
             }
         }
         .listStyle(InsetGroupedListStyle())
@@ -145,6 +139,7 @@ extension CategoriesListView {
     struct Routing: Equatable {
         var isCreateCategorySheetPresented: Bool = false
         var updateCategory: Category?
+        var productsForCategory: Category?
     }
 }
 

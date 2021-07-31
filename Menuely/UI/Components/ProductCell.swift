@@ -18,10 +18,15 @@ struct ProductCell: View {
     private let imageVerticalOffset: CGFloat = 225/2
     private let buttonHeight: CGFloat = 30
     private let extendedButtonHeight: CGFloat = 50
+    private let horizontalAdjustmentPadding: CGFloat = 5
     private var buttonVerticalOffset: CGFloat {
         return (baseHeight + buttonHeight) / 2
     }
-    private let horizontalAdjustmentPadding: CGFloat = 5
+    
+    let title: String
+    let description: String
+    let price: String
+    let imageURL: String
     
     func textVStackWidth(for frameWidth: CGFloat) -> CGFloat {
         let value = frameWidth - horizontalShift - (2 * horizontalAdjustmentPadding) - baseHeight
@@ -47,10 +52,10 @@ struct ProductCell: View {
             
             VStack(alignment: .leading, spacing: 0) {
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("Title")
+                    Text(title)
                         .font(.body).bold()
                     
-                    Text("Lorem ipsum dorem lorem ispum daloren endorem lorem sumorenLorem ipsum dorem lorem ispum daloren endorem lorem sumorenLorem ipsum dorem lorem ispum daloren")
+                    Text(description)
                         .font(.callout)
                 }
                 .frame(width: isTapped ? geometry.size.width : textVStackWidth(for: geometry.size.width), height: textVStackHeight)
@@ -59,7 +64,7 @@ struct ProductCell: View {
                 Button(action: {
                     
                 }, label: {
-                    Text(isTapped ? "Add to cart (10 HRK)" : "10 HRK")
+                    Text(isTapped ? "Add to cart (\(price)" : price)
                 })
                 .frame(width: isTapped ? geometry.size.width : 80, height: isTapped ? extendedButtonHeight : buttonHeight)
                 .offset(x: isTapped ? 0 : geometry.size.width - horizontalShift, y: isTapped ? 0 : -buttonVerticalOffset)
@@ -69,7 +74,8 @@ struct ProductCell: View {
             
         }
         .frame(height: isTapped ? extendedHeight : baseHeight)
-        .animation(.spring(response: 0.3, dampingFraction: 0.5))
+        .padding(.horizontal, horizontalAdjustmentPadding)
+        .animation(.spring(response: 0.35, dampingFraction: 0.7))
         .onTapGesture {
             isTapped.toggle()
         }
@@ -78,6 +84,6 @@ struct ProductCell: View {
 
 struct ProductCell_Previews: PreviewProvider {
     static var previews: some View {
-        ProductCell()
+        ProductCell(title: "Title", description: "Description", price: "4 €", imageURL: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjF8fHJlc3RhdXJhbnR8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80")
     }
 }

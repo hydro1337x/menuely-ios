@@ -1,14 +1,14 @@
 //
-//  CreateCategoryView.swift
+//  CreateProductView.swift
 //  Menuely
 //
-//  Created by Benjamin Mecanović on 29.07.2021..
+//  Created by Benjamin Mecanović on 31.07.2021..
 //
 
 import SwiftUI
 
-struct CreateCategoryView: View {
-    @InjectedObservedObject private var viewModel: CreateCategoryViewModel
+struct CreateProductView: View {
+    @InjectedObservedObject private var viewModel: ViewModel
     
     var body: some View {
         staticContent
@@ -36,8 +36,16 @@ struct CreateCategoryView: View {
                         .frame(height: 48)
                         .padding(.top, 10)
                     
+                    FloatingTextField(text: $viewModel.description, title: "Description")
+                        .frame(height: 48)
+                        .padding(.top, 10)
+                    
+                    FloatingTextField(text: $viewModel.price, title: "Price")
+                        .frame(height: 48)
+                        .padding(.top, 10)
+                    
                     Button(action: {
-                        viewModel.createCategory()
+                        viewModel.createProduct()
                     }, label: {
                         Text("Create")
                     })
@@ -50,7 +58,7 @@ struct CreateCategoryView: View {
             }
             .frame(maxWidth: .infinity)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarTitle("Create category")
+            .navigationBarTitle("Create product")
             .sheet(isPresented: $viewModel.routing.isImagePickerSheetPresented, content: {
                 ImagePicker(image: $viewModel.image)
             })
@@ -59,7 +67,7 @@ struct CreateCategoryView: View {
     
     @ViewBuilder
     private var dynamicContent: some View {
-        switch viewModel.createCategoryResult {
+        switch viewModel.createProductResult {
         case .isLoading(_, _):  loadingView()
         case .loaded(_):  loadedView(showLoading: false)
         case let .failed(error): failedView(error)
@@ -68,7 +76,7 @@ struct CreateCategoryView: View {
     }
 }
 
-private extension CreateCategoryView {
+private extension CreateProductView {
     
     func loadingView() -> some View {
         viewModel.appState[\.routing.activityIndicator.isActive] = true
@@ -85,24 +93,24 @@ private extension CreateCategoryView {
 
 // MARK: - Displaying Content
 
-private extension CreateCategoryView {
+private extension CreateProductView {
     func loadedView(showLoading: Bool) -> some View {
         viewModel.resetStates()
         viewModel.appState[\.routing.activityIndicator.isActive] = false
-        viewModel.updateCategoriesListView()
+        viewModel.updateProductsListView()
         viewModel.dismiss()
         return EmptyView()
     }
 }
 
-extension CreateCategoryView {
+extension CreateProductView {
     struct Routing: Equatable {
         var isImagePickerSheetPresented: Bool = false
     }
 }
 
-struct CreateCategoryView_Previews: PreviewProvider {
+struct CreateProductView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateCategoryView()
+        CreateProductView()
     }
 }

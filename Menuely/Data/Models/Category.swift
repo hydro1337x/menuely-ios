@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Category: Codable, Equatable, Identifiable {
+struct Category: Codable, Equatable, Identifiable, Hashable {
     let id: Int
     let name: String
     let currency: String
@@ -15,4 +15,8 @@ struct Category: Codable, Equatable, Identifiable {
     let createdAt: TimeInterval
     let updatedAt: TimeInterval
     let image: RemoteImage
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
