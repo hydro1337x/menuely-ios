@@ -143,6 +143,8 @@
 		60D32CE4269A082600F6FDC9 /* SelectionCardButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D32CE3269A082600F6FDC9 /* SelectionCardButtonStyle.swift */; };
 		60D4CFB126B53F8B00DA799E /* CreateProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D4CFB026B53F8B00DA799E /* CreateProductView.swift */; };
 		60D4CFB326B53F9900DA799E /* CreateProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D4CFB226B53F9900DA799E /* CreateProductViewModel.swift */; };
+		60D4CFB526B5460C00DA799E /* UpdateProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D4CFB426B5460C00DA799E /* UpdateProductView.swift */; };
+		60D4CFB726B5461A00DA799E /* UpdateProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D4CFB626B5461A00DA799E /* UpdateProductViewModel.swift */; };
 		60E395382690917C007E459E /* TokensRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E395372690917C007E459E /* TokensRequest.swift */; };
 		60E3953A2690918D007E459E /* TokensResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E395392690918D007E459E /* TokensResponse.swift */; };
 		60E3953C26909197007E459E /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E3953B26909197007E459E /* Tokens.swift */; };
@@ -297,6 +299,8 @@
 		60D32CE3269A082600F6FDC9 /* SelectionCardButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionCardButtonStyle.swift; sourceTree = "<group>"; };
 		60D4CFB026B53F8B00DA799E /* CreateProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProductView.swift; sourceTree = "<group>"; };
 		60D4CFB226B53F9900DA799E /* CreateProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProductViewModel.swift; sourceTree = "<group>"; };
+		60D4CFB426B5460C00DA799E /* UpdateProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProductView.swift; sourceTree = "<group>"; };
+		60D4CFB626B5461A00DA799E /* UpdateProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProductViewModel.swift; sourceTree = "<group>"; };
 		60E395372690917C007E459E /* TokensRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensRequest.swift; sourceTree = "<group>"; };
 		60E395392690918D007E459E /* TokensResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensResponse.swift; sourceTree = "<group>"; };
 		60E3953B26909197007E459E /* Tokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
@@ -338,6 +342,8 @@
 				60FE2A3F26B489F1006A96B4 /* ProductsListViewModel.swift */,
 				60D4CFB026B53F8B00DA799E /* CreateProductView.swift */,
 				60D4CFB226B53F9900DA799E /* CreateProductViewModel.swift */,
+				60D4CFB426B5460C00DA799E /* UpdateProductView.swift */,
+				60D4CFB626B5461A00DA799E /* UpdateProductViewModel.swift */,
 			);
 			path = Products;
 			sourceTree = "<group>";
@@ -852,6 +858,7 @@
 				0C7CD88326B42A3E0066645E /* ProductsRemoteRepository.swift in Sources */,
 				0C7CD87A26B41E570066645E /* Product.swift in Sources */,
 				60173F2F269C8F03003C4E40 /* AlertView.swift in Sources */,
+				60D4CFB726B5461A00DA799E /* UpdateProductViewModel.swift in Sources */,
 				0C7CD88126B41F8F0066645E /* UpdateProductRequest.swift in Sources */,
 				6071081826A8C67800008E44 /* AccountInfoView.swift in Sources */,
 				606531CB26A43B1900C8C500 /* OptionsView.swift in Sources */,
@@ -890,6 +897,7 @@
 				60173F31269CA3B2003C4E40 /* InfoView.swift in Sources */,
 				60E4ED7A268E174A00EC4561 /* ViewModels+Injection.swift in Sources */,
 				60B510AF26B3351900218D6D /* CreateCategoryViewModel.swift in Sources */,
+				60D4CFB526B5460C00DA799E /* UpdateProductView.swift in Sources */,
 				60F3BAD02694BB17005798C1 /* User.swift in Sources */,
 				60D4CFB326B53F9900DA799E /* CreateProductViewModel.swift in Sources */,
 				6071081626A8C36D00008E44 /* ProfileHeaderView.swift in Sources */,

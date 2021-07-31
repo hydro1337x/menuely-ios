@@ -7,25 +7,6 @@
 
 import SwiftUI
 
-//struct ProductsListView: View {
-//
-//    @State private var isTapped: Bool = false
-//
-//    var body: some View {
-//        ScrollView {
-//            StretchyHeader(imageURL: "")
-//
-//            LazyVStack {
-//                ForEach(identifiables) { item in
-//                    ProductCell(title: "", description: "", price: "", imageURL: "")
-//                }
-//            }
-//        }
-//        .edgesIgnoringSafeArea(.top)
-//        .navigationBarTitle("Products")
-//    }
-//}
-
 struct ProductsListView: View {
     @InjectedObservedObject private var viewModel: ViewModel
     
@@ -58,9 +39,9 @@ struct ProductsListView: View {
             viewModel.routing.updateProduct = nil
         }, content: {
             EmptyView()
-//            UpdateProductView()
-//                .modifier(PopoversViewModifier())
-//                .modifier(RootViewAppearance())
+            UpdateProductView()
+                .modifier(PopoversViewModifier())
+                .modifier(RootViewAppearance())
         })
     }
 }
@@ -132,6 +113,12 @@ private extension ProductsListView {
             LazyVStack {
                 ForEach(products) { product in
                     ProductCell(title: product.name, description: product.description, price: product.price.description, imageURL: product.image.url)
+                        .onLongPressGesture {
+                            viewModel.actionView(for: product) {
+                                isLongPressed = false
+                            }
+                            isLongPressed = true
+                        }
                 }
             }
         }

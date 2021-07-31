@@ -37,5 +37,6 @@ extension Resolver {
         register { UpdateCategoryViewModel(appState: resolve()) }
         register { ProductsListView.ViewModel(appState: resolve()) }
         register { CreateProductView.ViewModel(appState: resolve()) }
+        register { UpdateProductView.ViewModel(appState: resolve()) }
     }
 }

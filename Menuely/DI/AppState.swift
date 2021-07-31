@@ -61,6 +61,7 @@ extension AppState {
         var updateCategory: UpdateCategoryView.Routing = UpdateCategoryView.Routing()
         var productsList: ProductsListView.Routing = ProductsListView.Routing()
         var createProduct: CreateProductView.Routing = CreateProductView.Routing()
+        var updateProduct: UpdateProductView.Routing = UpdateProductView.Routing()
     }
 }
 
