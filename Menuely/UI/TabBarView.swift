@@ -21,9 +21,7 @@ struct TabBarView: View {
             case .restaurant: restaurantTabs
             }
             
-            NavigationView {
-                SearchUsersListView()
-            }
+            SearchListView()
             .tabItem { Label(
                 title: { Text("Search") },
                 icon: {

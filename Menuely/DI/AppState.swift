@@ -36,6 +36,8 @@ extension AppState {
         var updateCategoriesListView: Bool = false
         
         var updateProductsListView: Bool = false
+        
+        var searchList: SearchListView.Search = SearchListView.Search()
     }
 }
 
@@ -62,6 +64,7 @@ extension AppState {
         var productsList: ProductsListView.Routing = ProductsListView.Routing()
         var createProduct: CreateProductView.Routing = CreateProductView.Routing()
         var updateProduct: UpdateProductView.Routing = UpdateProductView.Routing()
+        var searchList: SearchListView.Routing = SearchListView.Routing()
     }
 }
 

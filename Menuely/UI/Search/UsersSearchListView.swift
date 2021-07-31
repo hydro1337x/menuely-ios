@@ -1,5 +1,5 @@
 //
-//  SearchUsersListView.swift
+//  UsersSearchListView.swift
 //  Menuely
 //
 //  Created by Benjamin Mecanović on 31.07.2021..
@@ -8,18 +8,15 @@
 import SwiftUI
 import Resolver
 
-struct SearchUsersListView: View {
+struct UsersSearchListView: View {
     @StateObject private var viewModel: ViewModel = Resolver.resolve()
     
     var body: some View {
-        VStack {
-            SearchBar(text: $viewModel.search)
-            listContent
-        }
+        listContent
     }
 }
 
-private extension SearchUsersListView {
+private extension UsersSearchListView {
     @ViewBuilder
     private var listContent: some View {
         switch viewModel.users {
@@ -33,11 +30,9 @@ private extension SearchUsersListView {
 
 // MARK: - Loading Content
 
-private extension SearchUsersListView {
+private extension UsersSearchListView {
     var listNotRequestedView: some View {
-        Text("").onAppear {
-            viewModel.getUsers(with: "")
-        }
+        EmptyView()
     }
     
     func listLoadingView(_ previouslyLoaded: [User]?) -> some View {
@@ -64,7 +59,7 @@ private extension SearchUsersListView {
 
 // MARK: - Displaying Content
 
-private extension SearchUsersListView {
+private extension UsersSearchListView {
     func listLoadedView(_ users: [User], showLoading: Bool) -> some View {
         if showLoading {
             viewModel.appState[\.routing.activityIndicator.isActive] = true
@@ -82,14 +77,8 @@ private extension SearchUsersListView {
     }
 }
 
-extension SearchUsersListView {
-    struct Routing: Equatable {
-        var isEmployeesSheetPresented: Bool = false
-    }
-}
-
 struct SearchEmployeesView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchUsersListView()
+        UsersSearchListView()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  SearchUsersListViewModel.swift
+//  UsersSearchListViewModel.swift
 //  Menuely
 //
 //  Created by Benjamin Mecanović on 31.07.2021..
@@ -8,13 +8,12 @@
 import Foundation
 import Resolver
 
-extension SearchUsersListView {
+extension UsersSearchListView {
     class ViewModel: ObservableObject {
         // MARK: - Properties
         @Injected private var usersService: UsersServicing
         
         @Published var users: Loadable<[User]>
-        @Published var search: String = ""
         
         var appState: Store<AppState>
         private var cancelBag = CancelBag()
@@ -25,13 +24,15 @@ extension SearchUsersListView {
             
             _users = .init(initialValue: users)
             
-            $search
-                .debounce(for: .milliseconds(800), scheduler: RunLoop.main)
+            appState
+                .map(\.data.searchList.search)
                 .removeDuplicates()
+                .compactMap { $0 }
                 .sink { [weak self] in
                     self?.getUsers(with: $0)
                 }
                 .store(in: cancelBag)
+                
         }
         
         // MARK: - Methods
