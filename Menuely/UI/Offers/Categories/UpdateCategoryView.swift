@@ -7,9 +7,10 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Resolver
 
 struct UpdateCategoryView: View {
-    @InjectedObservedObject private var viewModel: UpdateCategoryViewModel
+    @StateObject private var viewModel: UpdateCategoryViewModel = Resolver.resolve()
     
     var body: some View {
         staticContent

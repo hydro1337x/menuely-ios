@@ -12,7 +12,7 @@ import UIKit
 import Alamofire
 
 protocol UsersRemoteRepositing {
-    func getUsers() -> AnyPublisher<UsersListResponse, Error>
+    func getUsers(with queryRequestable: QueryRequestable?) -> AnyPublisher<UsersListResponse, Error>
     func getUserProfile() -> AnyPublisher<UserResponse, Error>
     func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable) -> AnyPublisher<Discardable, Error>
     func updateUserProfile(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
@@ -24,8 +24,8 @@ protocol UsersRemoteRepositing {
 class UsersRemoteRepository: UsersRemoteRepositing {
     @Injected private var networkClient: Networking
     
-    func getUsers() -> AnyPublisher<UsersListResponse, Error> {
-        networkClient.request(endpoint: Endpoint.users)
+    func getUsers(with queryRequestable: QueryRequestable?) -> AnyPublisher<UsersListResponse, Error> {
+        networkClient.request(endpoint: Endpoint.users(queryRequestable))
     }
     
     func getUserProfile() -> AnyPublisher<UserResponse, Error> {
@@ -57,7 +57,7 @@ class UsersRemoteRepository: UsersRemoteRepositing {
 
 extension UsersRemoteRepository {
     enum Endpoint {
-        case users
+        case users(QueryRequestable?)
         case userProfile
         case upload(_: MultipartFormDataRequestable)
         case updateUserProfile(_: BodyRequestable)
@@ -105,7 +105,10 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
     }
     
     var queryRequestable: QueryRequestable? {
-        return nil
+        switch self {
+        case .users(let queryRequest): return queryRequest
+        default: return nil
+        }
     }
     
     var bodyRequestable: BodyRequestable? {

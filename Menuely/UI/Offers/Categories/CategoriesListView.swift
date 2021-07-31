@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct CategoriesListView: View {
-    @InjectedObservedObject private var viewModel: CategoriesListViewModel
+    @StateObject private var viewModel: CategoriesListViewModel = Resolver.resolve()
     
     @State private var isLongPressed: Bool = false
     

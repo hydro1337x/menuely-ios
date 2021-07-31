@@ -32,15 +32,21 @@ extension Resolver {
         
         register { UpdatePasswordViewModel(appState: resolve()) }
         register { UpdateEmailViewModel(appState: resolve()) }
+        
         register { ScanViewModel() }.scope(.shared)
+        
         register { MenusListViewModel(appState: resolve()) }
         register { CreateMenuViewModel(appState: resolve()) }
         register { UpdateMenuViewModel(appState: resolve()) }
+        
         register { CategoriesListViewModel(appState: resolve()) }
         register { CreateCategoryViewModel(appState: resolve()) }
         register { UpdateCategoryViewModel(appState: resolve()) }
+        
         register { ProductsListView.ViewModel(appState: resolve()) }
         register { CreateProductView.ViewModel(appState: resolve()) }
         register { UpdateProductView.ViewModel(appState: resolve()) }
+        
+        register { SearchUsersListView.ViewModel(appState: resolve()) }
     }
 }

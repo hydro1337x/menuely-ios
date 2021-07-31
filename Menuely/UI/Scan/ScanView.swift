@@ -7,9 +7,10 @@
 
 import SwiftUI
 import CodeScanner
+import Resolver
 
 struct ScanView: View {
-    @InjectedObservedObject private var viewModel: ScanViewModel
+    @StateObject private var viewModel: ScanViewModel = Resolver.resolve()
     
     var body: some View {
         NavigationView {

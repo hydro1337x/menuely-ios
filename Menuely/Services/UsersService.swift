@@ -11,7 +11,7 @@ import Resolver
 import Alamofire
 
 protocol UsersServicing {
-    func get(users: LoadableSubject<[User]>, search: String)
+    func getUsers(with queryRequestable: QueryRequestable?, users: LoadableSubject<[User]>)
     func getUserProfile(user: LoadableSubject<User>)
     func uploadImageAndGetUserProfile(with multipartFormDataRequestable: MultipartFormDataRequestable, user: LoadableSubject<User>)
     func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable, imageResult: LoadableSubject<Discardable>)
@@ -28,13 +28,13 @@ class UsersService: UsersServicing {
     
     let cancelBag = CancelBag()
     
-    func get(users: LoadableSubject<[User]>, search: String) {
+    func getUsers(with queryRequestable: QueryRequestable?, users: LoadableSubject<[User]>) {
         users.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                return remoteRepository.getUsers()
+                return remoteRepository.getUsers(with: queryRequestable)
             }
             .map { return $0.users }
             .sinkToLoadable { users.wrappedValue = $0 }

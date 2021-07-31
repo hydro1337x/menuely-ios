@@ -7,9 +7,6 @@
 
 import Resolver
 
-typealias InjectedObservedObject = InjectedObject
-typealias InjectedEnvironmentObject = InjectedObject
-
 extension Resolver: ResolverRegistering {
     public static func registerAllServices() {
         register { Store<AppState>(AppState()) }.scope(.application)

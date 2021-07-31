@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct CreateProductView: View {
-    @InjectedObservedObject private var viewModel: ViewModel
+    @StateObject private var viewModel: ViewModel = Resolver.resolve()
     
     var body: some View {
         staticContent

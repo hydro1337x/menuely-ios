@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct ProductsListView: View {
-    @InjectedObservedObject private var viewModel: ViewModel
+    @StateObject private var viewModel: ViewModel = Resolver.resolve()
     
     @State private var isLongPressed: Bool = false
     

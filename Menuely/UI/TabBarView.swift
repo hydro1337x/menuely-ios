@@ -22,7 +22,7 @@ struct TabBarView: View {
             }
             
             NavigationView {
-                Text("Search view")
+                SearchUsersListView()
             }
             .tabItem { Label(
                 title: { Text("Search") },
