@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct OptionsView: View {
-    @InjectedObservedObject private var viewModel: OptionsViewModel
+    @StateObject private var viewModel: OptionsViewModel = Resolver.resolve()
     
     var body: some View {
         ZStack {

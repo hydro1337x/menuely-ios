@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct ActivityIndicatorStyle {
   var spinnerColor: Color = Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1))
@@ -19,7 +20,7 @@ struct ActivityIndicatorStyle {
 
 struct ActivityIndicatorView: View {
  
-    @InjectedObservedObject private var viewModel: ViewModel
+    @StateObject private var viewModel: ViewModel = Resolver.resolve()
     
     @State private var isAnimating = false
     

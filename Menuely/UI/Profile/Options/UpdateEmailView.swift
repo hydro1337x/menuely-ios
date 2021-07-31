@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct UpdateEmailView: View {
-    @InjectedObservedObject private var viewModel: UpdateEmailViewModel
+    @StateObject private var viewModel: UpdateEmailViewModel = Resolver.resolve()
     
     var body: some View {
         ZStack {

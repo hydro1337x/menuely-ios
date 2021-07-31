@@ -10,24 +10,19 @@ import Resolver
 
 struct TabBarView: View {
     
-    @InjectedObservedObject private var viewModel: TabBarViewModel
+    @StateObject private var viewModel: TabBarViewModel = Resolver.resolve()
     @Injected var appState: Store<AppState>
-    @State var text = ""
     
     var body: some View {
         TabView(selection: $viewModel.tab) {
             
-            ScanView()
-            .tabItem { Label(
-                title: { Text("Scan") },
-                icon: {
-                    Image(.scanTab)
-                }
-            )}
-            .tag(TabBarView.Routing.scan)
+            switch viewModel.appState[\.data.selectedEntity] {
+            case .user: userTabs
+            case .restaurant: restaurantTabs
+            }
             
             NavigationView {
-                MenusListView()
+                Text("Search view")
             }
             .tabItem { Label(
                 title: { Text("Search") },
@@ -37,9 +32,7 @@ struct TabBarView: View {
             )}
             .tag(TabBarView.Routing.search)
             
-            NavigationView {
-                ProfileView()
-            }
+            ProfileView()
             .tabItem { Label(
                 title: { Text("Profile") },
                 icon: {
@@ -50,11 +43,36 @@ struct TabBarView: View {
         }
         .accentColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
     }
+    
+    @ViewBuilder
+    private var userTabs: some View {
+        ScanView()
+        .tabItem { Label(
+            title: { Text("Scan") },
+            icon: {
+                Image(.scanTab)
+            }
+        )}
+        .tag(TabBarView.Routing.scan)
+    }
+    
+    @ViewBuilder
+    private var restaurantTabs: some View {
+        MenusListView()
+        .tabItem { Label(
+            title: { Text("Menus") },
+            icon: {
+                Image(.menuTab)
+            }
+        )}
+        .tag(TabBarView.Routing.menu)
+    }
 }
 
 extension TabBarView {
     enum Routing {
         case scan
+        case menu
         case search
         case profile
     }

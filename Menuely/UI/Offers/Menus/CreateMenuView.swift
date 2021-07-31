@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct CreateMenuView: View {
-    @InjectedObservedObject private var viewModel: CreateMenuViewModel
+    @StateObject private var viewModel: CreateMenuViewModel = Resolver.resolve()
     
     var body: some View {
         staticContent

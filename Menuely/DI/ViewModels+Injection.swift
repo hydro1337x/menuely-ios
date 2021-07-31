@@ -9,29 +9,33 @@ import Resolver
 
 extension Resolver {
     public static func registerViewModels() {
-        register { RootViewAppearance.ViewModel() }.scope(.shared)
-        register { UserRegistrationViewModel() }.scope(.shared)
-        register { RestaurantRegistrationViewModel() }.scope(.shared)
-        register { LoginViewModel(appState: resolve()) }.scope(.shared)
-        register { ProfileViewModel(appState: resolve()) }.scope(.shared)
-        register { UserProfileViewModel(appState: resolve()) }.scope(.shared)
-        register { RestaurantProfileViewModel(appState: resolve()) }.scope(.shared)
-        register { OptionsViewModel(appState: resolve()) }.scope(.shared)
-        register { TabBarViewModel(appState: resolve()) }.scope(.shared)
-        register { RootViewModel(authService: resolve(), appState: resolve()) }.scope(.shared)
-        register { AuthSelectionViewModel(appState: resolve()) }.scope(.shared)
-        register { EditUserProfileViewModel(appState: resolve()) }.scope(.shared)
-        register { EditRestaurantProfileViewModel(appState: resolve()) }.scope(.shared)
-        register { InfoView.ViewModel(appState: resolve()) }.scope(.shared)
-        register { ActivityIndicatorView.ViewModel(appState: resolve()) }.scope(.shared)
-        register { AlertView.ViewModel(appState: resolve()) }.scope(.shared)
-        register { ActionView.ViewModel(appState: resolve()) }.scope(.shared)
-        register { UpdatePasswordViewModel(appState: resolve()) }.scope(.shared)
-        register { UpdateEmailViewModel(appState: resolve()) }.scope(.shared)
+        register { RootViewAppearance.ViewModel() }
+        register { UserRegistrationViewModel() }
+        register { RestaurantRegistrationViewModel() }
+        register { LoginViewModel(appState: resolve()) }
+        
+        register { ProfileViewModel(appState: resolve()) }
+        register { UserProfileViewModel(appState: resolve()) }
+        register { RestaurantProfileViewModel(appState: resolve()) }
+        
+        register { OptionsViewModel(appState: resolve()) }
+        register { TabBarViewModel(appState: resolve()) }
+        register { RootViewModel(authService: resolve(), appState: resolve()) }
+        register { AuthSelectionViewModel(appState: resolve()) }
+        register { EditUserProfileViewModel(appState: resolve()) }
+        register { EditRestaurantProfileViewModel(appState: resolve()) }
+        
+        register { InfoView.ViewModel(appState: resolve()) }
+        register { ActivityIndicatorView.ViewModel(appState: resolve()) }
+        register { AlertView.ViewModel(appState: resolve()) }
+        register { ActionView.ViewModel(appState: resolve()) }
+        
+        register { UpdatePasswordViewModel(appState: resolve()) }
+        register { UpdateEmailViewModel(appState: resolve()) }
         register { ScanViewModel() }.scope(.shared)
-        register { MenusListViewModel(appState: resolve()) }.scope(.shared)
-        register { CreateMenuViewModel(appState: resolve()) }.scope(.shared)
-        register { UpdateMenuViewModel(appState: resolve()) }.scope(.shared)
+        register { MenusListViewModel(appState: resolve()) }
+        register { CreateMenuViewModel(appState: resolve()) }
+        register { UpdateMenuViewModel(appState: resolve()) }
         register { CategoriesListViewModel(appState: resolve()) }
         register { CreateCategoryViewModel(appState: resolve()) }
         register { UpdateCategoryViewModel(appState: resolve()) }

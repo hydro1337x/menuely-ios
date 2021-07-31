@@ -57,6 +57,8 @@ struct ProductCell: View {
                     
                     Text(description)
                         .font(.callout)
+                    
+                    Spacer()
                 }
                 .frame(width: isTapped ? geometry.size.width : textVStackWidth(for: geometry.size.width), height: textVStackHeight)
                 .offset(x: isTapped ? 0 : baseHeight + horizontalAdjustmentPadding)
@@ -64,7 +66,7 @@ struct ProductCell: View {
                 Button(action: {
                     
                 }, label: {
-                    Text(isTapped ? "Add to cart (\(price)" : price)
+                    Text(isTapped ? "Add to cart (\(price))" : price)
                 })
                 .frame(width: isTapped ? geometry.size.width : 80, height: isTapped ? extendedButtonHeight : buttonHeight)
                 .offset(x: isTapped ? 0 : geometry.size.width - horizontalShift, y: isTapped ? 0 : -buttonVerticalOffset)

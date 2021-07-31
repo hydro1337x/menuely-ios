@@ -6,13 +6,18 @@
 //
 
 import Foundation
+import Resolver
 
 class TabBarViewModel: ObservableObject {
+    
     @Published var tab: TabBarView.Routing
     
+    let appState: Store<AppState>
     private var cancelBag = CancelBag()
     
     init(appState: Store<AppState>) {
+        self.appState = appState
+        
         _tab = .init(initialValue: appState[\.routing.tab])
         
         cancelBag.collect {

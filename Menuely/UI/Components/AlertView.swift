@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct AlertViewStyle {
     var titleTextStyle: Font = .title3
@@ -30,7 +31,7 @@ struct AlertViewConfiguration: Equatable {
 
 struct AlertView: View {
     
-    @InjectedObservedObject private var viewModel: ViewModel
+    @StateObject private var viewModel: ViewModel = Resolver.resolve()
     
     var style: AlertViewStyle = AlertViewStyle()
     

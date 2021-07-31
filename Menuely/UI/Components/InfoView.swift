@@ -23,7 +23,7 @@ struct InfoViewConfiguration: Equatable {
 
 struct InfoView: View {
     
-    @InjectedObservedObject private var viewModel: ViewModel
+    @StateObject private var viewModel: ViewModel = Resolver.resolve()
     
     var style: InfoViewStyle = InfoViewStyle()
     

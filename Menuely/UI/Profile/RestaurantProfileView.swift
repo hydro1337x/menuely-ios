@@ -7,9 +7,10 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Resolver
 
 struct RestaurantProfileView: View {
-    @InjectedObservedObject private var viewModel: RestaurantProfileViewModel
+    @StateObject private var viewModel: RestaurantProfileViewModel = Resolver.resolve()
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {

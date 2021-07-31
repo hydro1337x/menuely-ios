@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct RootView: View {
-    @InjectedObservedObject private var viewModel: RootViewModel
+    @StateObject private var viewModel: RootViewModel = Resolver.resolve()
     
     init() {
         UINavigationBar.appearance().tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)

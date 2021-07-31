@@ -6,11 +6,10 @@
 //
 
 import SwiftUI
-
-import SwiftUI
+import Resolver
 
 struct EditRestaurantProfileView: View {
-    @InjectedObservedObject private var viewModel: EditRestaurantProfileViewModel
+    @StateObject private var viewModel: EditRestaurantProfileViewModel = Resolver.resolve()
     
     var body: some View {
         ZStack {

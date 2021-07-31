@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct AuthSelectionView: View {
-    @InjectedObservedObject private var viewModel: AuthSelectionViewModel
+    @StateObject private var viewModel: AuthSelectionViewModel = Resolver.resolve()
     
     var body: some View {
         

@@ -7,9 +7,10 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Resolver
 
 struct UserProfileView: View {
-    @InjectedObservedObject private var viewModel: UserProfileViewModel
+    @StateObject private var viewModel: UserProfileViewModel = Resolver.resolve()
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {

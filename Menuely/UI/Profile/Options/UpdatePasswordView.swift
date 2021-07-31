@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct UpdatePasswordView: View {
-    @InjectedObservedObject private var viewModel: UpdatePasswordViewModel
+    @StateObject private var viewModel: UpdatePasswordViewModel = Resolver.resolve()
     
     var body: some View {
         ZStack {

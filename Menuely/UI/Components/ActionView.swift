@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct Action: Identifiable {
     var id = UUID()
@@ -32,7 +33,7 @@ struct ActionViewConfiguration: Equatable {
 }
 
 struct ActionView: View {
-    @InjectedObservedObject private var viewModel: ViewModel
+    @StateObject private var viewModel: ViewModel = Resolver.resolve()
     
     var style: AlertViewStyle = AlertViewStyle()
     

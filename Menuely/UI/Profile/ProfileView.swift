@@ -7,20 +7,22 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Resolver
 
 struct ProfileView: View {
-    @InjectedObservedObject private var viewModel: ProfileViewModel
+    @StateObject private var viewModel: ProfileViewModel = Resolver.resolve()
     
     var body: some View {
         
-        Group {
-            switch viewModel.appState[\.data.selectedEntity] {
-            case .user:
-                UserProfileView()
-            case .restaurant:
-                RestaurantProfileView()
+        NavigationView {
+            Group {
+                switch viewModel.appState[\.data.selectedEntity] {
+                case .user:
+                    UserProfileView()
+                case .restaurant:
+                    RestaurantProfileView()
+                }
             }
-        }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Profile")
             .navigationBarItems(trailing: Button(action: {
@@ -37,6 +39,7 @@ struct ProfileView: View {
                     .modifier(PopoversViewModifier())
                     .modifier(RootViewAppearance())
             })
+        }
     }
 }
 

@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct EditUserProfileView: View {
-    @InjectedObservedObject private var viewModel: EditUserProfileViewModel
+    @StateObject private var viewModel: EditUserProfileViewModel = Resolver.resolve()
     
     var body: some View {
         ZStack {

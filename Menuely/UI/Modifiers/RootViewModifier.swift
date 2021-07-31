@@ -10,7 +10,7 @@ import Resolver
 
 struct RootViewAppearance: ViewModifier {
     
-    @InjectedObservedObject private(set) var viewModel: ViewModel
+    @StateObject private var viewModel: ViewModel = Resolver.resolve()
     
     func body(content: Content) -> some View {
         content

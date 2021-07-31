@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct RestaurantRegistrationView: View {
-    @InjectedObservedObject private var viewModel: RestaurantRegistrationViewModel
+    @StateObject private var viewModel: RestaurantRegistrationViewModel = Resolver.resolve()
     
     var body: some View {
         ZStack {

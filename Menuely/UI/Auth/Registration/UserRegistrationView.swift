@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct UserRegistrationView: View {
-    @InjectedObservedObject private var viewModel: UserRegistrationViewModel
+    @StateObject private var viewModel: UserRegistrationViewModel = Resolver.resolve()
 
     var body: some View {
         ZStack {

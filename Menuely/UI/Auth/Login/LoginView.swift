@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct LoginView: View {
-    @InjectedObservedObject private var viewModel: LoginViewModel
+    @StateObject private var viewModel: LoginViewModel = Resolver.resolve()
     
     var body: some View {
         ZStack {
