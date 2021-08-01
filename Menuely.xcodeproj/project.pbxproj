@@ -58,6 +58,7 @@
 		6049C3C0268F9B9E00B891CC /* Repositories+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */; };
 		605803E226B7277500C7C9BA /* RestaurantNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605803E126B7277500C7C9BA /* RestaurantNoticeView.swift */; };
 		605803E426B727EC00C7C9BA /* RestaurantNoticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605803E326B727EC00C7C9BA /* RestaurantNoticeViewModel.swift */; };
+		605803E626B7394000C7C9BA /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605803E526B7394000C7C9BA /* SectionView.swift */; };
 		6063B68A26893B65001B1405 /* MenuelyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6063B68926893B65001B1405 /* MenuelyApp.swift */; };
 		6063B68E26893B67001B1405 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6063B68D26893B67001B1405 /* Assets.xcassets */; };
 		6063B69126893B67001B1405 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6063B69026893B67001B1405 /* Preview Assets.xcassets */; };
@@ -225,6 +226,7 @@
 		6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repositories+Injection.swift"; sourceTree = "<group>"; };
 		605803E126B7277500C7C9BA /* RestaurantNoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantNoticeView.swift; sourceTree = "<group>"; };
 		605803E326B727EC00C7C9BA /* RestaurantNoticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantNoticeViewModel.swift; sourceTree = "<group>"; };
+		605803E526B7394000C7C9BA /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		6063B68626893B65001B1405 /* Menuely.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Menuely.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6063B68926893B65001B1405 /* MenuelyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuelyApp.swift; sourceTree = "<group>"; };
 		6063B68D26893B67001B1405 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -668,6 +670,7 @@
 				60FE2A3B26B44A7D006A96B4 /* ProductCell.swift */,
 				60FE2A3D26B4895A006A96B4 /* StretchyHeader.swift */,
 				60D4CFBD26B5B65F00DA799E /* SearchBar.swift */,
+				605803E526B7394000C7C9BA /* SectionView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1015,6 +1018,7 @@
 				6097A7D126A0DD4200BC3534 /* AuthCredentials.swift in Sources */,
 				6074C0C0268CD41400DA3B21 /* NetworkingHelpers.swift in Sources */,
 				607B5BF526B1EE2A00E4A707 /* UpdateImageRequest.swift in Sources */,
+				605803E626B7394000C7C9BA /* SectionView.swift in Sources */,
 				60E3953A2690918D007E459E /* TokensResponse.swift in Sources */,
 				60D4CFC226B5CA9200DA799E /* SearchListViewModel.swift in Sources */,
 				601A854E26B091A300B31C3D /* UpdateMenuView.swift in Sources */,

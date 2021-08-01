@@ -22,22 +22,19 @@ struct RestaurantNoticeView: View {
                     .cornerRadius(10)
                     .shadow(radius: 3, y: 2)
                 
-                Form {
-                    Section(header: Text("Description")) {
-                        Text("Lorem ipsum dorem morem faflaLorem ipsum dorem morem faflaLorem ipsum dorem morem faflaLorem ipsum dorem morem faflaLorem ipsum dorem morem fafla")
-                    }
-                    
-                    Section(header: Text("Info")) {
-                        Text("Email")
-                        Text("Phone")
-                    }
-                    
-                    
+                SectionView(title: "Title") {
+                    Text("Lorem ipsum dorem morem faflaLorem ipsum dorem morem faflaLorem ipsum dorem morem faflaLorem ipsum dorem morem faflaLorem ipsum dorem morem fafla")
+                        .padding(.vertical, 10)
                 }
-                .frame(height: 400)
-                .disabled(true)
-                Color(#colorLiteral(red: 0.948246181, green: 0.9496578574, blue: 0.9691624045, alpha: 1))
-                    .frame(height: 300)
+                
+                SectionView(title: "Title") {
+                    Text("Lorem ipsum")
+                        .frame(height: 48)
+                    Divider()
+                    Text("Lorem ipsum")
+                        .frame(height: 48)
+                }
+                
                 Button(action: {}, label: {
                     Text("Open menu")
                 })
@@ -45,6 +42,7 @@ struct RestaurantNoticeView: View {
                 .buttonStyle(RoundedGradientButtonStyle())
             }
             .offset(y: -100 )
+            .background(Color(#colorLiteral(red: 0.948246181, green: 0.9496578574, blue: 0.9691624045, alpha: 1)))
         }
     }
 }
