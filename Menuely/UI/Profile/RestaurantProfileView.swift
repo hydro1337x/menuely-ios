@@ -13,9 +13,13 @@ struct RestaurantProfileView: View {
     @StateObject private var viewModel: RestaurantProfileViewModel = Resolver.resolve()
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
+        ZStack {
+            Color(#colorLiteral(red: 0.948246181, green: 0.9496578574, blue: 0.9691624045, alpha: 1))
+                .edgesIgnoringSafeArea(.all)
+            
             content
         }
+        .edgesIgnoringSafeArea(.all)
         .sheet(isPresented: $viewModel.routing.isProfileImagePickerSheetPresented, content: {
             ImagePicker(image: $viewModel.selectedProfileImage)
         })
@@ -65,38 +69,64 @@ private extension RestaurantProfileView {
 private extension RestaurantProfileView {
     func loadedView(_ restaurant: Restaurant, showLoading: Bool) -> some View {
         viewModel.appState[\.routing.activityIndicator.isActive] = false
-        return VStack {
-            ProfileHeaderView(coverImageURL: restaurant.coverImage?.url ?? "",
-                              profileImageURL: restaurant.profileImage?.url ?? "",
-                              title: restaurant.name,
-                              subtitle: restaurant.email,
-                              placeholderImageName: .restaurant,
-                              onProfileImageTap: {
-                                viewModel.routing.isProfileImagePickerSheetPresented = true
-                              },
-                              onCoverImageTap: {
-                                viewModel.routing.isCoverImagePickerSheetPresented = true
-                              })
-                .offset(y: -225)
+        return ScrollView {
+            StretchyHeader(imageURL: URL(string: restaurant.coverImage?.url ?? ""))
+                .onTapGesture {
+                    viewModel.routing.isCoverImagePickerSheetPresented = true
+                }
             
-            DescriptionView(title: "Description:", text: restaurant.description)
-                .frame(maxHeight: 150)
-                .background(Color(#colorLiteral(red: 0.9646247029, green: 0.9647596478, blue: 0.9645821452, alpha: 1)))
-                .cornerRadius(10)
-                .shadow(radius: 3, y: 2)
-                .offset(y: -100)
-                .padding(.horizontal, 16)
+            VStack(spacing: 0) {
+                WebImage(url: URL(string: restaurant.profileImage?.url ?? ""))
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 150, height: 150, alignment: .center)
+                    .background(Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)))
+                    .cornerRadius(10)
+                    .shadow(radius: 3, y: 2)
+                    .onTapGesture {
+                        viewModel.routing.isProfileImagePickerSheetPresented = true
+                    }
                 
-            
-            AccountInfoView(title: "Account info:", body1: "Created at: \(viewModel.timeIntervalToString(restaurant.createdAt))", body2: "Updated at: \(viewModel.timeIntervalToString(restaurant.updatedAt))", imageName: .restaurant)
-                .background(Color(#colorLiteral(red: 0.9646247029, green: 0.9647596478, blue: 0.9645821452, alpha: 1)))
-                .cornerRadius(10)
-                .shadow(radius: 3, y: 2)
-                .offset(y: -100)
-                .padding(.horizontal, 16)
-                .padding(.top, 10)
-            
-            Spacer()
+                Text(restaurant.name)
+                    .font(.title3).bold()
+                    .padding(.vertical, 20)
+                
+                SectionView(title: "Description") {
+                    Text(restaurant.description)
+                        .padding(.vertical, 10)
+                }
+                
+                SectionView(title: "Info") {
+                    DetailCell(title: "Email", text: restaurant.email)
+                    
+                    Divider()
+                    
+                    DetailCell(title: "Country", text: restaurant.country)
+                    
+                    Divider()
+                    
+                    DetailCell(title: "City", text: restaurant.city)
+                    
+                    Divider()
+                    
+                    DetailCell(title: "Address", text: restaurant.address)
+                    
+                    Divider()
+                    
+                    DetailCell(title: "Postal code", text: restaurant.postalCode)
+                    
+                    Group {
+                        Divider()
+                        
+                        DetailCell(title: "Created", text: viewModel.timeIntervalToString(restaurant.createdAt))
+                        
+                        Divider()
+                        
+                        DetailCell(title: "Updated", text: viewModel.timeIntervalToString(restaurant.updatedAt))
+                    }
+                }
+            }
+            .offset(y: -100 )
         }
     }
 }
