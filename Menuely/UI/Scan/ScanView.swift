@@ -14,28 +14,43 @@ struct ScanView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                CodeScannerView(codeTypes: [.qr], scanMode: .continuous, scanInterval: 2) { result in
-                    switch result {
-                    case .success(let code):
-                        viewModel.restaurantNoticeView(with: code)
-                    case .failure(let error):
-                        viewModel.errorView(with: error.localizedDescription)
-                    }
-                }
-                .frame(width: 250, height: 250, alignment: .center)
-                .background(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
-                .cornerRadius(10)
-                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1)), lineWidth: 5))
+            ZStack {
+                Color(#colorLiteral(red: 0.948246181, green: 0.9496578574, blue: 0.9691624045, alpha: 1))
+                    .edgesIgnoringSafeArea(.all)
+                
+                content
             }
-            .sheet(isPresented: viewModel.routing.menuForScannedRestaurantID == nil ? .constant(false) : .constant(true), onDismiss: {
-                viewModel.routing.menuForScannedRestaurantID = nil
-            }, content: {
-                RestaurantNoticeView()
-                    .modifier(PopoversViewModifier())
-                    .modifier(RootViewAppearance())
-            })
+            .edgesIgnoringSafeArea(.all)
         }
+    }
+}
+
+extension ScanView {
+    var content: some View {
+        VStack {
+            CodeScannerView(codeTypes: [.qr], scanMode: .continuous, scanInterval: 2) { result in
+                switch result {
+                case .success(let code):
+                    viewModel.restaurantNoticeView(with: code)
+                case .failure(let error):
+                    viewModel.errorView(with: error.localizedDescription)
+                }
+            }
+            .frame(width: 250, height: 250, alignment: .center)
+            .background(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+            .cornerRadius(10)
+            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1)), lineWidth: 5))
+        }
+        .offset(y: -50)
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitle("Scan")
+        .sheet(isPresented: viewModel.routing.menuForScannedRestaurantID == nil ? .constant(false) : .constant(true), onDismiss: {
+            viewModel.routing.menuForScannedRestaurantID = nil
+        }, content: {
+            RestaurantNoticeView()
+                .modifier(PopoversViewModifier())
+                .modifier(RootViewAppearance())
+        })
     }
 }
 
