@@ -10,6 +10,7 @@ import Combine
 import Resolver
 
 protocol RestaurantsServicing {
+    func getRestaurant(with id: PathParameter, restaurant: LoadableSubject<Restaurant>)
     func getRestaurants(with queryRequestable: QueryRequestable?, restaurants: LoadableSubject<[Restaurant]>)
     func getRestaurantProfile(restaurant: LoadableSubject<Restaurant>)
     func uploadImageAndGetRestaurantProfile(with multipartFormDataRequestable: MultipartFormDataRequestable, restaurant: LoadableSubject<Restaurant>)
@@ -26,6 +27,19 @@ class RestaurantsService: RestaurantsServicing {
     @Injected private var localRepository: LocalRepositing
     
     let cancelBag = CancelBag()
+    
+    func getRestaurant(with id: PathParameter, restaurant: LoadableSubject<Restaurant>) {
+        restaurant.wrappedValue.setIsLoading(cancelBag: cancelBag)
+        
+        Just<Void>
+            .withErrorType(Error.self)
+            .flatMap { [remoteRepository] in
+                return remoteRepository.getRestaurant(with: id)
+            }
+            .map { $0.restaurant }
+            .sinkToLoadable { restaurant.wrappedValue = $0 }
+            .store(in: cancelBag)
+    }
     
     func getRestaurants(with queryRequestable: QueryRequestable?, restaurants: LoadableSubject<[Restaurant]>) {
         restaurants.wrappedValue.setIsLoading(cancelBag: cancelBag)

@@ -65,6 +65,7 @@ extension AppState {
         var createProduct: CreateProductView.Routing = CreateProductView.Routing()
         var updateProduct: UpdateProductView.Routing = UpdateProductView.Routing()
         var searchList: SearchListView.Routing = SearchListView.Routing()
+        var scan: ScanView.Routing = ScanView.Routing()
     }
 }
 

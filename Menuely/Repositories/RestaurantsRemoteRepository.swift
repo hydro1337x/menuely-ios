@@ -11,6 +11,7 @@ import Combine
 import Alamofire
 
 protocol RestaurantsRemoteRepositing {
+    func getRestaurant(with id: PathParameter) -> AnyPublisher<RestaurantResponse, Error>
     func getRestaurants(with queryRequestable: QueryRequestable?) -> AnyPublisher<RestaurantsListResponse, Error>
     func getRestaurantProfile() -> AnyPublisher<RestaurantResponse, Error>
     func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable) -> AnyPublisher<Discardable, Error>
@@ -22,6 +23,10 @@ protocol RestaurantsRemoteRepositing {
 
 class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
     @Injected private var networkClient: Networking
+    
+    func getRestaurant(with id: PathParameter) -> AnyPublisher<RestaurantResponse, Error> {
+        networkClient.request(endpoint: Endpoint.restaurant(id))
+    }
     
     func getRestaurants(with queryRequestable: QueryRequestable?) -> AnyPublisher<RestaurantsListResponse, Error> {
         networkClient.request(endpoint: Endpoint.restaurants(queryRequestable))
@@ -56,6 +61,7 @@ class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
 
 extension RestaurantsRemoteRepository {
     enum Endpoint {
+        case restaurant(PathParameter)
         case restaurants(QueryRequestable?)
         case restaurantProfile
         case upload(_: MultipartFormDataRequestable)
@@ -69,6 +75,7 @@ extension RestaurantsRemoteRepository {
 extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
     var path: String {
         switch self {
+        case .restaurant(let id): return "/restaurants/\(id)"
         case .restaurants: return "/restaurants"
         case .restaurantProfile: return "/restaurants/me"
         case .upload: return "/restaurants/me/image"
@@ -81,6 +88,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
     
     var method: HTTPMethod {
         switch self {
+        case .restaurant: return .get
         case .restaurants: return .get
         case .restaurantProfile: return .get
         case .upload: return .patch
@@ -93,6 +101,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
     
     var headers: [String : String]? {
         switch self {
+        case .restaurant: return nil
         case .restaurants: return nil
         case .restaurantProfile: return nil
         case .upload: return nil
@@ -112,6 +121,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
     
     var bodyRequestable: BodyRequestable? {
         switch self {
+        case .restaurant: return nil
         case .restaurants: return nil
         case .restaurantProfile: return nil
         case .upload: return nil

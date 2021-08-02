@@ -33,7 +33,8 @@ extension Resolver {
         register { UpdatePasswordViewModel(appState: resolve()) }
         register { UpdateEmailViewModel(appState: resolve()) }
         
-        register { ScanViewModel() }.scope(.shared)
+        register { ScanViewModel(appState: resolve()) }
+        register { RestaurantNoticeView.ViewModel(appState: resolve()) }
         
         register { MenusListViewModel(appState: resolve()) }
         register { CreateMenuViewModel(appState: resolve()) }
