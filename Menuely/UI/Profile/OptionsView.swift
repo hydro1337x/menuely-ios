@@ -12,48 +12,45 @@ struct OptionsView: View {
     @StateObject private var viewModel: OptionsViewModel = Resolver.resolve()
     
     var body: some View {
-        ZStack {
-            base
-            dynamicContent
+        NavigationView {
+            ZStack {
+                Color(#colorLiteral(red: 0.948246181, green: 0.9496578574, blue: 0.9691624045, alpha: 1))
+                    .edgesIgnoringSafeArea(.all)
+                base
+                dynamicContent
+            }
+            .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitle("Options")
         }
-        .navigationBarTitle("Options")
-        .navigationBarTitleDisplayMode(.inline)
     }
     
     var base: some View {
-        NavigationView {
-            VStack {
-                Image(.logo)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100)
-                    .padding(.top, 20)
-                
-                List(viewModel.options, id: \.self) { option in
-                    if viewModel.navigatableOptions.contains(option) {
-                        NavigationLink(
-                            destination: destinationView(for: option),
-                            tag: option,
-                            selection: $viewModel.routing.details,
-                            label: {
-                                OptionItemView(option: option, imageName: .forwardArrow)
-                                    .frame(height: 48)
-                            })
-                            .buttonStyle(PlainButtonStyle())
-                    } else {
-                        OptionItemView(option: option, imageName: .forwardArrow)
-                            .frame(height: 48)
-                            .onTapGesture {
-                                switch option {
-                                case .logout: viewModel.logoutAlertView()
-                                case .deleteAccount: viewModel.deleteAccountAlertView()
-                                default: break
-                                }
+        VStack {
+            List(viewModel.options, id: \.self) { option in
+                if viewModel.navigatableOptions.contains(option) {
+                    NavigationLink(
+                        destination: destinationView(for: option),
+                        tag: option,
+                        selection: $viewModel.routing.details,
+                        label: {
+                            OptionItemView(option: option, imageName: .forwardArrow)
+                                .frame(height: 48)
+                        })
+                        .buttonStyle(PlainButtonStyle())
+                } else {
+                    OptionItemView(option: option, imageName: .forwardArrow)
+                        .frame(height: 48)
+                        .onTapGesture {
+                            switch option {
+                            case .logout: viewModel.logoutAlertView()
+                            case .deleteAccount: viewModel.deleteAccountAlertView()
+                            default: break
                             }
-                    }
+                        }
                 }
-                .padding(.top, 10)
             }
+            .listStyle(InsetGroupedListStyle())
+            .padding(.top, 10)
         }
     }
     
