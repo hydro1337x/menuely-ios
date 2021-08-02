@@ -13,9 +13,13 @@ struct UserProfileView: View {
     @StateObject private var viewModel: UserProfileViewModel = Resolver.resolve()
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
+        ZStack {
+            Color(#colorLiteral(red: 0.948246181, green: 0.9496578574, blue: 0.9691624045, alpha: 1))
+                .edgesIgnoringSafeArea(.all)
+            
             content
         }
+        .edgesIgnoringSafeArea(.all)
         .sheet(isPresented: $viewModel.routing.isProfileImagePickerSheetPresented, content: {
             ImagePicker(image: $viewModel.selectedProfileImage)
         })
@@ -65,28 +69,51 @@ private extension UserProfileView {
 private extension UserProfileView {
     func loadedView(_ user: User, showLoading: Bool) -> some View {
         viewModel.appState[\.routing.activityIndicator.isActive] = false
-        return VStack {
-            ProfileHeaderView(coverImageURL: user.coverImage?.url ?? "",
-                              profileImageURL: user.profileImage?.url ?? "",
-                              title: user.name,
-                              subtitle: user.email,
-                              placeholderImageName: .person,
-                              onProfileImageTap: {
-                                viewModel.routing.isProfileImagePickerSheetPresented = true
-                              },
-                              onCoverImageTap: {
-                                viewModel.routing.isCoverImagePickerSheetPresented = true
-                              })
-                .offset(y: -225)
+        return ScrollView {
+            StretchyHeader(imageURL: URL(string: user.coverImage?.url ?? ""))
+                .onTapGesture {
+                    viewModel.routing.isCoverImagePickerSheetPresented = true
+                }
             
-            AccountInfoView(title: "Account info:", body1: "Created at: \(viewModel.timeIntervalToString(user.createdAt))", body2: "Updated at: \(viewModel.timeIntervalToString(user.updatedAt))", imageName: .person)
-                .background(Color(#colorLiteral(red: 0.9646247029, green: 0.9647596478, blue: 0.9645821452, alpha: 1)))
-                .cornerRadius(10)
-                .shadow(radius: 3, y: 2)
-                .offset(y: -100)
-                .padding(.horizontal, 16)
-            
-            Spacer()
+            VStack(spacing: 0) {
+                WebImage(url: URL(string: user.profileImage?.url ?? ""))
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 150, height: 150, alignment: .center)
+                    .background(Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)))
+                    .cornerRadius(10)
+                    .shadow(radius: 3, y: 2)
+                    .onTapGesture {
+                        viewModel.routing.isProfileImagePickerSheetPresented = true
+                    }
+                
+                Text(user.name)
+                    .font(.title3).bold()
+                    .padding(.vertical, 20)
+                
+                SectionView(title: "Info") {
+                    DetailCell(title: "Email", text: user.email)
+                    
+                    Divider()
+                    
+                    DetailCell(title: "Firstname", text: user.firstname)
+                    
+                    Divider()
+                    
+                    DetailCell(title: "Lastname", text: user.lastname)
+                    
+                    Group {
+                        Divider()
+                        
+                        DetailCell(title: "Created", text: viewModel.timeIntervalToString(user.createdAt))
+                        
+                        Divider()
+                        
+                        DetailCell(title: "Updated", text: viewModel.timeIntervalToString(user.updatedAt))
+                    }
+                }
+            }
+            .offset(y: -100 )
         }
     }
 }
