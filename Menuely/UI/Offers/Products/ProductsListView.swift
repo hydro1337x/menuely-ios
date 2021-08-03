@@ -115,7 +115,7 @@ private extension ProductsListView {
             
             LazyVStack {
                 ForEach(products) { product in
-                    ProductCell(title: product.name, description: product.description, price: product.price.description, imageURL: product.image.url)
+                    ProductCell(title: product.name, description: product.description, buttonTitle: product.price.description, imageURL: product.image.url)
                         .onLongPressGesture {
                             viewModel.actionView(for: product) {
                                 isLongPressed = false

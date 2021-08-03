@@ -19,6 +19,7 @@ protocol RestaurantsRemoteRepositing {
     func updateRestaurantPassword(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
     func updateRestaurantEmail(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
     func delete() -> AnyPublisher<Discardable, Error>
+    func getEmployees() -> AnyPublisher<UsersListResponse, Error>
 }
 
 class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
@@ -55,6 +56,10 @@ class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
     func delete() -> AnyPublisher<Discardable, Error> {
         networkClient.request(endpoint: Endpoint.delete)
     }
+    
+    func getEmployees() -> AnyPublisher<UsersListResponse, Error> {
+        networkClient.request(endpoint: Endpoint.employees)
+    }
 }
 
 // MARK: - Endpoints
@@ -69,6 +74,7 @@ extension RestaurantsRemoteRepository {
         case updateRestaurantPassword(_: BodyRequestable)
         case updateRestaurantEmail(_: BodyRequestable)
         case delete
+        case employees
     }
 }
 
@@ -83,6 +89,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         case .updateRestaurantPassword: return "/restaurants/me/password"
         case .updateRestaurantEmail: return "/restaurants/me/email"
         case .delete: return "/restaurants/me"
+        case .employees: return "/restaurants/me/employees"
         }
     }
     
@@ -96,6 +103,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         case .updateRestaurantPassword: return .patch
         case .updateRestaurantEmail: return .patch
         case .delete: return .delete
+        case .employees: return .get
         }
     }
     
@@ -109,6 +117,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         case .updateRestaurantPassword: return ["Content-Type": "application/json"]
         case .updateRestaurantEmail: return ["Content-Type": "application/json"]
         case .delete: return nil
+        case .employees: return ["Content-Type": "application/json"]
         }
     }
     
@@ -129,6 +138,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         case .updateRestaurantPassword(let bodyRequest): return bodyRequest
         case .updateRestaurantEmail(let bodyRequest): return bodyRequest
         case .delete: return nil
+        case .employees: return nil
         }
     }
     

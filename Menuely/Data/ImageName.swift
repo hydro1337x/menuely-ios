@@ -21,4 +21,5 @@ enum ImageName: String {
     case menu = "menu"
     case plus = "plus"
     case category = "category"
+    case employees = "employees"
 }

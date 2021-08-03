@@ -25,6 +25,22 @@ struct SearchListView: View {
                 Spacer()
             }
             .navigationTitle("Search")
+            .navigationBarItems(trailing: Button(action: {
+                viewModel.routing.isShowEmployeesSheetPresented = true
+            }, label: {
+                Image(.employees)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 50, height: 35)
+                    .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+            }))
+            .sheet(isPresented: $viewModel.routing.isShowEmployeesSheetPresented, onDismiss: {
+                viewModel.routing.isShowEmployeesSheetPresented = false
+            }, content: {
+                EmployeesListView()
+                    .modifier(PopoversViewModifier())
+                    .modifier(RootViewAppearance())
+            })
         }
     }
 }

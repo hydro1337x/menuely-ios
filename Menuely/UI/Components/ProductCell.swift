@@ -31,8 +31,10 @@ struct ProductCell: View {
     
     let title: String
     let description: String
-    let price: String
+    let buttonTitle: String
+    let extendedButtonTitle: String? = nil
     let imageURL: String
+    let action: (() -> Void)? = nil
     
     func descriptionWidth(for frameWidth: CGFloat) -> CGFloat {
         let value = frameWidth - (2 * horizontalAdjustmentPadding) - baseHeight
@@ -66,7 +68,7 @@ struct ProductCell: View {
                         Text(description)
                             .font(.caption)
                             .fixedSize(horizontal: false, vertical: true)
-                            .lineLimit(isTapped ? 8 : 5)
+                            .lineLimit(5)
                             .frame(width: isTapped ? geometry.size.width : descriptionWidth(for: geometry.size.width), alignment: .leading)
                     }
                 }
@@ -74,14 +76,15 @@ struct ProductCell: View {
                 .padding(.vertical, 5)
                 
                 Button(action: {
-                    
+                    action?()
                 }, label: {
-                    Text(isTapped ? "Add to cart (\(price))" : price)
-                        .font(.system(size: 14))
+                    Text(isTapped ? extendedButtonTitle ?? buttonTitle : buttonTitle)
+                        .font(isTapped ? .body : .system(size: 14))
                 })
                 .frame(width: isTapped ? geometry.size.width : buttonWidth, height: isTapped ? extendedButtonHeight : buttonHeight)
                 .offset(x: isTapped ? 0 : geometry.size.width - horizontalShift, y: isTapped ? 0 : -buttonVerticalOffset)
                 .buttonStyle(RoundedGradientButtonStyle())
+                .disabled(action == nil ? true : false)
             }
             .padding(.top, isTapped ? extendedImageHeight : 0)
             
@@ -97,6 +100,6 @@ struct ProductCell: View {
 
 struct ProductCell_Previews: PreviewProvider {
     static var previews: some View {
-        ProductCell(title: "Title", description: "Description", price: "4 €", imageURL: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjF8fHJlc3RhdXJhbnR8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80")
+        ProductCell(title: "Title", description: "Description", buttonTitle: "4 €", imageURL: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjF8fHJlc3RhdXJhbnR8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80")
     }
 }
