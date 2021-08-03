@@ -31,7 +31,7 @@ struct SearchListView: View {
                 Image(.employees)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 50, height: 35)
+                    .frame(width: 30, height: 25)
                     .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
             }))
             .sheet(isPresented: $viewModel.routing.isShowEmployeesSheetPresented, onDismiss: {

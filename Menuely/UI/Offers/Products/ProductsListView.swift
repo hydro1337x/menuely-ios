@@ -26,9 +26,8 @@ struct ProductsListView: View {
         }, label: {
             Image(.plus)
                 .resizable()
-                .frame(width: 25, height: 25, alignment: .center)
+                .frame(width: 25, height: 25)
         })
-        .frame(width: 44, height: 44)
         )
         .edgesIgnoringSafeArea(.top)
         .sheet(isPresented: $viewModel.routing.isCreateProductSheetPresented, onDismiss: {
