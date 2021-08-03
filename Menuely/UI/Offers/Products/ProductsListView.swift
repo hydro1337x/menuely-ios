@@ -15,6 +15,8 @@ struct ProductsListView: View {
     
     var body: some View {
         ZStack {
+            Color(#colorLiteral(red: 0.948246181, green: 0.9496578574, blue: 0.9691624045, alpha: 1))
+                .edgesIgnoringSafeArea(.all)
             listContent
             operationContent
         }
@@ -23,8 +25,8 @@ struct ProductsListView: View {
             viewModel.routing.isCreateProductSheetPresented = true
         }, label: {
             Image(.plus)
+                .resizable()
                 .frame(width: 25, height: 25, alignment: .center)
-                .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
         })
         .frame(width: 44, height: 44)
         )

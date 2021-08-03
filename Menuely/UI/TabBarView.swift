@@ -15,10 +15,25 @@ struct TabBarView: View {
     
     var body: some View {
         TabView(selection: $viewModel.tab) {
-            
-            switch viewModel.appState[\.data.selectedEntity] {
-            case .user: userTabs
-            case .restaurant: restaurantTabs
+        
+            if viewModel.appState[\.data.selectedEntity] == .user {
+                ScanView()
+                .tabItem { Label(
+                    title: { Text("Scan") },
+                    icon: {
+                        Image(.scanTab)
+                    }
+                )}
+                .tag(TabBarView.Routing.scan)
+            } else {
+                MenusListView()
+                .tabItem { Label(
+                    title: { Text("Menus") },
+                    icon: {
+                        Image(.menuTab)
+                    }
+                )}
+                .tag(TabBarView.Routing.menu)
             }
             
             SearchListView()
@@ -29,6 +44,17 @@ struct TabBarView: View {
                 }
             )}
             .tag(TabBarView.Routing.search)
+            
+            if viewModel.appState[\.data.selectedEntity] == .user {
+                CartView()
+                .tabItem { Label(
+                    title: { Text("Cart") },
+                    icon: {
+                        Image(.cartTab)
+                    }
+                )}
+                .tag(TabBarView.Routing.cart)
+            }
             
             ProfileView()
             .tabItem { Label(
@@ -41,30 +67,6 @@ struct TabBarView: View {
         }
         .accentColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
     }
-    
-    @ViewBuilder
-    private var userTabs: some View {
-        ScanView()
-        .tabItem { Label(
-            title: { Text("Scan") },
-            icon: {
-                Image(.scanTab)
-            }
-        )}
-        .tag(TabBarView.Routing.scan)
-    }
-    
-    @ViewBuilder
-    private var restaurantTabs: some View {
-        MenusListView()
-        .tabItem { Label(
-            title: { Text("Menus") },
-            icon: {
-                Image(.menuTab)
-            }
-        )}
-        .tag(TabBarView.Routing.menu)
-    }
 }
 
 extension TabBarView {
@@ -73,6 +75,7 @@ extension TabBarView {
         case menu
         case search
         case profile
+        case cart
     }
 }
 

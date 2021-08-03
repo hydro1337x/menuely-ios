@@ -37,6 +37,7 @@ extension RestaurantNoticeView {
         
         // MARK: - Methods
         func getRestaurant(with id: Int) {
+            // Hardcoded value
             restaurantsService.getRestaurant(with: 1, restaurant: loadableSubject(\.restaurant))
         }
         

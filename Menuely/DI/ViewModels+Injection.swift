@@ -51,5 +51,7 @@ extension Resolver {
         register { SearchListView.ViewModel(appState: resolve()) }
         register { UsersSearchListView.ViewModel(appState: resolve()) }
         register { RestaurantsSearchListView.ViewModel(appState: resolve()) }
+        
+        register { CartView.ViewModel(appState: resolve()) }
     }
 }

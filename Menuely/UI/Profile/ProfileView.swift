@@ -32,7 +32,7 @@ struct ProfileView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 25, height: 25)
-                    .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
+                    .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
             }))
             .sheet(isPresented: $viewModel.routing.isOptionsSheetPresented, onDismiss: viewModel.resetNavigationStack, content: {
                 OptionsView()

@@ -23,8 +23,8 @@ struct CategoriesListView: View {
             viewModel.routing.isCreateCategorySheetPresented = true
         }, label: {
             Image(.plus)
+                .resizable()
                 .frame(width: 25, height: 25, alignment: .center)
-                .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
         })
         .frame(width: 44, height: 44)
         )

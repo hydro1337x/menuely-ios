@@ -10,17 +10,23 @@ import SDWebImageSwiftUI
 
 struct ProductCell: View {
     @State private var isTapped: Bool = false
+    @State private var descriptionSize: CGSize = .zero
+    @State private var titleSize: CGSize = .zero
     
     private let baseHeight: CGFloat = 100
-    private let extendedHeight: CGFloat = 385
-    private let horizontalShift: CGFloat = 80
+    private let horizontalShift: CGFloat = 100
     private let extendedImageHeight: CGFloat = 225
     private let imageVerticalOffset: CGFloat = 225/2
-    private let buttonHeight: CGFloat = 30
+    private let buttonHeight: CGFloat = 25
     private let extendedButtonHeight: CGFloat = 50
     private let horizontalAdjustmentPadding: CGFloat = 5
+    private let buttonWidth: CGFloat = 100
     private var buttonVerticalOffset: CGFloat {
-        return (baseHeight + buttonHeight) / 2
+        return descriptionSize.height + buttonHeight + 5
+    }
+    private var cellHeight: CGFloat {
+        let extendedHeight = extendedImageHeight + 35 + titleSize.height + descriptionSize.height + buttonHeight
+        return isTapped ? extendedHeight : baseHeight
     }
     
     let title: String
@@ -28,17 +34,14 @@ struct ProductCell: View {
     let price: String
     let imageURL: String
     
-    func textVStackWidth(for frameWidth: CGFloat) -> CGFloat {
-        let value = frameWidth - horizontalShift - (2 * horizontalAdjustmentPadding) - baseHeight
+    func descriptionWidth(for frameWidth: CGFloat) -> CGFloat {
+        let value = frameWidth - (2 * horizontalAdjustmentPadding) - baseHeight
         return abs(value)
     }
     
-    var textVStackHeight: CGFloat {
-        if isTapped {
-            return extendedHeight - extendedButtonHeight - extendedImageHeight
-        } else {
-            return baseHeight
-        }
+    func titleWidth(for frameWidth: CGFloat) -> CGFloat {
+        let value = frameWidth - (2 * horizontalAdjustmentPadding) - baseHeight - buttonWidth
+        return abs(value)
     }
     
     var body: some View {
@@ -51,31 +54,39 @@ struct ProductCell: View {
                 .clipped()
             
             VStack(alignment: .leading, spacing: 0) {
+                
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(title)
-                        .font(.body).bold()
+                    SizeReader(size: $titleSize) {
+                        Text(title)
+                            .font(.callout).bold()
+                            .frame(width: isTapped ? geometry.size.width : titleWidth(for: geometry.size.width), alignment: .leading)
+                    }
                     
-                    Text(description)
-                        .font(.callout)
-                    
-                    Spacer()
+                    SizeReader(size: $descriptionSize) {
+                        Text(description)
+                            .font(.caption)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .lineLimit(isTapped ? 8 : 5)
+                            .frame(width: isTapped ? geometry.size.width : descriptionWidth(for: geometry.size.width), alignment: .leading)
+                    }
                 }
-                .frame(width: isTapped ? geometry.size.width : textVStackWidth(for: geometry.size.width), height: textVStackHeight)
                 .offset(x: isTapped ? 0 : baseHeight + horizontalAdjustmentPadding)
+                .padding(.vertical, 5)
                 
                 Button(action: {
                     
                 }, label: {
                     Text(isTapped ? "Add to cart (\(price))" : price)
+                        .font(.system(size: 14))
                 })
-                .frame(width: isTapped ? geometry.size.width : 80, height: isTapped ? extendedButtonHeight : buttonHeight)
+                .frame(width: isTapped ? geometry.size.width : buttonWidth, height: isTapped ? extendedButtonHeight : buttonHeight)
                 .offset(x: isTapped ? 0 : geometry.size.width - horizontalShift, y: isTapped ? 0 : -buttonVerticalOffset)
                 .buttonStyle(RoundedGradientButtonStyle())
             }
             .padding(.top, isTapped ? extendedImageHeight : 0)
             
         }
-        .frame(height: isTapped ? extendedHeight : baseHeight)
+        .frame(height: cellHeight)
         .padding(.horizontal, horizontalAdjustmentPadding)
         .animation(.spring(response: 0.35, dampingFraction: 0.7))
         .onTapGesture {
