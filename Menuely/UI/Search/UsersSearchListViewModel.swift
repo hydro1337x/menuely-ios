@@ -13,6 +13,7 @@ extension UsersSearchListView {
         // MARK: - Properties
         @Injected private var usersService: UsersServicing
         
+        @Published var routing: Routing
         @Published var users: Loadable<[User]>
         
         var appState: Store<AppState>
@@ -22,16 +23,28 @@ extension UsersSearchListView {
         init(appState: Store<AppState>, users: Loadable<[User]> = .notRequested) {
             self.appState = appState
             
+            _routing = .init(initialValue: appState[\.routing.usersSearch])
+            
             _users = .init(initialValue: users)
             
-            appState
-                .map(\.data.searchList.search)
-                .removeDuplicates()
-                .compactMap { $0 }
-                .sink { [weak self] in
-                    self?.getUsers(with: $0)
-                }
-                .store(in: cancelBag)
+            cancelBag.collect {
+                appState
+                    .map(\.data.searchList.search)
+                    .removeDuplicates()
+                    .compactMap { $0 }
+                    .sink { [weak self] in
+                        self?.getUsers(with: $0)
+                    }
+                
+                $routing
+                    .removeDuplicates()
+                    .sink { appState[\.routing.usersSearch] = $0 }
+                
+                appState
+                    .map(\.routing.usersSearch)
+                    .removeDuplicates()
+                    .assign(to: \.routing, on: self)
+            }
                 
         }
         

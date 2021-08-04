@@ -23,22 +23,12 @@ extension RestaurantNoticeView {
             self.appState = appState
             
             _restaurant = .init(initialValue: restaurant)
-            
-            cancelBag.collect {
-                appState
-                    .map(\.routing.scan)
-                    .removeDuplicates()
-                    .compactMap { $0.menuForScannedRestaurantID }
-                    .sink { [weak self] in
-                        self?.getRestaurant(with: $0)
-                    }
-            }
         }
         
         // MARK: - Methods
-        func getRestaurant(with id: Int) {
-            // Hardcoded value
-            restaurantsService.getRestaurant(with: 1, restaurant: loadableSubject(\.restaurant))
+        func getRestaurant() {
+            guard let id = appState[\.routing.restaurantsSearch.restaurantNoticeForID] else { return }
+            restaurantsService.getRestaurant(with: id, restaurant: loadableSubject(\.restaurant))
         }
         
         // MARK: - Routing
@@ -47,7 +37,7 @@ extension RestaurantNoticeView {
         }
         
         func dismiss() {
-            appState[\.routing.scan.menuForScannedRestaurantID] = nil
+            appState[\.routing.scan.restaurantNoticeForID] = nil
         }
     }
 }

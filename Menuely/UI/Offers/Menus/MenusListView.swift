@@ -140,7 +140,7 @@ extension MenusListView {
     struct Routing: Equatable {
         var isCreateMenuSheetPresented: Bool = false
         var updateMenu: Menu?
-        var categoriesForMenu: Menu?
+        var categoriesForMenu: Menu? 
     }
 }
 

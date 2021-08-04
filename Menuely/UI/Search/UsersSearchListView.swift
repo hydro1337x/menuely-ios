@@ -71,9 +71,25 @@ private extension UsersSearchListView {
             LazyVStack {
                 ForEach(users) { user in
                     SearchUsersCell(title: user.name, description: user.email, imageURL: URL(string: user.profileImage?.url ?? ""))
+                        .onTapGesture {
+                            viewModel.routing.userNoticeForID = user.id
+                        }
                 }
             }
         }
+        .sheet(isPresented: viewModel.routing.userNoticeForID == nil ? .constant(false) : .constant(true), onDismiss: {
+            viewModel.routing.userNoticeForID = nil
+        }, content: {
+            UserNoticeView()
+                .modifier(PopoversViewModifier())
+                .modifier(RootViewAppearance())
+        })
+    }
+}
+
+extension UsersSearchListView {
+    struct Routing: Equatable {
+        var userNoticeForID: Int?
     }
 }
 

@@ -14,6 +14,9 @@ extension SearchListView {
         @Published var search: String = ""
         
         var appState: Store<AppState>
+        var isEmployeesButtonShown: Bool {
+            return appState[\.data.selectedEntity] == .user ? false : true
+        }
         private var cancelBag = CancelBag()
         
         // MARK: - Initialization

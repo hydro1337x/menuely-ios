@@ -40,12 +40,18 @@ extension ScanView {
             .background(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
             .cornerRadius(10)
             .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1)), lineWidth: 5))
+            
+            Button(action: {
+                viewModel.routing.restaurantNoticeForID = 2
+            }, label: {
+                Text("Open restaurant notice")
+            })
         }
         .offset(y: -50)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarTitle("Scan")
-        .sheet(isPresented: viewModel.routing.menuForScannedRestaurantID == nil ? .constant(false) : .constant(true), onDismiss: {
-            viewModel.routing.menuForScannedRestaurantID = nil
+        .sheet(isPresented: viewModel.routing.restaurantNoticeForID == nil ? .constant(false) : .constant(true), onDismiss: {
+            viewModel.routing.restaurantNoticeForID = nil
         }, content: {
             RestaurantNoticeView()
                 .modifier(PopoversViewModifier())
@@ -56,7 +62,7 @@ extension ScanView {
 
 extension ScanView {
     struct Routing: Equatable {
-        var menuForScannedRestaurantID: Int?
+        var restaurantNoticeForID: Int?
     }
 }
 

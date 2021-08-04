@@ -33,7 +33,9 @@ struct SearchListView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 30, height: 25)
                     .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
-            }))
+            })
+            .opacity(viewModel.isEmployeesButtonShown ? 1 : 0)
+            )
             .sheet(isPresented: $viewModel.routing.isShowEmployeesSheetPresented, onDismiss: {
                 viewModel.routing.isShowEmployeesSheetPresented = false
             }, content: {

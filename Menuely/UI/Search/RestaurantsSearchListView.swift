@@ -71,9 +71,25 @@ private extension RestaurantsSearchListView {
             LazyVStack {
                 ForEach(restaurants) { restaurant in
                     SearchUsersCell(title: restaurant.name, description: restaurant.email, imageURL: URL(string: restaurant.profileImage?.url ?? ""))
+                        .onTapGesture {
+                            viewModel.routing.restaurantNoticeForID = restaurant.id
+                        }
                 }
             }
         }
+        .sheet(isPresented: viewModel.routing.restaurantNoticeForID == nil ? .constant(false) : .constant(true), onDismiss: {
+            viewModel.routing.restaurantNoticeForID = nil
+        }, content: {
+            RestaurantNoticeView()
+                .modifier(PopoversViewModifier())
+                .modifier(RootViewAppearance())
+        })
+    }
+}
+
+extension RestaurantsSearchListView {
+    struct Routing: Equatable {
+        var restaurantNoticeForID: Int?
     }
 }
 

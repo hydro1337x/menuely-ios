@@ -13,6 +13,7 @@ extension RestaurantsSearchListView {
         // MARK: - Properties
         @Injected private var restaurantsService: RestaurantsServicing
         
+        @Published var routing: Routing
         @Published var restaurants: Loadable<[Restaurant]>
         
         var appState: Store<AppState>
@@ -22,17 +23,28 @@ extension RestaurantsSearchListView {
         init(appState: Store<AppState>, restaurants: Loadable<[Restaurant]> = .notRequested) {
             self.appState = appState
             
+            _routing = .init(initialValue: appState[\.routing.restaurantsSearch])
+            
             _restaurants = .init(initialValue: restaurants)
             
-            appState
-                .map(\.data.searchList.search)
-                .removeDuplicates()
-                .compactMap { $0 }
-                .sink { [weak self] in
-                    self?.getRestaurants(with: $0)
-                }
-                .store(in: cancelBag)
+            cancelBag.collect {
+                appState
+                    .map(\.data.searchList.search)
+                    .removeDuplicates()
+                    .compactMap { $0 }
+                    .sink { [weak self] in
+                        self?.getRestaurants(with: $0)
+                    }
                 
+                $routing
+                    .removeDuplicates()
+                    .sink { appState[\.routing.restaurantsSearch] = $0 }
+                
+                appState
+                    .map(\.routing.restaurantsSearch)
+                    .removeDuplicates()
+                    .assign(to: \.routing, on: self)
+            }
         }
         
         // MARK: - Methods

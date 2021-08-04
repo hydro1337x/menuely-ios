@@ -12,6 +12,7 @@ import UIKit
 import Alamofire
 
 protocol UsersRemoteRepositing {
+    func getUser(with id: PathParameter) -> AnyPublisher<UserResponse, Error>
     func getUsers(with queryRequestable: QueryRequestable?) -> AnyPublisher<UsersListResponse, Error>
     func getUserProfile() -> AnyPublisher<UserResponse, Error>
     func uploadImage(with multipartFormDataRequestable: MultipartFormDataRequestable) -> AnyPublisher<Discardable, Error>
@@ -23,6 +24,10 @@ protocol UsersRemoteRepositing {
 
 class UsersRemoteRepository: UsersRemoteRepositing {
     @Injected private var networkClient: Networking
+    
+    func getUser(with id: PathParameter) -> AnyPublisher<UserResponse, Error> {
+        networkClient.request(endpoint: Endpoint.user(id))
+    }
     
     func getUsers(with queryRequestable: QueryRequestable?) -> AnyPublisher<UsersListResponse, Error> {
         networkClient.request(endpoint: Endpoint.users(queryRequestable))
@@ -57,6 +62,7 @@ class UsersRemoteRepository: UsersRemoteRepositing {
 
 extension UsersRemoteRepository {
     enum Endpoint {
+        case user(PathParameter)
         case users(QueryRequestable?)
         case userProfile
         case upload(_: MultipartFormDataRequestable)
@@ -70,6 +76,7 @@ extension UsersRemoteRepository {
 extension UsersRemoteRepository.Endpoint: APIConfigurable {
     var path: String {
         switch self {
+        case .user(let id): return "/users/\(id)"
         case .users: return "/users"
         case .userProfile: return "/users/me"
         case .upload: return "/users/me/image"
@@ -82,6 +89,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
     
     var method: HTTPMethod {
         switch self {
+        case .user: return .get
         case .users: return .get
         case .userProfile: return .get
         case .upload: return .patch
@@ -94,6 +102,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
     
     var headers: [String : String]? {
         switch self {
+        case .user: return nil
         case .users: return nil
         case .userProfile: return nil
         case .upload: return nil
@@ -113,6 +122,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
     
     var bodyRequestable: BodyRequestable? {
         switch self {
+        case .user: return nil
         case .users: return nil
         case .userProfile: return nil
         case .upload: return nil

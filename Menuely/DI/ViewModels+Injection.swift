@@ -34,7 +34,6 @@ extension Resolver {
         register { UpdateEmailViewModel(appState: resolve()) }
         
         register { ScanViewModel(appState: resolve()) }
-        register { RestaurantNoticeView.ViewModel(appState: resolve()) }
         
         register { MenusListViewModel(appState: resolve()) }
         register { CreateMenuViewModel(appState: resolve()) }
@@ -52,6 +51,8 @@ extension Resolver {
         register { UsersSearchListView.ViewModel(appState: resolve()) }
         register { RestaurantsSearchListView.ViewModel(appState: resolve()) }
         register { EmployeesListView.ViewModel(appState: resolve()) }
+        register { RestaurantNoticeView.ViewModel(appState: resolve()) }
+        register { UserNoticeView.ViewModel(appState: resolve()) }
         
         register { CartView.ViewModel(appState: resolve()) }
     }
