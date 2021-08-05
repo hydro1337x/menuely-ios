@@ -13,6 +13,7 @@ struct Menu: Codable, Equatable, Identifiable, Hashable {
     let description: String
     let currency: String
     let restaurantId: Int
+    let isActive: Bool
     let createdAt: TimeInterval
     let updatedAt: TimeInterval
     

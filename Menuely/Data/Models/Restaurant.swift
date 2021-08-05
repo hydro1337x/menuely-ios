@@ -16,6 +16,7 @@ struct Restaurant: Codable, Equatable, Identifiable {
     let city: String
     let address: String
     let postalCode: String
+    let activeMenuId: Int?
     let createdAt: TimeInterval
     let updatedAt: TimeInterval
 //    let employees: [User]=

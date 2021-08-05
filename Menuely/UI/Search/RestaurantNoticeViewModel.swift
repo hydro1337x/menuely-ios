@@ -27,7 +27,7 @@ extension RestaurantNoticeView {
         
         // MARK: - Methods
         func getRestaurant() {
-            guard let id = appState[\.routing.restaurantsSearch.restaurantNoticeForID] else { return }
+            guard let id = appState[\.routing.restaurantsSearch.restaurantNoticeForID] ?? appState[\.routing.scan.restaurantNoticeForID] else { return }
             restaurantsService.getRestaurant(with: id, restaurant: loadableSubject(\.restaurant))
         }
         
