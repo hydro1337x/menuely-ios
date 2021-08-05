@@ -21,34 +21,31 @@ struct UpdateProductView: View {
         NavigationView {
             ScrollView {
                 VStack {
-                    
-                    if let image = viewModel.image {
-                        Image(uiImage: image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 150, height: 150, alignment: .center)
-                            .foregroundColor(Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1)))
-                            .background(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
-                            .cornerRadius(10)
-                            .shadow(radius: 3, y: 2)
-                            .onTapGesture {
-                                viewModel.routing.isImagePickerSheetPresented = true
-                            }
-                    } else {
-                        WebImage(url: URL(string: viewModel.imageURL ?? ""))
-                            .resizable()
-                            .placeholder {
-                                Image(.logo).background(Color(#colorLiteral(red: 0.9646247029, green: 0.9647596478, blue: 0.9645821452, alpha: 1)))
-                            }
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 150, height: 150, alignment: .center)
-                            .background(Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)))
-                            .cornerRadius(10)
-                            .shadow(radius: 3, y: 2)
-                            .onTapGesture {
-                                viewModel.routing.isImagePickerSheetPresented = true
-                            }
-                    }
+                    Button(action: {
+                        viewModel.routing.isImagePickerSheetPresented = true
+                    }, label: {
+                        if let image = viewModel.image {
+                            Image(uiImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 150, height: 150, alignment: .center)
+                                .foregroundColor(Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1)))
+                                .background(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                                .cornerRadius(10)
+                                .shadow(radius: 3, y: 2)
+                        } else {
+                            WebImage(url: URL(string: viewModel.imageURL ?? ""))
+                                .resizable()
+                                .placeholder {
+                                    Image(.logo).background(Color(#colorLiteral(red: 0.9646247029, green: 0.9647596478, blue: 0.9645821452, alpha: 1)))
+                                }
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 150, height: 150, alignment: .center)
+                                .background(Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)))
+                                .cornerRadius(10)
+                                .shadow(radius: 3, y: 2)
+                        }
+                    })
                     
                     FloatingTextField(text: $viewModel.name, title: "Name")
                         .frame(height: 48)

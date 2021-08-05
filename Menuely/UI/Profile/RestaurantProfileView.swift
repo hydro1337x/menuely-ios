@@ -70,22 +70,24 @@ private extension RestaurantProfileView {
     func loadedView(_ restaurant: Restaurant, showLoading: Bool) -> some View {
         viewModel.appState[\.routing.activityIndicator.isActive] = false
         return ScrollView {
-            StretchyHeader(imageURL: URL(string: restaurant.coverImage?.url ?? ""))
-                .onTapGesture {
-                    viewModel.routing.isCoverImagePickerSheetPresented = true
-                }
+            Button(action: {
+                viewModel.routing.isCoverImagePickerSheetPresented = true
+            }, label: {
+                StretchyHeader(imageURL: URL(string: restaurant.coverImage?.url ?? ""))
+            })
             
             VStack(spacing: 0) {
-                WebImage(url: URL(string: restaurant.profileImage?.url ?? ""))
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 150, height: 150, alignment: .center)
-                    .background(Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)))
-                    .cornerRadius(10)
-                    .shadow(radius: 3, y: 2)
-                    .onTapGesture {
-                        viewModel.routing.isProfileImagePickerSheetPresented = true
-                    }
+                Button(action: {
+                    viewModel.routing.isProfileImagePickerSheetPresented = true
+                }, label: {
+                    WebImage(url: URL(string: restaurant.profileImage?.url ?? ""))
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 150, height: 150, alignment: .center)
+                        .background(Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)))
+                        .cornerRadius(10)
+                        .shadow(radius: 3, y: 2)
+                })
                 
                 Text(restaurant.name)
                     .font(.title3).bold()
