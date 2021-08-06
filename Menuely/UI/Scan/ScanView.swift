@@ -44,9 +44,7 @@ extension ScanView {
         .offset(y: -50)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarTitle("Scan")
-        .sheet(isPresented: viewModel.routing.restaurantNoticeForID == nil ? .constant(false) : .constant(true), onDismiss: {
-            viewModel.routing.restaurantNoticeForID = nil
-        }, content: {
+        .fullScreenCover(isPresented: viewModel.routing.restaurantNoticeForInfo == nil ? .constant(false) : .constant(true), content: {
             RestaurantNoticeView()
                 .modifier(PopoversViewModifier())
                 .modifier(RootViewAppearance())
@@ -56,7 +54,7 @@ extension ScanView {
 
 extension ScanView {
     struct Routing: Equatable {
-        var restaurantNoticeForID: Int?
+        var restaurantNoticeForInfo: RestaurantNoticeInfo?
     }
 }
 

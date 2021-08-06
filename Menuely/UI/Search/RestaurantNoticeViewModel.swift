@@ -13,7 +13,9 @@ extension RestaurantNoticeView {
         // MARK: - Properties
         @Injected private var restaurantsService: RestaurantsServicing
         
+        @Published var routing: Routing
         @Published var restaurant: Loadable<Restaurant>
+        @Published var tag: Int = -1
         
         var appState: Store<AppState>
         private let cancelBag = CancelBag()
@@ -22,13 +24,26 @@ extension RestaurantNoticeView {
         init(appState: Store<AppState>, restaurant: Loadable<Restaurant> = .notRequested) {
             self.appState = appState
             
+            _routing = .init(initialValue: appState[\.routing.restaurantNotice])
+            
             _restaurant = .init(initialValue: restaurant)
+            
+            cancelBag.collect {
+                $routing
+                    .removeDuplicates()
+                    .sink { appState[\.routing.restaurantNotice] = $0 }
+                
+                appState
+                    .map(\.routing.restaurantNotice)
+                    .removeDuplicates()
+                    .assign(to: \.routing, on: self)
+            }
         }
         
         // MARK: - Methods
         func getRestaurant() {
-            guard let id = appState[\.routing.restaurantsSearch.restaurantNoticeForID] ?? appState[\.routing.scan.restaurantNoticeForID] else { return }
-            restaurantsService.getRestaurant(with: id, restaurant: loadableSubject(\.restaurant))
+            guard let restaurantID = appState[\.routing.restaurantsSearch.restaurantNoticeForInfo]?.restaurantID ?? appState[\.routing.scan.restaurantNoticeForInfo]?.restaurantID else { return }  
+            restaurantsService.getRestaurant(with: restaurantID, restaurant: loadableSubject(\.restaurant))
         }
         
         // MARK: - Routing
@@ -37,7 +52,8 @@ extension RestaurantNoticeView {
         }
         
         func dismiss() {
-            appState[\.routing.scan.restaurantNoticeForID] = nil
+            appState[\.routing.restaurantsSearch.restaurantNoticeForInfo] = nil
+            appState[\.routing.scan.restaurantNoticeForInfo] = nil
         }
     }
 }

@@ -21,6 +21,28 @@ struct RestaurantNoticeView: View {
                 content
                     .edgesIgnoringSafeArea(.vertical)
             }
+            .navigationBarItems(leading: Button(action: {
+                viewModel.dismiss()
+            }, label: {
+                Text("Leave")
+                    .padding(.vertical, 5)
+                    .padding(.trailing, 5)
+                    .foregroundColor(Color(#colorLiteral(red: 0.9781840444, green: 0.2009097934, blue: 0.2820017338, alpha: 1)))
+                    .cornerRadius(5)
+            }), trailing: Button(action: {
+//                viewModel.routing.isOptionsSheetPresented = true
+            }, label: {
+                HStack {
+                    Image(.cart)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 25, height: 25)
+                        .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                }
+                .frame(width: 55, height: 34)
+                .background(Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1)))
+                .cornerRadius(17)
+            }))
         }
     }
 }
@@ -94,8 +116,14 @@ private extension RestaurantNoticeView {
                     DetailCell(title: "Email", text: restaurant.email)
                 }
                 
+                NavigationLink(
+                    destination: Text("Destination"),
+                    tag: viewModel.routing.menuCategoriesForID ?? 0,
+                    selection: $viewModel.routing.menuCategoriesForID,
+                    label: {EmptyView()})
+                
                 Button(action: {
-                    viewModel.dismiss()
+                    viewModel.routing.menuCategoriesForID = 1
                 }, label: {
                     Text("Open menu")
                 })
@@ -108,6 +136,12 @@ private extension RestaurantNoticeView {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(restaurant.name)
+    }
+}
+
+extension RestaurantNoticeView {
+    struct Routing: Equatable {
+        var menuCategoriesForID: Int?
     }
 }
 

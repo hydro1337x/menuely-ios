@@ -68,6 +68,7 @@ extension AppState {
         var usersSearch: UsersSearchListView.Routing = UsersSearchListView.Routing()
         var restaurantsSearch: RestaurantsSearchListView.Routing = RestaurantsSearchListView.Routing()
         var scan: ScanView.Routing = ScanView.Routing()
+        var restaurantNotice: RestaurantNoticeView.Routing = RestaurantNoticeView.Routing()
     }
 }
 

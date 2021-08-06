@@ -22,4 +22,5 @@ enum ImageName: String {
     case plus = "plus"
     case category = "category"
     case employees = "employees"
+    case cart = "cart"
 }

@@ -39,8 +39,14 @@ class ScanViewModel: ObservableObject {
     }
     
     func restaurantNoticeView(with urlString: String) {
-        guard let url = URLComponents(string: urlString), let param = url.queryItems?.first(where: { $0.name == "restaurantId" })?.value, let id = Int(param) else { return }
+        guard let url = URLComponents(string: urlString),
+              let firstParam = url.queryItems?.first(where: { $0.name == "restaurantId" })?.value,
+              let secondParam = url.queryItems?.first(where: { $0.name == "tableId" })?.value,
+              let restaurantID = Int(firstParam),
+              let tableID = Int(secondParam) else { return }
         
-        routing.restaurantNoticeForID = id
+        let info = RestaurantNoticeInfo(restaurantID: restaurantID, tableID: tableID)
+        
+        routing.restaurantNoticeForInfo = info
     }
 }

@@ -61,5 +61,10 @@ extension RestaurantsSearchListView {
         func errorView(with message: String?) {
             appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: message)
         }
+        
+        func restaurantNoticeView(for restaurant: Restaurant) {
+            let info = RestaurantNoticeInfo(restaurantID: restaurant.id)
+            routing.restaurantNoticeForInfo = info
+        }
     }
 }

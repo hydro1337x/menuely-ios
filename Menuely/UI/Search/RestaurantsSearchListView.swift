@@ -72,14 +72,12 @@ private extension RestaurantsSearchListView {
                 ForEach(restaurants) { restaurant in
                     SearchUsersCell(title: restaurant.name, description: restaurant.email, imageURL: URL(string: restaurant.profileImage?.url ?? ""))
                         .onTapGesture {
-                            viewModel.routing.restaurantNoticeForID = restaurant.id
+                            viewModel.restaurantNoticeView(for: restaurant)
                         }
                 }
             }
         }
-        .sheet(isPresented: viewModel.routing.restaurantNoticeForID == nil ? .constant(false) : .constant(true), onDismiss: {
-            viewModel.routing.restaurantNoticeForID = nil
-        }, content: {
+        .fullScreenCover(isPresented: viewModel.routing.restaurantNoticeForInfo == nil ? .constant(false) : .constant(true), content: {
             RestaurantNoticeView()
                 .modifier(PopoversViewModifier())
                 .modifier(RootViewAppearance())
@@ -89,7 +87,7 @@ private extension RestaurantsSearchListView {
 
 extension RestaurantsSearchListView {
     struct Routing: Equatable {
-        var restaurantNoticeForID: Int?
+        var restaurantNoticeForInfo: RestaurantNoticeInfo?
     }
 }
 
