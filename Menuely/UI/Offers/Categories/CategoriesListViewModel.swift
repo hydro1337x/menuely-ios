@@ -12,6 +12,7 @@ class CategoriesListViewModel: ObservableObject {
     // MARK: - Properties
     @Injected private var categoriesService: CategoriesServicing
     
+    @Published var cart: Cart?
     @Published var routing: CategoriesListView.Routing
     @Published var categories: Loadable<[Category]>
     @Published var operationResult: Loadable<Discardable>
@@ -20,18 +21,28 @@ class CategoriesListViewModel: ObservableObject {
     private var cancelBag = CancelBag()
     
     var title: String {
-        return appState[\.routing.menusList.categoriesForMenu]?.name ?? "Categories"
+        return appState[\.routing.menusList.categories]?.menuName ?? appState[\.routing.restaurantNotice.categories]?.menuName ?? "Categories"
+    }
+    
+    var interactionType: OffersInteractionType {
+        return appState[\.routing.menusList.categories]?.interaction ?? appState[\.routing.restaurantNotice.categories]?.interaction ?? .viewing
     }
     
     // MARK: - Initialization
     init(appState: Store<AppState>, categories: Loadable<[Category]> = .notRequested, operationResult: Loadable<Discardable> = .notRequested) {
         self.appState = appState
         
+        _cart = .init(initialValue: appState[\.data.cart])
         _routing = .init(initialValue: appState[\.routing.categoriesList])
         _categories = .init(initialValue: categories)
         _operationResult = .init(initialValue: operationResult)
         
         cancelBag.collect {
+            appState
+                .map(\.data.cart)
+                .removeDuplicates()
+                .assign(to: \.cart, on: self)
+            
             appState
                 .map(\.data.updateCategoriesListView)
                 .removeDuplicates()
@@ -56,8 +67,8 @@ class CategoriesListViewModel: ObservableObject {
     
     // MARK: - Methods
     func getCategories() {
-        guard let menu = appState[\.routing.menusList.categoriesForMenu] else { return }
-        let queryRequestable = CategoriesQueryRequest(menuId: menu.id)
+        guard let id = appState[\.routing.menusList.categories]?.menuID ?? appState[\.routing.restaurantNotice.categories]?.menuID else { return }
+        let queryRequestable = CategoriesQueryRequest(menuId: id)
         categoriesService.getCategories(with: queryRequestable, categories: loadableSubject(\.categories))
     }
     

@@ -8,10 +8,24 @@
 import SwiftUI
 import Resolver
 
+struct CategoriesListDisplayInfo: Equatable, Hashable {
+    let menuID: Int
+    let menuName: String
+    let interaction: OffersInteractionType
+}
+
 struct CategoriesListView: View {
     @StateObject private var viewModel: CategoriesListViewModel = Resolver.resolve()
     
     @State private var isLongPressed: Bool = false
+    
+    private var isTrailingButtonShown: Bool {
+        if viewModel.interactionType == .modifying || ( viewModel.interactionType == .buying && (viewModel.cart?.cartItems.count) ?? 0 > 0) {
+            return true
+        } else {
+            return false
+        }
+    }
     
     var body: some View {
         ZStack {
@@ -20,12 +34,30 @@ struct CategoriesListView: View {
         }
         .navigationBarTitle(viewModel.title)
         .navigationBarItems(trailing: Button(action: {
-            viewModel.routing.isCreateCategorySheetPresented = true
+            if viewModel.interactionType == .modifying {
+                viewModel.routing.isCreateCategorySheetPresented = true
+            } else if viewModel.interactionType == .buying {
+                // Show cart view
+            }
         }, label: {
-            Image(.plus)
-                .resizable()
-                .frame(width: 25, height: 25)
+            if viewModel.interactionType == .modifying {
+                Image(.plus)
+                    .resizable()
+                    .frame(width: 25, height: 25)
+            } else if viewModel.interactionType == .buying {
+                HStack {
+                    Image(.cart)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 25, height: 25)
+                        .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                }
+                .frame(width: 55, height: 34)
+                .background(Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1)))
+                .cornerRadius(17)
+            }
         })
+        .opacity(isTrailingButtonShown ? 1 : 0)
         )
         .sheet(isPresented: $viewModel.routing.isCreateCategorySheetPresented, onDismiss: {
             viewModel.routing.isCreateCategorySheetPresented = false
@@ -108,13 +140,13 @@ private extension CategoriesListView {
             ForEach(categories) { category in
                 NavigationLink(
                     destination: ProductsListView(),
-                    tag: category,
-                    selection: $viewModel.routing.productsForCategory) {
+                    tag: ProductsListDisplayInfo(categoryID: category.id, categoryName: category.name, imageURL: category.image.url, interaction: viewModel.interactionType),
+                    selection: $viewModel.routing.products) {
                     CategoryCell(title: category.name, imageUrl: category.image.url, placeholderImage: .logo)
                     }
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
                     .onTapGesture {
-                        viewModel.routing.productsForCategory = category
+                        viewModel.routing.products = ProductsListDisplayInfo(categoryID: category.id, categoryName: category.name, imageURL: category.image.url, interaction: viewModel.interactionType)
                     }
                     .onLongPressGesture {
                         viewModel.actionView(for: category) {
@@ -139,7 +171,7 @@ extension CategoriesListView {
     struct Routing: Equatable {
         var isCreateCategorySheetPresented: Bool = false
         var updateCategory: Category?
-        var productsForCategory: Category?
+        var products: ProductsListDisplayInfo?
     }
 }
 

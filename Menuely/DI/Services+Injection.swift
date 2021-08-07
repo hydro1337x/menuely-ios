@@ -18,5 +18,6 @@ extension Resolver {
         register { MenusService() as MenusServicing }
         register { CategoriesService() as CategoriesServicing }
         register { ProductsService() as ProductsServicing }
+        register { CartService(appState: resolve()) as CartServicing }
     }
 }

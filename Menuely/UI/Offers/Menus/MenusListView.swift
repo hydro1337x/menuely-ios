@@ -110,13 +110,13 @@ private extension MenusListView {
         return List(menus) { menu in
             NavigationLink(
                 destination: CategoriesListView(),
-                tag: menu,
-                selection: $viewModel.routing.categoriesForMenu) {
+                tag: CategoriesListDisplayInfo(menuID: menu.id, menuName: menu.name, interaction: .modifying),
+                selection: $viewModel.routing.categories) {
                     MenuCell(title: menu.name, description: menu.description, imageName: .menu)
                 }
                 .scaleEffect(isLongPressed ? 1.05 : 1)
                 .onTapGesture {
-                    viewModel.routing.categoriesForMenu = menu
+                    viewModel.routing.categories = CategoriesListDisplayInfo(menuID: menu.id, menuName: menu.name, interaction: .modifying)
                 }
                 .onLongPressGesture {
                     viewModel.actionView(for: menu) {
@@ -140,7 +140,7 @@ extension MenusListView {
     struct Routing: Equatable {
         var isCreateMenuSheetPresented: Bool = false
         var updateMenu: Menu?
-        var categoriesForMenu: Menu? 
+        var categories: CategoriesListDisplayInfo?
     }
 }
 

@@ -8,10 +8,25 @@
 import SwiftUI
 import Resolver
 
+struct ProductsListDisplayInfo: Equatable, Hashable {
+    let categoryID: Int
+    let categoryName: String
+    let imageURL: String
+    let interaction: OffersInteractionType
+}
+
 struct ProductsListView: View {
     @StateObject private var viewModel: ViewModel = Resolver.resolve()
     
     @State private var isLongPressed: Bool = false
+    
+    private var isTrailingButtonShown: Bool {
+        if viewModel.interactionType == .modifying || ( viewModel.interactionType == .buying && (viewModel.cart?.cartItems.count) ?? 0 > 0) {
+            return true
+        } else {
+            return false
+        }
+    }
     
     var body: some View {
         ZStack {
@@ -22,12 +37,30 @@ struct ProductsListView: View {
         }
         .navigationBarTitle(viewModel.title)
         .navigationBarItems(trailing: Button(action: {
-            viewModel.routing.isCreateProductSheetPresented = true
+            if viewModel.interactionType == .modifying {
+                viewModel.routing.isCreateProductSheetPresented = true
+            } else if viewModel.interactionType == .buying {
+                // Show cart view
+            }
         }, label: {
-            Image(.plus)
-                .resizable()
-                .frame(width: 25, height: 25)
+            if viewModel.interactionType == .modifying {
+                Image(.plus)
+                    .resizable()
+                    .frame(width: 25, height: 25)
+            } else if viewModel.interactionType == .buying {
+                HStack {
+                    Image(.cart)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 25, height: 25)
+                        .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                }
+                .frame(width: 55, height: 34)
+                .background(Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1)))
+                .cornerRadius(17)
+            }
         })
+        .opacity(isTrailingButtonShown ? 1 : 0)
         )
         .edgesIgnoringSafeArea(.top)
         .sheet(isPresented: $viewModel.routing.isCreateProductSheetPresented, onDismiss: {
@@ -114,7 +147,9 @@ private extension ProductsListView {
             
             LazyVStack {
                 ForEach(products) { product in
-                    ProductCell(title: product.name, description: product.description, buttonTitle: product.price.description, imageURL: product.image.url)
+                    ProductCell(title: product.name, description: product.description, buttonTitle: product.price.description, imageURL: product.image.url, action: {
+                        viewModel.addCartItem(product)
+                    })
                         .onLongPressGesture {
                             viewModel.actionView(for: product) {
                                 isLongPressed = false

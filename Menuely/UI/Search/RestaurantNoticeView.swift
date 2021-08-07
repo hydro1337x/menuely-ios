@@ -42,7 +42,9 @@ struct RestaurantNoticeView: View {
                 .frame(width: 55, height: 34)
                 .background(Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1)))
                 .cornerRadius(17)
-            }))
+            })
+            .opacity((viewModel.cart?.cartItems.count) ?? 0 > 0 ? 1 : 0)
+            )
         }
     }
 }
@@ -117,13 +119,13 @@ private extension RestaurantNoticeView {
                 }
                 
                 NavigationLink(
-                    destination: Text("Destination"),
-                    tag: viewModel.routing.menuCategoriesForID ?? 0,
-                    selection: $viewModel.routing.menuCategoriesForID,
+                    destination: CategoriesListView(),
+                    tag: viewModel.routing.categories ?? CategoriesListDisplayInfo(menuID: 0, menuName: "", interaction: .viewing),
+                    selection: $viewModel.routing.categories,
                     label: {EmptyView()})
                 
                 Button(action: {
-                    viewModel.routing.menuCategoriesForID = 1
+                    viewModel.categoriesView(for: restaurant.activeMenuId ?? 0)
                 }, label: {
                     Text("Open menu")
                 })
@@ -131,6 +133,7 @@ private extension RestaurantNoticeView {
                 .padding(.top, 10)
                 .padding(.horizontal, 16)
                 .buttonStyle(RoundedGradientButtonStyle())
+                .opacity(restaurant.activeMenuId == nil ? 0 : 1)
             }
             .offset(y: -100 )
         }
@@ -141,7 +144,7 @@ private extension RestaurantNoticeView {
 
 extension RestaurantNoticeView {
     struct Routing: Equatable {
-        var menuCategoriesForID: Int?
+        var categories: CategoriesListDisplayInfo?
     }
 }
 

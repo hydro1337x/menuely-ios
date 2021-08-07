@@ -12,7 +12,9 @@ extension ProductsListView {
     class ViewModel: ObservableObject {
         // MARK: - Properties
         @Injected private var productsService: ProductsServicing
+        @Injected private var cartService: CartServicing
         
+        @Published var cart: Cart?
         @Published var routing: ProductsListView.Routing
         @Published var products: Loadable<[Product]>
         @Published var operationResult: Loadable<Discardable>
@@ -21,23 +23,33 @@ extension ProductsListView {
         private var cancelBag = CancelBag()
         
         var categoryImageURL: URL? {
-            let urlString = appState[\.routing.categoriesList.productsForCategory]?.image.url
+            let urlString = appState[\.routing.categoriesList.products]?.imageURL
             return URL(string: urlString ?? "")
         }
         
         var title: String {
-            return appState[\.routing.categoriesList.productsForCategory]?.name ?? ""
+            return appState[\.routing.categoriesList.products]?.categoryName ?? ""
+        }
+        
+        var interactionType: OffersInteractionType {
+            return appState[\.routing.categoriesList.products]?.interaction ?? .viewing
         }
         
         // MARK: - Initialization
         init(appState: Store<AppState>, products: Loadable<[Product]> = .notRequested, operationResult: Loadable<Discardable> = .notRequested) {
             self.appState = appState
             
+            _cart = .init(initialValue: appState[\.data.cart])
             _routing = .init(initialValue: appState[\.routing.productsList])
             _products = .init(initialValue: products)
             _operationResult = .init(initialValue: operationResult)
             
             cancelBag.collect {
+                appState
+                    .map(\.data.cart)
+                    .removeDuplicates()
+                    .assign(to: \.cart, on: self)
+                
                 appState
                     .map(\.data.updateProductsListView)
                     .removeDuplicates()
@@ -62,8 +74,8 @@ extension ProductsListView {
         
         // MARK: - Methods
         func getProducts() {
-            guard let category = appState[\.routing.categoriesList.productsForCategory] else { return }
-            let queryRequestable = ProductsQueryRequest(categoryId: category.id)
+            guard let id = appState[\.routing.categoriesList.products]?.categoryID else { return }
+            let queryRequestable = ProductsQueryRequest(categoryId: id)
             productsService.getProducts(with: queryRequestable, products: loadableSubject(\.products))
         }
         
@@ -73,6 +85,10 @@ extension ProductsListView {
         
         func resetOperationsState() {
             operationResult.reset()
+        }
+        
+        func addCartItem(_ product: Product) {
+            cartService.add(CartItem(with: product))
         }
         
         // MARK: - Routing

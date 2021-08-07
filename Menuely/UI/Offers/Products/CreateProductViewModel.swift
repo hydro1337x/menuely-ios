@@ -50,10 +50,10 @@ extension CreateProductView {
                   !description.isEmpty,
                   let price = Float(self.price),
                   let imageData = image?.jpegData(compressionQuality: 0.5),
-                  let category = appState[\.routing.categoriesList.productsForCategory] else { return }
+                  let categoryID = appState[\.routing.categoriesList.products]?.categoryID else { return }
             let data = DataInfo(mimeType: .jpeg, file: imageData, fieldName: "image")
             
-            let parameters = CreateProductMultipartFormDataRequest.Parameters(name: name, description: description, price: price, categoryId: category.id)
+            let parameters = CreateProductMultipartFormDataRequest.Parameters(name: name, description: description, price: price, categoryId: categoryID)
             let multipartFormDataRequest = CreateProductMultipartFormDataRequest(data: data, parameters: parameters)
             productsService.createProduct(with: multipartFormDataRequest, createProductResult: loadableSubject(\.createProductResult))
         }

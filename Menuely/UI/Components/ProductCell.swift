@@ -32,9 +32,9 @@ struct ProductCell: View {
     let title: String
     let description: String
     let buttonTitle: String
-    let extendedButtonTitle: String? = nil
+    var extendedButtonTitle: String? = nil
     let imageURL: String
-    let action: (() -> Void)? = nil
+    var action: (() -> Void)? = nil
     
     func descriptionWidth(for frameWidth: CGFloat) -> CGFloat {
         let value = frameWidth - (2 * horizontalAdjustmentPadding) - baseHeight

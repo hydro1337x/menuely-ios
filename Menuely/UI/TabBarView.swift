@@ -45,17 +45,6 @@ struct TabBarView: View {
             )}
             .tag(TabBarView.Routing.search)
             
-            if viewModel.appState[\.data.selectedEntity] == .user {
-                CartView()
-                .tabItem { Label(
-                    title: { Text("Cart") },
-                    icon: {
-                        Image(.cartTab)
-                    }
-                )}
-                .tag(TabBarView.Routing.cart)
-            }
-            
             ProfileView()
             .tabItem { Label(
                 title: { Text("Profile") },
@@ -75,7 +64,6 @@ extension TabBarView {
         case menu
         case search
         case profile
-        case cart
     }
 }
 
