@@ -81,6 +81,34 @@ private extension UserNoticeView {
                     DetailCell(title: "Email", text: user.email)
                 }
                 
+                if let employer = user.employer {
+                    SectionView(title: "Employer") {
+                        DetailCell(title: "Name", text: employer.name)
+                        
+                        Divider()
+                        
+                        DetailCell(title: "Email", text: employer.email)
+                        
+                        Divider()
+                        
+                        Group {
+                            DetailCell(title: "Country", text: employer.country)
+                            
+                            Divider()
+                            
+                            DetailCell(title: "City", text: employer.city)
+                            
+                            Divider()
+                            
+                            DetailCell(title: "Address", text: employer.address)
+                            
+                            Divider()
+                        }
+                        
+                        DetailCell(title: "Postal code", text: employer.postalCode)
+                    }
+                }
+                
                 Button(action: {
                     
                 }, label: {

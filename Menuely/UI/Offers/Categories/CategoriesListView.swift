@@ -154,10 +154,12 @@ private extension CategoriesListView {
                         viewModel.routing.products = ProductsListDisplayInfo(categoryID: category.id, categoryName: category.name, imageURL: category.image.url, interaction: viewModel.interactionType)
                     }
                     .onLongPressGesture {
-                        viewModel.actionView(for: category) {
-                            isLongPressed = false
+                        if viewModel.interactionType == .modifying {
+                            viewModel.actionView(for: category) {
+                                isLongPressed = false
+                            }
+                            isLongPressed = true
                         }
-                        isLongPressed = true
                     }
             }
         }

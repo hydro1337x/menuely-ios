@@ -12,6 +12,7 @@ struct CartItem: Equatable, Identifiable {
     let name: String
     let basePrice: Float
     var totalPrice: Float
+    let currency: String
     let imageURL: String
     var quantity: Int = 1
     
@@ -20,6 +21,7 @@ struct CartItem: Equatable, Identifiable {
         name = product.name
         basePrice = product.price
         totalPrice = basePrice
+        currency = product.currency
         imageURL = product.image.url
     }
 }

@@ -17,7 +17,7 @@ struct CartView: View {
     var body: some View {
         List {
             ForEach(viewModel.cart!.cartItems) { cartItem in
-                CartCell(imageURL: URL(string: cartItem.imageURL), title: cartItem.name, price: cartItem.totalPrice.description, quantity: cartItem.quantity.description, incrementAction: {
+                CartCell(imageURL: URL(string: cartItem.imageURL), title: cartItem.name, price: viewModel.format(price: cartItem.totalPrice, currency: cartItem.currency), quantity: cartItem.quantity.description, incrementAction: {
                     viewModel.incrementQuantity(for: cartItem)
                 }, decrementAction: {
                     viewModel.decrementQuantity(for: cartItem)
@@ -33,7 +33,7 @@ struct CartView: View {
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
             }
             DetailCell(title: "Table", text: viewModel.cart?.tableId.description ?? "")
-            DetailCell(title: "Total", text: viewModel.cart?.totalPrice.description ?? "")
+            DetailCell(title: "Total", text: viewModel.format(price: viewModel.cart?.totalPrice ?? 0, currency: viewModel.cart?.cartItems.first?.currency ?? ""))
         }
         .listStyle(InsetGroupedListStyle())
         .navigationBarTitle("Cart")

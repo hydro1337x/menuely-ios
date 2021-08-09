@@ -91,6 +91,10 @@ extension ProductsListView {
             cartService.add(CartItem(with: product))
         }
         
+        func format(price: Float, currency: String) -> String {
+            return String(format: "%.2f", price) + " \(currency)"
+        }
+        
         // MARK: - Routing
         func errorView(with message: String?) {
             appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: message)

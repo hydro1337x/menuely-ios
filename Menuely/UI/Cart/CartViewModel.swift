@@ -48,6 +48,10 @@ extension CartView {
             }
         }
         
+        func format(price: Float, currency: String) -> String {
+            return String(format: "%.2f", price) + " \(currency)"
+        }
+        
         // MARK: - Routing
         func deletionAlertView(for cartItem: CartItem, with action: @escaping () -> Void) {
             let configuration = AlertViewConfiguration(title: "Delete item", message: "Are you sure you want to delete \(cartItem.name)", primaryAction: {

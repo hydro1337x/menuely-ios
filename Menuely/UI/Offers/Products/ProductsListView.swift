@@ -156,15 +156,17 @@ private extension ProductsListView {
                 ForEach(products) { product in
                     ProductCell(title: product.name,
                                 description: product.description,
-                                buttonTitle: product.price.description,
-                                extendedButtonTitle: viewModel.interactionType == .buying ? "Add to cart(\(product.price.description))" : nil,
+                                buttonTitle: viewModel.format(price: product.price, currency: product.currency),
+                                extendedButtonTitle: viewModel.interactionType == .buying ? "Add to cart ( \(viewModel.format(price: product.price, currency: product.currency)) )" : nil,
                                 imageURL: product.image.url,
                                 action: viewModel.interactionType == .buying ? { viewModel.addCartItem(product) } : nil)
                         .onLongPressGesture {
-                            viewModel.actionView(for: product) {
-                                isLongPressed = false
+                            if viewModel.interactionType == .modifying {
+                                viewModel.actionView(for: product) {
+                                    isLongPressed = false
+                                }
+                                isLongPressed = true
                             }
-                            isLongPressed = true
                         }
                 }
             }

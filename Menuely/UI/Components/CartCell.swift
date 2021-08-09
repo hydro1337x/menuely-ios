@@ -34,7 +34,7 @@ struct CartCell: View {
                     Spacer()
                     
                     Button(action: {}, label: {
-                        Text(price)
+                        Text(price).font(.system(size: 14))
                     })
                     .frame(width: 100, height: 25)
                     .buttonStyle(RoundedGradientButtonStyle())

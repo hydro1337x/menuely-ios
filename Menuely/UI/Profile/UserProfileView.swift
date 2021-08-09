@@ -114,6 +114,34 @@ private extension UserProfileView {
                         DetailCell(title: "Updated", text: viewModel.timeIntervalToString(user.updatedAt))
                     }
                 }
+                
+                if let employer = user.employer {
+                    SectionView(title: "Employer") {
+                        DetailCell(title: "Name", text: employer.name)
+                        
+                        Divider()
+                        
+                        DetailCell(title: "Email", text: employer.email)
+                        
+                        Divider()
+                        
+                        Group {
+                            DetailCell(title: "Country", text: employer.country)
+                            
+                            Divider()
+                            
+                            DetailCell(title: "City", text: employer.city)
+                            
+                            Divider()
+                            
+                            DetailCell(title: "Address", text: employer.address)
+                            
+                            Divider()
+                        }
+                        
+                        DetailCell(title: "Postal code", text: employer.postalCode)
+                    }
+                }
             }
             .offset(y: -100 )
         }

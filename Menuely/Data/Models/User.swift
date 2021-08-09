@@ -12,6 +12,7 @@ struct User: Codable, Identifiable, Equatable {
     let email: String
     let firstname: String
     let lastname: String
+    let employer: Restaurant?
     let createdAt: TimeInterval
     let updatedAt: TimeInterval
     let profileImage: RemoteImage?
