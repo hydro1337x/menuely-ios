@@ -30,9 +30,14 @@ struct RestaurantNoticeView: View {
                     .foregroundColor(Color(#colorLiteral(red: 0.9781840444, green: 0.2009097934, blue: 0.2820017338, alpha: 1)))
                     .cornerRadius(5)
             }), trailing: Button(action: {
-//                viewModel.routing.isOptionsSheetPresented = true
+                viewModel.routing.cart = true
             }, label: {
                 HStack {
+                    NavigationLink(
+                        destination: CartView(),
+                        tag: true,
+                        selection: $viewModel.routing.cart,
+                        label: { EmptyView() })
                     Image(.cart)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -145,6 +150,7 @@ private extension RestaurantNoticeView {
 extension RestaurantNoticeView {
     struct Routing: Equatable {
         var categories: CategoriesListDisplayInfo?
+        var cart: Bool?
     }
 }
 

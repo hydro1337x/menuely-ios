@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import Resolver
 
 extension CartView {
     class ViewModel: ObservableObject {
         // MARK: - Properties
+        @Injected private var cartService: CartServicing
+        
         @Published var cart: Cart?
         
         let appState: Store<AppState>
@@ -30,5 +33,19 @@ extension CartView {
         }
         
         // MARK: - Methods
+        func incrementQuantity(for cartItem: CartItem) {
+            cartService.add(cartItem)
+        }
+        
+        func decrementQuantity(for cartItem: CartItem) {
+            cartService.decrementQuantity(for: cartItem)
+        }
+        
+        // MARK: - Routing
+        func dismiss() {
+            appState[\.routing.restaurantNotice.cart] = nil
+            appState[\.routing.categoriesList.cart] = nil
+            appState[\.routing.productsList.cart] = nil
+        }
     }
 }

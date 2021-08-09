@@ -12,12 +12,21 @@ struct CartView: View {
     @StateObject private var viewModel: ViewModel = Resolver.resolve()
     
     var body: some View {
-        NavigationView {
-            List(viewModel.cart!.cartItems) { cartItem in
-                Text(cartItem.name)
+        List {
+            ForEach(viewModel.cart!.cartItems) { cartItem in
+                CartCell(imageURL: URL(string: cartItem.imageURL), title: cartItem.name, price: cartItem.totalPrice.description, quantity: cartItem.quantity.description, incrementAction: {
+                    viewModel.incrementQuantity(for: cartItem)
+                }, decrementAction: {
+                    viewModel.decrementQuantity(for: cartItem)
+                })
+                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
             }
-            .navigationBarTitle("Cart")
+            DetailCell(title: "Table", text: viewModel.cart?.tableId.description ?? "")
+            DetailCell(title: "Total", text: viewModel.cart?.totalPrice.description ?? "")
         }
+        .listStyle(InsetGroupedListStyle())
+        .navigationBarTitle("Cart")
+        .navigationBarTitleDisplayMode(.large)
     }
 }
 

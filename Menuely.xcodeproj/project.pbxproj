@@ -56,6 +56,7 @@
 		601C0C20269B00FE009181D2 /* RestaurantRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C1F269B00FE009181D2 /* RestaurantRegistrationView.swift */; };
 		601C0C22269B0110009181D2 /* RestaurantRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0C21269B0110009181D2 /* RestaurantRegistrationViewModel.swift */; };
 		602375D1269F5B550086B3B6 /* DataInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602375D0269F5B550086B3B6 /* DataInfo.swift */; };
+		603F8A2F26C0904E00FD86C7 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603F8A2E26C0904E00FD86C7 /* CartCell.swift */; };
 		6043FEF526BBE9DA00E55AB4 /* HighlightViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6043FEF426BBE9DA00E55AB4 /* HighlightViewModifier.swift */; };
 		6049C3C0268F9B9E00B891CC /* Repositories+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */; };
 		605803E226B7277500C7C9BA /* RestaurantNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605803E126B7277500C7C9BA /* RestaurantNoticeView.swift */; };
@@ -234,6 +235,7 @@
 		601C0C1F269B00FE009181D2 /* RestaurantRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistrationView.swift; sourceTree = "<group>"; };
 		601C0C21269B0110009181D2 /* RestaurantRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistrationViewModel.swift; sourceTree = "<group>"; };
 		602375D0269F5B550086B3B6 /* DataInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataInfo.swift; sourceTree = "<group>"; };
+		603F8A2E26C0904E00FD86C7 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		6043FEF426BBE9DA00E55AB4 /* HighlightViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightViewModifier.swift; sourceTree = "<group>"; };
 		6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repositories+Injection.swift"; sourceTree = "<group>"; };
 		605803E126B7277500C7C9BA /* RestaurantNoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantNoticeView.swift; sourceTree = "<group>"; };
@@ -702,6 +704,7 @@
 				60D4CFBD26B5B65F00DA799E /* SearchBar.swift */,
 				605803E526B7394000C7C9BA /* SectionView.swift */,
 				0CDF233426B7D142004B8D8D /* DetailCell.swift */,
+				603F8A2E26C0904E00FD86C7 /* CartCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -942,6 +945,7 @@
 				0C7BBCB926B02DB30084715B /* ActionView.swift in Sources */,
 				60173F37269CE0CC003C4E40 /* AuthenticatedRestaurant.swift in Sources */,
 				60C8D55E26ADC3690079EF48 /* ScanView.swift in Sources */,
+				603F8A2F26C0904E00FD86C7 /* CartCell.swift in Sources */,
 				608A13CF26BEC71C0054E217 /* CartService.swift in Sources */,
 				60D32CD02699EC0900F6FDC9 /* Utilities+Injection.swift in Sources */,
 				60E4ED6A268DCC7B00EC4561 /* Services+Injection.swift in Sources */,

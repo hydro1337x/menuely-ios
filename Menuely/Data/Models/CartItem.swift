@@ -10,14 +10,16 @@ import Foundation
 struct CartItem: Equatable, Identifiable {
     let id: Int
     let name: String
-    let price: Float
+    let basePrice: Float
+    var totalPrice: Float
     let imageURL: String
     var quantity: Int = 1
     
     init(with product: Product) {
         id = product.id
         name = product.name
-        price = product.price
+        basePrice = product.price
+        totalPrice = basePrice
         imageURL = product.image.url
     }
 }

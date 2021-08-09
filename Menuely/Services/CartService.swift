@@ -11,13 +11,13 @@ protocol CartServicing {
     func createCart(for restaurantID: Int, and tableID: Int)
     func deleteCart()
     func add(_ cartItem: CartItem)
-    func removeCartItem(with id: Int)
-    func decrementCartItem(with id: Int)
+    func remove(_ cartItem: CartItem)
+    func decrementQuantity(for cartItem: CartItem)
 }
 
 class CartService: CartServicing {
 
-    @Published private var cart: Cart?
+    @Published private var cart: Cart!
     
     private var appState: Store<AppState>
     private var cancelBag = CancelBag()
@@ -48,26 +48,26 @@ class CartService: CartServicing {
     }
     
     func add(_ cartItem: CartItem) {
-        if let index = cart?.cartItems.firstIndex(where: { cartItem.id == $0.id }) {
-            cart?.cartItems[index].quantity += 1
+        if let index = cart.cartItems.firstIndex(where: { cartItem.id == $0.id }) {
+            cart.cartItems[index].quantity += 1
+            cart.cartItems[index].totalPrice = cart.cartItems[index].basePrice * Float(cart.cartItems[index].quantity)
         } else {
-            cart?.cartItems.append(cartItem)
+            cart.cartItems.append(cartItem)
         }
     }
     
-    func removeCartItem(with id: Int) {
-        guard let index = cart?.cartItems.firstIndex(where: { $0.id == id }) else { return }
-        cart?.cartItems.remove(at: index)
+    func remove(_ cartItem: CartItem) {
+        guard let index = cart.cartItems.firstIndex(where: { $0.id == cartItem.id }) else { return }
+        cart.cartItems.remove(at: index)
     }
     
-    func decrementCartItem(with id: Int) {
-        guard let index = cart?.cartItems.firstIndex(where: { $0.id == id }),
-              let cartItem = cart?.cartItems[index] else { return }
+    func decrementQuantity(for cartItem: CartItem) {
+        guard let index = cart.cartItems.firstIndex(where: { $0.id == cartItem.id }) else { return }
+        let cartItem = cart.cartItems[index]
         
         if cartItem.quantity > 1 {
-            cart?.cartItems[index].quantity -= 1
-        } else {
-            cart?.cartItems.remove(at: index)
+            cart.cartItems[index].quantity -= 1
+            cart.cartItems[index].totalPrice = cart.cartItems[index].basePrice * Float(cart.cartItems[index].quantity)
         }
     }
 }

@@ -40,6 +40,12 @@ extension ScanView {
             .background(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
             .cornerRadius(10)
             .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1)), lineWidth: 5))
+            
+            Button(action: {
+                viewModel.restaurantNoticeView(with: "https://menuely-eyj6bxkacq-ey.a.run.app/?restaurantId=1&tableId=1")
+            }, label: {
+                Text("Button")
+            })
         }
         .offset(y: -50)
         .navigationBarTitleDisplayMode(.inline)

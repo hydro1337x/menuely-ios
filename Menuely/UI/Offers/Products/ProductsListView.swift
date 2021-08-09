@@ -40,7 +40,7 @@ struct ProductsListView: View {
             if viewModel.interactionType == .modifying {
                 viewModel.routing.isCreateProductSheetPresented = true
             } else if viewModel.interactionType == .buying {
-                // Show cart view
+                viewModel.routing.cart = true
             }
         }, label: {
             if viewModel.interactionType == .modifying {
@@ -49,11 +49,18 @@ struct ProductsListView: View {
                     .frame(width: 25, height: 25)
             } else if viewModel.interactionType == .buying {
                 HStack {
+                    NavigationLink(
+                        destination: CartView(),
+                        tag: true,
+                        selection: $viewModel.routing.cart,
+                        label: { EmptyView() })
                     Image(.cart)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 25, height: 25)
                         .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                        .transition(.fade)
+                        .animation(.easeInOut)
                 }
                 .frame(width: 55, height: 34)
                 .background(Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1)))
@@ -147,9 +154,12 @@ private extension ProductsListView {
             
             LazyVStack {
                 ForEach(products) { product in
-                    ProductCell(title: product.name, description: product.description, buttonTitle: product.price.description, imageURL: product.image.url, action: {
-                        viewModel.addCartItem(product)
-                    })
+                    ProductCell(title: product.name,
+                                description: product.description,
+                                buttonTitle: product.price.description,
+                                extendedButtonTitle: viewModel.interactionType == .buying ? "Add to cart(\(product.price.description))" : nil,
+                                imageURL: product.image.url,
+                                action: viewModel.interactionType == .buying ? { viewModel.addCartItem(product) } : nil)
                         .onLongPressGesture {
                             viewModel.actionView(for: product) {
                                 isLongPressed = false
@@ -173,6 +183,7 @@ extension ProductsListView {
     struct Routing: Equatable {
         var isCreateProductSheetPresented: Bool = false
         var updateProduct: Product?
+        var cart: Bool?
     }
 }
 

@@ -36,12 +36,12 @@ struct ProductCell: View {
     let imageURL: String
     var action: (() -> Void)? = nil
     
-    func descriptionWidth(for frameWidth: CGFloat) -> CGFloat {
+    private func descriptionWidth(for frameWidth: CGFloat) -> CGFloat {
         let value = frameWidth - (2 * horizontalAdjustmentPadding) - baseHeight
         return abs(value)
     }
     
-    func titleWidth(for frameWidth: CGFloat) -> CGFloat {
+    private func titleWidth(for frameWidth: CGFloat) -> CGFloat {
         let value = frameWidth - (2 * horizontalAdjustmentPadding) - baseHeight - buttonWidth
         return abs(value)
     }
@@ -84,7 +84,7 @@ struct ProductCell: View {
                 .frame(width: isTapped ? geometry.size.width : buttonWidth, height: isTapped ? extendedButtonHeight : buttonHeight)
                 .offset(x: isTapped ? 0 : geometry.size.width - horizontalShift, y: isTapped ? 0 : -buttonVerticalOffset)
                 .buttonStyle(RoundedGradientButtonStyle())
-                .disabled(action == nil ? true : false)
+                .disabled(action == nil || !isTapped ? true : false)
             }
             .padding(.top, isTapped ? extendedImageHeight : 0)
             

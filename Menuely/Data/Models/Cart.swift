@@ -10,6 +10,10 @@ import Foundation
 struct Cart: Equatable {
     let restaurantId: Int
     let tableId: Int
-    var totalPrice: Float = 0
+    var totalPrice: Float {
+        return cartItems.reduce(0) { result, cartItem in
+            return result + cartItem.totalPrice
+        }
+    }
     var cartItems: [CartItem] = []
 }

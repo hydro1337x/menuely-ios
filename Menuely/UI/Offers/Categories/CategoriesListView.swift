@@ -37,7 +37,7 @@ struct CategoriesListView: View {
             if viewModel.interactionType == .modifying {
                 viewModel.routing.isCreateCategorySheetPresented = true
             } else if viewModel.interactionType == .buying {
-                // Show cart view
+                viewModel.routing.cart = true
             }
         }, label: {
             if viewModel.interactionType == .modifying {
@@ -46,6 +46,11 @@ struct CategoriesListView: View {
                     .frame(width: 25, height: 25)
             } else if viewModel.interactionType == .buying {
                 HStack {
+                    NavigationLink(
+                        destination: CartView(),
+                        tag: true,
+                        selection: $viewModel.routing.cart,
+                        label: { EmptyView() })
                     Image(.cart)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -172,6 +177,7 @@ extension CategoriesListView {
         var isCreateCategorySheetPresented: Bool = false
         var updateCategory: Category?
         var products: ProductsListDisplayInfo?
+        var cart: Bool?
     }
 }
 
