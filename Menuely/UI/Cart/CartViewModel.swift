@@ -50,17 +50,19 @@ extension CartView {
             let configuration = AlertViewConfiguration(title: "Delete item", message: "Are you sure you want to delete \(cartItem.name)", primaryAction: {
                 self.appState[\.routing.alert.configuration] = nil
                 self.remove(cartItem: cartItem)
-                action()
+                if let cart = self.cart, cart.cartItems.isEmpty {
+                    action()
+                }
             }, primaryButtonTitle: "Delete", secondaryAction: {
                 self.appState[\.routing.alert.configuration] = nil
             }, secondaryButtonTitle: "Cancel")
             appState[\.routing.alert.configuration] = configuration
         }
         
-        func actionView(for cartItem: CartItem, with onDeleteAction: @escaping () -> Void, and additionalAction: @escaping () -> Void) {
+        func actionView(for cartItem: CartItem, with onEmptyAction: @escaping () -> Void, and additionalAction: @escaping () -> Void) {
             let delete = Action(name: "Delete") {
                 self.appState[\.routing.action.configuration] = nil
-                self.deletionAlertView(for: cartItem, with: onDeleteAction)
+                self.deletionAlertView(for: cartItem, with: onEmptyAction)
             }
             
             let configuration = ActionViewConfiguration(title: "\(cartItem.name) actions", actions: [delete]) {
