@@ -7,6 +7,7 @@
 
 import Foundation
 import Resolver
+import SwiftUI
 
 extension CartView {
     class ViewModel: ObservableObject {
@@ -42,7 +43,9 @@ extension CartView {
         }
         
         func remove(cartItem: CartItem) {
-            cartService.remove(cartItem)
+            withAnimation {
+                cartService.remove(cartItem)
+            }
         }
         
         // MARK: - Routing
