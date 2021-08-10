@@ -11,6 +11,8 @@ import Resolver
 struct UpdateMenuView: View {
     @StateObject private var viewModel: UpdateMenuViewModel = Resolver.resolve()
     
+    
+    
     var body: some View {
         staticContent
         dynamicContent
@@ -20,10 +22,10 @@ struct UpdateMenuView: View {
         NavigationView {
             ScrollView {
                 VStack {
-                    FloatingTextField(text: $viewModel.name, title: "Name")
+                    FloatingTextField(text: $viewModel.name, title: "Name", type: .lenght(2), isValid: $viewModel.isNameValid)
                         .frame(height: 48)
                     
-                    FloatingTextField(text: $viewModel.currency, title: "Currency")
+                    FloatingTextField(text: $viewModel.currency, title: "Currency", type: .lenght(1), isValid: $viewModel.isCurrencyValid)
                         .frame(height: 48)
                     
                     FloatingTextEditor(text: $viewModel.description, title: "Description")
@@ -37,6 +39,7 @@ struct UpdateMenuView: View {
                     .frame(height: 48)
                     .padding(.top, 20)
                     .buttonStyle(RoundedGradientButtonStyle())
+                    .disabled(!viewModel.isFormValid)
                 }
                 .padding(.top, 25)
                 .padding(.horizontal, 16)

@@ -19,6 +19,12 @@ class UpdateCategoryViewModel: ObservableObject {
     @Published var image: UIImage?
     @Published var imageURL: String?
     
+    @Published var isNameValid: Bool = false
+    // Image validation
+    var isFormValid: Bool {
+        return isNameValid
+    }
+    
     var appState: Store<AppState>
     private var cancelBag = CancelBag()
     

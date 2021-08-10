@@ -16,6 +16,12 @@ class EditUserProfileViewModel: ObservableObject {
     @Published var lastname: String = ""
     @Published var updateProfileResult: Loadable<Discardable>
     
+    @Published var isFirstnameValid: Bool = false
+    @Published var isLastnameValid: Bool = false
+    var isFormValid: Bool {
+        return isFirstnameValid && isLastnameValid
+    }
+    
     var appState: Store<AppState>
     private var cancelBag = CancelBag()
     

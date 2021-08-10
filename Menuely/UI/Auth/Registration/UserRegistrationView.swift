@@ -21,16 +21,16 @@ struct UserRegistrationView: View {
     private var base: some View {
         VStack {
             
-            FloatingTextField(text: $viewModel.email, title: "Email")
+            FloatingTextField(text: $viewModel.email, title: "Email", type: .email, isValid: $viewModel.isEmailValid)
                 .frame(height: 48)
             
-            FloatingTextField(text: $viewModel.password, title: "Password")
+            FloatingTextField(text: $viewModel.password, title: "Password", type: .lenght(6), isValid: $viewModel.isPasswordValid)
                 .frame(height: 48)
             
-            FloatingTextField(text: $viewModel.firstname, title: "Firstname")
+            FloatingTextField(text: $viewModel.firstname, title: "Firstname", type: .lenght(1), isValid: $viewModel.isFirstnameValid)
                 .frame(height: 48)
             
-            FloatingTextField(text: $viewModel.lastname, title: "Lastname")
+            FloatingTextField(text: $viewModel.lastname, title: "Lastname", type: .lenght(1), isValid: $viewModel.isLastnameValid)
                 .frame(height: 48)
             
             Button("Register") {
@@ -40,6 +40,7 @@ struct UserRegistrationView: View {
             .frame(height: 48)
             .padding(.top, 20)
             .buttonStyle(RoundedGradientButtonStyle())
+            .disabled(!viewModel.isFormValid)
             
             Button(action: {
                 withAnimation {

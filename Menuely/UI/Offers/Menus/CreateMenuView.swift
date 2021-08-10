@@ -20,13 +20,13 @@ struct CreateMenuView: View {
         NavigationView {
             ScrollView {
                 VStack {
-                    FloatingTextField(text: $viewModel.name, title: "Name")
+                    FloatingTextField(text: $viewModel.name, title: "Name", type: .lenght(1), isValid: $viewModel.isNameValid)
                         .frame(height: 48)
                     
-                    FloatingTextField(text: $viewModel.currency, title: "Currency")
+                    FloatingTextField(text: $viewModel.currency, title: "Currency", type: .lenght(1), isValid: $viewModel.isCurrencyValid)
                         .frame(height: 48)
                     
-                    FloatingTextField(text: $viewModel.numberOfTables, title: "Number of tables")
+                    FloatingTextField(text: $viewModel.numberOfTables, title: "Number of tables", type: .lenght(1), isValid: $viewModel.isNumberOfTablesValid)
                         .frame(height: 48)
                     
                     FloatingTextEditor(text: $viewModel.description, title: "Description")
@@ -40,6 +40,7 @@ struct CreateMenuView: View {
                     .frame(height: 48)
                     .padding(.top, 20)
                     .buttonStyle(RoundedGradientButtonStyle())
+                    .disabled(!viewModel.isFormValid)
                 }
                 .padding(.top, 25)
                 .padding(.horizontal, 16)

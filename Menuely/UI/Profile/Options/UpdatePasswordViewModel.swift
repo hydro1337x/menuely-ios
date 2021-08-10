@@ -18,6 +18,13 @@ class UpdatePasswordViewModel: ObservableObject {
     @Published var repeatedNewPassword: String = ""
     @Published var updatePasswordResult: Loadable<Discardable>
     
+    @Published var isOldPasswordValid: Bool = false
+    @Published var isNewPasswordValid: Bool = false
+    @Published var isRepeatedNewPasswordValid: Bool = false
+    var isFormValid: Bool {
+        return isOldPasswordValid && isNewPasswordValid && isRepeatedNewPasswordValid
+    }
+    
     var appState: Store<AppState>
     private var cancelBag = CancelBag()
     

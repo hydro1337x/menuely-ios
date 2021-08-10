@@ -21,6 +21,14 @@ extension CreateProductView {
         @Published var price: String = ""
         @Published var image: UIImage?
         
+        @Published var isNameValid: Bool = false
+        @Published var isDescriptionValid: Bool = false
+        @Published var isPriceValid: Bool = false
+        // Image/price validation
+        var isFormValid: Bool {
+            return isNameValid && isDescriptionValid && isPriceValid
+        }
+        
         var appState: Store<AppState>
         private var cancelBag = CancelBag()
         

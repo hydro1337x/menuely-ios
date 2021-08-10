@@ -20,6 +20,16 @@ class EditRestaurantProfileViewModel: ObservableObject {
     @Published var postalCode: String = ""
     @Published var updateProfileResult: Loadable<Discardable>
     
+    @Published var isNameValid: Bool = false
+    @Published var isDescriptionValid: Bool = false
+    @Published var isCountryValid: Bool = false
+    @Published var isCityValid: Bool = false
+    @Published var isAddressValid: Bool = false
+    @Published var isPostalCodeValid: Bool = false
+    var isFormValid: Bool {
+        return isNameValid && isDescriptionValid && isCountryValid && isCityValid && isAddressValid && isPostalCodeValid
+    }
+    
     var appState: Store<AppState>
     private var cancelBag = CancelBag()
     

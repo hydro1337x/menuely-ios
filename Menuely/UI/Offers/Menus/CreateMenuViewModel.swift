@@ -18,6 +18,14 @@ class CreateMenuViewModel: ObservableObject {
     @Published var currency: String = ""
     @Published var numberOfTables: String = ""
     
+    @Published var isNameValid: Bool = false
+    @Published var isDescriptionValid: Bool = false
+    @Published var isCurrencyValid: Bool = false
+    @Published var isNumberOfTablesValid: Bool = false
+    var isFormValid: Bool {
+        return isNameValid && isDescriptionValid && isCurrencyValid && isNumberOfTablesValid
+    }
+    
     var appState: Store<AppState>
     private var cancelBag = CancelBag()
     

@@ -23,6 +23,18 @@ class RestaurantRegistrationViewModel: ObservableObject {
     @Published var postalCode: String = ""
     @Published var registration: Loadable<Discardable>
     
+    @Published var isEmailValid: Bool = false
+    @Published var isPasswordValid: Bool = false
+    @Published var isNameValid: Bool = false
+    @Published var isDescriptionValid: Bool = false
+    @Published var isCountryValid: Bool = false
+    @Published var isCityValid: Bool = false
+    @Published var isAddressValid: Bool = false
+    @Published var isPostalCodeValid: Bool = false
+    var isFormValid: Bool {
+        return isEmailValid && isPasswordValid && isNameValid && isDescriptionValid && isCountryValid && isCityValid && isAddressValid && isPostalCodeValid
+    }
+    
     var cancelBag = CancelBag()
     
     // MARK: - Initialization

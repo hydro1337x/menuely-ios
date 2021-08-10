@@ -16,6 +16,8 @@ class UpdateEmailViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var updateEmailResult: Loadable<Discardable>
     
+    @Published var isEmailValid: Bool = false
+    
     var appState: Store<AppState>
     private var cancelBag = CancelBag()
     

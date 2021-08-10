@@ -22,6 +22,14 @@ extension UpdateProductView {
         @Published var image: UIImage?
         @Published var imageURL: String?
         
+        @Published var isNameValid: Bool = false
+        @Published var isDescriptionValid: Bool = false
+        @Published var isPriceValid: Bool = false
+        
+        var isFormValid: Bool {
+            return isNameValid && isDescriptionValid && isPriceValid
+        }
+        
         var appState: Store<AppState>
         private var cancelBag = CancelBag()
         

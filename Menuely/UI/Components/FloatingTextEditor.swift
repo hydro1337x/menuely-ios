@@ -59,7 +59,7 @@ struct FloatingTextEditor: View {
          }
         }
         .padding(.top, topPadding)
-        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)), lineWidth: 2))
+        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)), lineWidth: 1))
     }
 }
 

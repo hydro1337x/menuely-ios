@@ -17,6 +17,13 @@ class UpdateMenuViewModel: ObservableObject {
     @Published var description: String = ""
     @Published var currency: String = ""
     
+    @Published var isNameValid: Bool = false
+    @Published var isDescriptionValid: Bool = false
+    @Published var isCurrencyValid: Bool = false
+    var isFormValid: Bool {
+        return isNameValid && isDescriptionValid && isCurrencyValid
+    }
+    
     var appState: Store<AppState>
     private var cancelBag = CancelBag()
     

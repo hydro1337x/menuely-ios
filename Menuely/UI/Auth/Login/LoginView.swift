@@ -20,10 +20,10 @@ struct LoginView: View {
     
     private var base: some View {
         VStack {
-            FloatingTextField(text: $viewModel.email, title: "Email")
+            FloatingTextField(text: $viewModel.email, title: "Email", type: .email, isValid: $viewModel.isEmailValid)
                 .frame(height: 48)
             
-            FloatingTextField(text: $viewModel.password, title: "Password")
+            FloatingTextField(text: $viewModel.password, title: "Password", type: .lenght(6), isValid: $viewModel.isPasswordValid)
                 .frame(height: 48)
             
             Button("Login") {
@@ -33,6 +33,7 @@ struct LoginView: View {
             .frame(height: 48)
             .padding(.top, 20)
             .buttonStyle(RoundedGradientButtonStyle())
+            .disabled(!viewModel.isFormValid)
             
             Button(action: {
                 withAnimation {

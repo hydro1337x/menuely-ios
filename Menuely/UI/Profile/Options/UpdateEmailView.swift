@@ -23,7 +23,7 @@ struct UpdateEmailView: View {
     var staticContent: some View {
         ScrollView {
             VStack {
-                FloatingTextField(text: $viewModel.email, title: "Email")
+                FloatingTextField(text: $viewModel.email, title: "Email", type: .email, isValid: $viewModel.isEmailValid)
                     .frame(height: 48)
                     .padding(.top, 15)
             }
@@ -38,6 +38,7 @@ struct UpdateEmailView: View {
             .padding(.top, 20)
             .padding(.horizontal, 16)
             .buttonStyle(RoundedGradientButtonStyle())
+            .disabled(!viewModel.isEmailValid)
         }
     }
     

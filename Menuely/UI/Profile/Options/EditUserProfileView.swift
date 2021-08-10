@@ -26,11 +26,11 @@ struct EditUserProfileView: View {
     var staticContent: some View {
         ScrollView {
             VStack {
-                FloatingTextField(text: $viewModel.firstname, title: "Firstname")
+                FloatingTextField(text: $viewModel.firstname, title: "Firstname", type: .lenght(2), isValid: $viewModel.isFirstnameValid)
                     .frame(height: 48)
                     .padding(.top, 15)
                 
-                FloatingTextField(text: $viewModel.lastname, title: "Lastname")
+                FloatingTextField(text: $viewModel.lastname, title: "Lastname", type: .lenght(2), isValid: $viewModel.isLastnameValid)
                     .frame(height: 48)
             }
             .padding(.horizontal, 16)
@@ -44,6 +44,7 @@ struct EditUserProfileView: View {
             .padding(.top, 20)
             .padding(.horizontal, 16)
             .buttonStyle(RoundedGradientButtonStyle())
+            .disabled(!viewModel.isFormValid)
         }
     }
     

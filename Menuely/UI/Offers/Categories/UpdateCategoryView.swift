@@ -47,7 +47,7 @@ struct UpdateCategoryView: View {
                         }
                     })
                     
-                    FloatingTextField(text: $viewModel.name, title: "Name")
+                    FloatingTextField(text: $viewModel.name, title: "Name", type: .lenght(1), isValid: $viewModel.isNameValid)
                         .frame(height: 48)
                         .padding(.top, 10)
                     
@@ -59,6 +59,7 @@ struct UpdateCategoryView: View {
                     .frame(height: 48)
                     .padding(.top, 20)
                     .buttonStyle(RoundedGradientButtonStyle())
+                    .disabled(!viewModel.isFormValid)
                 }
                 .padding(.top, 25)
                 .padding(.horizontal, 16)

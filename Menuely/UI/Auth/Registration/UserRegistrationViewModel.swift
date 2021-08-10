@@ -21,6 +21,14 @@ class UserRegistrationViewModel: ObservableObject {
     @Published var lastname: String = ""
     @Published var registration: Loadable<Discardable>
     
+    @Published var isEmailValid: Bool = false
+    @Published var isPasswordValid: Bool = false
+    @Published var isFirstnameValid: Bool = false
+    @Published var isLastnameValid: Bool = false
+    var isFormValid: Bool {
+        return isEmailValid && isPasswordValid && isFirstnameValid && isLastnameValid
+    }
+    
     var cancelBag = CancelBag()
     
     // MARK: - Initialization

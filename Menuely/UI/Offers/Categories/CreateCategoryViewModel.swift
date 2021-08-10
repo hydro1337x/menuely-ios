@@ -18,6 +18,11 @@ class CreateCategoryViewModel: ObservableObject {
     @Published var name: String = ""
     @Published var image: UIImage?
     
+    @Published var isNameValid: Bool = false
+    var isFormValid: Bool {
+        return isNameValid && image != nil
+    }
+    
     var appState: Store<AppState>
     private var cancelBag = CancelBag()
     

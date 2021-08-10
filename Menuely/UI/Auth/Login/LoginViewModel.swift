@@ -19,6 +19,12 @@ class LoginViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var loginResult: Loadable<Discardable>
     
+    @Published var isEmailValid: Bool = false
+    @Published var isPasswordValid: Bool = false
+    var isFormValid: Bool {
+        return isEmailValid && isPasswordValid
+    }
+    
     @Published private var authenticatedUser: Loadable<AuthenticatedUser>
     @Published private var authenticatedRestaurant: Loadable<AuthenticatedRestaurant>
     

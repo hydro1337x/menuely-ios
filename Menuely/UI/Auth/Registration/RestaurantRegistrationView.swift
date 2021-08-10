@@ -22,28 +22,28 @@ struct RestaurantRegistrationView: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
                 Group {
-                    FloatingTextField(text: $viewModel.email, title: "Email")
+                    FloatingTextField(text: $viewModel.email, title: "Email", type: .email, isValid: $viewModel.isEmailValid)
                         .frame(height: 48)
                     
-                    FloatingTextField(text: $viewModel.password, title: "Password")
+                    FloatingTextField(text: $viewModel.password, title: "Password", type: .lenght(6), isValid: $viewModel.isPasswordValid)
                         .frame(height: 48)
                     
-                    FloatingTextField(text: $viewModel.name, title: "Name")
+                    FloatingTextField(text: $viewModel.name, title: "Name", type: .lenght(1), isValid: $viewModel.isNameValid)
                         .frame(height: 48)
                     
                     FloatingTextEditor(text: $viewModel.description, title: "Description")
                         .frame(height: 200)
                     
-                    FloatingTextField(text: $viewModel.country, title: "Country")
+                    FloatingTextField(text: $viewModel.country, title: "Country", type: .lenght(1), isValid: $viewModel.isCountryValid)
                         .frame(height: 48)
                     
-                    FloatingTextField(text: $viewModel.city, title: "City")
+                    FloatingTextField(text: $viewModel.city, title: "City", type: .lenght(1), isValid: $viewModel.isCityValid)
                         .frame(height: 48)
                     
-                    FloatingTextField(text: $viewModel.address, title: "Address")
+                    FloatingTextField(text: $viewModel.address, title: "Address", type: .lenght(1), isValid: $viewModel.isAddressValid)
                         .frame(height: 48)
                     
-                    FloatingTextField(text: $viewModel.postalCode, title: "Postal code")
+                    FloatingTextField(text: $viewModel.postalCode, title: "Postal code", type: .lenght(1), isValid: $viewModel.isPostalCodeValid)
                         .frame(height: 48)
                 }
                 .padding(.horizontal, 16)
@@ -56,6 +56,7 @@ struct RestaurantRegistrationView: View {
                 .padding(.top, 20)
                 .padding(.horizontal, 16)
                 .buttonStyle(RoundedGradientButtonStyle())
+                .disabled(!viewModel.isFormValid)
                 
                 Button(action: {
                     withAnimation {
