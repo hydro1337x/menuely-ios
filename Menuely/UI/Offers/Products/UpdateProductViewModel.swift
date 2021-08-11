@@ -58,10 +58,13 @@ extension UpdateProductView {
             guard !name.isEmpty,
                   !description.isEmpty,
                   let price = Float(self.price),
-                  let imageData = image?.jpegData(compressionQuality: 0.5),
                   let productID = appState[\.routing.productsList.updateProduct]?.id else { return }
             
-            let data = DataInfo(mimeType: .jpeg, file: imageData, fieldName: "image")
+            var data: DataInfo?
+            if let imageData = image?.jpegData(compressionQuality: 0.5) {
+                data = DataInfo(mimeType: .jpeg, file: imageData, fieldName: "image")
+            }
+            
             let parameters = UpdateProductMultipartFormDataRequest.Parameters(name: name, description: description, price: price)
             let multipartFormDataRequest = UpdateProductMultipartFormDataRequest(data: data, parameters: parameters)
             productsService.updateProduct(with: productID, and: multipartFormDataRequest, updateProductResult: loadableSubject(\.updateProductResult))

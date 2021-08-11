@@ -20,6 +20,7 @@ enum ImageName: String {
     case forwardArrow = "forward.arrow"
     case menu = "menu"
     case plus = "plus"
+    case minus = "minus"
     case category = "category"
     case employees = "employees"
     case cart = "cart"

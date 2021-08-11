@@ -14,12 +14,12 @@ struct UpdateProductMultipartFormDataRequest: MultipartFormDataRequestable {
         let price: Float
     }
     
-    init(data: DataInfo, parameters: Parameters) {
+    init(data: DataInfo?, parameters: Parameters) {
         self.data = data
         self.parameters = parameters
     }
     
-    var data: DataInfo
+    var data: DataInfo?
     
     var parameters: Encodable
 }

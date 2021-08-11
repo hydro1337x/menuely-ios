@@ -15,14 +15,14 @@ typealias PathParameter = Int
 protocol QueryRequestable: Encodable {}
 protocol BodyRequestable: Encodable {}
 protocol MultipartFormDataRequestable {
-    var data: DataInfo { get set }
+    var data: DataInfo? { get set }
     var parameters: Encodable { get set }
 }
 
 extension MultipartFormDataRequestable {
     func asMultipartFormData() throws -> MultipartFormData {
         let multipartFormData = MultipartFormData()
-        let dataInfo = self.data
+    
         guard let parameters = self.parameters.asDictionary else { throw DataError.malformed }
         
         for (key, value) in parameters {
@@ -30,7 +30,9 @@ extension MultipartFormDataRequestable {
             multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
         }
         
-        multipartFormData.append(dataInfo.file, withName: dataInfo.fieldName, fileName: dataInfo.fileName, mimeType: dataInfo.mimeType.rawValue)
+        if let dataInfo = self.data {
+            multipartFormData.append(dataInfo.file, withName: dataInfo.fieldName, fileName: dataInfo.fileName, mimeType: dataInfo.mimeType.rawValue)
+        }
         
         return multipartFormData
     }

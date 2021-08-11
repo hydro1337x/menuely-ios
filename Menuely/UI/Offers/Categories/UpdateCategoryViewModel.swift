@@ -50,10 +50,13 @@ class UpdateCategoryViewModel: ObservableObject {
     // MARK: - Methods
     func updateCategory() {
         guard !name.isEmpty,
-              let imageData = image?.jpegData(compressionQuality: 0.5),
               let categoryID = appState[\.routing.categoriesList.updateCategory]?.id else { return }
         
-        let data = DataInfo(mimeType: .jpeg, file: imageData, fieldName: "image")
+        var data: DataInfo?
+        if let imageData = image?.jpegData(compressionQuality: 0.5) {
+            data = DataInfo(mimeType: .jpeg, file: imageData, fieldName: "image")
+        }
+        
         let parameters = UpdateCategoryMultipartFormDataRequest.Parameters(name: name)
         let multipartFormDataRequest = UpdateCategoryMultipartFormDataRequest(data: data, parameters: parameters)
         categoriesService.updateCategory(with: categoryID, and: multipartFormDataRequest, updateCategoryResult: loadableSubject(\.updateCategoryResult))

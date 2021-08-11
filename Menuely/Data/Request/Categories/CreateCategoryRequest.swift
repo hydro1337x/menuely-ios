@@ -18,7 +18,7 @@ struct CreateCategoryMultipartFormDataRequest: MultipartFormDataRequestable {
         self.parameters = parameters
     }
     
-    var data: DataInfo
+    var data: DataInfo?
     
     var parameters: Encodable
 }

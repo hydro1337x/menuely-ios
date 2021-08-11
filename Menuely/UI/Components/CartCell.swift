@@ -48,13 +48,19 @@ struct CartCell: View {
                     Spacer()
                     
                     Button(action: incrementAction, label: {
-                        Text("+").font(.title)
+                        Image(.plus)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 25, height: 25)
                     })
                     .frame(width: 44, height: 44)
                     .buttonStyle(RoundedGradientButtonStyle())
                     
                     Button(action: decrementAction, label: {
-                        Text("-").font(.title)
+                        Image(.minus)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 25, height: 25)
                     })
                     .frame(width: 44, height: 44)
                     .buttonStyle(RoundedGradientButtonStyle())
