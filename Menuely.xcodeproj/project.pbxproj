@@ -58,6 +58,9 @@
 		602375D1269F5B550086B3B6 /* DataInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602375D0269F5B550086B3B6 /* DataInfo.swift */; };
 		603F8A2F26C0904E00FD86C7 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603F8A2E26C0904E00FD86C7 /* CartCell.swift */; };
 		6043FEF526BBE9DA00E55AB4 /* HighlightViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6043FEF426BBE9DA00E55AB4 /* HighlightViewModifier.swift */; };
+		6044D30226C47DC700DBC806 /* OrdersRemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6044D30126C47DC700DBC806 /* OrdersRemoteRepository.swift */; };
+		6044D30426C47DFC00DBC806 /* CreateOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6044D30326C47DFC00DBC806 /* CreateOrderRequest.swift */; };
+		6044D30626C4806D00DBC806 /* OrdersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6044D30526C4806D00DBC806 /* OrdersService.swift */; };
 		6049C3C0268F9B9E00B891CC /* Repositories+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */; };
 		605803E226B7277500C7C9BA /* RestaurantNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605803E126B7277500C7C9BA /* RestaurantNoticeView.swift */; };
 		605803E426B727EC00C7C9BA /* RestaurantNoticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605803E326B727EC00C7C9BA /* RestaurantNoticeViewModel.swift */; };
@@ -237,6 +240,9 @@
 		602375D0269F5B550086B3B6 /* DataInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataInfo.swift; sourceTree = "<group>"; };
 		603F8A2E26C0904E00FD86C7 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		6043FEF426BBE9DA00E55AB4 /* HighlightViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightViewModifier.swift; sourceTree = "<group>"; };
+		6044D30126C47DC700DBC806 /* OrdersRemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersRemoteRepository.swift; sourceTree = "<group>"; };
+		6044D30326C47DFC00DBC806 /* CreateOrderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderRequest.swift; sourceTree = "<group>"; };
+		6044D30526C4806D00DBC806 /* OrdersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersService.swift; sourceTree = "<group>"; };
 		6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repositories+Injection.swift"; sourceTree = "<group>"; };
 		605803E126B7277500C7C9BA /* RestaurantNoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantNoticeView.swift; sourceTree = "<group>"; };
 		605803E326B727EC00C7C9BA /* RestaurantNoticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantNoticeViewModel.swift; sourceTree = "<group>"; };
@@ -552,6 +558,7 @@
 				60A57CE526AF31F800A53341 /* MenusRemoteRepository.swift */,
 				0C8B25F026B2C73A007809CD /* CategoriesRemoteRepository.swift */,
 				0C7CD88226B42A3E0066645E /* ProductsRemoteRepository.swift */,
+				6044D30126C47DC700DBC806 /* OrdersRemoteRepository.swift */,
 				60F3BACA2694B85B005798C1 /* Authenticator.swift */,
 				60006229269644DB0085DF41 /* AuthRemoteRepository.swift */,
 				60FF8C2F26A388350050DA8A /* LocalRepository.swift */,
@@ -567,6 +574,7 @@
 				60A57CF026AF3B2600A53341 /* MenusService.swift */,
 				0C8B25F626B2CDFE007809CD /* CategoriesService.swift */,
 				0C7CD88426B42BEE0066645E /* ProductsService.swift */,
+				6044D30526C4806D00DBC806 /* OrdersService.swift */,
 				60006231269648C30085DF41 /* AuthService.swift */,
 				608A13CE26BEC71C0054E217 /* CartService.swift */,
 			);
@@ -807,6 +815,7 @@
 				6016C1C926AB262800375929 /* UpdateRestaurantProfileRequest.swift */,
 				6077EBC426AC996500D6D4F4 /* UpdatePasswordRequest.swift */,
 				6077EBCA26ACC8FF00D6D4F4 /* UpdateEmailRequest.swift */,
+				6044D30326C47DFC00DBC806 /* CreateOrderRequest.swift */,
 				60C8D56526AE05590079EF48 /* SearchRequest.swift */,
 				60A57CE926AF349200A53341 /* Menus */,
 				0C8B25E726B2C501007809CD /* Categories */,
@@ -970,6 +979,7 @@
 				606531C926A43A4100C8C500 /* ProfileViewModel.swift in Sources */,
 				6000623A269663750085DF41 /* AuthenticatedUser.swift in Sources */,
 				608A13D126BECEBB0054E217 /* CartItem.swift in Sources */,
+				6044D30626C4806D00DBC806 /* OrdersService.swift in Sources */,
 				0C8B25F326B2C804007809CD /* UpdateCategoryRequest.swift in Sources */,
 				6074793926A9D59300F18693 /* RestaurantResponse.swift in Sources */,
 				6074C0B4268C940700DA3B21 /* AppState.swift in Sources */,
@@ -1002,6 +1012,7 @@
 				60173F33269CDF0B003C4E40 /* RestaurantRegistrationRequest.swift in Sources */,
 				6043FEF526BBE9DA00E55AB4 /* HighlightViewModifier.swift in Sources */,
 				60B510A926B2FD9C00218D6D /* CategoriesListView.swift in Sources */,
+				6044D30426C47DFC00DBC806 /* CreateOrderRequest.swift in Sources */,
 				0C8B25ED26B2C5F7007809CD /* Category.swift in Sources */,
 				60FE2A3C26B44A7D006A96B4 /* ProductCell.swift in Sources */,
 				60C8D56026ADC3710079EF48 /* ScanViewModel.swift in Sources */,
@@ -1027,6 +1038,7 @@
 				60A57CEB26AF34EC00A53341 /* CreateMenuRequest.swift in Sources */,
 				608A13CD26BEA39B0054E217 /* OffersInteractionType.swift in Sources */,
 				60F3BAC92694ACA6005798C1 /* AuthRequestInterceptor.swift in Sources */,
+				6044D30226C47DC700DBC806 /* OrdersRemoteRepository.swift in Sources */,
 				6016C1B926AAC6ED00375929 /* ImagePicker.swift in Sources */,
 				60FE2A4026B489F1006A96B4 /* ProductsListViewModel.swift in Sources */,
 				60944F3B268DC8460063CD61 /* Application+Injection.swift in Sources */,

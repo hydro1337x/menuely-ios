@@ -49,6 +49,8 @@ extension ProfileView {
         var isOptionsSheetPresented: Bool = false
         var isProfileImagePickerSheetPresented: Bool = false
         var isCoverImagePickerSheetPresented: Bool = false
+        var employerInvites: Bool?
+        
     }
 }
 

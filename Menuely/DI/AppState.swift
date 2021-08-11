@@ -39,11 +39,7 @@ extension AppState {
         
         var searchList: SearchListView.Search = SearchListView.Search()
         
-        var cart: Cart? {
-            didSet {
-                print("Cart: ", cart?.cartItems.count)
-            }
-        }
+        var cart: Cart?
     }
 }
 
@@ -84,9 +80,3 @@ extension AppState {
         var keyboardHeight: CGFloat = 0
     }
 }
-
-//func == (lhs: AppState, rhs: AppState) -> Bool {
-//    return lhs.data == rhs.data &&
-//           lhs.routing == rhs.coordinating &&
-//           lhs.application == rhs.application
-//}
