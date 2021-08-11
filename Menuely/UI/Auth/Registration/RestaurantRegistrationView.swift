@@ -28,22 +28,23 @@ struct RestaurantRegistrationView: View {
                     FloatingTextField(text: $viewModel.password, title: "Password", type: .lenght(6), isValid: $viewModel.isPasswordValid)
                         .frame(height: 48)
                     
-                    FloatingTextField(text: $viewModel.name, title: "Name", type: .lenght(1), isValid: $viewModel.isNameValid)
+                    FloatingTextField(text: $viewModel.name, title: "Name", type: .notEmpty, isValid: $viewModel.isNameValid)
                         .frame(height: 48)
                     
-                    FloatingTextEditor(text: $viewModel.description, title: "Description")
+                    FloatingTextEditor(text: $viewModel.description, title: "Description", isValid: $viewModel.isDescriptionValid)
                         .frame(height: 200)
+                        .padding(.top, 15)
                     
-                    FloatingTextField(text: $viewModel.country, title: "Country", type: .lenght(1), isValid: $viewModel.isCountryValid)
+                    FloatingTextField(text: $viewModel.country, title: "Country", type: .notEmpty, isValid: $viewModel.isCountryValid)
                         .frame(height: 48)
                     
-                    FloatingTextField(text: $viewModel.city, title: "City", type: .lenght(1), isValid: $viewModel.isCityValid)
+                    FloatingTextField(text: $viewModel.city, title: "City", type: .notEmpty, isValid: $viewModel.isCityValid)
                         .frame(height: 48)
                     
-                    FloatingTextField(text: $viewModel.address, title: "Address", type: .lenght(1), isValid: $viewModel.isAddressValid)
+                    FloatingTextField(text: $viewModel.address, title: "Address", type: .notEmpty, isValid: $viewModel.isAddressValid)
                         .frame(height: 48)
                     
-                    FloatingTextField(text: $viewModel.postalCode, title: "Postal code", type: .lenght(1), isValid: $viewModel.isPostalCodeValid)
+                    FloatingTextField(text: $viewModel.postalCode, title: "Postal code", type: .notEmpty, isValid: $viewModel.isPostalCodeValid)
                         .frame(height: 48)
                 }
                 .padding(.horizontal, 16)

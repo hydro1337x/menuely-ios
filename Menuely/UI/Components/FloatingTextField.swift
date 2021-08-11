@@ -19,9 +19,9 @@ struct FloatingTextField: View {
     @State private var titleWithMessage: String
     
     private let title: String
-    private let type: FieldType
+    private let type: ValidationType
     
-    init(text: Binding<String>, title: String, type: FieldType, isValid: Binding<Bool>) {
+    init(text: Binding<String>, title: String, type: ValidationType, isValid: Binding<Bool>) {
         self._text = text
         self._isValid = isValid
         self.title = title
@@ -58,7 +58,7 @@ struct FloatingTextField: View {
         }
         .frame(maxHeight: .infinity)
         .font(.body)
-        .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
+        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
         .onChange(of: text, perform: { value in
             withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
                 viewModel.validate(text)
@@ -98,21 +98,24 @@ extension FloatingTextField {
         @Published var isValid: Bool = false
         @Published var errorMessage: String?
         
-        var type: FieldType = .none
+        var type: ValidationType = .none
         
         func validate(_ input: String) {
             switch type {
             case .none: break
-            case .email: validate(email: input)
-            case .lenght: validateLenght(for: input)
+            case .email: validateEmail(with: input)
+            case .notEmpty: validateNotEmpty(with: input)
+            case .lenght: validateLenght(with: input)
+            case .int: validateInt(with: input)
+            case .float: validateFloat(with: input)
             }
         }
         
-        private func validate(email: String) {
+        private func validateEmail(with input: String) {
             let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
 
             let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-            if emailPred.evaluate(with: email) {
+            if emailPred.evaluate(with: input) {
                 isValid = true
                 errorMessage = nil
             } else {
@@ -121,9 +124,39 @@ extension FloatingTextField {
             }
         }
         
-        private func validateLenght(for input: String) {
-            guard case FieldType.lenght(let minimumLenght) = type else { return }
+        private func validateNotEmpty(with input: String) {
+            if !input.isEmpty {
+                isValid = true
+                errorMessage = nil
+            } else {
+                isValid = false
+                errorMessage = type.errorMessage
+            }
+        }
+        
+        private func validateLenght(with input: String) {
+            guard case ValidationType.lenght(let minimumLenght) = type else { return }
             if input.count >= minimumLenght {
+                isValid = true
+                errorMessage = nil
+            } else {
+                isValid = false
+                errorMessage = type.errorMessage
+            }
+        }
+        
+        private func validateInt(with input: String) {
+            if Int(input) != nil {
+                isValid = true
+                errorMessage = nil
+            } else {
+                isValid = false
+                errorMessage = type.errorMessage
+            }
+        }
+        
+        private func validateFloat(with input: String) {
+            if Float(input) != nil {
                 isValid = true
                 errorMessage = nil
             } else {
@@ -135,16 +168,22 @@ extension FloatingTextField {
 }
 
 extension FloatingTextField {
-    enum FieldType {
+    enum ValidationType {
         case none
         case email
+        case notEmpty
         case lenght(Int)
+        case int
+        case float
         
         var errorMessage: String? {
             switch self {
             case .none: return nil
+            case .notEmpty: return "Can not be empty"
             case .email: return "Invalid email"
             case .lenght(let minimumLenght): return "Minimum \(minimumLenght) characters required"
+            case .int: return "Needs to be an integer"
+            case .float: return "Needs to be a decimal number"
             }
         }
     }

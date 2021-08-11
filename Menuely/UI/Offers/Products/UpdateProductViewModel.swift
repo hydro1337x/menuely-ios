@@ -27,7 +27,7 @@ extension UpdateProductView {
         @Published var isPriceValid: Bool = false
         
         var isFormValid: Bool {
-            return isNameValid && isDescriptionValid && isPriceValid
+            return isNameValid && isDescriptionValid && isPriceValid && image != nil
         }
         
         var appState: Store<AppState>

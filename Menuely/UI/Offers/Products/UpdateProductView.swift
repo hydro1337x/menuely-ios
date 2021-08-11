@@ -47,14 +47,15 @@ struct UpdateProductView: View {
                         }
                     })
                     
-                    FloatingTextField(text: $viewModel.name, title: "Name", type: .lenght(1), isValid: $viewModel.isNameValid)
+                    FloatingTextField(text: $viewModel.name, title: "Name", type: .notEmpty, isValid: $viewModel.isNameValid)
                         .frame(height: 48)
                         .padding(.top, 10)
                     
-                    FloatingTextEditor(text: $viewModel.description, title: "Description")
+                    FloatingTextEditor(text: $viewModel.description, title: "Description", isValid: $viewModel.isDescriptionValid)
                         .frame(height: 200)
+                        .padding(.top, 15)
                     
-                    FloatingTextField(text: $viewModel.price, title: "Price", type: .lenght(1), isValid: $viewModel.isPriceValid)
+                    FloatingTextField(text: $viewModel.price, title: "Price", type: .float, isValid: $viewModel.isPriceValid)
                         .frame(height: 48)
                         .padding(.top, 10)
                     

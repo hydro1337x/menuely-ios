@@ -24,9 +24,8 @@ extension CreateProductView {
         @Published var isNameValid: Bool = false
         @Published var isDescriptionValid: Bool = false
         @Published var isPriceValid: Bool = false
-        // Image/price validation
         var isFormValid: Bool {
-            return isNameValid && isDescriptionValid && isPriceValid
+            return isNameValid && isDescriptionValid && isPriceValid && image != nil
         }
         
         var appState: Store<AppState>

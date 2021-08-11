@@ -47,7 +47,7 @@ struct UpdateCategoryView: View {
                         }
                     })
                     
-                    FloatingTextField(text: $viewModel.name, title: "Name", type: .lenght(1), isValid: $viewModel.isNameValid)
+                    FloatingTextField(text: $viewModel.name, title: "Name", type: .notEmpty, isValid: $viewModel.isNameValid)
                         .frame(height: 48)
                         .padding(.top, 10)
                     

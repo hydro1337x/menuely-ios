@@ -9,18 +9,22 @@ import SwiftUI
 
 struct FloatingTextEditor: View {
     @Binding private var text: String
+    @Binding private var isValid: Bool
     
     @State private var separatorColor: Color = Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1))
     @State private var placeholderColor: Color
     @State private var placeholderOffset: CGFloat
     @State private var placeholderScale: CGFloat
     @State private var topPadding: CGFloat
+    @State private var titleWithMessage: String
     
     private let title: String
     
-    init(text: Binding<String>, title: String) {
+    init(text: Binding<String>, title: String, isValid: Binding<Bool>) {
         self._text = text
+        self._isValid = isValid
         self.title = title
+        self.titleWithMessage = title
         if !text.wrappedValue.isEmpty {
             placeholderColor = Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1))
             placeholderOffset = -20
@@ -39,7 +43,7 @@ struct FloatingTextEditor: View {
     var body: some View {
         ZStack(alignment: .leading) {
          GeometryReader { geometry in
-            Text(title)
+            Text(titleWithMessage)
                 .font(.body)
                 .foregroundColor(placeholderColor)
                 .offset(x: 7, y: placeholderOffset)
@@ -47,10 +51,21 @@ struct FloatingTextEditor: View {
             
             TextEditor(text: $text)
                 .font(.body)
-                .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
+                .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                 .onChange(of: text, perform: { value in
                     withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
                         placeholderColor = value.isEmpty ? Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)) : Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1))
+                        if !text.isEmpty {
+                            placeholderColor = Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1))
+                            separatorColor = Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1))
+                            titleWithMessage = title
+                            $isValid.wrappedValue = true
+                        } else {
+                            placeholderColor = Color(#colorLiteral(red: 0.9781840444, green: 0.2009097934, blue: 0.2820017338, alpha: 1))
+                            separatorColor = Color(#colorLiteral(red: 0.9781840444, green: 0.2009097934, blue: 0.2820017338, alpha: 1))
+                            titleWithMessage = title + " | " + "Can not be empty"
+                            $isValid.wrappedValue = false
+                        }
                         placeholderOffset = value.isEmpty ? 8 : -20
                         placeholderScale = value.isEmpty ? 1 : 0.75
                         topPadding = value.isEmpty ? 0 : 20
@@ -65,6 +80,6 @@ struct FloatingTextEditor: View {
 
 struct FloatingTextEditor_Previews: PreviewProvider {
     static var previews: some View {
-        FloatingTextEditor(text: .constant(""), title: "Title")
+        FloatingTextEditor(text: .constant(""), title: "Title", isValid: .constant(true))
     }
 }

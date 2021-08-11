@@ -25,11 +25,12 @@ struct UpdateMenuView: View {
                     FloatingTextField(text: $viewModel.name, title: "Name", type: .lenght(2), isValid: $viewModel.isNameValid)
                         .frame(height: 48)
                     
-                    FloatingTextField(text: $viewModel.currency, title: "Currency", type: .lenght(1), isValid: $viewModel.isCurrencyValid)
+                    FloatingTextField(text: $viewModel.currency, title: "Currency", type: .notEmpty, isValid: $viewModel.isCurrencyValid)
                         .frame(height: 48)
                     
-                    FloatingTextEditor(text: $viewModel.description, title: "Description")
+                    FloatingTextEditor(text: $viewModel.description, title: "Description", isValid: $viewModel.isDescriptionValid)
                         .frame(height: 200)
+                        .padding(.top, 15)
                     
                     Button(action: {
                         viewModel.updateMenu()
