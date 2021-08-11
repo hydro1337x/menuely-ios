@@ -11,44 +11,50 @@ import Resolver
 struct UpdateMenuView: View {
     @StateObject private var viewModel: UpdateMenuViewModel = Resolver.resolve()
     
-    
-    
     var body: some View {
-        staticContent
-        dynamicContent
-    }
-    
-    private var staticContent: some View {
         NavigationView {
-            ScrollView {
-                VStack {
-                    FloatingTextField(text: $viewModel.name, title: "Name", type: .lenght(2), isValid: $viewModel.isNameValid)
-                        .frame(height: 48)
-                    
-                    FloatingTextField(text: $viewModel.currency, title: "Currency", type: .notEmpty, isValid: $viewModel.isCurrencyValid)
-                        .frame(height: 48)
-                    
-                    FloatingTextEditor(text: $viewModel.description, title: "Description", isValid: $viewModel.isDescriptionValid)
-                        .frame(height: 200)
-                        .padding(.top, 15)
-                    
-                    Button(action: {
-                        viewModel.updateMenu()
-                    }, label: {
-                        Text("Save")
-                    })
-                    .frame(height: 48)
-                    .padding(.top, 20)
-                    .buttonStyle(RoundedGradientButtonStyle())
-                    .disabled(!viewModel.isFormValid)
-                }
-                .padding(.top, 25)
-                .padding(.horizontal, 16)
+            ZStack {
+                staticContent
+                dynamicContent
             }
-            .frame(maxWidth: .infinity)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarTitle("Edit menu")
+            .onAppear {
+                viewModel.loadFields()
+            }
         }
+    }
+    
+    var staticContent: some View {
+        ScrollView {
+            VStack {
+                FloatingTextField(text: $viewModel.name, title: "Name", type: .notEmpty, isValid: $viewModel.isNameValid)
+                    .frame(height: 48)
+                
+                FloatingTextField(text: $viewModel.currency, title: "Currency", type: .notEmpty, isValid: $viewModel.isCurrencyValid)
+                    .frame(height: 48)
+                
+                FloatingTextEditor(text: $viewModel.description, title: "Description", isValid: $viewModel.isDescriptionValid)
+                    .frame(height: 200)
+                    .padding(.top, 15)
+                
+                Toggle("Set active", isOn: $viewModel.isActive)
+                    .padding(.top, 10)
+                
+                Button(action: {
+                    viewModel.updateMenu()
+                }, label: {
+                    Text("Save")
+                })
+                .frame(height: 48)
+                .padding(.top, 20)
+                .buttonStyle(RoundedGradientButtonStyle())
+                .disabled(!viewModel.isFormValid)
+            }
+            .padding(.top, 25)
+            .padding(.horizontal, 16)
+        }
+        .frame(maxWidth: .infinity)
     }
     
     @ViewBuilder

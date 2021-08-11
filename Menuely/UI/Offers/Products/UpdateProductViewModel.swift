@@ -27,7 +27,7 @@ extension UpdateProductView {
         @Published var isPriceValid: Bool = false
         
         var isFormValid: Bool {
-            return isNameValid && isDescriptionValid && isPriceValid && image != nil
+            return isNameValid && isDescriptionValid && isPriceValid
         }
         
         var appState: Store<AppState>
@@ -40,11 +40,6 @@ extension UpdateProductView {
             _routing = .init(initialValue: appState[\.routing.updateProduct])
             
             _updateProductResult = .init(initialValue: updateProductResult)
-            
-            name =  appState[\.routing.productsList.updateProduct]?.name ?? ""
-            description = appState[\.routing.productsList.updateProduct]?.description ?? ""
-            price = appState[\.routing.productsList.updateProduct]?.price.description ?? ""
-            imageURL = appState[\.routing.productsList.updateProduct]?.image.url
             
             cancelBag.collect {
                 $routing
@@ -75,6 +70,17 @@ extension UpdateProductView {
         func updateProductsListView() {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                 self.appState[\.data.updateProductsListView] = true
+            }
+        }
+        
+        func loadFields() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                guard let product = self.appState[\.routing.productsList.updateProduct] else { return }
+                
+                self.name =  product.name
+                self.description = product.description
+                self.price = product.price.description
+                self.imageURL = product.image.url
             }
         }
         

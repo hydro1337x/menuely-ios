@@ -11,4 +11,5 @@ struct UpdateMenuBodyRequest: BodyRequestable {
     let name: String?
     let description: String?
     let currency: String?
+    let isActive: Bool
 }

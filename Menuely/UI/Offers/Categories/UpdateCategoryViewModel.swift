@@ -21,7 +21,7 @@ class UpdateCategoryViewModel: ObservableObject {
     
     @Published var isNameValid: Bool = false
     var isFormValid: Bool {
-        return isNameValid && image != nil
+        return isNameValid
     }
     
     var appState: Store<AppState>
@@ -34,9 +34,6 @@ class UpdateCategoryViewModel: ObservableObject {
         _routing = .init(initialValue: appState[\.routing.updateCategory])
         
         _updateCategoryResult = .init(initialValue: updateCategoryResult)
-        
-        name =  appState[\.routing.categoriesList.updateCategory]?.name ?? ""
-        imageURL = appState[\.routing.categoriesList.updateCategory]?.image.url
         
         cancelBag.collect {
             $routing
@@ -65,6 +62,15 @@ class UpdateCategoryViewModel: ObservableObject {
     func updateCategoriesListView() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
             self.appState[\.data.updateCategoriesListView] = true
+        }
+    }
+    
+    func loadFields() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            guard let category = self.appState[\.routing.categoriesList.updateCategory] else { return }
+            
+            self.name =  category.name
+            self.imageURL = category.image.url
         }
     }
     

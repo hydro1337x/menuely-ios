@@ -16,6 +16,7 @@ class UpdateMenuViewModel: ObservableObject {
     @Published var name: String = ""
     @Published var description: String = ""
     @Published var currency: String = ""
+    @Published var isActive: Bool = false
     
     @Published var isNameValid: Bool = false
     @Published var isDescriptionValid: Bool = false
@@ -32,16 +33,12 @@ class UpdateMenuViewModel: ObservableObject {
         self.appState = appState
         
         _updateMenuResult = .init(initialValue: updateMenuResult)
-        
-        name =  appState[\.routing.menusList.updateMenu]?.name ?? ""
-        description =  appState[\.routing.menusList.updateMenu]?.description ?? ""
-        currency =  appState[\.routing.menusList.updateMenu]?.currency ?? ""
     }
     
     // MARK: - Methods
     func updateMenu() {
         guard let menu = appState[\.routing.menusList.updateMenu] else { return }
-        let bodyRequest = UpdateMenuBodyRequest(name: name.isEmpty ? nil : name, description: description.isEmpty ? nil : description, currency: currency.isEmpty ? nil : currency)
+        let bodyRequest = UpdateMenuBodyRequest(name: name.isEmpty ? nil : name, description: description.isEmpty ? nil : description, currency: currency.isEmpty ? nil : currency, isActive: isActive)
         menusService.updateMenu(with: menu.id, and: bodyRequest, updateMenuResult: loadableSubject(\.updateMenuResult))
     }
     
@@ -52,6 +49,17 @@ class UpdateMenuViewModel: ObservableObject {
     func updateMenusListView() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
             self.appState[\.data.updateMenusListView] = true
+        }
+    }
+    
+    func loadFields() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            guard let menu = self.appState[\.routing.menusList.updateMenu] else { return }
+            
+            self.name =  menu.name
+            self.description =  menu.description
+            self.currency =  menu.currency
+            self.isActive = menu.isActive
         }
     }
     

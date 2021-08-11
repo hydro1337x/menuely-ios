@@ -13,64 +13,69 @@ struct UpdateCategoryView: View {
     @StateObject private var viewModel: UpdateCategoryViewModel = Resolver.resolve()
     
     var body: some View {
-        staticContent
-        dynamicContent
+        NavigationView {
+            ZStack {
+                staticContent
+                dynamicContent
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitle("Edit category")
+            .onAppear {
+                viewModel.loadFields()
+            }
+        }
     }
     
     private var staticContent: some View {
-        NavigationView {
-            ScrollView {
-                VStack {
-                    Button(action: {
-                        viewModel.routing.isImagePickerSheetPresented = true
-                    }, label: {
-                        if let image = viewModel.image {
-                            Image(uiImage: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 150, height: 150, alignment: .center)
-                                .foregroundColor(Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1)))
-                                .background(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
-                                .cornerRadius(10)
-                                .shadow(radius: 3, y: 2)
-                        } else {
-                            WebImage(url: URL(string: viewModel.imageURL ?? ""))
-                                .resizable()
-                                .placeholder {
-                                    Image(.logo).background(Color(#colorLiteral(red: 0.9646247029, green: 0.9647596478, blue: 0.9645821452, alpha: 1)))
-                                }
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 150, height: 150, alignment: .center)
-                                .background(Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)))
-                                .cornerRadius(10)
-                                .shadow(radius: 3, y: 2)
-                        }
-                    })
-                    
-                    FloatingTextField(text: $viewModel.name, title: "Name", type: .notEmpty, isValid: $viewModel.isNameValid)
-                        .frame(height: 48)
-                        .padding(.top, 10)
-                    
-                    Button(action: {
-                        viewModel.updateCategory()
-                    }, label: {
-                        Text("Save")
-                    })
+        ScrollView {
+            VStack {
+                Button(action: {
+                    viewModel.routing.isImagePickerSheetPresented = true
+                }, label: {
+                    if let image = viewModel.image {
+                        Image(uiImage: image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 150, height: 150, alignment: .center)
+                            .foregroundColor(Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1)))
+                            .background(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                            .cornerRadius(10)
+                            .shadow(radius: 3, y: 2)
+                    } else {
+                        WebImage(url: URL(string: viewModel.imageURL ?? ""))
+                            .resizable()
+                            .placeholder {
+                                Image(.logo).background(Color(#colorLiteral(red: 0.9646247029, green: 0.9647596478, blue: 0.9645821452, alpha: 1)))
+                            }
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 150, height: 150, alignment: .center)
+                            .background(Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)))
+                            .cornerRadius(10)
+                            .shadow(radius: 3, y: 2)
+                    }
+                })
+                
+                FloatingTextField(text: $viewModel.name, title: "Name", type: .notEmpty, isValid: $viewModel.isNameValid)
                     .frame(height: 48)
-                    .padding(.top, 20)
-                    .buttonStyle(RoundedGradientButtonStyle())
-                    .disabled(!viewModel.isFormValid)
-                }
-                .padding(.top, 25)
-                .padding(.horizontal, 16)
+                    .padding(.top, 10)
+                
+                Button(action: {
+                    viewModel.updateCategory()
+                }, label: {
+                    Text("Save")
+                })
+                .frame(height: 48)
+                .padding(.top, 20)
+                .buttonStyle(RoundedGradientButtonStyle())
+                .disabled(!viewModel.isFormValid)
             }
-            .frame(maxWidth: .infinity)
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarTitle("Edit category")
-            .sheet(isPresented: $viewModel.routing.isImagePickerSheetPresented, content: {
-                ImagePicker(image: $viewModel.image)
-            })
+            .padding(.top, 25)
+            .padding(.horizontal, 16)
         }
+        .frame(maxWidth: .infinity)
+        .sheet(isPresented: $viewModel.routing.isImagePickerSheetPresented, content: {
+            ImagePicker(image: $viewModel.image)
+        })
     }
     
     @ViewBuilder
