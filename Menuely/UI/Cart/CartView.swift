@@ -15,37 +15,92 @@ struct CartView: View {
     @State private var isLongPressed: Bool = false
     
     var body: some View {
-        List {
-            ForEach(viewModel.cart!.cartItems) { cartItem in
-                CartCell(imageURL: URL(string: cartItem.imageURL), title: cartItem.name, price: viewModel.format(price: cartItem.totalPrice, currency: cartItem.currency), quantity: cartItem.quantity.description, incrementAction: {
-                    viewModel.incrementQuantity(for: cartItem)
-                }, decrementAction: {
-                    viewModel.decrementQuantity(for: cartItem)
-                })
-                .onLongPressGesture {
-                    viewModel.actionView(for: cartItem) {
-                        presentation.wrappedValue.dismiss()
-                    } and: {
-                        isLongPressed = false
-                    }
-                    isLongPressed = true
-                }
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
-            }
-            DetailCell(title: "Table", text: viewModel.cart?.tableId.description ?? "")
-            DetailCell(title: "Total", text: viewModel.format(price: viewModel.cart?.totalPrice ?? 0, currency: viewModel.cart?.cartItems.first?.currency ?? ""))
+        ZStack {
+            listContent
+            dynamicContent
         }
-        .listStyle(InsetGroupedListStyle())
         .navigationBarTitle("Cart")
         .navigationBarTitleDisplayMode(.large)
         
-        Button(action: {}, label: {
-            Text("Place order")
-        })
-        .frame(height: 48)
-        .padding(.horizontal, 16)
-        .padding(.vertical, 5)
-        .buttonStyle(RoundedGradientButtonStyle())
+    }
+    
+    var listContent: some View {
+        VStack {
+            List {
+                ForEach(viewModel.cart.cartItems) { cartItem in
+                    CartCell(imageURL: URL(string: cartItem.imageURL), title: cartItem.name, price: viewModel.format(price: cartItem.totalPrice, currency: cartItem.currency), quantity: cartItem.quantity.description, incrementAction: {
+                        viewModel.incrementQuantity(for: cartItem)
+                    }, decrementAction: {
+                        viewModel.decrementQuantity(for: cartItem)
+                    })
+                    .onLongPressGesture {
+                        viewModel.actionView(for: cartItem) {
+                            presentation.wrappedValue.dismiss()
+                        } and: {
+                            isLongPressed = false
+                        }
+                        isLongPressed = true
+                    }
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                }
+                DetailCell(title: "Table", text: viewModel.cart?.tableId.description ?? "")
+                DetailCell(title: "Total", text: viewModel.format(price: viewModel.cart?.totalPrice ?? 0, currency: viewModel.cart?.cartItems.first?.currency ?? ""))
+            }
+            .listStyle(InsetGroupedListStyle())
+            
+            Button(action: {
+                viewModel.createOrder()
+            }, label: {
+                Text("Place order")
+            })
+            .frame(height: 48)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 5)
+            .buttonStyle(RoundedGradientButtonStyle())
+        }
+    }
+}
+
+private extension CartView {
+    @ViewBuilder
+    private var dynamicContent: some View {
+        switch viewModel.createOrderResult {
+        case .notRequested: notRequestedView
+        case .isLoading(_, _):  loadingView()
+        case .loaded(_):  loadedView()
+        case let .failed(error): failedView(error)
+        }
+    }
+}
+
+// MARK: - Loading Content
+
+private extension CartView {
+    var notRequestedView: some View {
+        EmptyView()
+    }
+    
+    func loadingView() -> some View {
+        viewModel.appState[\.routing.activityIndicator.isActive] = true
+        return EmptyView()
+    }
+    
+    func failedView(_ error: Error) -> some View {
+        viewModel.resetStates()
+        viewModel.appState[\.routing.activityIndicator.isActive] = false
+        viewModel.errorView(with: error.localizedDescription)
+        return EmptyView()
+    }
+}
+
+// MARK: - Displaying Content
+
+private extension CartView {
+    func loadedView() -> some View {
+        viewModel.resetStates()
+        viewModel.appState[\.routing.activityIndicator.isActive] = false
+        viewModel.alertView()
+        return EmptyView()
     }
 }
 

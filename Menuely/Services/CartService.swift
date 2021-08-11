@@ -13,6 +13,7 @@ protocol CartServicing {
     func add(_ cartItem: CartItem)
     func remove(_ cartItem: CartItem)
     func decrementQuantity(for cartItem: CartItem)
+    func cartAsRequest() -> CreateOrderBodyRequest
 }
 
 class CartService: CartServicing {
@@ -69,5 +70,13 @@ class CartService: CartServicing {
             cart.cartItems[index].quantity -= 1
             cart.cartItems[index].totalPrice = cart.cartItems[index].basePrice * Float(cart.cartItems[index].quantity)
         }
+    }
+    
+    func cartAsRequest() -> CreateOrderBodyRequest {
+        let request = CreateOrderBodyRequest(restaurantId: cart.restaurantId,
+                                             tableId: cart.tableId,
+                                             totalPrice: cart.totalPrice,
+                                             orderedProducts: cart.cartItems.map { OrderedProduct(with: $0) })
+        return request
     }
 }

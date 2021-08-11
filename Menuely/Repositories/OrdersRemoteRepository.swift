@@ -33,7 +33,7 @@ extension OrdersRemoteRepository {
 extension OrdersRemoteRepository.Endpoint: APIConfigurable {
     var path: String {
         switch self {
-        case .createOrder: return "/orders/accept"
+        case .createOrder: return "/orders/create"
         }
     }
     
