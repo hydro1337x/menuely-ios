@@ -44,6 +44,7 @@ struct OptionsView: View {
                             switch option {
                             case .logout: viewModel.logoutAlertView()
                             case .deleteAccount: viewModel.deleteAccountAlertView()
+                            case .quitEmployer: viewModel.quitEmployerAlertView()
                             default: break
                             }
                         }
@@ -56,16 +57,16 @@ struct OptionsView: View {
     
     @ViewBuilder
     private var dynamicContent: some View {
-        switch viewModel.logoutResult {
+        switch viewModel.logoutDeleteResult {
         case .isLoading(_, _):  loadingView()
-        case .loaded(_):  loadedView(showLoading: false)
+        case .loaded(_):  logoutDeleteLoadedView(showLoading: false)
         case let .failed(error): failedView(error)
         default: EmptyView()
         }
         
-        switch viewModel.deleteAccountResult {
+        switch viewModel.quitEmployerResult {
         case .isLoading(_, _):  loadingView()
-        case .loaded(_):  loadedView(showLoading: false)
+        case .loaded(_):  quitEmployerLoadedView()
         case let .failed(error): failedView(error)
         default: EmptyView()
         }
@@ -105,9 +106,13 @@ private extension OptionsView {
 // MARK: - Displaying Content
 
 private extension OptionsView {
-    func loadedView(showLoading: Bool) -> some View {
-//        viewModel.appState[\.routing.activityIndicator.isActive] = false
+    func logoutDeleteLoadedView(showLoading: Bool) -> some View {
         viewModel.authSelectionView()
+        return EmptyView()
+    }
+    
+    func quitEmployerLoadedView() -> some View {
+        viewModel.dismissAndUpdateProfileView()
         return EmptyView()
     }
 }

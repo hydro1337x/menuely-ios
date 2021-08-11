@@ -146,7 +146,7 @@ class RestaurantsService: RestaurantsServicing {
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.delete()
+                remoteRepository.deleteRestaurantProfile()
             }
             .sinkToLoadable {
                 deletionResult.wrappedValue = $0

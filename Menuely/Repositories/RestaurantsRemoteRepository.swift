@@ -18,7 +18,7 @@ protocol RestaurantsRemoteRepositing {
     func updateRestaurantProfile(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
     func updateRestaurantPassword(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
     func updateRestaurantEmail(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
-    func delete() -> AnyPublisher<Discardable, Error>
+    func deleteRestaurantProfile() -> AnyPublisher<Discardable, Error>
     func getEmployees() -> AnyPublisher<UsersListResponse, Error>
 }
 
@@ -53,7 +53,7 @@ class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
         networkClient.request(endpoint: Endpoint.updateRestaurantEmail(bodyRequest))
     }
     
-    func delete() -> AnyPublisher<Discardable, Error> {
+    func deleteRestaurantProfile() -> AnyPublisher<Discardable, Error> {
         networkClient.request(endpoint: Endpoint.delete)
     }
     

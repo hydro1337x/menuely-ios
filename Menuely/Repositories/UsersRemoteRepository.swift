@@ -19,7 +19,8 @@ protocol UsersRemoteRepositing {
     func updateUserProfile(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
     func updateUserPassword(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
     func updateUserEmail(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
-    func delete() -> AnyPublisher<Discardable, Error>
+    func quitEmployer() -> AnyPublisher<Discardable, Error>
+    func deleteUserProfile() -> AnyPublisher<Discardable, Error>
 }
 
 class UsersRemoteRepository: UsersRemoteRepositing {
@@ -53,7 +54,11 @@ class UsersRemoteRepository: UsersRemoteRepositing {
         networkClient.request(endpoint: Endpoint.updateUserEmail(bodyRequest))
     }
     
-    func delete() -> AnyPublisher<Discardable, Error> {
+    func quitEmployer() -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.quitEmployer)
+    }
+    
+    func deleteUserProfile() -> AnyPublisher<Discardable, Error> {
         networkClient.request(endpoint: Endpoint.delete)
     }
 }
@@ -69,6 +74,7 @@ extension UsersRemoteRepository {
         case updateUserProfile(_: BodyRequestable)
         case updateUserPassword(_: BodyRequestable)
         case updateUserEmail(_: BodyRequestable)
+        case quitEmployer
         case delete
     }
 }
@@ -83,6 +89,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
         case .updateUserProfile: return "/users/me/profile"
         case .updateUserPassword: return "/users/me/password"
         case .updateUserEmail: return "/users/me/email"
+        case .quitEmployer: return "/users/me/quit-employer"
         case .delete: return "/users/me"
         }
     }
@@ -96,6 +103,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
         case .updateUserProfile: return .patch
         case .updateUserPassword: return .patch
         case .updateUserEmail: return .patch
+        case .quitEmployer: return .patch
         case .delete: return .delete
         }
     }
@@ -109,6 +117,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
         case .updateUserProfile: return ["Content-Type": "application/json"]
         case .updateUserPassword: return ["Content-Type": "application/json"]
         case .updateUserEmail: return ["Content-Type": "application/json"]
+        case .quitEmployer: return nil
         case .delete: return nil
         }
     }
@@ -129,6 +138,7 @@ extension UsersRemoteRepository.Endpoint: APIConfigurable {
         case .updateUserProfile(let bodyRequest): return bodyRequest
         case .updateUserPassword(let bodyRequest): return bodyRequest
         case .updateUserEmail(let bodyRequest): return bodyRequest
+        case .quitEmployer: return nil
         case .delete: return nil
         }
     }

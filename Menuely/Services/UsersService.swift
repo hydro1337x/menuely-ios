@@ -19,6 +19,7 @@ protocol UsersServicing {
     func updateUserProfile(with bodyRequest: BodyRequestable, updateProfileResult: LoadableSubject<Discardable>)
     func updateUserPassword(with bodyRequest: BodyRequestable, updatePasswordResult: LoadableSubject<Discardable>)
     func updateUserEmail(with bodyRequest: BodyRequestable, updateEmailResult: LoadableSubject<Discardable>)
+    func quitEmployer(quitEmployerResult: LoadableSubject<Discardable>)
     func delete(deletionResult: LoadableSubject<Discardable>)
 }
 
@@ -140,13 +141,25 @@ class UsersService: UsersServicing {
             .store(in: cancelBag)
     }
     
+    func quitEmployer(quitEmployerResult: LoadableSubject<Discardable>) {
+        quitEmployerResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
+        
+        Just<Void>
+            .withErrorType(Error.self)
+            .flatMap { [remoteRepository] in
+                remoteRepository.quitEmployer()
+            }
+            .sinkToLoadable { quitEmployerResult.wrappedValue = $0 }
+            .store(in: cancelBag)
+    }
+    
     func delete(deletionResult: LoadableSubject<Discardable>) {
         deletionResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
         
         Just<Void>
             .withErrorType(Error.self)
             .flatMap { [remoteRepository] in
-                remoteRepository.delete()
+                remoteRepository.deleteUserProfile()
             }
             .sinkToLoadable {
                 deletionResult.wrappedValue = $0

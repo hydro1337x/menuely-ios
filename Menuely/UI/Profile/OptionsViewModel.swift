@@ -15,8 +15,8 @@ class OptionsViewModel: ObservableObject {
     @Injected private var restaurantsService: RestaurantsServicing
     
     @Published var routing: OptionsView.Routing
-    @Published var logoutResult: Loadable<Discardable>
-    @Published var deleteAccountResult: Loadable<Discardable>
+    @Published var logoutDeleteResult: Loadable<Discardable>
+    @Published var quitEmployerResult: Loadable<Discardable>
     
     var appState: Store<AppState>
     var cancelBag = CancelBag()
@@ -24,12 +24,12 @@ class OptionsViewModel: ObservableObject {
     var navigatableOptions: [OptionType] = [.updateProfile, .updatePassword, .updateEmail]
     
     // MARK: - Initialization
-    init(appState: Store<AppState>, logoutResult: Loadable<Discardable> = .notRequested, deleteAccountResult: Loadable<Discardable> = .notRequested) {
+    init(appState: Store<AppState>, logoutDeleteResult: Loadable<Discardable> = .notRequested, quitEmployerResult: Loadable<Discardable> = .notRequested) {
         self.appState = appState
         
         _routing = .init(initialValue: appState[\.routing.options])
-        _logoutResult = .init(initialValue: logoutResult)
-        _deleteAccountResult = .init(initialValue: deleteAccountResult)
+        _logoutDeleteResult = .init(initialValue: logoutDeleteResult)
+        _quitEmployerResult = .init(initialValue: quitEmployerResult)
         
         cancelBag.collect {
             $routing
@@ -41,12 +41,19 @@ class OptionsViewModel: ObservableObject {
                 .removeDuplicates()
                 .assign(to: \.routing, on: self)
         }
+        
+        appendOptionalOptions()
     }
     
     // MARK: - Methods
+    func appendOptionalOptions() {
+        if appState[\.data.authenticatedUser]?.user.employer != nil {
+            options.append(.quitEmployer)
+        }
+    }
     func logout() {
         appState[\.routing.alert.configuration] = nil
-        authService.logout(logoutResult: loadableSubject(\.logoutResult))
+        authService.logout(logoutResult: loadableSubject(\.logoutDeleteResult))
     }
     
     func deleteAccount() {
@@ -59,19 +66,22 @@ class OptionsViewModel: ObservableObject {
     }
     
     private func deleteUserAccount() {
-        usersService.delete(deletionResult: loadableSubject(\.deleteAccountResult))
+        usersService.delete(deletionResult: loadableSubject(\.logoutDeleteResult))
     }
     
     private func deleteRestaurantAccount() {
-        restaurantsService.delete(deletionResult: loadableSubject(\.deleteAccountResult))
+        restaurantsService.delete(deletionResult: loadableSubject(\.logoutDeleteResult))
+    }
+    
+    private func quitEmployer() {
+        usersService.quitEmployer(quitEmployerResult: loadableSubject(\.quitEmployerResult))
     }
     
     // MARK: - Routing
     
     /// Resets the whole AppState and return to the AuthSelectionView since it is the initial state
     func authSelectionView() {
-        logoutResult.reset()
-        deleteAccountResult.reset()
+        logoutDeleteResult.reset()
         appState.value.reset()
     }
     
@@ -95,7 +105,21 @@ class OptionsViewModel: ObservableObject {
         appState[\.routing.alert.configuration] = configuration
     }
     
+    func quitEmployerAlertView() {
+        let configuration = AlertViewConfiguration(title: "Quit employer?",
+                                                   message: "Are you sure you want to quit your employer?",
+                                                   primaryAction: quitEmployer, primaryButtonTitle: "Quit",
+                                                   secondaryAction: dismissAlertView, secondaryButtonTitle: "Cancel")
+        appState[\.routing.alert.configuration] = configuration
+    }
+    
     func errorView(with message: String?) {
         appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: message)
+    }
+     
+    func dismissAndUpdateProfileView() {
+        dismissAlertView()
+        appState[\.data.updateUserProfileView] = true
+        appState[\.routing.profile.isOptionsSheetPresented] = false
     }
 }
