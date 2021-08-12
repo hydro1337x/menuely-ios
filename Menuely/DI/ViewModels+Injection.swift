@@ -17,8 +17,9 @@ extension Resolver {
         register { ProfileViewModel(appState: resolve()) }
         register { UserProfileViewModel(appState: resolve()) }
         register { RestaurantProfileViewModel(appState: resolve()) }
-        
         register { OptionsViewModel(appState: resolve()) }
+        register { UserOrdersListView.ViewModel(appState: resolve()) }
+        
         register { TabBarViewModel(appState: resolve()) }
         register { RootViewModel(authService: resolve(), appState: resolve()) }
         register { AuthSelectionViewModel(appState: resolve()) }

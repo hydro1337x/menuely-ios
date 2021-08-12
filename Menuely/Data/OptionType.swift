@@ -11,6 +11,7 @@ enum OptionType: String, Equatable {
     case updateProfile = "Edit profile"
     case updatePassword = "Change password"
     case updateEmail = "Change email"
+    case userOrders = "Your orders"
     case quitEmployer = "Quit employer"
     case logout = "Logout"
     case deleteAccount = "Delete account"

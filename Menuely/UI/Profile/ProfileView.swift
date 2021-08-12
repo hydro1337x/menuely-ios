@@ -50,6 +50,7 @@ extension ProfileView {
         var isProfileImagePickerSheetPresented: Bool = false
         var isCoverImagePickerSheetPresented: Bool = false
         var employerInvites: Bool?
+        var userOrdersList: Bool?
         
     }
 }

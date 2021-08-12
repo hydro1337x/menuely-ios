@@ -42,9 +42,10 @@ struct OptionsView: View {
                         .frame(height: 48)
                         .onTapGesture {
                             switch option {
+                            case .userOrders: viewModel.dismissAndShowUserOrdersListView()
+                            case .quitEmployer: viewModel.quitEmployerAlertView()
                             case .logout: viewModel.logoutAlertView()
                             case .deleteAccount: viewModel.deleteAccountAlertView()
-                            case .quitEmployer: viewModel.quitEmployerAlertView()
                             default: break
                             }
                         }

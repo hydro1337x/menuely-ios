@@ -18,6 +18,12 @@ struct UserProfileView: View {
                 .edgesIgnoringSafeArea(.all)
             
             content
+            
+            NavigationLink(
+                destination: UserOrdersListView(),
+                tag: true,
+                selection: $viewModel.routing.userOrdersList,
+                label: { EmptyView() })
         }
         .edgesIgnoringSafeArea(.all)
         .sheet(isPresented: $viewModel.routing.isProfileImagePickerSheetPresented, content: {

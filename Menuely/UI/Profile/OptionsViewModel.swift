@@ -50,6 +50,10 @@ class OptionsViewModel: ObservableObject {
         if appState[\.data.authenticatedUser]?.user.employer != nil {
             options.append(.quitEmployer)
         }
+        
+        if appState[\.data.selectedEntity] == .user {
+            options.append(.userOrders)
+        }
     }
     func logout() {
         appState[\.routing.alert.configuration] = nil
@@ -121,5 +125,10 @@ class OptionsViewModel: ObservableObject {
         dismissAlertView()
         appState[\.data.updateUserProfileView] = true
         appState[\.routing.profile.isOptionsSheetPresented] = false
+    }
+    
+    func dismissAndShowUserOrdersListView() {
+        appState[\.routing.profile.isOptionsSheetPresented] = false
+        appState[\.routing.profile.userOrdersList] = true
     }
 }

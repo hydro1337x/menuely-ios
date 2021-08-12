@@ -61,6 +61,8 @@
 		6044D30226C47DC700DBC806 /* OrdersRemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6044D30126C47DC700DBC806 /* OrdersRemoteRepository.swift */; };
 		6044D30426C47DFC00DBC806 /* CreateOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6044D30326C47DFC00DBC806 /* CreateOrderRequest.swift */; };
 		6044D30626C4806D00DBC806 /* OrdersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6044D30526C4806D00DBC806 /* OrdersService.swift */; };
+		6044D30826C49EC700DBC806 /* UserOrdersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6044D30726C49EC600DBC806 /* UserOrdersListView.swift */; };
+		6044D30A26C49EF000DBC806 /* UserOrdersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6044D30926C49EF000DBC806 /* UserOrdersListViewModel.swift */; };
 		6049C3C0268F9B9E00B891CC /* Repositories+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */; };
 		605803E226B7277500C7C9BA /* RestaurantNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605803E126B7277500C7C9BA /* RestaurantNoticeView.swift */; };
 		605803E426B727EC00C7C9BA /* RestaurantNoticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605803E326B727EC00C7C9BA /* RestaurantNoticeViewModel.swift */; };
@@ -139,6 +141,9 @@
 		60A67194269B35400083C0E9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A67193269B35400083C0E9 /* LoginView.swift */; };
 		60A67196269B354A0083C0E9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A67195269B354A0083C0E9 /* LoginViewModel.swift */; };
 		60A67198269B363E0083C0E9 /* EntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A67197269B363E0083C0E9 /* EntityType.swift */; };
+		60A7EAD126C561A600FFF411 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A7EAD026C561A600FFF411 /* Order.swift */; };
+		60A7EAD326C5635D00FFF411 /* OrderedProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A7EAD226C5635D00FFF411 /* OrderedProduct.swift */; };
+		60A7EAD526C563F800FFF411 /* OrdersListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A7EAD426C563F800FFF411 /* OrdersListResponse.swift */; };
 		60B510A626B2F6B800218D6D /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B510A526B2F6B800218D6D /* CategoryCell.swift */; };
 		60B510A926B2FD9C00218D6D /* CategoriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B510A826B2FD9B00218D6D /* CategoriesListView.swift */; };
 		60B510AB26B2FDAB00218D6D /* CategoriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B510AA26B2FDAB00218D6D /* CategoriesListViewModel.swift */; };
@@ -243,6 +248,8 @@
 		6044D30126C47DC700DBC806 /* OrdersRemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersRemoteRepository.swift; sourceTree = "<group>"; };
 		6044D30326C47DFC00DBC806 /* CreateOrderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderRequest.swift; sourceTree = "<group>"; };
 		6044D30526C4806D00DBC806 /* OrdersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersService.swift; sourceTree = "<group>"; };
+		6044D30726C49EC600DBC806 /* UserOrdersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrdersListView.swift; sourceTree = "<group>"; };
+		6044D30926C49EF000DBC806 /* UserOrdersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrdersListViewModel.swift; sourceTree = "<group>"; };
 		6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repositories+Injection.swift"; sourceTree = "<group>"; };
 		605803E126B7277500C7C9BA /* RestaurantNoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantNoticeView.swift; sourceTree = "<group>"; };
 		605803E326B727EC00C7C9BA /* RestaurantNoticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantNoticeViewModel.swift; sourceTree = "<group>"; };
@@ -320,6 +327,9 @@
 		60A67193269B35400083C0E9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		60A67195269B354A0083C0E9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		60A67197269B363E0083C0E9 /* EntityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityType.swift; sourceTree = "<group>"; };
+		60A7EAD026C561A600FFF411 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		60A7EAD226C5635D00FFF411 /* OrderedProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedProduct.swift; sourceTree = "<group>"; };
+		60A7EAD426C563F800FFF411 /* OrdersListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListResponse.swift; sourceTree = "<group>"; };
 		60B510A526B2F6B800218D6D /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		60B510A826B2FD9B00218D6D /* CategoriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListView.swift; sourceTree = "<group>"; };
 		60B510AA26B2FDAB00218D6D /* CategoriesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListViewModel.swift; sourceTree = "<group>"; };
@@ -435,6 +445,8 @@
 				6077EBC826AC9B3E00D6D4F4 /* UpdatePasswordViewModel.swift */,
 				6077EBCC26ACCB4D00D6D4F4 /* UpdateEmailView.swift */,
 				6077EBCE26ACCB5700D6D4F4 /* UpdateEmailViewModel.swift */,
+				6044D30726C49EC600DBC806 /* UserOrdersListView.swift */,
+				6044D30926C49EF000DBC806 /* UserOrdersListViewModel.swift */,
 			);
 			path = Options;
 			sourceTree = "<group>";
@@ -798,6 +810,8 @@
 				609B999526BD3DC600A2EAC9 /* RestaurantNoticeInfo.swift */,
 				608A13D026BECEBB0054E217 /* CartItem.swift */,
 				608A13D226BED0B60054E217 /* Cart.swift */,
+				60A7EAD226C5635D00FFF411 /* OrderedProduct.swift */,
+				60A7EAD026C561A600FFF411 /* Order.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -836,6 +850,7 @@
 				60A57CE326AF317200A53341 /* MenusListResponse.swift */,
 				0C8B25EE26B2C6AF007809CD /* CategoriesListResponse.swift */,
 				0C7CD87726B419540066645E /* ProductsListResponse.swift */,
+				60A7EAD426C563F800FFF411 /* OrdersListResponse.swift */,
 				60E395392690918D007E459E /* TokensResponse.swift */,
 				6000622F2696482F0085DF41 /* Discardable.swift */,
 			);
@@ -960,7 +975,9 @@
 				60E4ED6A268DCC7B00EC4561 /* Services+Injection.swift in Sources */,
 				6049C3C0268F9B9E00B891CC /* Repositories+Injection.swift in Sources */,
 				605803E426B727EC00C7C9BA /* RestaurantNoticeViewModel.swift in Sources */,
+				60A7EAD526C563F800FFF411 /* OrdersListResponse.swift in Sources */,
 				6000623826965F280085DF41 /* UserLoginResponse.swift in Sources */,
+				6044D30A26C49EF000DBC806 /* UserOrdersListViewModel.swift in Sources */,
 				0C7CD87326B3E8CA0066645E /* UpdateCategoryViewModel.swift in Sources */,
 				6077EBCF26ACCB5700D6D4F4 /* UpdateEmailViewModel.swift in Sources */,
 				6071080D26A889F800008E44 /* AuthType.swift in Sources */,
@@ -991,6 +1008,7 @@
 				60D32CE4269A082600F6FDC9 /* SelectionCardButtonStyle.swift in Sources */,
 				6071080B26A8641700008E44 /* AuthSelectionViewModel.swift in Sources */,
 				607F6EF126B9597B0037060E /* SizeReader.swift in Sources */,
+				6044D30826C49EC700DBC806 /* UserOrdersListView.swift in Sources */,
 				60173F31269CA3B2003C4E40 /* InfoView.swift in Sources */,
 				60E4ED7A268E174A00EC4561 /* ViewModels+Injection.swift in Sources */,
 				60B510AF26B3351900218D6D /* CreateCategoryViewModel.swift in Sources */,
@@ -1055,8 +1073,10 @@
 				606531D826A4B4EA00C8C500 /* LogoutBodyRequest.swift in Sources */,
 				60D32CE22699FA3B00F6FDC9 /* UserRegistrationView.swift in Sources */,
 				6016C1C226AAFE4A00375929 /* EditUserProfileViewModel.swift in Sources */,
+				60A7EAD126C561A600FFF411 /* Order.swift in Sources */,
 				60E4ED72268DEE4100EC4561 /* RemoteImage.swift in Sources */,
 				60A57CE426AF317200A53341 /* MenusListResponse.swift in Sources */,
+				60A7EAD326C5635D00FFF411 /* OrderedProduct.swift in Sources */,
 				60173F39269CE10D003C4E40 /* Restaurant.swift in Sources */,
 				60A57CF426AF42A900A53341 /* CreateMenuView.swift in Sources */,
 				605803E226B7277500C7C9BA /* RestaurantNoticeView.swift in Sources */,

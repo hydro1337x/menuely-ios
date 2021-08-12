@@ -11,6 +11,7 @@ import Resolver
 
 protocol OrdersServicing {
     func createOrder(with bodyRequest: BodyRequestable, createOrderResult: LoadableSubject<Discardable>)
+    func getUserOrders(orders: LoadableSubject<[Order]>)
 }
 
 class OrdersService: OrdersServicing {
@@ -28,6 +29,19 @@ class OrdersService: OrdersServicing {
                 remoteRepository.createOrder(with: bodyRequest)
             }
             .sinkToLoadable { createOrderResult.wrappedValue = $0 }
+            .store(in: cancelBag)
+    }
+    
+    func getUserOrders(orders: LoadableSubject<[Order]>) {
+        orders.wrappedValue.setIsLoading(cancelBag: cancelBag)
+        
+        Just<Void>
+            .withErrorType(Error.self)
+            .flatMap { [remoteRepository] in
+                remoteRepository.getUserOrders()
+            }
+            .map { $0.orders }
+            .sinkToLoadable { orders.wrappedValue = $0 }
             .store(in: cancelBag)
     }
 }
