@@ -76,7 +76,7 @@ class CartService: CartServicing {
         let request = CreateOrderBodyRequest(restaurantId: cart.restaurantId,
                                              tableId: cart.tableId,
                                              totalPrice: cart.totalPrice,
-                                             orderedProducts: cart.cartItems.map { OrderedProduct(with: $0) })
+                                             orderedProducts: cart.cartItems.map { PreparedProduct(with: $0) })
         return request
     }
 }

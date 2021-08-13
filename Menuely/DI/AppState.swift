@@ -46,7 +46,6 @@ extension AppState {
 extension AppState {
     /*
      AppState.Routing should contain data which is needed to transition from one screen to another
-     It is used inside actions
      */
     struct Routing: Equatable {
         
@@ -55,6 +54,7 @@ extension AppState {
         var authSelection: AuthSelectionView.Routing = AuthSelectionView.Routing(selectedAuth: .login)
         var profile: ProfileView.Routing = ProfileView.Routing()
         var options: OptionsView.Routing = OptionsView.Routing()
+        var userOrdersList: UserOrdersListView.Routing = UserOrdersListView.Routing()
         var info: InfoView.Routing = InfoView.Routing()
         var activityIndicator: ActivityIndicatorView.Routing = ActivityIndicatorView.Routing()
         var alert: AlertView.Routing = AlertView.Routing()

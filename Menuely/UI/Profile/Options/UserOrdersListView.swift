@@ -32,7 +32,7 @@ private extension UserOrdersListView {
 
 private extension UserOrdersListView {
     var listNotRequestedView: some View {
-        Text("Not request lolo").onAppear {
+        Text("").onAppear {
             self.viewModel.getOrders()
         }
     }
@@ -64,14 +64,28 @@ private extension UserOrdersListView {
             viewModel.appState[\.routing.activityIndicator.isActive] = false
         }
         
-        return ScrollView {
-            LazyVStack {
-                ForEach(orders) { order in
-                    Text(order.employerName ?? "")
-                        .frame(height: 48)
-                }
+        return List {
+            ForEach(orders) { order in
+                NavigationLink(
+                    destination: OrderDetailsView(),
+                    tag: order.id,
+                    selection: $viewModel.routing.orderDetailsForId) {
+                    OrderCell(title: order.employerName ?? "", subtitle: viewModel.timeIntervalToString(order.createdAt), price: viewModel.format(price: order.totalPrice, currency: order.currency), imageUrl: URL(string: ""), isActive: order.employeeName != nil ? false : true)
+                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                    }
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                    .onTapGesture {
+                        viewModel.routing.orderDetailsForId = order.id
+                    }
             }
         }
+        .listStyle(InsetGroupedListStyle())
+    }
+}
+
+extension UserOrdersListView {
+    struct Routing: Equatable {
+        var orderDetailsForId: Int?
     }
 }
 

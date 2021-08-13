@@ -11,9 +11,9 @@ struct CreateOrderBodyRequest: BodyRequestable {
     let restaurantId: Int
     let tableId: Int
     let totalPrice: Decimal
-    let orderedProducts: [OrderedProduct]
+    let orderedProducts: [PreparedProduct]
     
-    init(restaurantId: Int, tableId: Int, totalPrice: Float, orderedProducts: [OrderedProduct]) {
+    init(restaurantId: Int, tableId: Int, totalPrice: Float, orderedProducts: [PreparedProduct]) {
         self.restaurantId = restaurantId
         self.tableId = tableId
         self.totalPrice = Decimal(string: totalPrice.asTwoDecimalString)!
