@@ -26,11 +26,11 @@ struct EditUserProfileView: View {
     var staticContent: some View {
         ScrollView {
             VStack {
-                FloatingTextField(text: $viewModel.firstname, title: "Firstname", type: .notEmpty, isValid: $viewModel.isFirstnameValid)
+                FloatingTextField(text: $viewModel.firstname, title: "Firstname", validation: .notEmpty, isValid: $viewModel.isFirstnameValid)
                     .frame(height: 48)
                     .padding(.top, 15)
                 
-                FloatingTextField(text: $viewModel.lastname, title: "Lastname", type: .notEmpty, isValid: $viewModel.isLastnameValid)
+                FloatingTextField(text: $viewModel.lastname, title: "Lastname", validation: .notEmpty, isValid: $viewModel.isLastnameValid)
                     .frame(height: 48)
             }
             .padding(.horizontal, 16)

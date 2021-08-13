@@ -19,14 +19,16 @@ struct FloatingTextField: View {
     @State private var titleWithMessage: String
     
     private let title: String
-    private let type: ValidationType
+    private let type: FieldType
+    private let validation: ValidationType
     
-    init(text: Binding<String>, title: String, type: ValidationType, isValid: Binding<Bool>) {
+    init(text: Binding<String>, title: String, type: FieldType = .regular, validation: ValidationType, isValid: Binding<Bool>) {
         self._text = text
         self._isValid = isValid
         self.title = title
         self.titleWithMessage = title
         self.type = type
+        self.validation = validation
         if !text.wrappedValue.isEmpty {
             placeholderColor = Color(#colorLiteral(red: 0.2075126171, green: 0.7053237557, blue: 0.3391282558, alpha: 1))
             placeholderOffset = -25
@@ -81,6 +83,14 @@ struct FloatingTextField: View {
             }
         })
         
+        if type == .secure {
+            let width = text.widthOfString(usingFont: UIFont.preferredFont(forTextStyle: .body))
+            RoundedRectangle(cornerRadius: 2)
+                .frame(width: width < 0 ? 0 : width, height: 19)
+                .foregroundColor(Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)))
+                .animation(.spring(response: 0.3, dampingFraction: 0.5), value: text)
+        }
+        
         Divider()
             .frame(height: 1)
             .background(separatorColor)
@@ -88,7 +98,7 @@ struct FloatingTextField: View {
        }
        .padding(.top, 15)
        .onAppear {
-        viewModel.type = type
+        viewModel.validation = validation
        }
    }
 }
@@ -98,10 +108,10 @@ extension FloatingTextField {
         @Published var isValid: Bool = false
         @Published var errorMessage: String?
         
-        var type: ValidationType = .none
+        var validation: ValidationType = .none
         
         func validate(_ input: String) {
-            switch type {
+            switch validation {
             case .none: break
             case .email: validateEmail(with: input)
             case .notEmpty: validateNotEmpty(with: input)
@@ -120,7 +130,7 @@ extension FloatingTextField {
                 errorMessage = nil
             } else {
                 isValid = false
-                errorMessage = type.errorMessage
+                errorMessage = validation.errorMessage
             }
         }
         
@@ -130,18 +140,18 @@ extension FloatingTextField {
                 errorMessage = nil
             } else {
                 isValid = false
-                errorMessage = type.errorMessage
+                errorMessage = validation.errorMessage
             }
         }
         
         private func validateLenght(with input: String) {
-            guard case ValidationType.lenght(let minimumLenght) = type else { return }
+            guard case ValidationType.lenght(let minimumLenght) = validation else { return }
             if input.count >= minimumLenght {
                 isValid = true
                 errorMessage = nil
             } else {
                 isValid = false
-                errorMessage = type.errorMessage
+                errorMessage = validation.errorMessage
             }
         }
         
@@ -151,7 +161,7 @@ extension FloatingTextField {
                 errorMessage = nil
             } else {
                 isValid = false
-                errorMessage = type.errorMessage
+                errorMessage = validation.errorMessage
             }
         }
         
@@ -161,13 +171,18 @@ extension FloatingTextField {
                 errorMessage = nil
             } else {
                 isValid = false
-                errorMessage = type.errorMessage
+                errorMessage = validation.errorMessage
             }
         }
     }
 }
 
 extension FloatingTextField {
+    enum FieldType {
+        case regular
+        case secure
+    }
+    
     enum ValidationType {
         case none
         case email
@@ -191,6 +206,6 @@ extension FloatingTextField {
 
 struct FloatingTextField_Previews: PreviewProvider {
     static var previews: some View {
-        FloatingTextField(text: .constant("Text"), title: "Title", type: .email, isValid: .constant(true))
+        FloatingTextField(text: .constant("Text"), title: "Title", validation: .email, isValid: .constant(true))
     }
 }

@@ -23,14 +23,14 @@ struct UpdatePasswordView: View {
     var staticContent: some View {
         ScrollView {
             VStack {
-                FloatingTextField(text: $viewModel.oldPassword, title: "Old password", type: .lenght(6), isValid: $viewModel.isOldPasswordValid)
+                FloatingTextField(text: $viewModel.oldPassword, title: "Old password", type: .secure, validation: .lenght(6), isValid: $viewModel.isOldPasswordValid)
                     .frame(height: 48)
                     .padding(.top, 15)
                 
-                FloatingTextField(text: $viewModel.newPassword, title: "New password", type: .lenght(6), isValid: $viewModel.isNewPasswordValid)
+                FloatingTextField(text: $viewModel.newPassword, title: "New password", type: .secure, validation: .lenght(6), isValid: $viewModel.isNewPasswordValid)
                     .frame(height: 48)
                 
-                FloatingTextField(text: $viewModel.repeatedNewPassword, title: "Repeated new password", type: .lenght(6), isValid: $viewModel.isRepeatedNewPasswordValid)
+                FloatingTextField(text: $viewModel.repeatedNewPassword, title: "Repeated new password", type: .secure, validation: .lenght(6), isValid: $viewModel.isRepeatedNewPasswordValid)
                     .frame(height: 48)
             }
             .padding(.horizontal, 16)

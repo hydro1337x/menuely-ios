@@ -112,9 +112,8 @@ private extension MenusListView {
                 destination: CategoriesListView(),
                 tag: CategoriesListDisplayInfo(menuID: menu.id, menuName: menu.name, interaction: .modifying),
                 selection: $viewModel.routing.categories) {
-                    MenuCell(title: menu.name, description: menu.description, imageName: .menu)
+                MenuCell(title: menu.name, description: menu.description, imageName: .menu, isActive: menu.isActive)
                 }
-                .scaleEffect(isLongPressed ? 1.05 : 1)
                 .onTapGesture {
                     viewModel.routing.categories = CategoriesListDisplayInfo(menuID: menu.id, menuName: menu.name, interaction: .modifying)
                 }

@@ -28,10 +28,10 @@ struct UpdateMenuView: View {
     var staticContent: some View {
         ScrollView {
             VStack {
-                FloatingTextField(text: $viewModel.name, title: "Name", type: .notEmpty, isValid: $viewModel.isNameValid)
+                FloatingTextField(text: $viewModel.name, title: "Name", validation: .notEmpty, isValid: $viewModel.isNameValid)
                     .frame(height: 48)
                 
-                FloatingTextField(text: $viewModel.currency, title: "Currency", type: .notEmpty, isValid: $viewModel.isCurrencyValid)
+                FloatingTextField(text: $viewModel.currency, title: "Currency", validation: .notEmpty, isValid: $viewModel.isCurrencyValid)
                     .frame(height: 48)
                 
                 FloatingTextEditor(text: $viewModel.description, title: "Description", isValid: $viewModel.isDescriptionValid)

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 import Combine
 
 extension Result {
@@ -34,5 +35,13 @@ extension Encodable {
 extension Float {
     var asTwoDecimalString: String {
         return String(format: "%.2f", self)
+    }
+}
+
+extension String {
+   func widthOfString(usingFont font: UIFont) -> CGFloat {
+        let fontAttributes = [NSAttributedString.Key.font: font]
+        let size = self.size(withAttributes: fontAttributes)
+        return size.width
     }
 }

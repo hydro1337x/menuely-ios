@@ -33,7 +33,7 @@ struct CreateCategoryView: View {
                             .shadow(radius: 3, y: 2)
                     })
                     
-                    FloatingTextField(text: $viewModel.name, title: "Name", type: .notEmpty, isValid: $viewModel.isNameValid)
+                    FloatingTextField(text: $viewModel.name, title: "Name", validation: .notEmpty, isValid: $viewModel.isNameValid)
                         .frame(height: 48)
                         .padding(.top, 10)
                     

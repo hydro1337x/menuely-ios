@@ -55,7 +55,7 @@ struct UpdateProductView: View {
                     }
                 })
                 
-                FloatingTextField(text: $viewModel.name, title: "Name", type: .notEmpty, isValid: $viewModel.isNameValid)
+                FloatingTextField(text: $viewModel.name, title: "Name", validation: .notEmpty, isValid: $viewModel.isNameValid)
                     .frame(height: 48)
                     .padding(.top, 10)
                 
@@ -63,7 +63,7 @@ struct UpdateProductView: View {
                     .frame(height: 200)
                     .padding(.top, 15)
                 
-                FloatingTextField(text: $viewModel.price, title: "Price", type: .float, isValid: $viewModel.isPriceValid)
+                FloatingTextField(text: $viewModel.price, title: "Price", validation: .float, isValid: $viewModel.isPriceValid)
                     .frame(height: 48)
                     .padding(.top, 10)
                 
