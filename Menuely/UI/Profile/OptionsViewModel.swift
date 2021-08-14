@@ -20,8 +20,9 @@ class OptionsViewModel: ObservableObject {
     
     var appState: Store<AppState>
     var cancelBag = CancelBag()
-    var options: [OptionType] = [.updateProfile, .updatePassword, .updateEmail, .deleteAccount, .logout]
-    var navigatableOptions: [OptionType] = [.updateProfile, .updatePassword, .updateEmail]
+    var personalOptions: [OptionType] = []
+    var restaurantOptions: [OptionType] = []
+//    var navigatableOptions: [OptionType] = [.updateProfile, .updatePassword, .updateEmail]
     
     // MARK: - Initialization
     init(appState: Store<AppState>, logoutDeleteResult: Loadable<Discardable> = .notRequested, quitEmployerResult: Loadable<Discardable> = .notRequested) {
@@ -42,19 +43,26 @@ class OptionsViewModel: ObservableObject {
                 .assign(to: \.routing, on: self)
         }
         
-        appendOptionalOptions()
+        initOptions()
     }
     
     // MARK: - Methods
-    func appendOptionalOptions() {
-        if appState[\.data.authenticatedUser]?.user.employer != nil {
-            options.append(.quitEmployer)
-        }
+    func initOptions() {
+        personalOptions.append(contentsOf: [.updateProfile, .updatePassword, .updateEmail])
         
         if appState[\.data.selectedEntity] == .user {
-            options.append(.userOrders)
+            personalOptions.append(.userOrders)
         }
+        
+        personalOptions.append(contentsOf: [.deleteAccount, .logout])
+        
+        if appState[\.data.authenticatedUser]?.user.employer != nil {
+            restaurantOptions.append(.quitEmployer)
+        }
+        
+        // Append restaurantOrders to restaurant options
     }
+    
     func logout() {
         appState[\.routing.alert.configuration] = nil
         authService.logout(logoutResult: loadableSubject(\.logoutDeleteResult))

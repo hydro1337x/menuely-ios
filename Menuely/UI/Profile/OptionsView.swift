@@ -25,35 +25,57 @@ struct OptionsView: View {
     }
     
     var base: some View {
-        VStack {
-            List(viewModel.options, id: \.self) { option in
-                if viewModel.navigatableOptions.contains(option) {
-                    NavigationLink(
-                        destination: destinationView(for: option),
-                        tag: option,
-                        selection: $viewModel.routing.details,
-                        label: {
-                            OptionItemView(option: option, imageName: .forwardArrow)
-                                .frame(height: 48)
-                        })
-                        .buttonStyle(PlainButtonStyle())
-                } else {
-                    OptionItemView(option: option, imageName: .forwardArrow)
-                        .frame(height: 48)
-                        .onTapGesture {
-                            switch option {
-                            case .userOrders: viewModel.dismissAndShowUserOrdersListView()
-                            case .quitEmployer: viewModel.quitEmployerAlertView()
-                            case .logout: viewModel.logoutAlertView()
-                            case .deleteAccount: viewModel.deleteAccountAlertView()
-                            default: break
+        List {
+            Section(header: Text("Personal")) {
+                ForEach(viewModel.personalOptions, id: \.self) { option in
+                    switch option {
+                    case .updateProfile, .updatePassword, .updateEmail:
+                        NavigationLink(
+                            destination: destinationView(for: option),
+                            tag: option,
+                            selection: $viewModel.routing.details,
+                            label: {
+                                OptionItemView(option: option, imageName: .forwardArrow)
+                                    .frame(height: 48)
+                            })
+                            .buttonStyle(PlainButtonStyle())
+                    case .userOrders, .deleteAccount, .logout:
+                        OptionItemView(option: option, imageName: .forwardArrow)
+                            .frame(height: 48)
+                            .onTapGesture {
+                                switch option {
+                                case .userOrders: viewModel.dismissAndShowUserOrdersListView()
+                                case .logout: viewModel.logoutAlertView()
+                                case .deleteAccount: viewModel.deleteAccountAlertView()
+                                default: break
+                                }
                             }
-                        }
+                    default: EmptyView()
+                    }
                 }
             }
-            .listStyle(InsetGroupedListStyle())
-            .padding(.top, 10)
+            
+            
+            if !viewModel.restaurantOptions.isEmpty {
+                Section(header: Text("Restaurant")) {
+                    ForEach(viewModel.restaurantOptions, id: \.self) { option in
+                        switch option {
+                        case .quitEmployer:
+                            OptionItemView(option: option, imageName: .forwardArrow)
+                                .frame(height: 48)
+                                .onTapGesture {
+                                    switch option {
+                                    case .quitEmployer: viewModel.quitEmployerAlertView()
+                                    default: break
+                                    }
+                                }
+                        default: EmptyView()
+                        }
+                    }
+                }
+            }
         }
+        .listStyle(InsetGroupedListStyle())
     }
     
     @ViewBuilder

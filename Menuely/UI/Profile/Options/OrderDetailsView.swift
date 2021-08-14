@@ -66,6 +66,15 @@ private extension OrderDetailsView {
                                 description: product.description,
                                 buttonTitle: viewModel.format(price: product.price, currency: order.currency),
                                 imageURL: product.imageUrl)
+                        .padding(.horizontal, 10)
+                        .disabled(true)
+                }
+                
+                SectionView(title: "") {
+                    DetailCell(title: "Restaurant", text: order.employerName ?? "-")
+                    DetailCell(title: "Waitperson", text: order.employeeName ?? "Not yet assigned")
+                    DetailCell(title: "Table", text: order.tableId.description)
+                    DetailCell(title: "Total price", text: viewModel.format(price: order.totalPrice, currency: order.currency))
                 }
             }
         }

@@ -13,6 +13,8 @@ struct UserOrdersListView: View {
     
     var body: some View {
         listContent
+            .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitle("Your orders")
     }
 }
 
