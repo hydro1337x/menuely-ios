@@ -84,11 +84,12 @@ struct FloatingTextField: View {
         })
         
         if type == .secure {
-            let width = text.widthOfString(usingFont: UIFont.preferredFont(forTextStyle: .body))
+            let width = text.widthOfString(usingFont: UIFont.preferredFont(forTextStyle: .body)) - 0.5
             RoundedRectangle(cornerRadius: 2)
                 .frame(width: width < 0 ? 0 : width, height: 19)
                 .foregroundColor(Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)))
                 .animation(.spring(response: 0.3, dampingFraction: 0.5), value: text)
+                .disabled(true)
         }
         
         Divider()

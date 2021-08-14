@@ -59,25 +59,23 @@ private extension OrderDetailsView {
 private extension OrderDetailsView {
     func loadedView(order: Order) -> some View {
         viewModel.appState[\.routing.activityIndicator.isActive] = false
-        return ScrollView {
-            LazyVStack {
-                ForEach(order.orderedProducts) { product in
-                    ProductCell(title: product.name,
-                                description: product.description,
-                                buttonTitle: viewModel.format(price: product.price, currency: order.currency),
-                                imageURL: product.imageUrl)
-                        .padding(.horizontal, 10)
-                        .disabled(true)
-                }
-                
-                SectionView(title: "") {
-                    DetailCell(title: "Restaurant", text: order.employerName ?? "-")
-                    DetailCell(title: "Waitperson", text: order.employeeName ?? "Not yet assigned")
-                    DetailCell(title: "Table", text: order.tableId.description)
-                    DetailCell(title: "Total price", text: viewModel.format(price: order.totalPrice, currency: order.currency))
-                }
+        return List {
+            ForEach(order.orderedProducts) { product in
+                OrderPreviewCell(imageURL: URL(string: product.imageUrl),
+                                 title: product.name,
+                                 price: viewModel.format(price: product.price, currency: order.currency),
+                                 quantity: product.quantity.description)
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
+            }
+            
+            Section(header: Text("Order info")) {
+                DetailCell(title: "Restaurant", text: order.employerName ?? "-")
+                DetailCell(title: "Waitperson", text: order.employeeName ?? "Not yet assigned")
+                DetailCell(title: "Table", text: order.tableId.description)
+                DetailCell(title: "Total price", text: viewModel.format(price: order.totalPrice, currency: order.currency))
             }
         }
+        .listStyle(InsetGroupedListStyle())
     }
 }
 

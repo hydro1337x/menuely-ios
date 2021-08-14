@@ -14,6 +14,7 @@ struct OrderedProduct: Codable, Equatable, Identifiable {
     let price: Float
     let description: String
     let imageUrl: String
+    let quantity: Int
     let createdAt: TimeInterval
     let updatedAt: TimeInterval
 }
