@@ -51,6 +51,7 @@ extension ProfileView {
         var isCoverImagePickerSheetPresented: Bool = false
         var employerInvites: Bool?
         var userOrdersList: Bool?
+        var restaurantOrdersList: Bool?
         
     }
 }

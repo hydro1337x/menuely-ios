@@ -1,24 +1,24 @@
 //
-//  UserOrdersListView.swift
+//  RestaurantOrdersListView.swift
 //  Menuely
 //
-//  Created by Benjamin Mecanović on 12.08.2021..
+//  Created by Benjamin Mecanović on 15.08.2021..
 //
 
 import SwiftUI
 import Resolver
 
-struct UserOrdersListView: View {
+struct RestaurantOrdersListView: View {
     @StateObject private var viewModel: ViewModel = Resolver.resolve()
     
     var body: some View {
         listContent
             .navigationBarTitleDisplayMode(.large)
-            .navigationBarTitle("Your orders")
+            .navigationBarTitle("Restaurant orders")
     }
 }
 
-private extension UserOrdersListView {
+private extension RestaurantOrdersListView {
     @ViewBuilder
     private var listContent: some View {
         switch viewModel.orders {
@@ -32,7 +32,7 @@ private extension UserOrdersListView {
 
 // MARK: - Loading Content
 
-private extension UserOrdersListView {
+private extension RestaurantOrdersListView {
     var listNotRequestedView: some View {
         Text("").onAppear {
             self.viewModel.getOrders()
@@ -58,7 +58,7 @@ private extension UserOrdersListView {
 
 // MARK: - Displaying Content
 
-private extension UserOrdersListView {
+private extension RestaurantOrdersListView {
     func listLoadedView(_ orders: [Order], showLoading: Bool) -> some View {
         if showLoading {
             viewModel.appState[\.routing.activityIndicator.isActive] = true
@@ -69,10 +69,10 @@ private extension UserOrdersListView {
         return List {
             ForEach(orders) { order in
                 NavigationLink(
-                    destination: UserOrderDetailsView(),
+                    destination: RestaurantOrderDetailsView(),
                     tag: order.id,
                     selection: $viewModel.routing.orderDetailsForId) {
-                    OrderCell(title: order.employerName ?? "", subtitle: viewModel.timeIntervalToString(order.createdAt), price: viewModel.format(price: order.totalPrice, currency: order.currency), imageUrl: URL(string: ""), isActive: order.employeeName != nil ? false : true)
+                    OrderCell(title: order.customerName ?? "", subtitle: viewModel.timeIntervalToString(order.createdAt), price: viewModel.format(price: order.totalPrice, currency: order.currency), imageUrl: URL(string: ""), isActive: order.employeeName != nil ? false : true)
                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
                     }
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
@@ -85,14 +85,14 @@ private extension UserOrdersListView {
     }
 }
 
-extension UserOrdersListView {
+extension RestaurantOrdersListView {
     struct Routing: Equatable {
         var orderDetailsForId: Int?
     }
 }
 
-struct UserOrdersListView_Previews: PreviewProvider {
+struct RestaurantOrdersListView_Previews: PreviewProvider {
     static var previews: some View {
-        UserOrdersListView()
+        RestaurantOrdersListView()
     }
 }

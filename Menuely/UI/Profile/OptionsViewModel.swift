@@ -22,7 +22,6 @@ class OptionsViewModel: ObservableObject {
     var cancelBag = CancelBag()
     var personalOptions: [OptionType] = []
     var restaurantOptions: [OptionType] = []
-//    var navigatableOptions: [OptionType] = [.updateProfile, .updatePassword, .updateEmail]
     
     // MARK: - Initialization
     init(appState: Store<AppState>, logoutDeleteResult: Loadable<Discardable> = .notRequested, quitEmployerResult: Loadable<Discardable> = .notRequested) {
@@ -57,10 +56,9 @@ class OptionsViewModel: ObservableObject {
         personalOptions.append(contentsOf: [.deleteAccount, .logout])
         
         if appState[\.data.authenticatedUser]?.user.employer != nil {
+            restaurantOptions.append(.restaurantOrders)
             restaurantOptions.append(.quitEmployer)
         }
-        
-        // Append restaurantOrders to restaurant options
     }
     
     func logout() {
@@ -138,5 +136,10 @@ class OptionsViewModel: ObservableObject {
     func dismissAndShowUserOrdersListView() {
         appState[\.routing.profile.isOptionsSheetPresented] = false
         appState[\.routing.profile.userOrdersList] = true
+    }
+    
+    func dismissAndShowRestaurantOrdersListView() {
+        appState[\.routing.profile.isOptionsSheetPresented] = false
+        appState[\.routing.profile.restaurantOrdersList] = true
     }
 }

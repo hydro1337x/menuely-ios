@@ -60,12 +60,13 @@ struct OptionsView: View {
                 Section(header: Text("Restaurant")) {
                     ForEach(viewModel.restaurantOptions, id: \.self) { option in
                         switch option {
-                        case .quitEmployer:
+                        case .restaurantOrders, .quitEmployer:
                             OptionItemView(option: option, imageName: .forwardArrow)
                                 .frame(height: 48)
                                 .onTapGesture {
                                     switch option {
                                     case .quitEmployer: viewModel.quitEmployerAlertView()
+                                    case .restaurantOrders: viewModel.dismissAndShowRestaurantOrdersListView()
                                     default: break
                                     }
                                 }

@@ -24,6 +24,12 @@ struct UserProfileView: View {
                 tag: true,
                 selection: $viewModel.routing.userOrdersList,
                 label: { EmptyView() })
+            
+            NavigationLink(
+                destination: RestaurantOrdersListView(),
+                tag: true,
+                selection: $viewModel.routing.restaurantOrdersList,
+                label: { EmptyView() })
         }
         .edgesIgnoringSafeArea(.all)
         .sheet(isPresented: $viewModel.routing.isProfileImagePickerSheetPresented, content: {

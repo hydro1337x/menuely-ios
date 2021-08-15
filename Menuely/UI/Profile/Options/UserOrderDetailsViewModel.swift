@@ -1,5 +1,5 @@
 //
-//  OrderDetailsViewModel.swift
+//  UserOrderDetailsViewModel.swift
 //  Menuely
 //
 //  Created by Benjamin Mecanović on 13.08.2021..
@@ -9,7 +9,7 @@ import Foundation
 import Resolver
 import SwiftUI
 
-extension OrderDetailsView {
+extension UserOrderDetailsView {
     class ViewModel: ObservableObject {
         // MARK: - Properties
         @Injected private var ordersService: OrdersServicing
