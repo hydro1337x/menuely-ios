@@ -17,6 +17,9 @@ protocol AuthRemoteRepositing {
     func loginRestaurant(restaurantbodyRequest: BodyRequestable) -> AnyPublisher<RestaurantLoginResponse, Error>
     
     func logout(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
+    
+    func resetUserPassword(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
+    func resetRestaurantPassword(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
 }
 
 class AuthRemoteRepository: AuthRemoteRepositing {
@@ -41,42 +44,56 @@ class AuthRemoteRepository: AuthRemoteRepositing {
     func logout(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error> {
         networkClient.request(endpoint: Endpoint.logout(bodyRequest))
     }
+    
+    func resetUserPassword(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.resetUserPassword(bodyRequest))
+    }
+    
+    func resetRestaurantPassword(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.resetRestaurantPassword(bodyRequest))
+    }
 }
 
 extension AuthRemoteRepository {
     enum Endpoint {
-        case registerUser(_: BodyRequestable)
-        case loginUser(_: BodyRequestable)
-        case registerRestaurant(_: BodyRequestable)
-        case loginRestaurant(_: BodyRequestable)
-        case logout(_: BodyRequestable)
+        case registerUser(BodyRequestable)
+        case loginUser(BodyRequestable)
+        case registerRestaurant(BodyRequestable)
+        case loginRestaurant(BodyRequestable)
+        case logout(BodyRequestable)
+        case resetUserPassword(BodyRequestable)
+        case resetRestaurantPassword(BodyRequestable)
     }
 }
 
 extension AuthRemoteRepository.Endpoint: APIConfigurable {
     var path: String {
         switch self {
-        case .registerUser(_): return "/auth/register/user"
-        case .loginUser(_): return "/auth/login/user"
-        case .registerRestaurant(_): return "/auth/register/restaurant"
-        case .loginRestaurant(_): return "/auth/login/restaurant"
-        case .logout(_): return "/auth/logout"
+        case .registerUser: return "/auth/register/user"
+        case .loginUser: return "/auth/login/user"
+        case .registerRestaurant: return "/auth/register/restaurant"
+        case .loginRestaurant: return "/auth/login/restaurant"
+        case .logout: return "/auth/logout"
+        case .resetUserPassword: return "/auth/reset-password/user"
+        case .resetRestaurantPassword: return "/auth/reset-password/restaurant"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .registerUser(_): return .post
-        case .loginUser(_): return .post
-        case .registerRestaurant(_): return .post
-        case .loginRestaurant(_): return .post
-        case .logout(_): return .delete
+        case .registerUser: return .post
+        case .loginUser: return .post
+        case .registerRestaurant: return .post
+        case .loginRestaurant: return .post
+        case .logout: return .delete
+        case .resetUserPassword: return .post
+        case .resetRestaurantPassword: return .post
         }
     }
     
     var headers: [String : String]? {
         switch self {
-        case .registerUser(_), .loginUser(_), .registerRestaurant(_), .loginRestaurant(_), .logout(_): return ["Content-Type": "application/json"]
+        case .registerUser, .loginUser, .registerRestaurant, .loginRestaurant, .logout, .resetUserPassword, .resetRestaurantPassword: return ["Content-Type": "application/json"]
         }
     }
     
@@ -91,6 +108,8 @@ extension AuthRemoteRepository.Endpoint: APIConfigurable {
         case .registerRestaurant(let bodyRequest): return bodyRequest
         case .loginRestaurant(let bodyRequest): return bodyRequest
         case .logout(let bodyRequest): return bodyRequest
+        case .resetUserPassword(let bodyRequest): return bodyRequest
+        case .resetRestaurantPassword(let bodyRequest): return bodyRequest
         }
     }
     

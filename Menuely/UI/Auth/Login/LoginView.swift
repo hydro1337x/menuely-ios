@@ -16,6 +16,13 @@ struct LoginView: View {
             base
             dynamicContent
         }
+        .sheet(isPresented: viewModel.routing.isResetPasswordSheetPresented == true ? .constant(true) : .constant(false), onDismiss: {
+            viewModel.routing.isResetPasswordSheetPresented = false
+        }, content: {
+            ResetPasswordView()
+                .modifier(PopoversViewModifier())
+                .modifier(RootViewAppearance())
+        })
     }
     
     private var base: some View {
@@ -41,7 +48,15 @@ struct LoginView: View {
                 }
             }, label: {
                 Text("Don't have an account?")
-                    .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
+                    .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+            })
+            .padding(.top, 10)
+            
+            Button(action: {
+                viewModel.resetPasswordView()
+            }, label: {
+                Text("Reset password")
+                    .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
             })
             .padding(.top, 10)
         }
@@ -83,6 +98,12 @@ private extension LoginView {
         viewModel.appState[\.routing.activityIndicator.isActive] = false
         viewModel.tabBarView()
         return EmptyView()
+    }
+}
+
+extension LoginView {
+    struct Routing: Equatable {
+        var isResetPasswordSheetPresented: Bool?
     }
 }
 

@@ -13,6 +13,7 @@ extension Resolver {
         register { UserRegistrationViewModel() }
         register { RestaurantRegistrationViewModel() }
         register { LoginViewModel(appState: resolve()) }
+        register { ResetPasswordView.ViewModel() }
         
         register { ProfileViewModel(appState: resolve()) }
         register { UserProfileViewModel(appState: resolve()) }

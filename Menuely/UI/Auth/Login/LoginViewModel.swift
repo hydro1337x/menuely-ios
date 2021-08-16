@@ -14,7 +14,7 @@ class LoginViewModel: ObservableObject {
     // MARK: - Properties
     @Injected private var authService: AuthServicing
     
-    @Published var routing: AuthSelectionView.Routing
+    @Published var routing: LoginView.Routing
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var loginResult: Loadable<Discardable>
@@ -35,7 +35,7 @@ class LoginViewModel: ObservableObject {
     init(appState: Store<AppState>, loginResult: Loadable<Discardable> = .notRequested, authenticatedUser: Loadable<AuthenticatedUser> = .notRequested, authenticatedRestaurant: Loadable<AuthenticatedRestaurant> = .notRequested) {
         self.appState = appState
         
-        _routing = .init(initialValue: appState[\.routing.authSelection])
+        _routing = .init(initialValue: appState[\.routing.login])
         _loginResult = .init(initialValue: loginResult)
         _authenticatedUser = .init(initialValue: authenticatedUser)
         _authenticatedRestaurant = .init(initialValue: authenticatedRestaurant)
@@ -43,10 +43,10 @@ class LoginViewModel: ObservableObject {
         cancelBag.collect {
             $routing
                 .removeDuplicates()
-                .sink { appState[\.routing.authSelection] = $0 }
+                .sink { appState[\.routing.login] = $0 }
             
             appState
-                .map(\.routing.authSelection)
+                .map(\.routing.login)
                 .removeDuplicates()
                 .assign(to: \.routing, on: self)
         }
@@ -107,7 +107,7 @@ class LoginViewModel: ObservableObject {
     
     // MARK: - Routing
     func registrationView() {
-        routing.selectedAuth = .registration
+        appState[\.routing.authSelection.selectedAuth] = .registration
     }
     
     func tabBarView() {
@@ -115,6 +115,10 @@ class LoginViewModel: ObservableObject {
         email = ""
         password = ""
         appState[\.routing.root] = .tabs
+    }
+    
+    func resetPasswordView() {
+        routing.isResetPasswordSheetPresented = true
     }
     
     func resetStates() {

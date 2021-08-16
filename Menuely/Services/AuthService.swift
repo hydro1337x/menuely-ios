@@ -22,6 +22,9 @@ protocol AuthServicing {
     func loginRestaurant(with restaurantbodyRequest: BodyRequestable, authenticatedRestaurant: LoadableSubject<AuthenticatedRestaurant>)
     
     func logout(logoutResult: LoadableSubject<Discardable>)
+    
+    func resetUserPassword(with bodyRequest: BodyRequestable, resetPasswordResult: LoadableSubject<Discardable>)
+    func resetRestaurantPassword(with bodyRequest: BodyRequestable, resetPasswordResult: LoadableSubject<Discardable>)
 }
 
 class AuthService: AuthServicing {
@@ -80,6 +83,18 @@ class AuthService: AuthServicing {
             .store(in: cancelBag)
     }
     
+    func resetUserPassword(with bodyRequest: BodyRequestable, resetPasswordResult: LoadableSubject<Discardable>) {
+        resetPasswordResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
+        
+        Just<Void>
+            .withErrorType(Error.self)
+            .flatMap { [remoteRepository] in
+                return remoteRepository.resetUserPassword(with: bodyRequest)
+            }
+            .sinkToLoadable { resetPasswordResult.wrappedValue = $0 }
+            .store(in: cancelBag)
+    }
+    
     // MARK: - Restaurant
     
     func registerRestaurant(with bodyRequest: BodyRequestable, registration: LoadableSubject<Discardable>) {
@@ -111,6 +126,18 @@ class AuthService: AuthServicing {
                 }
                 
             }
+            .store(in: cancelBag)
+    }
+    
+    func resetRestaurantPassword(with bodyRequest: BodyRequestable, resetPasswordResult: LoadableSubject<Discardable>) {
+        resetPasswordResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
+        
+        Just<Void>
+            .withErrorType(Error.self)
+            .flatMap { [remoteRepository] in
+                return remoteRepository.resetRestaurantPassword(with: bodyRequest)
+            }
+            .sinkToLoadable { resetPasswordResult.wrappedValue = $0 }
             .store(in: cancelBag)
     }
     

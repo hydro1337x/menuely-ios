@@ -52,6 +52,7 @@ extension AppState {
         var tab: TabBarView.Routing = .search
         var root: RootView.Routing = .auth
         var authSelection: AuthSelectionView.Routing = AuthSelectionView.Routing(selectedAuth: .login)
+        var login: LoginView.Routing = LoginView.Routing()
         var profile: ProfileView.Routing = ProfileView.Routing()
         var options: OptionsView.Routing = OptionsView.Routing()
         var userOrdersList: UserOrdersListView.Routing = UserOrdersListView.Routing()
