@@ -30,13 +30,10 @@ struct OrderPreviewCell: View {
                     
                     Spacer()
                     
-                    Button(action: {}, label: {
-                        Text(price).font(.system(size: 14))
-                    })
-                    .frame(width: 100, height: 25)
-                    .buttonStyle(RoundedGradientButtonStyle())
-                    .disabled(true)
-                    .padding(.top, 5)
+                    Text(price).font(.system(size: 14))
+                        .frame(width: 100, height: 25)
+                        .modifier(RoundedGradientViewModifier())
+                        .padding(.top, 5)
                 }
                 
                 HStack {

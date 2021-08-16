@@ -52,15 +52,11 @@ struct OrderCell: View {
                     
                     Spacer()
                     
-                    Button(action: {}, label: {
-                        Text(price)
-                            .font(.system(size: 14))
-                    })
-                    .frame(width: 100, height: 25)
-                    .padding(.leading, 5)
-                    .padding(.bottom, 15)
-                    .buttonStyle(RoundedGradientButtonStyle())
-                    .disabled(true)
+                    Text(price).font(.system(size: 14))
+                        .frame(width: 100, height: 25)
+                        .modifier(RoundedGradientViewModifier())
+                        .padding(.leading, 5)
+                        .padding(.bottom, 15)
                     
                     Spacer()
                 }

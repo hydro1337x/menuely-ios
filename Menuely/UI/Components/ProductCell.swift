@@ -76,7 +76,9 @@ struct ProductCell: View {
                 .padding(.vertical, 5)
                 
                 Button(action: {
-                    action?()
+                    if isTapped {
+                        action?()
+                    }
                 }, label: {
                     Text(isTapped ? extendedButtonTitle ?? buttonTitle : buttonTitle)
                         .font(isTapped ? .body : .system(size: 14))
@@ -84,7 +86,6 @@ struct ProductCell: View {
                 .frame(width: isTapped ? geometry.size.width : buttonWidth, height: isTapped ? extendedButtonHeight : buttonHeight)
                 .offset(x: isTapped ? 0 : geometry.size.width - horizontalShift, y: isTapped ? 0 : -buttonVerticalOffset)
                 .buttonStyle(RoundedGradientButtonStyle())
-                .disabled(action == nil || !isTapped ? true : false)
             }
             .padding(.top, isTapped ? extendedImageHeight : 0)
             

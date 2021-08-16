@@ -23,70 +23,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "45AA371C-05CA-4688-9037-28EFF38EC1A4"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Menuely/UI/Profile/Options/RestaurantOrderDetailsView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "notRequestedView"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "45AA371C-05CA-4688-9037-28EFF38EC1A4 - b97c519678687f4b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Menuely.RestaurantOrderDetailsView.notRequestedView.getter : some"
-                  moduleName = "Menuely"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hydro/Documents/AppDevelopment/iOS/Menuely/Menuely/UI/Profile/Options/RestaurantOrderDetailsView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "52"
-                  endingLineNumber = "52"
-                  offsetFromSymbolStart = "72">
-               </Location>
-               <Location
-                  uuid = "45AA371C-05CA-4688-9037-28EFF38EC1A4 - 7bf7127a641f2337"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "implicit closure #2 () -&gt; () in implicit closure #1 (Menuely.RestaurantOrderDetailsView.ViewModel) -&gt; () -&gt; () in Menuely.RestaurantOrderDetailsView.notRequestedView.getter : some"
-                  moduleName = "Menuely"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hydro/Documents/AppDevelopment/iOS/Menuely/Menuely/UI/Profile/Options/RestaurantOrderDetailsView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "52"
-                  endingLineNumber = "52"
-                  offsetFromSymbolStart = "24">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7B83F1A5-D0CC-42A6-A99A-205D0C6FAB2D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Menuely/UI/Profile/Options/RestaurantOrderDetailsView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "listLoadedView(_:showLoading:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "DCAFC27D-350F-48F7-ABC4-E91402C4F9E3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -94,10 +30,10 @@
             filePath = "Menuely/UI/Profile/Options/RestaurantOrderDetailsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "acceptOrderResultLoadedView()"
-            landmarkType = "7">
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "previews"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

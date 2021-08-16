@@ -13,8 +13,15 @@ struct RestaurantOrdersListView: View {
     
     var body: some View {
         listContent
-            .navigationBarTitleDisplayMode(.large)
             .navigationBarTitle("Restaurant orders")
+            .navigationBarItems(trailing: Button(action: {
+                viewModel.getOrders()
+            }, label: {
+                Image(.refresh)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 25, height: 25)
+            }))
     }
 }
 
@@ -75,7 +82,6 @@ private extension RestaurantOrdersListView {
                     OrderCell(title: order.customerName ?? "", subtitle: viewModel.timeIntervalToString(order.createdAt), price: viewModel.format(price: order.totalPrice, currency: order.currency), imageUrl: URL(string: ""), isActive: order.employeeName != nil ? false : true)
                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
                     }
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
                     .onTapGesture {
                         viewModel.routing.orderDetailsForId = order.id
                     }

@@ -18,7 +18,14 @@ struct RestaurantOrderDetailsView: View {
             listContent
             acceptOrderResultContent
         }
-        .navigationBarTitleDisplayMode(.large)
+        .navigationBarItems(trailing: Button(action: {
+            viewModel.getOrder()
+        }, label: {
+            Image(.refresh)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 25, height: 25)
+        }))
         .navigationBarTitle("Order ID: \(viewModel.title)")
     }
 }
