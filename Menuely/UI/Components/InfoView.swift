@@ -42,15 +42,15 @@ struct InfoView: View {
             VStack {
                 VStack {
                     Text(viewModel.routing.configuration?.title ?? "")
-                        .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
+                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                         .padding(.top, 5)
                         .font(style.titleTextStyle)
                     
                     Divider()
-                        .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
+                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                     
                     Text(viewModel.routing.configuration?.message ?? "")
-                        .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
+                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                         .multilineTextAlignment(.center)
                         .font(style.messageTextStyle)
                         .padding(.vertical, 5)

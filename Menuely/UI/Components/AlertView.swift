@@ -51,14 +51,14 @@ struct AlertView: View {
             VStack {
                 VStack(spacing: 0) {
                     Text(viewModel.routing.configuration?.title ?? "")
-                        .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
+                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                         .font(style.titleTextStyle)
                         .padding(.horizontal, 15)
                         .padding(.top, 10)
                     
                     if let message = viewModel.routing.configuration?.message {
                         Text(message)
-                            .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
+                            .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                             .multilineTextAlignment(.center)
                             .font(style.messageTextStyle)
                             .padding(.top, 5)
@@ -73,7 +73,7 @@ struct AlertView: View {
                             Button(action: viewModel.routing.configuration?.primaryAction ?? {}, label: {
                                 Text(viewModel.routing.configuration?.primaryButtonTitle ?? "")
                             })
-                            .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
+                            .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                             .frame(width: showSecondaryContent ? geometry.size.width / 2 : geometry.size.width, height: 48)
                             
                             if showSecondaryContent {
@@ -84,7 +84,7 @@ struct AlertView: View {
                                 Button(action: viewModel.routing.configuration?.secondaryAction ?? {}, label: {
                                     Text(viewModel.routing.configuration?.secondaryButtonTitle ?? "")
                                 })
-                                .foregroundColor(Color(#colorLiteral(red: 0.2980110943, green: 0.2980577946, blue: 0.2979964018, alpha: 1)))
+                                .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                                 .frame(width: geometry.size.width / 2, height: 48)
                                 
                             }

@@ -124,6 +124,7 @@
 		60944F39268DC73F0063CD61 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 60944F38268DC73F0063CD61 /* Resolver */; };
 		60944F3B268DC8460063CD61 /* Application+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60944F3A268DC8460063CD61 /* Application+Injection.swift */; };
 		6097A7D126A0DD4200BC3534 /* AuthCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6097A7D026A0DD4100BC3534 /* AuthCredentials.swift */; };
+		609A57A326CBF303001C35E6 /* InvitationsRemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A57A226CBF303001C35E6 /* InvitationsRemoteRepository.swift */; };
 		609B999626BD3DC600A2EAC9 /* RestaurantNoticeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609B999526BD3DC600A2EAC9 /* RestaurantNoticeInfo.swift */; };
 		60A0258126B85A1B008C000B /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A0258026B85A1B008C000B /* CartView.swift */; };
 		60A0258326B85A23008C000B /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A0258226B85A23008C000B /* CartViewModel.swift */; };
@@ -323,6 +324,7 @@
 		608F478E26C7E20C009C9730 /* OrderPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPreviewCell.swift; sourceTree = "<group>"; };
 		60944F3A268DC8460063CD61 /* Application+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Application+Injection.swift"; sourceTree = "<group>"; };
 		6097A7D026A0DD4100BC3534 /* AuthCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCredentials.swift; sourceTree = "<group>"; };
+		609A57A226CBF303001C35E6 /* InvitationsRemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationsRemoteRepository.swift; sourceTree = "<group>"; };
 		609B999526BD3DC600A2EAC9 /* RestaurantNoticeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantNoticeInfo.swift; sourceTree = "<group>"; };
 		60A0258026B85A1B008C000B /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		60A0258226B85A23008C000B /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
@@ -595,6 +597,7 @@
 				0C8B25F026B2C73A007809CD /* CategoriesRemoteRepository.swift */,
 				0C7CD88226B42A3E0066645E /* ProductsRemoteRepository.swift */,
 				6044D30126C47DC700DBC806 /* OrdersRemoteRepository.swift */,
+				609A57A226CBF303001C35E6 /* InvitationsRemoteRepository.swift */,
 				60F3BACA2694B85B005798C1 /* Authenticator.swift */,
 				60006229269644DB0085DF41 /* AuthRemoteRepository.swift */,
 				60FF8C2F26A388350050DA8A /* LocalRepository.swift */,
@@ -989,6 +992,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				609A57A326CBF303001C35E6 /* InvitationsRemoteRepository.swift in Sources */,
 				0C7CD88326B42A3E0066645E /* ProductsRemoteRepository.swift in Sources */,
 				0C7CD87A26B41E570066645E /* Product.swift in Sources */,
 				60173F2F269C8F03003C4E40 /* AlertView.swift in Sources */,
