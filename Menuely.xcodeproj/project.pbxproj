@@ -125,6 +125,12 @@
 		60944F3B268DC8460063CD61 /* Application+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60944F3A268DC8460063CD61 /* Application+Injection.swift */; };
 		6097A7D126A0DD4200BC3534 /* AuthCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6097A7D026A0DD4100BC3534 /* AuthCredentials.swift */; };
 		609A57A326CBF303001C35E6 /* InvitationsRemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A57A226CBF303001C35E6 /* InvitationsRemoteRepository.swift */; };
+		609A57A526CC7899001C35E6 /* InvitationsListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A57A426CC7899001C35E6 /* InvitationsListResponse.swift */; };
+		609A57A726CC78C7001C35E6 /* Invitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A57A626CC78C7001C35E6 /* Invitation.swift */; };
+		609A57A926CC7979001C35E6 /* CreateInvitationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A57A826CC7978001C35E6 /* CreateInvitationRequest.swift */; };
+		609A57AB26CC7984001C35E6 /* AcceptInvitationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A57AA26CC7984001C35E6 /* AcceptInvitationRequest.swift */; };
+		609A57AD26CC7991001C35E6 /* RejectInvitationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A57AC26CC7991001C35E6 /* RejectInvitationRequest.swift */; };
+		609A57AF26CC7DB7001C35E6 /* InvitationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A57AE26CC7DB7001C35E6 /* InvitationsService.swift */; };
 		609B999626BD3DC600A2EAC9 /* RestaurantNoticeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609B999526BD3DC600A2EAC9 /* RestaurantNoticeInfo.swift */; };
 		60A0258126B85A1B008C000B /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A0258026B85A1B008C000B /* CartView.swift */; };
 		60A0258326B85A23008C000B /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A0258226B85A23008C000B /* CartViewModel.swift */; };
@@ -325,6 +331,12 @@
 		60944F3A268DC8460063CD61 /* Application+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Application+Injection.swift"; sourceTree = "<group>"; };
 		6097A7D026A0DD4100BC3534 /* AuthCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCredentials.swift; sourceTree = "<group>"; };
 		609A57A226CBF303001C35E6 /* InvitationsRemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationsRemoteRepository.swift; sourceTree = "<group>"; };
+		609A57A426CC7899001C35E6 /* InvitationsListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationsListResponse.swift; sourceTree = "<group>"; };
+		609A57A626CC78C7001C35E6 /* Invitation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invitation.swift; sourceTree = "<group>"; };
+		609A57A826CC7978001C35E6 /* CreateInvitationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateInvitationRequest.swift; sourceTree = "<group>"; };
+		609A57AA26CC7984001C35E6 /* AcceptInvitationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptInvitationRequest.swift; sourceTree = "<group>"; };
+		609A57AC26CC7991001C35E6 /* RejectInvitationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RejectInvitationRequest.swift; sourceTree = "<group>"; };
+		609A57AE26CC7DB7001C35E6 /* InvitationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationsService.swift; sourceTree = "<group>"; };
 		609B999526BD3DC600A2EAC9 /* RestaurantNoticeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantNoticeInfo.swift; sourceTree = "<group>"; };
 		60A0258026B85A1B008C000B /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		60A0258226B85A23008C000B /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
@@ -614,6 +626,7 @@
 				0C8B25F626B2CDFE007809CD /* CategoriesService.swift */,
 				0C7CD88426B42BEE0066645E /* ProductsService.swift */,
 				6044D30526C4806D00DBC806 /* OrdersService.swift */,
+				609A57AE26CC7DB7001C35E6 /* InvitationsService.swift */,
 				60006231269648C30085DF41 /* AuthService.swift */,
 				608A13CE26BEC71C0054E217 /* CartService.swift */,
 			);
@@ -841,6 +854,7 @@
 				60A7EAD226C5635D00FFF411 /* PreparedProduct.swift */,
 				60FF962C26C7109F0079472D /* OrderedProduct.swift */,
 				60A7EAD026C561A600FFF411 /* Order.swift */,
+				609A57A626CC78C7001C35E6 /* Invitation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -861,6 +875,9 @@
 				6077EBCA26ACC8FF00D6D4F4 /* UpdateEmailRequest.swift */,
 				6044D30326C47DFC00DBC806 /* CreateOrderRequest.swift */,
 				60FC493526C9CC4F001983A0 /* AcceptOrderRequest.swift */,
+				609A57A826CC7978001C35E6 /* CreateInvitationRequest.swift */,
+				609A57AA26CC7984001C35E6 /* AcceptInvitationRequest.swift */,
+				609A57AC26CC7991001C35E6 /* RejectInvitationRequest.swift */,
 				60C8D56526AE05590079EF48 /* SearchRequest.swift */,
 				60A57CE926AF349200A53341 /* Menus */,
 				0C8B25E726B2C501007809CD /* Categories */,
@@ -883,6 +900,7 @@
 				0C7CD87726B419540066645E /* ProductsListResponse.swift */,
 				60A7EAD426C563F800FFF411 /* OrdersListResponse.swift */,
 				60FF962A26C70B610079472D /* OrderResponse.swift */,
+				609A57A426CC7899001C35E6 /* InvitationsListResponse.swift */,
 				60E395392690918D007E459E /* TokensResponse.swift */,
 				6000622F2696482F0085DF41 /* Discardable.swift */,
 			);
@@ -1022,6 +1040,7 @@
 				6077EBC926AC9B3E00D6D4F4 /* UpdatePasswordViewModel.swift in Sources */,
 				6077EBC526AC996500D6D4F4 /* UpdatePasswordRequest.swift in Sources */,
 				60A57CE826AF329C00A53341 /* MenusRequest.swift in Sources */,
+				609A57A926CC7979001C35E6 /* CreateInvitationRequest.swift in Sources */,
 				6077EBCB26ACC8FF00D6D4F4 /* UpdateEmailRequest.swift in Sources */,
 				0CDD50AB26AE957500CF2207 /* FloatingTextEditor.swift in Sources */,
 				60C8D56626AE05590079EF48 /* SearchRequest.swift in Sources */,
@@ -1078,7 +1097,9 @@
 				60FE2A3E26B4895A006A96B4 /* StretchyHeader.swift in Sources */,
 				60660C6D2693861D00A6159E /* NetworkClient.swift in Sources */,
 				0C8B25F126B2C73A007809CD /* CategoriesRemoteRepository.swift in Sources */,
+				609A57A526CC7899001C35E6 /* InvitationsListResponse.swift in Sources */,
 				6016C1C426AB0A6400375929 /* UpdateUserProfileRequest.swift in Sources */,
+				609A57AD26CC7991001C35E6 /* RejectInvitationRequest.swift in Sources */,
 				606531CD26A43B2300C8C500 /* OptionsViewModel.swift in Sources */,
 				60E4ED70268DECA600EC4561 /* UsersListResponse.swift in Sources */,
 				0C8B25EB26B2C573007809CD /* CategoriesRequest.swift in Sources */,
@@ -1132,6 +1153,7 @@
 				60A0258326B85A23008C000B /* CartViewModel.swift in Sources */,
 				60B510AD26B3350C00218D6D /* CreateCategoryView.swift in Sources */,
 				607F6EF526B99A1A0037060E /* EmployeesListViewModel.swift in Sources */,
+				609A57AB26CC7984001C35E6 /* AcceptInvitationRequest.swift in Sources */,
 				606C9AC926A7795E005AD06E /* RootView.swift in Sources */,
 				60A57CF126AF3B2600A53341 /* MenusService.swift in Sources */,
 				60E395382690917C007E459E /* TokensRequest.swift in Sources */,
@@ -1166,6 +1188,7 @@
 				6016C1CA26AB262800375929 /* UpdateRestaurantProfileRequest.swift in Sources */,
 				60A57CE626AF31F800A53341 /* MenusRemoteRepository.swift in Sources */,
 				6071080926A8640D00008E44 /* AuthSelectionView.swift in Sources */,
+				609A57AF26CC7DB7001C35E6 /* InvitationsService.swift in Sources */,
 				606C9AC726A77768005AD06E /* TabBarViewModel.swift in Sources */,
 				6016C1C026AAFE3F00375929 /* EditUserProfileView.swift in Sources */,
 				601A855026B091AD00B31C3D /* UpdateMenuViewModel.swift in Sources */,
@@ -1181,6 +1204,7 @@
 				606531C726A43A3800C8C500 /* ProfileView.swift in Sources */,
 				0C7CD87826B419540066645E /* ProductsListResponse.swift in Sources */,
 				6074C0BA268CC06600DA3B21 /* Loadable.swift in Sources */,
+				609A57A726CC78C7001C35E6 /* Invitation.swift in Sources */,
 				60A57CDA26AF220C00A53341 /* MenuCell.swift in Sources */,
 				602375D1269F5B550086B3B6 /* DataInfo.swift in Sources */,
 				60FC493426C9CBB9001983A0 /* RestaurantOrderDetailsViewModel.swift in Sources */,
