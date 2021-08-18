@@ -15,17 +15,25 @@ extension InvitationsListView {
         
 //        @Published var routing: Routing
         @Published var invitations: Loadable<[Invitation]>
+        @Published var actionResult: Loadable<Discardable>
         
+        var title: String {
+            switch appState[\.data.selectedEntity] {
+            case .user: return "Incoming invitations"
+            case .restaurant: return "Outgoing invitations"
+            }
+        }
         var appState: Store<AppState>
         private var cancelBag = CancelBag()
         
         // MARK: - Initialization
-        init(appState: Store<AppState>, invitations: Loadable<[Invitation]> = .notRequested) {
+        init(appState: Store<AppState>, invitations: Loadable<[Invitation]> = .notRequested, actionResult: Loadable<Discardable> = .notRequested) {
             self.appState = appState
             
 //            _routing = .init(initialValue: appState[\.routing.invitationsList])
             
             _invitations = .init(initialValue: invitations)
+            _actionResult = .init(initialValue: actionResult)
             
             cancelBag.collect {
 //                $routing
@@ -37,7 +45,6 @@ extension InvitationsListView {
 //                    .removeDuplicates()
 //                    .assign(to: \.routing, on: self)
             }
-                
         }
         
         // MARK: - Methods
@@ -45,8 +52,14 @@ extension InvitationsListView {
             invitationsService.getInvitations(invitations: loadableSubject(\.invitations))
         }
         
-        func resetStates() {
-            invitations.reset()
+        func acceptInvitation(_ invitation: Invitation) {
+            let bodyRequest = AcceptInvitationBodyRequest(invitationId: invitation.id, employerId: invitation.employer.id)
+            invitationsService.acceptInvitation(with: bodyRequest, acceptInvitationResult: loadableSubject(\.actionResult))
+        }
+        
+        func rejectInvitation(_ invitation: Invitation) {
+            let bodyRequest = RejectInvitationBodyRequest(invitationId: invitation.id)
+            invitationsService.rejectInvitation(with: bodyRequest, rejectInvitationResult: loadableSubject(\.actionResult))
         }
         
         func imageUrl(for invitation: Invitation) -> URL? {

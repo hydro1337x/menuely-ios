@@ -186,6 +186,7 @@
 		60E3953C26909197007E459E /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E3953B26909197007E459E /* Tokens.swift */; };
 		60E45C8426CD21CC00C33F4C /* InvitationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E45C8326CD21CC00C33F4C /* InvitationsListView.swift */; };
 		60E45C8626CD21D600C33F4C /* InvitationsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E45C8526CD21D600C33F4C /* InvitationsListViewModel.swift */; };
+		60E45C8C26CD66D900C33F4C /* InvitationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E45C8B26CD66D900C33F4C /* InvitationCell.swift */; };
 		60E4ED6A268DCC7B00EC4561 /* Services+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED69268DCC7B00EC4561 /* Services+Injection.swift */; };
 		60E4ED6C268DD45400EC4561 /* ApplicationEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED6B268DD45400EC4561 /* ApplicationEventsHandler.swift */; };
 		60E4ED6E268DE40B00EC4561 /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4ED6D268DE40B00EC4561 /* UsersService.swift */; };
@@ -393,6 +394,7 @@
 		60E3953B26909197007E459E /* Tokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
 		60E45C8326CD21CC00C33F4C /* InvitationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationsListView.swift; sourceTree = "<group>"; };
 		60E45C8526CD21D600C33F4C /* InvitationsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationsListViewModel.swift; sourceTree = "<group>"; };
+		60E45C8B26CD66D900C33F4C /* InvitationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCell.swift; sourceTree = "<group>"; };
 		60E4ED69268DCC7B00EC4561 /* Services+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services+Injection.swift"; sourceTree = "<group>"; };
 		60E4ED6B268DD45400EC4561 /* ApplicationEventsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationEventsHandler.swift; sourceTree = "<group>"; };
 		60E4ED6D268DE40B00EC4561 /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
@@ -773,6 +775,7 @@
 				603F8A2E26C0904E00FD86C7 /* CartCell.swift */,
 				60FF962426C6C8AB0079472D /* OrderCell.swift */,
 				608F478E26C7E20C009C9730 /* OrderPreviewCell.swift */,
+				60E45C8B26CD66D900C33F4C /* InvitationCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1148,6 +1151,7 @@
 				60FC493026C9C5A4001983A0 /* RestaurantOrdersListViewModel.swift in Sources */,
 				60A57CE426AF317200A53341 /* MenusListResponse.swift in Sources */,
 				60A7EAD326C5635D00FFF411 /* PreparedProduct.swift in Sources */,
+				60E45C8C26CD66D900C33F4C /* InvitationCell.swift in Sources */,
 				60FF962D26C7109F0079472D /* OrderedProduct.swift in Sources */,
 				60173F39269CE10D003C4E40 /* Restaurant.swift in Sources */,
 				60A57CF426AF42A900A53341 /* CreateMenuView.swift in Sources */,

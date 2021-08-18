@@ -46,7 +46,7 @@ extension UserNoticeView {
         }
         
         func infoView() {
-            appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Invitation sent successfully", message: nil)
+            appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Invitation", message: "Invitation sent successfully")
         }
     }
 }

@@ -12,7 +12,11 @@ struct InvitationsListView: View {
     @StateObject private var viewModel: ViewModel = Resolver.resolve()
     
     var body: some View {
-        listContent
+        ZStack {
+            listContent
+            actionContent
+        }
+        .navigationBarTitle(viewModel.title)
     }
 }
 
@@ -23,6 +27,16 @@ private extension InvitationsListView {
         case .notRequested: listNotRequestedView
         case .isLoading(let last, _):  listLoadingView(last)
         case .loaded(let invitations):  listLoadedView(invitations, showLoading: false)
+        case let .failed(error): failedView(error)
+        }
+    }
+    
+    @ViewBuilder
+    private var actionContent: some View {
+        switch viewModel.actionResult {
+        case .notRequested: EmptyView()
+        case .isLoading(_, _):  listLoadingView(nil)
+        case .loaded(_):  actionLoadedView()
         case let .failed(error): failedView(error)
         }
     }
@@ -50,7 +64,6 @@ private extension InvitationsListView {
     }
     
     func failedView(_ error: Error) -> some View {
-        viewModel.resetStates()
         viewModel.appState[\.routing.activityIndicator.isActive] = false
         viewModel.errorView(with: error.localizedDescription)
         return EmptyView()
@@ -70,10 +83,10 @@ private extension InvitationsListView {
         return ScrollView {
             LazyVStack {
                 ForEach(invitations) { invitation in
-                    SearchCell(title: viewModel.title(for: invitation), imageURL: viewModel.imageUrl(for: invitation))
-                        .onTapGesture {
-//                            viewModel.routing.userNoticeForID = user.id
-                        }
+                    switch viewModel.appState[\.data.selectedEntity] {
+                    case .user: userInvitationCell(for: invitation)
+                    case .restaurant: restaurantInvitationCell(for: invitation)
+                    }
                 }
             }
         }
@@ -84,6 +97,34 @@ private extension InvitationsListView {
 //                .modifier(PopoversViewModifier())
 //                .modifier(RootViewAppearance())
 //        })
+        
+    }
+    
+    func actionLoadedView() -> some View {
+        viewModel.actionResult.reset()
+        viewModel.appState[\.routing.activityIndicator.isActive] = false
+        viewModel.getInvitations()
+        return EmptyView()
+    }
+    
+    func userInvitationCell(for invitation: Invitation) -> some View {
+        InvitationCell(title: viewModel.title(for: invitation), imageURL: viewModel.imageUrl(for: invitation), primaryAction: {
+            viewModel.acceptInvitation(invitation)
+        }, primaryButtonTitle: "Accept", secondaryAction: {
+            viewModel.rejectInvitation(invitation)
+        }, secondaryButtonTitle: "Decline")
+            .onTapGesture {
+//                            viewModel.routing.userNoticeForID = user.id
+            }
+    }
+    
+    func restaurantInvitationCell(for invitation: Invitation) -> some View {
+        InvitationCell(title: viewModel.title(for: invitation), imageURL: viewModel.imageUrl(for: invitation), primaryAction: {
+            viewModel.rejectInvitation(invitation)
+        }, primaryButtonTitle: "Cancel", secondaryAction: nil, secondaryButtonTitle: nil)
+            .onTapGesture {
+//                            viewModel.routing.userNoticeForID = user.id
+            }
     }
 }
 
