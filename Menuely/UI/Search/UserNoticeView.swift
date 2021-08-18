@@ -18,8 +18,10 @@ struct UserNoticeView: View {
                 Color(#colorLiteral(red: 0.948246181, green: 0.9496578574, blue: 0.9691624045, alpha: 1))
                     .edgesIgnoringSafeArea(.all)
                 
-                content
+                userContent
                     .edgesIgnoringSafeArea(.vertical)
+                
+                createInvitationContent
             }
         }
     }
@@ -27,11 +29,21 @@ struct UserNoticeView: View {
 
 private extension UserNoticeView {
     @ViewBuilder
-    private var content: some View {
+    private var userContent: some View {
         switch viewModel.user {
         case .notRequested: notRequestedView
         case .isLoading(let last, _): loadingView(last)
-        case .loaded(let user): loadedView(user, showLoading: false)
+        case .loaded(let user): userLoadedView(user, showLoading: false)
+        case let .failed(error): failedView(error)
+        }
+    }
+    
+    @ViewBuilder
+    private var createInvitationContent: some View {
+        switch viewModel.createInvitationResult {
+        case .notRequested: notRequestedView
+        case .isLoading(_, _): loadingView(nil)
+        case .loaded(_): createInvitationLoadedView()
         case let .failed(error): failedView(error)
         }
     }
@@ -46,7 +58,7 @@ private extension UserNoticeView {
     
     func loadingView(_ previouslyLoaded: User?) -> some View {
         if let user = previouslyLoaded {
-            return AnyView(loadedView(user, showLoading: true))
+            return AnyView(userLoadedView(user, showLoading: true))
         } else {
             viewModel.appState[\.routing.activityIndicator.isActive] = true
             return AnyView(EmptyView())
@@ -63,7 +75,7 @@ private extension UserNoticeView {
 // MARK: - Displaying Content
 
 private extension UserNoticeView {
-    func loadedView(_ user: User, showLoading: Bool) -> some View {
+    func userLoadedView(_ user: User, showLoading: Bool) -> some View {
         viewModel.appState[\.routing.activityIndicator.isActive] = false
         return ScrollView {
             StretchyHeader(imageURL: URL(string: user.coverImage?.url ?? ""))
@@ -110,9 +122,9 @@ private extension UserNoticeView {
                 }
                 
                 Button(action: {
-                    
+                    viewModel.createInvitation()
                 }, label: {
-                    Text("Invite/Cancel Invite")
+                    Text("Invite")
                 })
                 .frame(height: 48)
                 .padding(.top, 10)
@@ -123,6 +135,12 @@ private extension UserNoticeView {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(user.name)
+    }
+    
+    func createInvitationLoadedView() -> some View {
+        viewModel.appState[\.routing.activityIndicator.isActive] = false
+        viewModel.infoView()
+        return EmptyView()
     }
 }
 

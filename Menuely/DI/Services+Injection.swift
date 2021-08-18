@@ -20,5 +20,6 @@ extension Resolver {
         register { ProductsService() as ProductsServicing }
         register { CartService(appState: resolve()) as CartServicing }.scope(.shared)
         register { OrdersService() as OrdersServicing }
+        register { InvitationsService() as InvitationsServicing }
     }
 }

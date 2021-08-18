@@ -20,5 +20,6 @@ extension Resolver {
         register { CategoriesRemoteRepository() as CategoriesRemoteRepositing }
         register { ProductsRemoteRepository() as ProductsRemoteRepositing }
         register { OrdersRemoteRepository() as OrdersRemoteRepositing }
+        register { InvitationsRemoteRepository() as InvitationsRemoteRepositing }
     }
 }
