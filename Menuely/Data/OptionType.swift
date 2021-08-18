@@ -16,4 +16,6 @@ enum OptionType: String, Equatable {
     case quitEmployer = "Quit employer"
     case logout = "Logout"
     case deleteAccount = "Delete account"
+    case incomingInvitations = "Incoming invitations"
+    case outgoingInvitations = "Outgoing invitations"
 }

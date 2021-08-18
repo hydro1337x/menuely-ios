@@ -23,6 +23,7 @@ extension Resolver {
         register { RestaurantOrdersListView.ViewModel(appState: resolve()) }
         register { UserOrderDetailsView.ViewModel(appState: resolve()) }
         register { RestaurantOrderDetailsView.ViewModel(appState: resolve()) }
+        register { InvitationsListView.ViewModel(appState: resolve()) }
         
         register { TabBarViewModel(appState: resolve()) }
         register { RootViewModel(authService: resolve(), appState: resolve()) }

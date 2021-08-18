@@ -51,6 +51,9 @@ class OptionsViewModel: ObservableObject {
         
         if appState[\.data.selectedEntity] == .user {
             personalOptions.append(.userOrders)
+            personalOptions.append(.incomingInvitations)
+        } else {
+            personalOptions.append(.outgoingInvitations)
         }
         
         personalOptions.append(contentsOf: [.deleteAccount, .logout])
@@ -141,5 +144,10 @@ class OptionsViewModel: ObservableObject {
     func dismissAndShowRestaurantOrdersListView() {
         appState[\.routing.profile.isOptionsSheetPresented] = false
         appState[\.routing.profile.restaurantOrdersList] = true
+    }
+    
+    func dismissAndShowInvitationsListView() {
+        appState[\.routing.profile.isOptionsSheetPresented] = false
+        appState[\.routing.profile.invitationsList] = true
     }
 }

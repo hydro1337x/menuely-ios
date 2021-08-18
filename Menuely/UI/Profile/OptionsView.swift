@@ -39,12 +39,13 @@ struct OptionsView: View {
                                     .frame(height: 48)
                             })
                             .buttonStyle(PlainButtonStyle())
-                    case .userOrders, .deleteAccount, .logout:
+                    case .userOrders, .deleteAccount, .logout, .incomingInvitations, .outgoingInvitations:
                         OptionItemView(option: option, imageName: .forwardArrow)
                             .frame(height: 48)
                             .onTapGesture {
                                 switch option {
                                 case .userOrders: viewModel.dismissAndShowUserOrdersListView()
+                                case .incomingInvitations, .outgoingInvitations: viewModel.dismissAndShowInvitationsListView()
                                 case .logout: viewModel.logoutAlertView()
                                 case .deleteAccount: viewModel.deleteAccountAlertView()
                                 default: break

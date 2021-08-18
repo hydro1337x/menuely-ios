@@ -73,7 +73,7 @@ private extension EmployeesListView {
         return ScrollView {
             LazyVStack {
                 ForEach(employees) { employee in
-                    SearchUsersCell(title: employee.name, description: employee.email, imageURL: URL(string: employee.profileImage?.url ?? ""))
+                    SearchCell(title: employee.name, imageURL: URL(string: employee.profileImage?.url ?? ""))
                 }
             }
         }

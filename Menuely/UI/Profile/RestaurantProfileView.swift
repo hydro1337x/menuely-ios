@@ -18,6 +18,12 @@ struct RestaurantProfileView: View {
                 .edgesIgnoringSafeArea(.all)
             
             content
+            
+            NavigationLink(
+                destination: InvitationsListView(),
+                tag: true,
+                selection: $viewModel.routing.invitationsList,
+                label: { EmptyView() })
         }
         .edgesIgnoringSafeArea(.all)
         .sheet(isPresented: $viewModel.routing.isProfileImagePickerSheetPresented, content: {

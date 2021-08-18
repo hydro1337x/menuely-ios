@@ -52,7 +52,7 @@ extension ProfileView {
         var employerInvites: Bool?
         var userOrdersList: Bool?
         var restaurantOrdersList: Bool?
-        
+        var invitationsList: Bool?
     }
 }
 

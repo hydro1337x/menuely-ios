@@ -70,7 +70,7 @@ private extension RestaurantsSearchListView {
         return ScrollView {
             LazyVStack {
                 ForEach(restaurants) { restaurant in
-                    SearchUsersCell(title: restaurant.name, description: restaurant.email, imageURL: URL(string: restaurant.profileImage?.url ?? ""))
+                    SearchCell(title: restaurant.name, imageURL: URL(string: restaurant.profileImage?.url ?? ""))
                         .onTapGesture {
                             viewModel.restaurantNoticeView(for: restaurant)
                         }
