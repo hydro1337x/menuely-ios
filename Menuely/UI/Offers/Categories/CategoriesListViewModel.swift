@@ -81,6 +81,10 @@ class CategoriesListViewModel: ObservableObject {
     }
     
     // MARK: - Routing
+    func productsListView(for category: Category) {
+        routing.products = ProductsListDisplayInfo(categoryID: category.id, categoryName: category.name, imageURL: category.image.url, interaction: interactionType)
+    }
+    
     func errorView(with message: String?) {
         appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: message)
     }
@@ -95,22 +99,7 @@ class CategoriesListViewModel: ObservableObject {
         appState[\.routing.alert.configuration] = configuration
     }
     
-    func actionView(for category: Category, with additionalAction: @escaping () -> Void) {
-        let delete = Action(name: "Delete") {
-            self.appState[\.routing.action.configuration] = nil
-            self.deletionAlertView(for: category)
-        }
-        
-        let update = Action(name: "Edit") {
-            self.appState[\.routing.action.configuration] = nil
-            self.appState[\.routing.categoriesList.updateCategory] = category
-        }
-        
-        let configuration = ActionViewConfiguration(title: "\(category.name) actions", actions: [update, delete]) {
-            additionalAction()
-            self.appState[\.routing.action.configuration] = nil
-        }
-        
-        appState[\.routing.action.configuration] = configuration
+    func updateCategoryView(with category: Category) {
+        appState[\.routing.categoriesList.updateCategory] = category
     }
 }

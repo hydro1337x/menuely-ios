@@ -70,13 +70,16 @@ private extension EmployeesListView {
             viewModel.appState[\.routing.activityIndicator.isActive] = false
         }
         
-        return ScrollView {
-            LazyVStack {
-                ForEach(employees) { employee in
-                    SearchCell(title: employee.name, imageURL: URL(string: employee.profileImage?.url ?? ""))
-                }
+        return List {
+            ForEach(employees) { employee in
+                SearchCell(title: employee.name, imageURL: URL(string: employee.profileImage?.url ?? ""))
+                    .contextMenu(menuItems: {
+                        Text("Uninvite")
+                    })
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
             }
         }
+        .listStyle(InsetGroupedListStyle())
     }
 }
 

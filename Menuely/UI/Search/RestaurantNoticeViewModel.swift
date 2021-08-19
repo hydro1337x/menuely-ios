@@ -54,7 +54,7 @@ extension RestaurantNoticeView {
         
         // MARK: - Methods
         func getRestaurant() {
-            guard let restaurantID = appState[\.routing.restaurantsSearch.restaurantNoticeForInfo]?.restaurantID ?? appState[\.routing.scan.restaurantNoticeForInfo]?.restaurantID else { return }  
+            guard let restaurantID = appState[\.routing.restaurantsSearch.restaurantNoticeForInfo]?.restaurantID ?? appState[\.routing.scan.restaurantNoticeForInfo]?.restaurantID ?? appState[\.routing.invitationsList.restaurantNoticeForInfo]?.restaurantID else { return }  
             restaurantsService.getRestaurant(with: restaurantID, restaurant: loadableSubject(\.restaurant))
         }
         
@@ -64,6 +64,7 @@ extension RestaurantNoticeView {
         }
         
         func dismiss() {
+            appState[\.routing.invitationsList.restaurantNoticeForInfo] = nil
             appState[\.routing.restaurantsSearch.restaurantNoticeForInfo] = nil
             appState[\.routing.scan.restaurantNoticeForInfo] = nil
             cartService.deleteCart()

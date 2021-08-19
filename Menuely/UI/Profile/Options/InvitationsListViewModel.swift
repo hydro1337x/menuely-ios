@@ -13,7 +13,7 @@ extension InvitationsListView {
         // MARK: - Properties
         @Injected private var invitationsService: InvitationsServicing
         
-//        @Published var routing: Routing
+        @Published var routing: Routing
         @Published var invitations: Loadable<[Invitation]>
         @Published var actionResult: Loadable<Discardable>
         
@@ -30,20 +30,20 @@ extension InvitationsListView {
         init(appState: Store<AppState>, invitations: Loadable<[Invitation]> = .notRequested, actionResult: Loadable<Discardable> = .notRequested) {
             self.appState = appState
             
-//            _routing = .init(initialValue: appState[\.routing.invitationsList])
+            _routing = .init(initialValue: appState[\.routing.invitationsList])
             
             _invitations = .init(initialValue: invitations)
             _actionResult = .init(initialValue: actionResult)
             
             cancelBag.collect {
-//                $routing
-//                    .removeDuplicates()
-//                    .sink { appState[\.routing.invitationsList] = $0 }
-//
-//                appState
-//                    .map(\.routing.invitationsList)
-//                    .removeDuplicates()
-//                    .assign(to: \.routing, on: self)
+                $routing
+                    .removeDuplicates()
+                    .sink { appState[\.routing.invitationsList] = $0 }
+
+                appState
+                    .map(\.routing.invitationsList)
+                    .removeDuplicates()
+                    .assign(to: \.routing, on: self)
             }
         }
         
@@ -73,6 +73,15 @@ extension InvitationsListView {
         // MARK: - Routing
         func errorView(with message: String?) {
             appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: message)
+        }
+        
+        func userNoticeView(for id: Int) {
+            routing.userNoticeForID = id
+        }
+        
+        func restaurantNoticeView(for id: Int) {
+            let info = RestaurantNoticeInfo(restaurantID: id, tableID: nil)
+            routing.restaurantNoticeForInfo = info
         }
     }
 }

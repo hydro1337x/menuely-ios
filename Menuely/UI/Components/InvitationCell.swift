@@ -23,7 +23,12 @@ struct InvitationCell: View {
             WebImage(url: imageURL)
                 .resizable()
                 .placeholder {
-                    Image(.person).background(Color(#colorLiteral(red: 0.9646247029, green: 0.9647596478, blue: 0.9645821452, alpha: 1)))
+                    Image(.person)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(.all, 5)
+                        .frame(width: 80, height: 80)
+                        .background(Color(#colorLiteral(red: 0.9646247029, green: 0.9647596478, blue: 0.9645821452, alpha: 1)))
                 }
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 80, height: 80)

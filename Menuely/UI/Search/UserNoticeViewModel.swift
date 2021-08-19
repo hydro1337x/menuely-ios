@@ -30,7 +30,7 @@ extension UserNoticeView {
         
         // MARK: - Methods
         func getUser() {
-            guard let id = appState[\.routing.usersSearch.userNoticeForID] else { return }
+            guard let id = appState[\.routing.usersSearch.userNoticeForID] ?? appState[\.routing.invitationsList.userNoticeForID] else { return }
             usersService.getUser(with: id, user: loadableSubject(\.user))
         }
         

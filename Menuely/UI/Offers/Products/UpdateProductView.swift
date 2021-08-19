@@ -45,7 +45,12 @@ struct UpdateProductView: View {
                         WebImage(url: URL(string: viewModel.imageURL ?? ""))
                             .resizable()
                             .placeholder {
-                                Image(.logo).background(Color(#colorLiteral(red: 0.9646247029, green: 0.9647596478, blue: 0.9645821452, alpha: 1)))
+                                Image(.logo)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .padding(.all, 5)
+                                    .frame(width: 150, height: 150, alignment: .center)
+                                    .background(Color(#colorLiteral(red: 0.9646247029, green: 0.9647596478, blue: 0.9645821452, alpha: 1)))
                             }
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 150, height: 150, alignment: .center)

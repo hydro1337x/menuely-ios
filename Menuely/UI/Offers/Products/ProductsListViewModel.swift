@@ -110,23 +110,8 @@ extension ProductsListView {
             appState[\.routing.alert.configuration] = configuration
         }
         
-        func actionView(for product: Product, with additionalAction: @escaping () -> Void) {
-            let delete = Action(name: "Delete") {
-                self.appState[\.routing.action.configuration] = nil
-                self.deletionAlertView(for: product)
-            }
-            
-            let update = Action(name: "Edit") {
-                self.appState[\.routing.action.configuration] = nil
-                self.appState[\.routing.productsList.updateProduct] = product
-            }
-            
-            let configuration = ActionViewConfiguration(title: "\(product.name) actions", actions: [update, delete]) {
-                additionalAction()
-                self.appState[\.routing.action.configuration] = nil
-            }
-            
-            appState[\.routing.action.configuration] = configuration
+        func updateProductView(with product: Product) {
+            appState[\.routing.productsList.updateProduct] = product
         }
     }
 }

@@ -13,6 +13,13 @@ struct UsersSearchListView: View {
     
     var body: some View {
         listContent
+            .sheet(isPresented: viewModel.routing.userNoticeForID == nil ? .constant(false) : .constant(true), onDismiss: {
+                viewModel.routing.userNoticeForID = nil
+            }, content: {
+                UserNoticeView()
+                    .modifier(PopoversViewModifier())
+                    .modifier(RootViewAppearance())
+            })
     }
 }
 
@@ -67,23 +74,16 @@ private extension UsersSearchListView {
             viewModel.appState[\.routing.activityIndicator.isActive] = false
         }
         
-        return ScrollView {
-            LazyVStack {
-                ForEach(users) { user in
-                    SearchCell(title: user.name, imageURL: URL(string: user.profileImage?.url ?? ""))
-                        .onTapGesture {
-                            viewModel.routing.userNoticeForID = user.id
-                        }
-                }
+        return List {
+            ForEach(users) { user in
+                SearchCell(title: user.name, imageURL: URL(string: user.profileImage?.url ?? ""))
+                    .onTapGesture {
+                        viewModel.routing.userNoticeForID = user.id
+                    }
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
             }
         }
-        .sheet(isPresented: viewModel.routing.userNoticeForID == nil ? .constant(false) : .constant(true), onDismiss: {
-            viewModel.routing.userNoticeForID = nil
-        }, content: {
-            UserNoticeView()
-                .modifier(PopoversViewModifier())
-                .modifier(RootViewAppearance())
-        })
+        .listStyle(InsetGroupedListStyle())
     }
 }
 

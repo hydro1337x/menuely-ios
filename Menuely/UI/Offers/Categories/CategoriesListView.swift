@@ -149,18 +149,23 @@ private extension CategoriesListView {
                     selection: $viewModel.routing.products) {
                     CategoryCell(title: category.name, imageUrl: category.image.url, placeholderImage: .logo)
                     }
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
                     .onTapGesture {
-                        viewModel.routing.products = ProductsListDisplayInfo(categoryID: category.id, categoryName: category.name, imageURL: category.image.url, interaction: viewModel.interactionType)
+                        viewModel.productsListView(for: category)
                     }
-                    .onLongPressGesture {
-                        if viewModel.interactionType == .modifying {
-                            viewModel.actionView(for: category) {
-                                isLongPressed = false
-                            }
-                            isLongPressed = true
-                        }
-                    }
+                    .contextMenu(menuItems: {
+                        Button(action: {
+                            viewModel.updateCategoryView(with: category)
+                        }, label: {
+                            Text("Edit")
+                        })
+                        
+                        Button(action: {
+                            viewModel.deletionAlertView(for: category)
+                        }, label: {
+                            Text("Delete")
+                        })
+                    })
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
             }
         }
         .listStyle(InsetGroupedListStyle())

@@ -57,6 +57,7 @@ extension AppState {
         var options: OptionsView.Routing = OptionsView.Routing()
         var userOrdersList: UserOrdersListView.Routing = UserOrdersListView.Routing()
         var restaurantOrdersList: RestaurantOrdersListView.Routing = RestaurantOrdersListView.Routing()
+        var invitationsList: InvitationsListView.Routing = InvitationsListView.Routing()
         var info: InfoView.Routing = InfoView.Routing()
         var activityIndicator: ActivityIndicatorView.Routing = ActivityIndicatorView.Routing()
         var alert: AlertView.Routing = AlertView.Routing()

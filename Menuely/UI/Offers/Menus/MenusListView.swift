@@ -115,14 +115,21 @@ private extension MenusListView {
                 MenuCell(title: menu.name, description: menu.description, imageName: .menu, isActive: menu.isActive)
                 }
                 .onTapGesture {
-                    viewModel.routing.categories = CategoriesListDisplayInfo(menuID: menu.id, menuName: menu.name, interaction: .modifying)
+                    viewModel.categoriesListView(for: menu)
                 }
-                .onLongPressGesture {
-                    viewModel.actionView(for: menu) {
-                        isLongPressed = false
-                    }
-                    isLongPressed = true
-                }
+                .contextMenu(menuItems: {
+                    Button(action: {
+                        viewModel.updateMenuView(with: menu)
+                    }, label: {
+                        Text("Edit")
+                    })
+                    
+                    Button(action: {
+                        viewModel.deletionAlertView(for: menu)
+                    }, label: {
+                        Text("Delete")
+                    })
+                })
         }
         .listStyle(InsetGroupedListStyle())
     }

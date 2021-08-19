@@ -19,9 +19,14 @@ struct OrderCell: View {
     var body: some View {
         HStack(alignment: .top, spacing: 0) {
             WebImage(url: imageUrl)
-                .placeholder(content: {
-                    Image(.logo).resizable().aspectRatio(contentMode: .fit)
-                })
+                .placeholder {
+                    Image(.logo)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(.all, 5)
+                        .frame(width: 100, height: 100)
+                        .background(Color(#colorLiteral(red: 0.9646247029, green: 0.9647596478, blue: 0.9645821452, alpha: 1)))
+                }
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 100, height: 100)

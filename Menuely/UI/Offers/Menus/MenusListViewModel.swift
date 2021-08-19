@@ -66,8 +66,16 @@ class MenusListViewModel: ObservableObject {
     }
     
     // MARK: - Routing
+    func categoriesListView(for menu: Menu) {
+        routing.categories = CategoriesListDisplayInfo(menuID: menu.id, menuName: menu.name, interaction: .modifying)
+    }
+    
     func errorView(with message: String?) {
         appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: message)
+    }
+    
+    func updateMenuView(with menu: Menu) {
+        appState[\.routing.menusList.updateMenu] = menu
     }
     
     func deletionAlertView(for menu: Menu) {
@@ -78,24 +86,5 @@ class MenusListViewModel: ObservableObject {
             self.appState[\.routing.alert.configuration] = nil
         }, secondaryButtonTitle: "Cancel")
         appState[\.routing.alert.configuration] = configuration
-    }
-    
-    func actionView(for menu: Menu, with additionalAction: @escaping () -> Void) {
-        let delete = Action(name: "Delete") {
-            self.appState[\.routing.action.configuration] = nil
-            self.deletionAlertView(for: menu)
-        }
-        
-        let update = Action(name: "Edit") {
-            self.appState[\.routing.action.configuration] = nil
-            self.appState[\.routing.menusList.updateMenu] = menu
-        }
-        
-        let configuration = ActionViewConfiguration(title: "\(menu.name) actions", actions: [update, delete]) {
-            additionalAction()
-            self.appState[\.routing.action.configuration] = nil
-        }
-        
-        appState[\.routing.action.configuration] = configuration
     }
 }

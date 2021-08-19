@@ -13,6 +13,11 @@ struct RestaurantsSearchListView: View {
     
     var body: some View {
         listContent
+            .fullScreenCover(isPresented: viewModel.routing.restaurantNoticeForInfo == nil ? .constant(false) : .constant(true), content: {
+                RestaurantNoticeView()
+                    .modifier(PopoversViewModifier())
+                    .modifier(RootViewAppearance())
+            })
     }
 }
 
@@ -67,21 +72,17 @@ private extension RestaurantsSearchListView {
             viewModel.appState[\.routing.activityIndicator.isActive] = false
         }
         
-        return ScrollView {
-            LazyVStack {
-                ForEach(restaurants) { restaurant in
-                    SearchCell(title: restaurant.name, imageURL: URL(string: restaurant.profileImage?.url ?? ""))
-                        .onTapGesture {
-                            viewModel.restaurantNoticeView(for: restaurant)
-                        }
-                }
+        return List {
+            ForEach(restaurants) { restaurant in
+                SearchCell(title: restaurant.name, imageURL: URL(string: restaurant.profileImage?.url ?? ""))
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                    .onTapGesture {
+                        viewModel.restaurantNoticeView(for: restaurant)
+                    }
             }
         }
-        .fullScreenCover(isPresented: viewModel.routing.restaurantNoticeForInfo == nil ? .constant(false) : .constant(true), content: {
-            RestaurantNoticeView()
-                .modifier(PopoversViewModifier())
-                .modifier(RootViewAppearance())
-        })
+        .listStyle(InsetGroupedListStyle())
+        
     }
 }
 

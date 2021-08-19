@@ -160,14 +160,19 @@ private extension ProductsListView {
                                 extendedButtonTitle: viewModel.interactionType == .buying ? "Add to cart ( \(viewModel.format(price: product.price, currency: product.currency)) )" : nil,
                                 imageURL: product.image.url,
                                 action: viewModel.interactionType == .buying ? { viewModel.addCartItem(product) } : nil)
-                        .onLongPressGesture {
-                            if viewModel.interactionType == .modifying {
-                                viewModel.actionView(for: product) {
-                                    isLongPressed = false
-                                }
-                                isLongPressed = true
-                            }
-                        }
+                        .contextMenu(menuItems: {
+                            Button(action: {
+                                viewModel.updateProductView(with: product)
+                            }, label: {
+                                Text("Edit")
+                            })
+                            
+                            Button(action: {
+                                viewModel.deletionAlertView(for: product)
+                            }, label: {
+                                Text("Delete")
+                            })
+                        })
                 }
             }
         }

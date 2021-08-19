@@ -21,6 +21,10 @@ struct CategoryCell: View {
                 .resizable()
                 .placeholder {
                     Image(placeholderImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(.all, 5)
+                        .frame(width: height, height: height, alignment: .center)
                         .background(Color(#colorLiteral(red: 0.9646247029, green: 0.9647596478, blue: 0.9645821452, alpha: 1)))
                         .foregroundColor(Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1)))
                 }

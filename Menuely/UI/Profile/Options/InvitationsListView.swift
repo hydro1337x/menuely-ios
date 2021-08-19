@@ -16,6 +16,18 @@ struct InvitationsListView: View {
             listContent
             actionContent
         }
+        .sheet(isPresented: viewModel.routing.userNoticeForID == nil ? .constant(false) : .constant(true), onDismiss: {
+            viewModel.routing.userNoticeForID = nil
+        }, content: {
+            UserNoticeView()
+                .modifier(PopoversViewModifier())
+                .modifier(RootViewAppearance())
+        })
+        .fullScreenCover(isPresented: viewModel.routing.restaurantNoticeForInfo == nil ? .constant(false) : .constant(true), content: {
+            RestaurantNoticeView()
+                .modifier(PopoversViewModifier())
+                .modifier(RootViewAppearance())
+        })
         .navigationBarTitle(viewModel.title)
     }
 }
@@ -90,13 +102,6 @@ private extension InvitationsListView {
                 }
             }
         }
-//        .sheet(isPresented: viewModel.routing.userNoticeForID == nil ? .constant(false) : .constant(true), onDismiss: {
-//            viewModel.routing.userNoticeForID = nil
-//        }, content: {
-//            UserNoticeView()
-//                .modifier(PopoversViewModifier())
-//                .modifier(RootViewAppearance())
-//        })
         
     }
     
@@ -114,7 +119,7 @@ private extension InvitationsListView {
             viewModel.rejectInvitation(invitation)
         }, secondaryButtonTitle: "Decline")
             .onTapGesture {
-//                            viewModel.routing.userNoticeForID = user.id
+                viewModel.restaurantNoticeView(for: invitation.employer.id)
             }
     }
     
@@ -123,8 +128,15 @@ private extension InvitationsListView {
             viewModel.rejectInvitation(invitation)
         }, primaryButtonTitle: "Cancel", secondaryAction: nil, secondaryButtonTitle: nil)
             .onTapGesture {
-//                            viewModel.routing.userNoticeForID = user.id
+                viewModel.userNoticeView(for: invitation.employee.id)
             }
+    }
+}
+
+extension InvitationsListView {
+    struct Routing: Equatable {
+        var restaurantNoticeForInfo: RestaurantNoticeInfo?
+        var userNoticeForID: Int?
     }
 }
 
