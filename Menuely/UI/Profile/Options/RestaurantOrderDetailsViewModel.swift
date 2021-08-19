@@ -56,6 +56,10 @@ extension RestaurantOrderDetailsView {
             appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: message)
         }
         
+        func infoView() {
+            appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Order", message: "Order successfully accepted")
+        }
+        
         func dismiss() {
             appState[\.routing.restaurantOrdersList.orderDetailsForId] = nil
         }

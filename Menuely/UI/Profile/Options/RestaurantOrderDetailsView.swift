@@ -86,34 +86,41 @@ private extension RestaurantOrderDetailsView {
             viewModel.appState[\.routing.activityIndicator.isActive] = false
         }
         
-        return List {
-            ForEach(order.orderedProducts) { product in
-                OrderPreviewCell(imageURL: URL(string: product.imageUrl),
-                                 title: product.name,
-                                 price: viewModel.format(price: product.price, currency: order.currency),
-                                 quantity: product.quantity.description)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
+        return VStack {
+            List {
+                ForEach(order.orderedProducts) { product in
+                    OrderPreviewCell(imageURL: URL(string: product.imageUrl),
+                                     title: product.name,
+                                     price: viewModel.format(price: product.price, currency: order.currency),
+                                     quantity: product.quantity.description)
+                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
+                }
+                
+                Section(header: Text("Order info")) {
+                    DetailCell(title: "Waitperson", text: order.employeeName ?? "Not yet assigned")
+                    DetailCell(title: "Table", text: order.tableId.description)
+                    DetailCell(title: "Total price", text: viewModel.format(price: order.totalPrice, currency: order.currency))
+                }
             }
+            .listStyle(InsetGroupedListStyle())
             
-            Section(header: Text("Order info")) {
-                DetailCell(title: "Restaurant", text: order.employerName ?? "-")
-                DetailCell(title: "Waitperson", text: order.employeeName ?? "Not yet assigned")
-                DetailCell(title: "Table", text: order.tableId.description)
-                DetailCell(title: "Total price", text: viewModel.format(price: order.totalPrice, currency: order.currency))
+            if order.employeeName == nil {
+                Button(action: {
+                    viewModel.acceptOrder(with: order.id)
+                }, label: {
+                    Text("Accept order")
+                })
+                .frame(height: 48)
+                .padding(.vertical, 10)
+                .padding(.horizontal, 16)
+                .buttonStyle(RoundedGradientButtonStyle())
             }
-            
-            Button(action: {
-                viewModel.acceptOrder(with: order.id)
-            }, label: {
-                Text("Accept order")
-            })
-            .buttonStyle(RoundedGradientButtonStyle())
         }
-        .listStyle(InsetGroupedListStyle())
     }
     
     func acceptOrderResultLoadedView() -> some View {
         viewModel.acceptOrderResult.reset()
+        viewModel.infoView()
         viewModel.getOrder()
         return EmptyView()
     }
