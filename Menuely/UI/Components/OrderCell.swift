@@ -13,67 +13,40 @@ struct OrderCell: View {
     let title: String
     let subtitle: String
     let price: String
-    let imageUrl: URL?
     let isActive: Bool
     
     var body: some View {
-        HStack(alignment: .top, spacing: 0) {
-            WebImage(url: imageUrl)
-                .placeholder {
-                    Image(.logo)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .padding(.all, 5)
-                        .frame(width: 100, height: 100)
-                        .background(Color(#colorLiteral(red: 0.9646247029, green: 0.9647596478, blue: 0.9645821452, alpha: 1)))
-                }
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100, height: 100)
+        HStack(alignment: .top) {
+            Rectangle()
+                .frame(width: 25, height: 50)
+                .foregroundColor(isActive ? Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1)) : Color(#colorLiteral(red: 0.9646247029, green: 0.9647596478, blue: 0.9645821452, alpha: 1)))
+                .border(Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)), width: 0.25)
+                .clipped()
             
-            HStack(alignment: .top, spacing: 0) {
-                VStack(alignment: .leading, spacing: 0) {
-                    HStack(alignment: .top, spacing: 0) {
-                        Text(title)
-                            .font(.callout).bold()
-                            .frame(maxWidth: .infinity, alignment: .topLeading)
-                            .lineLimit(2)
-                    }
-                    
-                    Text(subtitle)
-                        .font(.caption)
-                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                        .padding(.top, 5)
-                    
-                    Spacer()
-                }
-                .frame(maxHeight: .infinity)
-                
-                VStack(spacing: 0) {
-                    RoundedRectangle(cornerRadius: 4)
-                        .foregroundColor(isActive ? Color(#colorLiteral(red: 0.3146468997, green: 0.7964186072, blue: 0.5054938793, alpha: 1)) : Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)))
-                        .frame(width: 8, height: 8, alignment: .top)
-                        .padding(.top, 5)
+            VStack(alignment: .leading) {
+                HStack {
+                    Text(title)
+                        .font(.caption).bold()
+                        .lineLimit(2)
                     
                     Spacer()
                     
                     Text(price).font(.system(size: 14))
                         .frame(width: 100, height: 25)
                         .modifier(RoundedGradientViewModifier())
-                        .padding(.leading, 5)
-                        .padding(.bottom, 15)
-                    
-                    Spacer()
+                        .padding(.top, 5)
                 }
+                
+                Text(subtitle)
+                    .font(.caption)
             }
         }
-        .frame(height: 100)
-        .padding(.vertical, 5)
+        .frame(height: 50)
     }
 }
 
 struct OrderCell_Previews: PreviewProvider {
     static var previews: some View {
-        OrderCell(title: "Restaurant rustica rustica", subtitle: " 22.10.2021. at 13:00 ", price: "100 HRK", imageUrl: URL(string: ""), isActive: true)
+        OrderCell(title: "Restaurant rustica rustica", subtitle: " 22.10.2021. at 13:00 ", price: "100 HRK", isActive: true)
     }
 }

@@ -79,12 +79,12 @@ private extension UserOrdersListView {
                     destination: UserOrderDetailsView(),
                     tag: order.id,
                     selection: $viewModel.routing.orderDetailsForId) {
-                    OrderCell(title: order.employerName ?? "", subtitle: viewModel.timeIntervalToString(order.createdAt), price: viewModel.format(price: order.totalPrice, currency: order.currency), imageUrl: URL(string: ""), isActive: order.employeeName != nil ? false : true)
-                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                    OrderCell(title: order.employerName ?? "", subtitle: viewModel.timeIntervalToString(order.createdAt), price: viewModel.format(price: order.totalPrice, currency: order.currency), isActive: order.employeeName != nil ? false : true)
                     }
                     .onTapGesture {
                         viewModel.routing.orderDetailsForId = order.id
                     }
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
             }
         }
         .listStyle(InsetGroupedListStyle())

@@ -79,7 +79,7 @@ private extension RestaurantOrdersListView {
                     destination: RestaurantOrderDetailsView(),
                     tag: order.id,
                     selection: $viewModel.routing.orderDetailsForId) {
-                    OrderCell(title: order.customerName ?? "", subtitle: viewModel.timeIntervalToString(order.createdAt), price: viewModel.format(price: order.totalPrice, currency: order.currency), imageUrl: URL(string: ""), isActive: order.employeeName != nil ? false : true)
+                    OrderCell(title: order.customerName ?? "", subtitle: viewModel.timeIntervalToString(order.createdAt), price: viewModel.format(price: order.totalPrice, currency: order.currency), isActive: order.employeeName != nil ? false : true)
                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
                     }
                     .onTapGesture {
