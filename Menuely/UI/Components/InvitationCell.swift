@@ -33,7 +33,7 @@ struct InvitationCell: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 80, height: 80)
                 .background(Color(#colorLiteral(red: 0.7803257108, green: 0.7804361582, blue: 0.7802907825, alpha: 1)))
-                .cornerRadius(5)
+                .clipped()
             
             VStack(spacing: 0) {
                 Text(title)
@@ -62,7 +62,6 @@ struct InvitationCell: View {
             .padding(.all, 5)
         }
         .frame(height: 80)
-        .background(Color(#colorLiteral(red: 0.9646247029, green: 0.9647596478, blue: 0.9645821452, alpha: 1)))
     }
 }
 

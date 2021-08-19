@@ -92,16 +92,15 @@ private extension InvitationsListView {
             viewModel.appState[\.routing.activityIndicator.isActive] = false
         }
         
-        return ScrollView {
-            LazyVStack {
-                ForEach(invitations) { invitation in
-                    switch viewModel.appState[\.data.selectedEntity] {
-                    case .user: userInvitationCell(for: invitation)
-                    case .restaurant: restaurantInvitationCell(for: invitation)
-                    }
+        return List {
+            ForEach(invitations) { invitation in
+                switch viewModel.appState[\.data.selectedEntity] {
+                case .user: userInvitationCell(for: invitation)
+                case .restaurant: restaurantInvitationCell(for: invitation)
                 }
             }
         }
+        .listStyle(InsetGroupedListStyle())
         
     }
     
@@ -121,6 +120,7 @@ private extension InvitationsListView {
             .onTapGesture {
                 viewModel.restaurantNoticeView(for: invitation.employer.id)
             }
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
     }
     
     func restaurantInvitationCell(for invitation: Invitation) -> some View {
@@ -130,6 +130,7 @@ private extension InvitationsListView {
             .onTapGesture {
                 viewModel.userNoticeView(for: invitation.employee.id)
             }
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
     }
 }
 
