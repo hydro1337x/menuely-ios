@@ -14,7 +14,6 @@ struct PopoversViewModifier: ViewModifier {
                 ActivityIndicatorView()
                 InfoView()
                 AlertView()
-                ActionView()
             }
         }
 }

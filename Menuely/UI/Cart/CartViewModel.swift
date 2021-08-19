@@ -16,7 +16,7 @@ extension CartView {
         @Injected private var ordersService: OrdersServicing
         
         @Published var createOrderResult: Loadable<Discardable>
-        @Published var cart: Cart!
+        @Published var cart: Cart?
         
         let appState: Store<AppState>
         private var cancelBag = CancelBag()
@@ -51,6 +51,10 @@ extension CartView {
             }
         }
         
+        func deleteCart() {
+            cartService.deleteCart()
+        }
+        
         func format(price: Float, currency: String) -> String {
             return String(format: "%.2f", price) + " \(currency)"
         }
@@ -65,31 +69,20 @@ extension CartView {
         }
         
         // MARK: - Routing
-        func deletionAlertView(for cartItem: CartItem, with action: @escaping () -> Void) {
+        func deletionAlertView(for cartItem: CartItem, with onEmptyAction: @escaping () -> Void) {
             let configuration = AlertViewConfiguration(title: "Delete item", message: "Are you sure you want to delete \(cartItem.name)", primaryAction: {
                 self.appState[\.routing.alert.configuration] = nil
                 self.remove(cartItem: cartItem)
                 if let cart = self.cart, cart.cartItems.isEmpty {
-                    action()
+                    onEmptyAction()
                 }
             }, primaryButtonTitle: "Delete", secondaryAction: {
                 self.appState[\.routing.alert.configuration] = nil
             }, secondaryButtonTitle: "Cancel")
-            appState[\.routing.alert.configuration] = configuration
-        }
-        
-        func actionView(for cartItem: CartItem, with onEmptyAction: @escaping () -> Void, and additionalAction: @escaping () -> Void) {
-            let delete = Action(name: "Delete") {
-                self.appState[\.routing.action.configuration] = nil
-                self.deletionAlertView(for: cartItem, with: onEmptyAction)
+           
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.appState[\.routing.alert.configuration] = configuration
             }
-            
-            let configuration = ActionViewConfiguration(title: "\(cartItem.name) actions", actions: [delete]) {
-                additionalAction()
-                self.appState[\.routing.action.configuration] = nil
-            }
-            
-            appState[\.routing.action.configuration] = configuration
         }
         
         func errorView(with message: String?) {
@@ -107,6 +100,7 @@ extension CartView {
             appState[\.routing.categoriesList] = CategoriesListView.Routing()
             appState[\.routing.restaurantNotice] = RestaurantNoticeView.Routing()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.deleteCart()
                 self.appState[\.routing.scan.restaurantNoticeForInfo] = nil
             }
             

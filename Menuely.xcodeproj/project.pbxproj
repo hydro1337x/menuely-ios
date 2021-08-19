@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0C7BBCB526AFEEEA0084715B /* CreateMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BBCB426AFEEEA0084715B /* CreateMenuViewModel.swift */; };
-		0C7BBCB926B02DB30084715B /* ActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BBCB826B02DB30084715B /* ActionView.swift */; };
 		0C7CD87126B3E8C00066645E /* UpdateCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7CD87026B3E8C00066645E /* UpdateCategoryView.swift */; };
 		0C7CD87326B3E8CA0066645E /* UpdateCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7CD87226B3E8CA0066645E /* UpdateCategoryViewModel.swift */; };
 		0C7CD87626B3F6840066645E /* ProductsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7CD87526B3F6840066645E /* ProductsListView.swift */; };
@@ -218,7 +217,6 @@
 
 /* Begin PBXFileReference section */
 		0C7BBCB426AFEEEA0084715B /* CreateMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMenuViewModel.swift; sourceTree = "<group>"; };
-		0C7BBCB826B02DB30084715B /* ActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionView.swift; sourceTree = "<group>"; };
 		0C7CD87026B3E8C00066645E /* UpdateCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCategoryView.swift; sourceTree = "<group>"; };
 		0C7CD87226B3E8CA0066645E /* UpdateCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCategoryViewModel.swift; sourceTree = "<group>"; };
 		0C7CD87526B3F6840066645E /* ProductsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListView.swift; sourceTree = "<group>"; };
@@ -760,7 +758,6 @@
 				0CDD50AA26AE957500CF2207 /* FloatingTextEditor.swift */,
 				60173F2E269C8F03003C4E40 /* AlertView.swift */,
 				60173F30269CA3B2003C4E40 /* InfoView.swift */,
-				0C7BBCB826B02DB30084715B /* ActionView.swift */,
 				60173F3C269CF53D003C4E40 /* ActivityIndicatorView.swift */,
 				606531D026A43CF700C8C500 /* OptionItemView.swift */,
 				6016C1B826AAC6ED00375929 /* ImagePicker.swift */,
@@ -1028,7 +1025,6 @@
 				60D4CFC626B5DCF000DA799E /* RestaurantsSearchListViewModel.swift in Sources */,
 				606531CB26A43B1900C8C500 /* OptionsView.swift in Sources */,
 				601C0C20269B00FE009181D2 /* RestaurantRegistrationView.swift in Sources */,
-				0C7BBCB926B02DB30084715B /* ActionView.swift in Sources */,
 				60173F37269CE0CC003C4E40 /* AuthenticatedRestaurant.swift in Sources */,
 				60C8D55E26ADC3690079EF48 /* ScanView.swift in Sources */,
 				603F8A2F26C0904E00FD86C7 /* CartCell.swift in Sources */,

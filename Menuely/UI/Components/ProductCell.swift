@@ -91,6 +91,7 @@ struct ProductCell: View {
             
         }
         .frame(height: cellHeight)
+        .background(Color(#colorLiteral(red: 0.948246181, green: 0.9496578574, blue: 0.9691624045, alpha: 1)))
         .padding(.horizontal, horizontalAdjustmentPadding)
         .animation(.spring(response: 0.35, dampingFraction: 0.7))
         .onTapGesture {

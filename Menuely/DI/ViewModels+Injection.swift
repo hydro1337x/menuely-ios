@@ -34,7 +34,6 @@ extension Resolver {
         register { InfoView.ViewModel(appState: resolve()) }
         register { ActivityIndicatorView.ViewModel(appState: resolve()) }
         register { AlertView.ViewModel(appState: resolve()) }
-        register { ActionView.ViewModel(appState: resolve()) }
         
         register { UpdatePasswordViewModel(appState: resolve()) }
         register { UpdateEmailViewModel(appState: resolve()) }

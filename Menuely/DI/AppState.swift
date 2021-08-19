@@ -61,7 +61,6 @@ extension AppState {
         var info: InfoView.Routing = InfoView.Routing()
         var activityIndicator: ActivityIndicatorView.Routing = ActivityIndicatorView.Routing()
         var alert: AlertView.Routing = AlertView.Routing()
-        var action: ActionView.Routing = ActionView.Routing()
         var menusList: MenusListView.Routing = MenusListView.Routing()
         var categoriesList: CategoriesListView.Routing = CategoriesListView.Routing()
         var createCategory: CreateCategoryView.Routing = CreateCategoryView.Routing()

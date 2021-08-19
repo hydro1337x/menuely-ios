@@ -27,24 +27,27 @@ struct CartView: View {
     var listContent: some View {
         VStack {
             List {
-                ForEach(viewModel.cart.cartItems) { cartItem in
-                    CartCell(imageURL: URL(string: cartItem.imageURL), title: cartItem.name, price: viewModel.format(price: cartItem.totalPrice, currency: cartItem.currency), quantity: cartItem.quantity.description, incrementAction: {
-                        viewModel.incrementQuantity(for: cartItem)
-                    }, decrementAction: {
-                        viewModel.decrementQuantity(for: cartItem)
-                    })
-                    .onLongPressGesture {
-                        viewModel.actionView(for: cartItem) {
-                            presentation.wrappedValue.dismiss()
-                        } and: {
-                            isLongPressed = false
-                        }
-                        isLongPressed = true
+                if let cart = viewModel.cart {
+                    ForEach(cart.cartItems) { cartItem in
+                        CartCell(imageURL: URL(string: cartItem.imageURL), title: cartItem.name, price: viewModel.format(price: cartItem.totalPrice, currency: cartItem.currency), quantity: cartItem.quantity.description, incrementAction: {
+                            viewModel.incrementQuantity(for: cartItem)
+                        }, decrementAction: {
+                            viewModel.decrementQuantity(for: cartItem)
+                        })
+                        .contextMenu(menuItems: {
+                            Button(action: {
+                                viewModel.deletionAlertView(for: cartItem, with: {
+                                    presentation.wrappedValue.dismiss()
+                                })
+                            }, label: {
+                                Text("Delete")
+                            })
+                        })
+                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
                     }
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+                    DetailCell(title: "Table", text: viewModel.cart?.tableId.description ?? "")
+                    DetailCell(title: "Total", text: viewModel.format(price: viewModel.cart?.totalPrice ?? 0, currency: viewModel.cart?.cartItems.first?.currency ?? ""))
                 }
-                DetailCell(title: "Table", text: viewModel.cart?.tableId.description ?? "")
-                DetailCell(title: "Total", text: viewModel.format(price: viewModel.cart?.totalPrice ?? 0, currency: viewModel.cart?.cartItems.first?.currency ?? ""))
             }
             .listStyle(InsetGroupedListStyle())
             

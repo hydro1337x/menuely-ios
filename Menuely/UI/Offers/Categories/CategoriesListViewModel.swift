@@ -96,7 +96,10 @@ class CategoriesListViewModel: ObservableObject {
         }, primaryButtonTitle: "Delete", secondaryAction: {
             self.appState[\.routing.alert.configuration] = nil
         }, secondaryButtonTitle: "Cancel")
-        appState[\.routing.alert.configuration] = configuration
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.appState[\.routing.alert.configuration] = configuration
+        }
     }
     
     func updateCategoryView(with category: Category) {
