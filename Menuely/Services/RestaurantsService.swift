@@ -18,6 +18,7 @@ protocol RestaurantsServicing {
     func updateRestaurantProfile(with bodyRequest: BodyRequestable, updateProfileResult: LoadableSubject<Discardable>)
     func updateRestaurantPassword(with bodyRequest: BodyRequestable, updatePasswordResult: LoadableSubject<Discardable>)
     func updateRestaurantEmail(with bodyRequest: BodyRequestable, updateEmailResult: LoadableSubject<Discardable>)
+    func fireEmployee(with bodyRequest: BodyRequestable, fireEmployeeResult: LoadableSubject<Discardable>)
     func delete(deletionResult: LoadableSubject<Discardable>)
     func getEmployees(employees: LoadableSubject<[User]>)
 }
@@ -137,6 +138,18 @@ class RestaurantsService: RestaurantsServicing {
                 remoteRepository.updateRestaurantEmail(with: bodyRequest)
             }
             .sinkToLoadable { updateEmailResult.wrappedValue = $0 }
+            .store(in: cancelBag)
+    }
+    
+    func fireEmployee(with bodyRequest: BodyRequestable, fireEmployeeResult: LoadableSubject<Discardable>) {
+        fireEmployeeResult.wrappedValue.setIsLoading(cancelBag: cancelBag)
+        
+        Just<Void>
+            .withErrorType(Error.self)
+            .flatMap { [remoteRepository] in
+                remoteRepository.fireEmployee(with: bodyRequest)
+            }
+            .sinkToLoadable { fireEmployeeResult.wrappedValue = $0 }
             .store(in: cancelBag)
     }
     

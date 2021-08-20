@@ -1,5 +1,5 @@
 //
-//  InvitationCell.swift
+//  ActionCell.swift
 //  Menuely
 //
 //  Created by Benjamin Mecanović on 18.08.2021..
@@ -8,7 +8,7 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct InvitationCell: View {
+struct ActionCell: View {
     
     let title: String
     let imageURL: URL?
@@ -67,6 +67,6 @@ struct InvitationCell: View {
 
 struct InvitationCell_Previews: PreviewProvider {
     static var previews: some View {
-        InvitationCell(title: "Title", imageURL: URL(string: "https://png.pngitem.com/pimgs/s/111-1114675_user-login-person-man-enter-person-login-icon.png"), primaryAction: {}, primaryButtonTitle: "Accept", secondaryAction: {}, secondaryButtonTitle: "Decline")
+        ActionCell(title: "Title", imageURL: URL(string: "https://png.pngitem.com/pimgs/s/111-1114675_user-login-person-man-enter-person-login-icon.png"), primaryAction: {}, primaryButtonTitle: "Accept", secondaryAction: {}, secondaryButtonTitle: "Decline")
     }
 }

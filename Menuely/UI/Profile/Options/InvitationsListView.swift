@@ -112,7 +112,7 @@ private extension InvitationsListView {
     }
     
     func userInvitationCell(for invitation: Invitation) -> some View {
-        InvitationCell(title: viewModel.title(for: invitation), imageURL: viewModel.imageUrl(for: invitation), primaryAction: {
+        ActionCell(title: viewModel.title(for: invitation), imageURL: viewModel.imageUrl(for: invitation), primaryAction: {
             viewModel.acceptInvitation(invitation)
         }, primaryButtonTitle: "Accept", secondaryAction: {
             viewModel.rejectInvitation(invitation)
@@ -124,7 +124,7 @@ private extension InvitationsListView {
     }
     
     func restaurantInvitationCell(for invitation: Invitation) -> some View {
-        InvitationCell(title: viewModel.title(for: invitation), imageURL: viewModel.imageUrl(for: invitation), primaryAction: {
+        ActionCell(title: viewModel.title(for: invitation), imageURL: viewModel.imageUrl(for: invitation), primaryAction: {
             viewModel.rejectInvitation(invitation)
         }, primaryButtonTitle: "Cancel", secondaryAction: nil, secondaryButtonTitle: nil)
             .onTapGesture {

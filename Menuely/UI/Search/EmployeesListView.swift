@@ -13,9 +13,12 @@ struct EmployeesListView: View {
     
     var body: some View {
         NavigationView {
-            listContent
-                .navigationBarTitleDisplayMode(.large)
-                .navigationBarTitle("Employees")
+            ZStack {
+                listContent
+                fireEmployeeContent
+            }
+            .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitle("Employees")
         }
     }
 }
@@ -27,6 +30,16 @@ private extension EmployeesListView {
         case .notRequested: listNotRequestedView
         case .isLoading(let last, _):  listLoadingView(last)
         case .loaded(let employees):  listLoadedView(employees, showLoading: false)
+        case let .failed(error): failedView(error)
+        }
+    }
+    
+    @ViewBuilder
+    private var fireEmployeeContent: some View {
+        switch viewModel.fireEmployeeResult {
+        case .notRequested: EmptyView()
+        case .isLoading(_, _):  listLoadingView(nil)
+        case .loaded(_):  fireEmployeeLoadedView()
         case let .failed(error): failedView(error)
         }
     }
@@ -74,12 +87,23 @@ private extension EmployeesListView {
             ForEach(employees) { employee in
                 SearchCell(title: employee.name, imageURL: URL(string: employee.profileImage?.url ?? ""))
                     .contextMenu(menuItems: {
-                        Text("Uninvite")
+                        Button(action: {
+                            viewModel.fireEmployeeAlertView(with: employee)
+                        }, label: {
+                            Text("Fire")
+                        })
                     })
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
             }
         }
         .listStyle(InsetGroupedListStyle())
+    }
+    
+    func fireEmployeeLoadedView() -> some View {
+        viewModel.fireEmployeeResult.reset()
+        viewModel.appState[\.routing.activityIndicator.isActive] = false
+        viewModel.getEmployees()
+        return EmptyView()
     }
 }
 

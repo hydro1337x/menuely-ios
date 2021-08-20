@@ -18,6 +18,7 @@ protocol RestaurantsRemoteRepositing {
     func updateRestaurantProfile(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
     func updateRestaurantPassword(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
     func updateRestaurantEmail(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
+    func fireEmployee(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error>
     func deleteRestaurantProfile() -> AnyPublisher<Discardable, Error>
     func getEmployees() -> AnyPublisher<UsersListResponse, Error>
 }
@@ -53,6 +54,10 @@ class RestaurantsRemoteRepository: RestaurantsRemoteRepositing {
         networkClient.request(endpoint: Endpoint.updateRestaurantEmail(bodyRequest))
     }
     
+    func fireEmployee(with bodyRequest: BodyRequestable) -> AnyPublisher<Discardable, Error> {
+        networkClient.request(endpoint: Endpoint.fireEmployee(bodyRequest))
+    }
+    
     func deleteRestaurantProfile() -> AnyPublisher<Discardable, Error> {
         networkClient.request(endpoint: Endpoint.delete)
     }
@@ -69,10 +74,11 @@ extension RestaurantsRemoteRepository {
         case restaurant(PathParameter)
         case restaurants(QueryRequestable?)
         case restaurantProfile
-        case upload(_: MultipartFormDataRequestable)
-        case updateRestaurantProfile(_: BodyRequestable)
-        case updateRestaurantPassword(_: BodyRequestable)
-        case updateRestaurantEmail(_: BodyRequestable)
+        case upload(MultipartFormDataRequestable)
+        case updateRestaurantProfile(BodyRequestable)
+        case updateRestaurantPassword(BodyRequestable)
+        case updateRestaurantEmail(BodyRequestable)
+        case fireEmployee(BodyRequestable)
         case delete
         case employees
     }
@@ -88,6 +94,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         case .updateRestaurantProfile: return "/restaurants/me/profile"
         case .updateRestaurantPassword: return "/restaurants/me/password"
         case .updateRestaurantEmail: return "/restaurants/me/email"
+        case .fireEmployee: return "/restaurants/me/fire-employee"
         case .delete: return "/restaurants/me"
         case .employees: return "/restaurants/me/employees"
         }
@@ -102,6 +109,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         case .updateRestaurantProfile: return .patch
         case .updateRestaurantPassword: return .patch
         case .updateRestaurantEmail: return .patch
+        case .fireEmployee: return .patch
         case .delete: return .delete
         case .employees: return .get
         }
@@ -116,6 +124,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         case .updateRestaurantProfile: return ["Content-Type": "application/json"]
         case .updateRestaurantPassword: return ["Content-Type": "application/json"]
         case .updateRestaurantEmail: return ["Content-Type": "application/json"]
+        case .fireEmployee: return ["Content-Type": "application/json"]
         case .delete: return nil
         case .employees: return ["Content-Type": "application/json"]
         }
@@ -137,6 +146,7 @@ extension RestaurantsRemoteRepository.Endpoint: APIConfigurable {
         case .updateRestaurantProfile(let bodyRequest): return bodyRequest
         case .updateRestaurantPassword(let bodyRequest): return bodyRequest
         case .updateRestaurantEmail(let bodyRequest): return bodyRequest
+        case .fireEmployee(let bodyRequest): return bodyRequest
         case .delete: return nil
         case .employees: return nil
         }
