@@ -51,6 +51,10 @@ extension RestaurantOrderDetailsView {
             acceptOrderResult.reset()
         }
         
+        func updateRestaurantListView() {
+            appState[\.data.updateRestaurantOrdersListView] = true
+        }
+        
         // MARK: - Routing
         func errorView(with message: String?) {
             appState[\.routing.info.configuration] = InfoViewConfiguration(title: "Something went wrong", message: message)

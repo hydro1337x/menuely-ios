@@ -37,6 +37,8 @@ extension AppState {
         
         var updateProductsListView: Bool = false
         
+        var updateRestaurantOrdersListView: Bool = false
+        
         var searchList: SearchListView.Search = SearchListView.Search()
         
         var cart: Cart?

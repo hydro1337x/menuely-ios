@@ -37,6 +37,16 @@ extension RestaurantOrdersListView {
                     .map(\.routing.restaurantOrdersList)
                     .removeDuplicates()
                     .assign(to: \.routing, on: self)
+                
+                appState
+                    .map(\.data.updateRestaurantOrdersListView)
+                    .removeDuplicates()
+                    .sink { shouldUpdateUserProfileView in
+                        if shouldUpdateUserProfileView {
+                            appState[\.data.updateRestaurantOrdersListView] = false
+                            self.getOrders()
+                        }
+                    }
             }
         }
         

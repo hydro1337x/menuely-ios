@@ -122,6 +122,7 @@ private extension RestaurantOrderDetailsView {
         viewModel.acceptOrderResult.reset()
         viewModel.infoView()
         viewModel.getOrder()
+        viewModel.updateRestaurantListView()
         return EmptyView()
     }
 }
