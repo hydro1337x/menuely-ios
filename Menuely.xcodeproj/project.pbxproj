@@ -63,6 +63,7 @@
 		6044D30826C49EC700DBC806 /* UserOrdersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6044D30726C49EC600DBC806 /* UserOrdersListView.swift */; };
 		6044D30A26C49EF000DBC806 /* UserOrdersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6044D30926C49EF000DBC806 /* UserOrdersListViewModel.swift */; };
 		6049C3C0268F9B9E00B891CC /* Repositories+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */; };
+		60571E6626DD21D20047051D /* Networking+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60571E6526DD21D20047051D /* Networking+Extension.swift */; };
 		605803E226B7277500C7C9BA /* RestaurantNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605803E126B7277500C7C9BA /* RestaurantNoticeView.swift */; };
 		605803E426B727EC00C7C9BA /* RestaurantNoticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605803E326B727EC00C7C9BA /* RestaurantNoticeViewModel.swift */; };
 		605803E626B7394000C7C9BA /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605803E526B7394000C7C9BA /* SectionView.swift */; };
@@ -103,7 +104,6 @@
 		6074C0B8268CB32500DA3B21 /* CancelBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0B7268CB32500DA3B21 /* CancelBag.swift */; };
 		6074C0BA268CC06600DA3B21 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0B9268CC06600DA3B21 /* Loadable.swift */; };
 		6074C0BC268CCB3700DA3B21 /* APIConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0BB268CCB3700DA3B21 /* APIConfigurable.swift */; };
-		6074C0C0268CD41400DA3B21 /* NetworkingHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0BF268CD41400DA3B21 /* NetworkingHelpers.swift */; };
 		6074C0C2268CDC5E00DA3B21 /* Miscellaneous.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074C0C1268CDC5E00DA3B21 /* Miscellaneous.swift */; };
 		6077EBC326AC6FC500D6D4F4 /* PopoversViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6077EBC226AC6FC500D6D4F4 /* PopoversViewModifier.swift */; };
 		6077EBC526AC996500D6D4F4 /* UpdatePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6077EBC426AC996500D6D4F4 /* UpdatePasswordRequest.swift */; };
@@ -167,7 +167,6 @@
 		60C8D56626AE05590079EF48 /* SearchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C8D56526AE05590079EF48 /* SearchRequest.swift */; };
 		60D32CC02699A83C00F6FDC9 /* RoundedGradientButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D32CBF2699A83C00F6FDC9 /* RoundedGradientButtonStyle.swift */; };
 		60D32CD02699EC0900F6FDC9 /* Utilities+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D32CCF2699EC0900F6FDC9 /* Utilities+Injection.swift */; };
-		60D32CD22699ED9200F6FDC9 /* Constants+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D32CD12699ED9200F6FDC9 /* Constants+Injection.swift */; };
 		60D32CE02699FA3100F6FDC9 /* UserRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D32CDF2699FA3100F6FDC9 /* UserRegistrationViewModel.swift */; };
 		60D32CE22699FA3B00F6FDC9 /* UserRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D32CE12699FA3B00F6FDC9 /* UserRegistrationView.swift */; };
 		60D4CFB126B53F8B00DA799E /* CreateProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D4CFB026B53F8B00DA799E /* CreateProductView.swift */; };
@@ -273,6 +272,7 @@
 		6044D30726C49EC600DBC806 /* UserOrdersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrdersListView.swift; sourceTree = "<group>"; };
 		6044D30926C49EF000DBC806 /* UserOrdersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrdersListViewModel.swift; sourceTree = "<group>"; };
 		6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repositories+Injection.swift"; sourceTree = "<group>"; };
+		60571E6526DD21D20047051D /* Networking+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Networking+Extension.swift"; sourceTree = "<group>"; };
 		605803E126B7277500C7C9BA /* RestaurantNoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantNoticeView.swift; sourceTree = "<group>"; };
 		605803E326B727EC00C7C9BA /* RestaurantNoticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantNoticeViewModel.swift; sourceTree = "<group>"; };
 		605803E526B7394000C7C9BA /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
@@ -313,7 +313,6 @@
 		6074C0B7268CB32500DA3B21 /* CancelBag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelBag.swift; sourceTree = "<group>"; };
 		6074C0B9268CC06600DA3B21 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 		6074C0BB268CCB3700DA3B21 /* APIConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfigurable.swift; sourceTree = "<group>"; };
-		6074C0BF268CD41400DA3B21 /* NetworkingHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingHelpers.swift; sourceTree = "<group>"; };
 		6074C0C1268CDC5E00DA3B21 /* Miscellaneous.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Miscellaneous.swift; sourceTree = "<group>"; };
 		6077EBC226AC6FC500D6D4F4 /* PopoversViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoversViewModifier.swift; sourceTree = "<group>"; };
 		6077EBC426AC996500D6D4F4 /* UpdatePasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordRequest.swift; sourceTree = "<group>"; };
@@ -375,7 +374,6 @@
 		60C8D56526AE05590079EF48 /* SearchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRequest.swift; sourceTree = "<group>"; };
 		60D32CBF2699A83C00F6FDC9 /* RoundedGradientButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedGradientButtonStyle.swift; sourceTree = "<group>"; };
 		60D32CCF2699EC0900F6FDC9 /* Utilities+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Utilities+Injection.swift"; sourceTree = "<group>"; };
-		60D32CD12699ED9200F6FDC9 /* Constants+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+Injection.swift"; sourceTree = "<group>"; };
 		60D32CDF2699FA3100F6FDC9 /* UserRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistrationViewModel.swift; sourceTree = "<group>"; };
 		60D32CE12699FA3B00F6FDC9 /* UserRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistrationView.swift; sourceTree = "<group>"; };
 		60D4CFB026B53F8B00DA799E /* CreateProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProductView.swift; sourceTree = "<group>"; };
@@ -576,6 +574,7 @@
 			children = (
 				6063B68926893B65001B1405 /* MenuelyApp.swift */,
 				60E4ED6B268DD45400EC4561 /* ApplicationEventsHandler.swift */,
+				6074C0B3268C940700DA3B21 /* AppState.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -597,13 +596,11 @@
 		6074C0AD268C79F600DA3B21 /* DI */ = {
 			isa = PBXGroup;
 			children = (
-				6074C0B3268C940700DA3B21 /* AppState.swift */,
 				60944F3A268DC8460063CD61 /* Application+Injection.swift */,
 				60E4ED79268E174A00EC4561 /* ViewModels+Injection.swift */,
 				60E4ED69268DCC7B00EC4561 /* Services+Injection.swift */,
 				6049C3BF268F9B9E00B891CC /* Repositories+Injection.swift */,
 				60D32CCF2699EC0900F6FDC9 /* Utilities+Injection.swift */,
-				60D32CD12699ED9200F6FDC9 /* Constants+Injection.swift */,
 			);
 			path = DI;
 			sourceTree = "<group>";
@@ -783,6 +780,7 @@
 			isa = PBXGroup;
 			children = (
 				60BF85B826991AC000890C0F /* Image+Extension.swift */,
+				60571E6526DD21D20047051D /* Networking+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -836,7 +834,6 @@
 			children = (
 				60660C6C2693861D00A6159E /* NetworkClient.swift */,
 				6074C0BB268CCB3700DA3B21 /* APIConfigurable.swift */,
-				6074C0BF268CD41400DA3B21 /* NetworkingHelpers.swift */,
 				60F3BAC82694ACA6005798C1 /* AuthRequestInterceptor.swift */,
 			);
 			path = Networking;
@@ -1087,7 +1084,6 @@
 				606C9ACB26A77966005AD06E /* RootViewModel.swift in Sources */,
 				606531D126A43CF700C8C500 /* OptionItemView.swift in Sources */,
 				60BE0F7726CA927B009A7A77 /* RoundedGradientViewModifier.swift in Sources */,
-				60D32CD22699ED9200F6FDC9 /* Constants+Injection.swift in Sources */,
 				60D4CFBE26B5B65F00DA799E /* SearchBar.swift in Sources */,
 				6074793326A9C49700F18693 /* DateUtility.swift in Sources */,
 				60E4ED6E268DE40B00EC4561 /* UsersService.swift in Sources */,
@@ -1177,9 +1173,9 @@
 				60678E1526BAFD5400F96F61 /* UserNoticeViewModel.swift in Sources */,
 				60FC493826C9E159001983A0 /* ResetPasswordView.swift in Sources */,
 				0C8B25E926B2C51A007809CD /* CreateCategoryRequest.swift in Sources */,
+				60571E6626DD21D20047051D /* Networking+Extension.swift in Sources */,
 				6074792D26A9B48A00F18693 /* RestaurantProfileView.swift in Sources */,
 				6097A7D126A0DD4200BC3534 /* AuthCredentials.swift in Sources */,
-				6074C0C0268CD41400DA3B21 /* NetworkingHelpers.swift in Sources */,
 				607B5BF526B1EE2A00E4A707 /* UpdateImageRequest.swift in Sources */,
 				605803E626B7394000C7C9BA /* SectionView.swift in Sources */,
 				60E3953A2690918D007E459E /* TokensResponse.swift in Sources */,

@@ -1,8 +1,8 @@
 //
-//  NetworkingHelpers.swift
+//  Networking+Extension.swift
 //  Menuely
 //
-//  Created by Benjamin Mecanović on 30.06.2021..
+//  Created by Benjamin Mecanović on 30.08.2021..
 //
 
 import Foundation

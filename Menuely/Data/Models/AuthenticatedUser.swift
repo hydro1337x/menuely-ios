@@ -11,3 +11,4 @@ struct AuthenticatedUser: Codable, Equatable {
     let user: User
     var auth: Tokens
 }
+

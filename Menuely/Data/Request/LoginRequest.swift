@@ -11,3 +11,4 @@ struct LoginBodyRequest: BodyRequestable {
     let email: String
     let password: String
 }
+

@@ -23,3 +23,4 @@ extension Resolver {
         register { InvitationsService() as InvitationsServicing }
     }
 }
+

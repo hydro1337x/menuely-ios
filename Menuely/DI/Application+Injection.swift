@@ -15,6 +15,5 @@ extension Resolver: ResolverRegistering {
         registerServices()
         registerRepositories()
         registerUtilities()
-        registerConstants()
     }
 }

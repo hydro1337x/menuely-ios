@@ -10,13 +10,6 @@ import Combine
 import Resolver
 
 protocol InvitationsServicing {
-//    func createOrder(with bodyRequest: BodyRequestable, createOrderResult: LoadableSubject<Discardable>)
-//    func acceptOrder(with bodyRequest: BodyRequestable, acceptOrderResult: LoadableSubject<Discardable>)
-//    func getUserOrder(with id: PathParameter, order: LoadableSubject<Order>)
-//    func getUserOrders(orders: LoadableSubject<[Order]>)
-//    func getRestaurantOrder(with id: PathParameter, order: LoadableSubject<Order>)
-//    func getRestaurantOrders(orders: LoadableSubject<[Order]>)
-    
     func getInvitations(invitations: LoadableSubject<[Invitation]>)
     func createInvitation(with bodyRequest: BodyRequestable, createInvitationResult: LoadableSubject<Discardable>)
     func acceptInvitation(with bodyRequest: BodyRequestable, acceptInvitationResult: LoadableSubject<Discardable>)

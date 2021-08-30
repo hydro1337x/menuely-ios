@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserResponse: Codable {
+struct UserResponse: Decodable {
     enum CodingKeys: String, CodingKey {
         case user = "data"
         case statusCode

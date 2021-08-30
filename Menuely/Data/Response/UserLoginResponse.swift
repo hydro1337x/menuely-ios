@@ -40,7 +40,7 @@
 
 import Foundation
 
-struct UserLoginResponse: Codable {
+struct UserLoginResponse: Decodable {
     enum CodingKeys: String, CodingKey {
         case authenticatedUser = "data"
         case statusCode
@@ -49,3 +49,4 @@ struct UserLoginResponse: Codable {
     let statusCode: Int
     let authenticatedUser: AuthenticatedUser
 }
+
