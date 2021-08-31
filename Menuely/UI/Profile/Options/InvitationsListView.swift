@@ -21,12 +21,12 @@ struct InvitationsListView: View {
         }, content: {
             UserNoticeView()
                 .modifier(PopoversViewModifier())
-                .modifier(RootViewAppearance())
+                .modifier(ActivityViewModifier())
         })
         .fullScreenCover(isPresented: viewModel.routing.restaurantNoticeForInfo == nil ? .constant(false) : .constant(true), content: {
             RestaurantNoticeView()
                 .modifier(PopoversViewModifier())
-                .modifier(RootViewAppearance())
+                .modifier(ActivityViewModifier())
         })
         .navigationBarTitle(viewModel.title)
     }

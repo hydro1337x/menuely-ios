@@ -21,7 +21,7 @@ struct LoginView: View {
         }, content: {
             ResetPasswordView()
                 .modifier(PopoversViewModifier())
-                .modifier(RootViewAppearance())
+                .modifier(ActivityViewModifier())
         })
     }
     

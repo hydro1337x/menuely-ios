@@ -33,14 +33,14 @@ struct MenusListView: View {
             }, content: {
                 CreateMenuView()
                     .modifier(PopoversViewModifier())
-                    .modifier(RootViewAppearance())
+                    .modifier(ActivityViewModifier())
             })
             .sheet(isPresented: viewModel.routing.updateMenu != nil ? .constant(true) : .constant(false), onDismiss: {
                 viewModel.routing.updateMenu = nil
             }, content: {
                 UpdateMenuView()
                     .modifier(PopoversViewModifier())
-                    .modifier(RootViewAppearance())
+                    .modifier(ActivityViewModifier())
             })
         }
     }

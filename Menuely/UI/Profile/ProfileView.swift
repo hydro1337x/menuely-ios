@@ -37,7 +37,7 @@ struct ProfileView: View {
             .sheet(isPresented: $viewModel.routing.isOptionsSheetPresented, onDismiss: viewModel.resetNavigationStack, content: {
                 OptionsView()
                     .modifier(PopoversViewModifier())
-                    .modifier(RootViewAppearance())
+                    .modifier(ActivityViewModifier())
             })
         }
     }

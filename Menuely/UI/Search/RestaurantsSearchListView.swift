@@ -16,7 +16,7 @@ struct RestaurantsSearchListView: View {
             .fullScreenCover(isPresented: viewModel.routing.restaurantNoticeForInfo == nil ? .constant(false) : .constant(true), content: {
                 RestaurantNoticeView()
                     .modifier(PopoversViewModifier())
-                    .modifier(RootViewAppearance())
+                    .modifier(ActivityViewModifier())
             })
     }
 }

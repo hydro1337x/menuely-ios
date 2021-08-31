@@ -8,7 +8,7 @@
 import SwiftUI
 import Resolver
 
-struct RootViewAppearance: ViewModifier {
+struct ActivityViewModifier: ViewModifier {
     
     @StateObject private var viewModel: ViewModel = Resolver.resolve()
     
@@ -19,7 +19,7 @@ struct RootViewAppearance: ViewModifier {
     }
 }
 
-extension RootViewAppearance {
+extension ActivityViewModifier {
     class ViewModel: ObservableObject {
         @Injected private(set) var appState: Store<AppState>
         @Published var isActive: Bool = false

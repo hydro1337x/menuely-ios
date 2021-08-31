@@ -75,7 +75,7 @@ struct ProductsListView: View {
         }, content: {
             CreateProductView()
                 .modifier(PopoversViewModifier())
-                .modifier(RootViewAppearance())
+                .modifier(ActivityViewModifier())
         })
         .sheet(isPresented: viewModel.routing.updateProduct != nil ? .constant(true) : .constant(false), onDismiss: {
             viewModel.routing.updateProduct = nil
@@ -83,7 +83,7 @@ struct ProductsListView: View {
             EmptyView()
             UpdateProductView()
                 .modifier(PopoversViewModifier())
-                .modifier(RootViewAppearance())
+                .modifier(ActivityViewModifier())
         })
     }
 }

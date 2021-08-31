@@ -41,7 +41,7 @@ struct SearchListView: View {
             }, content: {
                 EmployeesListView()
                     .modifier(PopoversViewModifier())
-                    .modifier(RootViewAppearance())
+                    .modifier(ActivityViewModifier())
             })
         }
     }

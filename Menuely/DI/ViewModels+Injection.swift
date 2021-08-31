@@ -9,7 +9,7 @@ import Resolver
 
 extension Resolver {
     public static func registerViewModels() {
-        register { RootViewAppearance.ViewModel() }
+        register { ActivityViewModifier.ViewModel() }
         register { UserRegistrationViewModel() }
         register { RestaurantRegistrationViewModel() }
         register { LoginViewModel(appState: resolve()) }

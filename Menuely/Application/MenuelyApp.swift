@@ -17,7 +17,7 @@ struct MenuelyApp: App {
         WindowGroup {
             RootView()                
                 .modifier(PopoversViewModifier())
-                .modifier(RootViewAppearance())
+                .modifier(ActivityViewModifier())
                 
         }
     }

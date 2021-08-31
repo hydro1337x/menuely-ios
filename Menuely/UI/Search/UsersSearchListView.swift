@@ -18,7 +18,7 @@ struct UsersSearchListView: View {
             }, content: {
                 UserNoticeView()
                     .modifier(PopoversViewModifier())
-                    .modifier(RootViewAppearance())
+                    .modifier(ActivityViewModifier())
             })
     }
 }

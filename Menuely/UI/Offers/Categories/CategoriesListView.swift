@@ -69,14 +69,14 @@ struct CategoriesListView: View {
         }, content: {
             CreateCategoryView()
                 .modifier(PopoversViewModifier())
-                .modifier(RootViewAppearance())
+                .modifier(ActivityViewModifier())
         })
         .sheet(isPresented: viewModel.routing.updateCategory != nil ? .constant(true) : .constant(false), onDismiss: {
             viewModel.routing.updateCategory = nil
         }, content: {
             UpdateCategoryView()
                 .modifier(PopoversViewModifier())
-                .modifier(RootViewAppearance())
+                .modifier(ActivityViewModifier())
         })
     }
 }
