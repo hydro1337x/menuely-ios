@@ -49,7 +49,7 @@ protocol APIConfigurable: URLRequestConvertible {
 
 extension APIConfigurable {
     var baseURL: String {
-        return "https://menuely-eyj6bxkacq-ey.a.run.app"
+        return "https://menuely.herokuapp.com"
     }
     
     func asURLRequest() throws -> URLRequest {
