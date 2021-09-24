@@ -23,3 +23,53 @@ The backend which this app is consuming can be found [here](https://github.com/h
     <td><img src="Screenshots/Entry/3.png" height = "545" width="271.25"></td>
   </tr>
 </table>
+
+### Offers
+
+<table>
+  <tr>
+    <td><img src="Screenshots/Offers/1.png" height = "545" width="271.25"></td>
+    <td><img src="Screenshots/Offers/2.png" height = "545" width="271.25"></td>
+    <td><img src="Screenshots/Offers/3.png" height = "545" width="271.25"></td>
+  </tr>
+</table>
+
+### Ordering
+
+<table>
+  <tr>
+    <td><img src="Screenshots/Ordering/1.png" height = "545" width="271.25"></td>
+    <td><img src="Screenshots/Ordering/2.png" height = "545" width="271.25"></td>
+    <td><img src="Screenshots/Ordering/3.png" height = "545" width="271.25"></td>
+  </tr>
+  <tr>
+    <td><img src="Screenshots/Ordering/4.png" height = "545" width="271.25"></td>
+    <td><img src="Screenshots/Ordering/5.png" height = "545" width="271.25"></td>
+  </tr>
+</table>
+
+### Search
+
+<table>
+  <tr>
+    <td><img src="Screenshots/Search/1.png" height = "545" width="271.25"></td>
+    <td><img src="Screenshots/Search/2.png" height = "545" width="271.25"></td>
+  </tr>
+  <tr>
+    <td><img src="Screenshots/Search/3.png" height = "545" width="271.25"></td>
+    <td><img src="Screenshots/Search/4.png" height = "545" width="271.25"></td>
+  </tr>
+</table>
+
+### Profile
+
+<table>
+  <tr>
+    <td><img src="Screenshots/Profile/1.png" height = "545" width="271.25"></td>
+    <td><img src="Screenshots/Profile/2.png" height = "545" width="271.25"></td>
+  </tr>
+  <tr>
+    <td><img src="Screenshots/Profile/3.png" height = "545" width="271.25"></td>
+    <td><img src="Screenshots/Profile/4.png" height = "545" width="271.25"></td>
+  </tr>
+</table>
