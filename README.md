@@ -18,8 +18,8 @@ The backend which this app is consuming can be found [here](https://github.com/h
 
 <table>
   <tr>
-    <td><img src="Screenshots/1.png" height = "545" width="271.25"></td>
-    <td><img src="Screenshots/2.png" height = "545" width="271.25"></td>
-    <td><img src="Screenshots/3.png" height = "545" width="271.25"></td>
+    <td><img src="Screenshots/Entry/1.png" height = "545" width="271.25"></td>
+    <td><img src="Screenshots/Entry/2.png" height = "545" width="271.25"></td>
+    <td><img src="Screenshots/Entry/3.png" height = "545" width="271.25"></td>
   </tr>
 </table>
