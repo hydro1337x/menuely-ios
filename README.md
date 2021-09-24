@@ -10,4 +10,8 @@ The application enables login and registration of users and restaurants as separ
 
 The application is created using SwiftUI and Combine. Its architecture was heavily inspired by Alexey Naumov's [post](https://nalexn.github.io/clean-architecture-swiftui/) about SwiftUI Clean Architecture where the application is split into 3 layers: presentation, business logic and data layers. Networking was done using [Alamofire](https://github.com/Alamofire/Alamofire) utilizing the power of Combine publishers. For dependancy injection [Resolver](https://github.com/hmlongco/Resolver) was used. 
 
-The backend which is used fo this application can be found [here](https://github.com/hydro1337x/menuely-backend).
+The backend which this app is consuming can be found [here](https://github.com/hydro1337x/menuely-backend).
+
+## Screenshots
+
+### 
