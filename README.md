@@ -1,6 +1,6 @@
 ## Menuely iOS
 
-Graduate thesis project iOS application created to modernize the process of menu creation and orders of hospitality facilities
+Graduate thesis project iOS application created to modernize the process of menu creation and orders in hospitality facilities
 
 ## Description
 
