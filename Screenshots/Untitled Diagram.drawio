@@ -1,1 +1,127 @@
-<mxfile host="app.diagrams.net" modified="2022-02-28T21:41:45.735Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.2 Safari/605.1.15" version="16.6.4" etag="rsEvIigHGwvNJnas2AOC" type="github"><diagram id="_82YeSBfUZ-bT9ts9hX4">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2022-02-28T22:22:17.122Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.2 Safari/605.1.15" etag="ZiaXJ4qAvsKi0Nu6r426" version="16.6.4" type="github">
+  <diagram id="_82YeSBfUZ-bT9ts9hX4" name="Page-1">
+    <mxGraphModel dx="2933" dy="1177" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="wX2a3J8rjj3Ltf82PDTM-14" target="wX2a3J8rjj3Ltf82PDTM-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="wX2a3J8rjj3Ltf82PDTM-14" target="wX2a3J8rjj3Ltf82PDTM-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-14" value="Application Coordinator" style="swimlane;glass=0;" vertex="1" parent="1">
+          <mxGeometry x="320" width="200" height="110" as="geometry" />
+        </mxCell>
+        <UserObject label="UIWindow" treeRoot="1" id="wX2a3J8rjj3Ltf82PDTM-53">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};glass=0;" vertex="1" parent="wX2a3J8rjj3Ltf82PDTM-14">
+            <mxGeometry x="10" y="40" width="180" height="50" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-16" value="Auth Coordinator" style="swimlane;glass=0;" vertex="1" parent="1">
+          <mxGeometry x="590" y="180" width="700" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-27" value="UserRegistrationViewController" style="ellipse;whiteSpace=wrap;html=1;align=center;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};treeFolding=1;treeMoving=1;glass=0;" vertex="1" parent="wX2a3J8rjj3Ltf82PDTM-16">
+          <mxGeometry x="10" y="120" width="190" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-32" value="RestaurantRegistrationViewController" style="ellipse;whiteSpace=wrap;html=1;align=center;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};treeFolding=1;treeMoving=1;glass=0;" vertex="1" parent="wX2a3J8rjj3Ltf82PDTM-16">
+          <mxGeometry x="440" y="120" width="250" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-31" value="UserLoginViewController" style="ellipse;whiteSpace=wrap;html=1;align=center;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};treeFolding=1;treeMoving=1;glass=0;" vertex="1" parent="wX2a3J8rjj3Ltf82PDTM-16">
+          <mxGeometry x="120" y="220" width="160" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-30" value="ResetPasswordViewController" style="ellipse;whiteSpace=wrap;html=1;align=center;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};treeFolding=1;treeMoving=1;glass=0;" vertex="1" parent="wX2a3J8rjj3Ltf82PDTM-16">
+          <mxGeometry x="225" y="300" width="190" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-29" value="RestaurantLoginViewController" style="ellipse;whiteSpace=wrap;html=1;align=center;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};treeFolding=1;treeMoving=1;glass=0;" vertex="1" parent="wX2a3J8rjj3Ltf82PDTM-16">
+          <mxGeometry x="350" y="220" width="190" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="wX2a3J8rjj3Ltf82PDTM-16" source="wX2a3J8rjj3Ltf82PDTM-34" target="wX2a3J8rjj3Ltf82PDTM-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="wX2a3J8rjj3Ltf82PDTM-16" source="wX2a3J8rjj3Ltf82PDTM-34" target="wX2a3J8rjj3Ltf82PDTM-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="wX2a3J8rjj3Ltf82PDTM-16" source="wX2a3J8rjj3Ltf82PDTM-34" target="wX2a3J8rjj3Ltf82PDTM-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="wX2a3J8rjj3Ltf82PDTM-16" source="wX2a3J8rjj3Ltf82PDTM-34" target="wX2a3J8rjj3Ltf82PDTM-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="wX2a3J8rjj3Ltf82PDTM-16" source="wX2a3J8rjj3Ltf82PDTM-34" target="wX2a3J8rjj3Ltf82PDTM-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="AuthContainerViewController" treeRoot="1" id="wX2a3J8rjj3Ltf82PDTM-34">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};glass=0;" vertex="1" parent="wX2a3J8rjj3Ltf82PDTM-16">
+            <mxGeometry x="230" y="39" width="180" height="50" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="wX2a3J8rjj3Ltf82PDTM-19" target="wX2a3J8rjj3Ltf82PDTM-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="wX2a3J8rjj3Ltf82PDTM-19" target="wX2a3J8rjj3Ltf82PDTM-40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="wX2a3J8rjj3Ltf82PDTM-19" target="wX2a3J8rjj3Ltf82PDTM-45">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-19" value="Tabs Coordinator" style="swimlane;glass=0;" vertex="1" parent="1">
+          <mxGeometry x="-50" y="170" width="200" height="110" as="geometry" />
+        </mxCell>
+        <UserObject label="UITabBarController" treeRoot="1" id="wX2a3J8rjj3Ltf82PDTM-54">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};glass=0;" vertex="1" parent="wX2a3J8rjj3Ltf82PDTM-19">
+            <mxGeometry x="10" y="40" width="180" height="50" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-40" value="SearchCoordinator" style="swimlane;glass=0;" vertex="1" parent="1">
+          <mxGeometry x="-60" y="355" width="220" height="235" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="wX2a3J8rjj3Ltf82PDTM-40" source="wX2a3J8rjj3Ltf82PDTM-58" target="wX2a3J8rjj3Ltf82PDTM-61">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="UINavigationController" treeRoot="1" id="wX2a3J8rjj3Ltf82PDTM-58">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};glass=0;" vertex="1" parent="wX2a3J8rjj3Ltf82PDTM-40">
+            <mxGeometry x="20" y="39" width="180" height="50" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-61" value="SearchViewController" style="ellipse;whiteSpace=wrap;html=1;align=center;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};treeFolding=1;treeMoving=1;glass=0;" vertex="1" parent="wX2a3J8rjj3Ltf82PDTM-40">
+          <mxGeometry x="15" y="164" width="190" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-42" value="Scan/OffersCoordinator" style="swimlane;glass=0;" vertex="1" parent="1">
+          <mxGeometry x="-320" y="360" width="215" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="wX2a3J8rjj3Ltf82PDTM-42" source="wX2a3J8rjj3Ltf82PDTM-56" target="wX2a3J8rjj3Ltf82PDTM-59">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="UINavigationController" treeRoot="1" id="wX2a3J8rjj3Ltf82PDTM-56">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};glass=0;" vertex="1" parent="wX2a3J8rjj3Ltf82PDTM-42">
+            <mxGeometry x="17.5" y="39" width="180" height="50" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-59" value="Scan/OffersViewController" style="ellipse;whiteSpace=wrap;html=1;align=center;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};treeFolding=1;treeMoving=1;glass=0;" vertex="1" parent="wX2a3J8rjj3Ltf82PDTM-42">
+          <mxGeometry x="12.5" y="160" width="190" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-45" value="ProfileCoordinator" style="swimlane;glass=0;" vertex="1" parent="1">
+          <mxGeometry x="210" y="355" width="270" height="355" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="wX2a3J8rjj3Ltf82PDTM-45" source="wX2a3J8rjj3Ltf82PDTM-57" target="wX2a3J8rjj3Ltf82PDTM-64">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="UINavigationController" treeRoot="1" id="wX2a3J8rjj3Ltf82PDTM-57">
+          <mxCell style="whiteSpace=wrap;html=1;align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};glass=0;" vertex="1" parent="wX2a3J8rjj3Ltf82PDTM-45">
+            <mxGeometry x="45" y="39" width="180" height="50" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-67" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="wX2a3J8rjj3Ltf82PDTM-45" source="wX2a3J8rjj3Ltf82PDTM-64" target="wX2a3J8rjj3Ltf82PDTM-66">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-64" value="ProfileViewController" style="ellipse;whiteSpace=wrap;html=1;align=center;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};treeFolding=1;treeMoving=1;glass=0;" vertex="1" parent="wX2a3J8rjj3Ltf82PDTM-45">
+          <mxGeometry x="40" y="164" width="190" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="wX2a3J8rjj3Ltf82PDTM-66" value="AccountSettingsViewController" style="ellipse;whiteSpace=wrap;html=1;align=center;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1};treeFolding=1;treeMoving=1;glass=0;" vertex="1" parent="wX2a3J8rjj3Ltf82PDTM-45">
+          <mxGeometry x="40" y="265" width="190" height="39" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
